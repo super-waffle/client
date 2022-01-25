@@ -1,0 +1,17 @@
+$color1: #ed5b46;
+$color2: #f26671;
+$color3: #f28585;
+$color4: #feac97;
+
+button {
+  cursor: pointer;
+  color: $color1;
+  background-color: $color2;
+  border-radius: $borderRadius;
+  border: 0px;
+
+  &:hover {
+    color: $color2;
+    background-color: $color1;
+  }
+}
