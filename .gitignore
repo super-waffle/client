@@ -274,3 +274,6 @@ yarn-error.log*
 
 #github
 .github
+
+#prettier
+.prettierignore
