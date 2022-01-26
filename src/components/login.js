@@ -11,11 +11,11 @@ function Login() {
         <div className="login-feat-box">
           <div className="login-feat-box-header">
             <span>Log In</span>
-            <p>공부하는습관에 오신걸 환영합니다!</p>
+            <div className="content">공부하는습관에 오신걸 환영합니다!</div>
           </div>
           <div className="login-feat-box-content">
             <div className="input-email">
-              <span>Email</span>
+              <span>E-mail</span>
               <input id="email" type="text" placeholder="이메일을 입력하세요" />
             </div>
             <div className="input-pwd">
@@ -27,11 +27,12 @@ function Login() {
               />
             </div>
             <div className="submit-btn">
-              <button>LOG IN</button>
+              <button className="btn-xl">LOG IN</button>
             </div>
           </div>
           <div className="login-feat-box-footer">
-            <button>아직 회원이 아니신가요?</button>
+            <span>공습이 처음이신가요? </span>
+            <span>Create an Account</span>
           </div>
         </div>
       </div>
