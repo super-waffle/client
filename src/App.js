@@ -17,6 +17,7 @@ function App() {
         <NavLink to="/profile">프로필</NavLink> |{" "}
         <NavLink to="/settings">마이페이지</NavLink> |{" "}
         <NavLink to="/login">로그인</NavLink> |{" "}
+        <NavLink to="/signup">회원가입</NavLink> |{" "}
       </nav>
       <Outlet />
     </div>
