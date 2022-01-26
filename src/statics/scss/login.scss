@@ -20,6 +20,7 @@ $font-family: "Pretendard";
     width: 100%;
     display: flex;
     justify-content: space-around;
+
     .login-feat-box {
       width: 40%;
       display: flex;
@@ -36,6 +37,7 @@ $font-family: "Pretendard";
           font-size: 30px;
           line-height: 36px;
         }
+
         .content {
           font-style: normal;
           font-weight: normal;
@@ -47,6 +49,7 @@ $font-family: "Pretendard";
           padding-bottom: 12px;
         }
       }
+
       .login-feat-box-content {
         background: #fcfcfc;
         border: 1px solid #e2e2e2;
@@ -73,9 +76,11 @@ $font-family: "Pretendard";
             box-sizing: border-box;
             border-radius: 7px;
           }
+
           :focus {
             outline: 1.8px solid #6667ab;
           }
+
           ::placeholder {
             font-style: normal;
             font-weight: normal;
@@ -89,14 +94,26 @@ $font-family: "Pretendard";
           display: flex;
           flex-direction: column;
 
-          span {
-            padding-top: 13px;
-            padding-bottom: 7px;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 14px;
-            line-height: 17px;
+          .input-pwd-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+
+            span {
+              padding-top: 15px;
+              padding-bottom: 7px;
+              font-style: normal;
+              font-weight: normal;
+              font-size: 14px;
+              line-height: 17px;
+            }
+            .content {
+              font-size: 10px;
+              line-height: 12px;
+              color: #8f8f8f;
+            }
           }
+
           input {
             height: 40px;
             background: #ffffff;
@@ -104,9 +121,11 @@ $font-family: "Pretendard";
             box-sizing: border-box;
             border-radius: 7px;
           }
+
           :focus {
             outline: 1.8px solid #6667ab;
           }
+
           ::placeholder {
             font-style: normal;
             font-weight: normal;
@@ -118,6 +137,7 @@ $font-family: "Pretendard";
 
         .submit-btn {
           padding-top: 30px;
+
           .btn-xl {
             width: 100%;
             height: 40px;

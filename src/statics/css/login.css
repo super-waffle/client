@@ -83,13 +83,23 @@
   display: flex;
   flex-direction: column;
 }
-.login .login-feat .login-feat-box .login-feat-box-content .input-pwd span {
-  padding-top: 13px;
+.login .login-feat .login-feat-box .login-feat-box-content .input-pwd .input-pwd-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.login .login-feat .login-feat-box .login-feat-box-content .input-pwd .input-pwd-header span {
+  padding-top: 15px;
   padding-bottom: 7px;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
+}
+.login .login-feat .login-feat-box .login-feat-box-content .input-pwd .input-pwd-header .content {
+  font-size: 10px;
+  line-height: 12px;
+  color: #8f8f8f;
 }
 .login .login-feat .login-feat-box .login-feat-box-content .input-pwd input {
   height: 40px;

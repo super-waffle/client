@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "../statics/css/login.css";
 
 function Login() {
+  const { setUser } = useUserContext();
+  const history = useHistory();
+  const [account, setAccount] = useState({
+    id: "",
+    password: "",
+  });
   return (
     <div className="login">
       <div className="login-image">
@@ -19,7 +25,10 @@ function Login() {
               <input id="email" type="text" placeholder="이메일을 입력하세요" />
             </div>
             <div className="input-pwd">
-              <span>Password</span>
+              <div className="input-pwd-header">
+                <span>Password</span>
+                <div className="content">비밀번호를 잊으셨나요?</div>
+              </div>
               <input
                 id="password"
                 type="password"
