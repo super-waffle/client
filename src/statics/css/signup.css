@@ -26,9 +26,12 @@
   color: #d5d5d5;
 }
 .signup .cert {
+  cursor: pointer;
   font-size: 10px;
   line-height: 12px;
   color: #8f8f8f;
+  border: 0px;
+  border-radius: 2px;
 }
 .signup span {
   padding-bottom: 7px;
@@ -89,16 +92,19 @@
 .signup .signup-feat .signup-feat-box .signup-feat-box-content .formbox span {
   font-style: normal;
   font-weight: normal;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 12px;
-  position: absolute;
-  bottom: -18px;
-  left: 2px;
 }
 .signup .signup-feat .signup-feat-box .signup-feat-box-content .formbox span.success {
-  color: #8f8c8b;
+  color: #6667ab;
+  position: absolute;
+  top: -20px;
+  right: 5px;
 }
 .signup .signup-feat .signup-feat-box .signup-feat-box-content .formbox span.error {
+  position: absolute;
+  bottom: -20px;
+  left: 2px;
   color: #eb5656;
 }
 .signup .signup-feat .signup-feat-box .signup-feat-box-content .input-email {

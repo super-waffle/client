@@ -28,9 +28,12 @@
 
   // 이메일 인증, 닉네임 중복검사
   .cert {
+    cursor: pointer;
     font-size: 10px;
     line-height: 12px;
     color: #8f8f8f;
+    border: 0px;
+    border-radius: 2px;
   }
 
   // 입력창 라벨
@@ -105,16 +108,19 @@
           span {
             font-style: normal;
             font-weight: normal;
-            font-size: 10px;
+            font-size: 11px;
             line-height: 12px;
-            // letter-spacing: -1px;
-            position: absolute;
-            bottom: -18px;
-            left: 2px;
+
             &.success {
-              color: #8f8c8b;
+              color: $mainColor;
+              position: absolute;
+              top: -20px;
+              right: 5px;
             }
             &.error {
+              position: absolute;
+              bottom: -20px;
+              left: 2px;
               color: #eb5656;
             }
           }

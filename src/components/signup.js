@@ -18,17 +18,22 @@ function SignUp() {
   const [isEmail, setIsEmail] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
-  // const router = useRouter();
 
-  // const onSubmit = useCallback(
-  //   async (event) => {
-  //     event.preventDefault()
-  //     try {
-  //       await axios
-  //         .post()
-  //     }
-  //   }
-  // )
+  // 중복 검사
+  const [exNickname, checkExNickname] = useState("");
+
+  //닉네임 중복확인
+  const nicknameCheck = useCallback((event) => {
+    event.preventDefault();
+    console.log(nickname);
+    axios
+      .post("http://localhost:3000/signup", {
+        user_nickname: nickname,
+      })
+      .then((res) => {
+        console.log(res);
+      });
+  });
 
   // 이메일 유효성 검사
   const onChangeEmail = useCallback((event) => {
@@ -72,7 +77,7 @@ function SignUp() {
       );
       setIsPassword(false);
     } else {
-      setPasswordMessage("");
+      setPasswordMessage("사용 가능한 비밀번호입니다");
       setIsPassword(true);
     }
   }, []);
@@ -90,6 +95,7 @@ function SignUp() {
       setIsPasswordConfirm(false);
     }
   });
+
   return (
     <div className="signup">
       <div className="signup-image">
@@ -124,7 +130,9 @@ function SignUp() {
             <div className="input-nickname">
               <div className="input-nickname-header">
                 <span>Nickname</span>
-                <button className="cert">닉네임 중복검사</button>
+                <button className="cert" onClick={nicknameCheck}>
+                  닉네임 중복검사
+                </button>
               </div>
               <div className="formbox">
                 <input
