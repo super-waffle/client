@@ -122,6 +122,7 @@
   padding-top: 30px;
 }
 .login .login-feat .login-feat-box .login-feat-box-content .submit-btn .btn-xl {
+  cursor: pointer;
   width: 100%;
   height: 40px;
   color: #ffffff;
