@@ -8,11 +8,12 @@
 }
 .signup input {
   height: 40px;
+  width: 100%;
   background: #ffffff;
   border: 1px solid #e1e1e1;
   box-sizing: border-box;
   border-radius: 7px;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
 }
 .signup :focus {
   outline: 1.8px solid #6667ab;
@@ -80,6 +81,26 @@
   border-radius: 7px;
   padding: 20px;
 }
+.signup .signup-feat .signup-feat-box .signup-feat-box-content .formbox {
+  position: relative;
+  margin-bottom: 18px;
+  width: 100%;
+}
+.signup .signup-feat .signup-feat-box .signup-feat-box-content .formbox span {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  position: absolute;
+  bottom: -18px;
+  left: 2px;
+}
+.signup .signup-feat .signup-feat-box .signup-feat-box-content .formbox span.success {
+  color: #8f8c8b;
+}
+.signup .signup-feat .signup-feat-box .signup-feat-box-content .formbox span.error {
+  color: #eb5656;
+}
 .signup .signup-feat .signup-feat-box .signup-feat-box-content .input-email {
   display: flex;
   flex-direction: column;
@@ -92,7 +113,7 @@
 .signup .signup-feat .signup-feat-box .signup-feat-box-content .input-nickname {
   display: flex;
   flex-direction: column;
-  padding-top: 10px;
+  padding-top: 2px;
 }
 .signup .signup-feat .signup-feat-box .signup-feat-box-content .input-nickname .input-nickname-header {
   display: flex;
@@ -108,10 +129,21 @@
   padding-top: 30px;
 }
 .signup .signup-feat .signup-feat-box .signup-feat-box-content .submit-btn .btn-xl {
+  cursor: pointer;
   width: 100%;
   height: 40px;
   color: #ffffff;
   background-color: #6667ab;
+  font-size: 16px;
+  line-height: 19px;
+  border: 0px;
+  border-radius: 7px;
+}
+.signup .signup-feat .signup-feat-box .signup-feat-box-content .submit-btn .disabled {
+  width: 100%;
+  height: 40px;
+  color: #ffffff;
+  background-color: #8a8a8a;
   font-size: 16px;
   line-height: 19px;
   border: 0px;
