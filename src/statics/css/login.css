@@ -1,0 +1,47 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+.login {
+  font-family: "Pretendard";
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+.login .login-image {
+  height: 100vh;
+  width: auto;
+}
+.login .login-image img {
+  max-height: 100%;
+}
+.login .login-feat {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.login .login-feat .login-feat-box {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+.login .login-feat .login-feat-box .login-feat-box-header span {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 36px;
+}
+.login .login-feat .login-feat-box .login-feat-box-header p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+  color: #777777;
+}
+.login .login-feat .login-feat-box .login-feat-box-content {
+  background: #fcfcfc;
+  border: 1px solid #e2e2e2;
+  box-sizing: border-box;
+  border-radius: 7px;
+}
+
+/*# sourceMappingURL=login.css.map */

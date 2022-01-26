@@ -16,6 +16,7 @@ function App() {
         <NavLink to="/schedules">일정관리</NavLink> |{" "}
         <NavLink to="/profile">프로필</NavLink> |{" "}
         <NavLink to="/settings">마이페이지</NavLink> |{" "}
+        <NavLink to="/login">로그인</NavLink> |{" "}
       </nav>
       <Outlet />
     </div>
