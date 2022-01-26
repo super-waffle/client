@@ -32,25 +32,25 @@ src
 ## FrontEnd Member
 
 <table>
-  <tr height="205px">
-    <td align="center" width="200px">
+  <tr height="307px">
+    <td align="center" width="300px">
       <a href="https://github.com/eunyeong1113"><img src="https://avatars.githubusercontent.com/u/59558623?v=4"/></a>
     </td>
-     <td align="center" width="200px">
+     <td align="center" width="300px">
       <a href="https://github.com/rosieyeon/"><img src="https://avatars.githubusercontent.com/u/70363530?v=4"/></a>
     </td>
-    <td align="center" width="200px">
+    <td align="center" width="300px">
       <a href="https://github.com/FallingStar624"><img src="https://avatars.githubusercontent.com/u/83006446?v=4"/></a>
     </td>
   </tr>
   <tr>
-    <td align="center" width="200px">
+    <td align="center" width="300px">
       <strong>은영</strong><br><a href="https://github.com/eunyeong1113">eunyeong1113</a>
     </td>
-    <td align="center" width="200px">
+    <td align="center" width="300px">
       <strong>승은</strong><br><a href="https://github.com/rosieyeon/">rosieyeon</a>
     </td>
-    <td align="center" width="200px">
+    <td align="center" width="300px">
       <strong>광호</strong><br><a href="https://github.com/FallingStar624">FallingStar624</a>
     </td>
   </tr>
