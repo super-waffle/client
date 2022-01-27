@@ -125,11 +125,12 @@
   justify-content: space-between;
   align-items: baseline;
 }
-.signup .signup-feat .signup-feat-box .signup-feat-box-content .input-email .input-email-header .show {
+.signup .signup-feat .signup-feat-box .signup-feat-box-content .input-email .input-email-header .content {
   display: flex;
   justify-content: center;
+  padding-bottom: 25px;
 }
-.signup .signup-feat .signup-feat-box .signup-feat-box-content .input-email .input-email-header .show img {
+.signup .signup-feat .signup-feat-box .signup-feat-box-content .input-email .input-email-header .content img {
   height: 20px;
   padding-bottom: 12px;
   margin-right: 10px;

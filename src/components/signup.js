@@ -210,8 +210,13 @@ function SignUp() {
                     </div>
                   </div>
                   <div className={`${isEmailAuth ? "show" : "hidden"}`}>
-                    <img src="icons/success-filled.svg" alt=""></img>
-                    <div className="body-heading1">인증이 완료되었습니다</div>
+                    <div className="content">
+                      <img src="icons/success-filled.svg" alt=""></img>
+                      <div className="body-heading1">인증이 완료되었습니다</div>
+                    </div>
+                    <button onClick={closeModal} className="btn-m">
+                      확인
+                    </button>
                   </div>
                 </Modal>
               </div>

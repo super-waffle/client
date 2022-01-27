@@ -64,7 +64,7 @@
   line-height: 12px;
   color: #cbcbcb;
 }
-.modal > section > main button {
+.modal > section > main .btn-xs {
   cursor: pointer;
   height: 32px;
   width: 15%;
@@ -74,6 +74,17 @@
   color: white;
   margin-left: 6px;
   margin-bottom: 1.5px;
+}
+.modal > section > main .btn-m {
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  line-height: 17px;
+  height: 36px;
+  width: 20%;
+  border: none;
+  background: #6667ab;
+  border-radius: 10px;
 }
 .modal > section > footer {
   padding: 12px 16px;
