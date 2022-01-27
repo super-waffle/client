@@ -4,6 +4,7 @@ import Modal from "./emailConfirm";
 import "../statics/css/signup.css";
 
 function SignUp() {
+  // const router = useRouter();
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
@@ -27,6 +28,8 @@ function SignUp() {
   // 이메일 인증 코드
   const [emailAuth, setEmailAuth] = useState("");
   const [isEmailAuth, setIsEmailAuth] = useState(false);
+  const [emailAuthMsg, setEmailAuthMsg] = useState("");
+  const [emailExist, setEmailExist] = useState(false);
 
   // 모달창
   const [modalOpen, setModalOpen] = useState(false);
@@ -37,6 +40,29 @@ function SignUp() {
     setModalOpen(false);
   };
 
+  // 회원가입
+  const [signupSuccess, setSignupSuccess] = useState(false);
+  const onSubmit = useCallback(
+    (event) => {
+      // event.preventDefault();
+      console.log(email, nickname, password);
+      setSignupSuccess(false);
+      axios
+        .post("accounts", {
+          email: email,
+          nickname: nickname,
+          password: password,
+        })
+        .then((res) => {
+          console.log(res);
+          setSignupSuccess(true);
+        })
+        .carch((err) => {
+          console.log(err);
+        });
+    },
+    [email, nickname, password]
+  );
   // 이메일 유효성 검사
   const onChangeEmail = useCallback((event) => {
     const emailRegex =
@@ -53,37 +79,51 @@ function SignUp() {
   }, []);
 
   // 이메일 인증 검사(메일 발송)
-  const onClickEmail = useCallback((event) => {
-    // event.preventDefault();
-    console.log(email);
-    axios
-      .post("/emails", {
-        email: email,
-      })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+  const onClickEmail = useCallback(
+    (event) => {
+      // event.preventDefault();
+      console.log(email);
+      axios
+        .post("/emails", {
+          email: email,
+        })
+        .then((res) => {
+          console.log(res.data);
+          setEmailExist(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log("hi");
+          setEmailExist(true);
+          setEmailAuthMsg("이미 가입된 이메일입니다");
+        });
+    },
+    [email]
+  );
 
   // 이메일 인증 코드 검증
-  const onClickAuthEmail = useCallback((event) => {
-    console.log(emailAuth);
-    axios
-      .post("/emails/auth", {
-        email: email,
-        authCode: emailAuth,
-      })
-      .then((res) => {
-        console.log(res);
-        if (res.data.statusCode === 200) {
-          setIsEmailAuth(true);
-          setEmailMessage("이메일 인증이 완료되었습니다");
-        }
-      });
-  });
+  const onClickAuthEmail = useCallback(
+    (event) => {
+      console.log(emailAuth);
+      axios
+        .post("/emails/auth", {
+          email: email,
+          authCode: emailAuth,
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.data.statusCode === 200) {
+            setIsEmailAuth(true);
+            setEmailMessage("이메일 인증이 완료되었습니다");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setEmailAuthMsg("인증 코드가 일치하지 않습니다");
+        });
+    },
+    [email, emailAuth]
+  );
   //닉네임 유효성 검사 & 중복 검사
   // [TODO] : 닉네임에 특수문자 포함 안되는 유효성 검사 추가하기(특수문자 정규식 추가)
   const onChangeNickname = useCallback((event) => {
@@ -185,30 +225,39 @@ function SignUp() {
                   </button>
                 </div>
                 <Modal open={modalOpen} close={closeModal} header=" ">
-                  <div className={`${isEmailAuth ? "hidden" : ""}`}>
-                    <div className="body-heading1">
-                      {" "}
-                      인증코드가 발송되었습니다
-                    </div>
-                    <div className="body-heading2">
-                      인증코드 입력시 회원가입이 계속됩니다
-                    </div>
+                  {!isEmailAuth && !emailExist && (
                     <div>
-                      <input
-                        id="emailAuth"
-                        placeholder="인증코드를 입력하세요"
-                        onChange={(e) => setEmailAuth(e.target.value)}
-                        value={emailAuth}
-                      />
-                      <button
-                        type="submit"
-                        className="btn-xs"
-                        onClick={onClickAuthEmail}
-                      >
-                        인증
-                      </button>
+                      <div className="body-heading1">
+                        {" "}
+                        인증코드가 발송되었습니다
+                      </div>
+                      <div className="body-heading2">
+                        인증코드 입력시 회원가입이 계속됩니다
+                      </div>
+                      <div>
+                        <span
+                          className={`auth-message ${
+                            isEmailAuth ? "hidden" : ""
+                          }`}
+                        >
+                          {emailAuthMsg}
+                        </span>
+                        <input
+                          id="emailAuth"
+                          placeholder="인증코드를 입력하세요"
+                          onChange={(e) => setEmailAuth(e.target.value)}
+                          value={emailAuth}
+                        />
+                        <button
+                          type="submit"
+                          className="btn-xs"
+                          onClick={onClickAuthEmail}
+                        >
+                          인증
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  )}
                   <div className={`${isEmailAuth ? "show" : "hidden"}`}>
                     <div className="content">
                       <img src="icons/success-filled.svg" alt=""></img>
@@ -216,6 +265,20 @@ function SignUp() {
                     </div>
                     <button onClick={closeModal} className="btn-m">
                       확인
+                    </button>
+                  </div>
+                  <div className={`${emailExist ? "exist" : "hidden"}`}>
+                    <span className="body-heading1">
+                      이미 가입된 회원입니다.
+                    </span>
+                    <div className="pwd-search">
+                      <span className="body-heading2">
+                        비밀번호를 잊으셨나요?
+                      </span>
+                      <span className="body-heading2">비밀번호 찾기</span>
+                    </div>
+                    <button className="btn-m" onClick={closeModal}>
+                      닫기
                     </button>
                   </div>
                 </Modal>
@@ -301,6 +364,7 @@ function SignUp() {
             </div>
             <div className="submit-btn">
               <button
+                onClick={onSubmit}
                 type="submit"
                 className={`${
                   isNickname &&
