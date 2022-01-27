@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useCallback } from "react";
+import Modal from "./emailConfirm";
 import "../statics/css/signup.css";
 
 function SignUp() {
@@ -23,27 +24,14 @@ function SignUp() {
   const [exNickname, checkExNickname] = useState(false);
   const [exNicknameMsg, setExNicknameMsg] = useState("");
 
-  //닉네임 중복확인
-  const nicknameCheck = useCallback((event) => {
-    event.preventDefault();
-    console.log(nickname);
-    axios
-      .post("/accounts/nickname", {
-        nickname: nickname,
-      })
-      .then((res) => {
-        console.log(res);
-        if (res.data.statusCode === 200) {
-          checkExNickname(true);
-          setExNicknameMsg("사용 가능한 닉네임입니다");
-          console.log(checkExNickname);
-        } else {
-          checkExNickname(false);
-          console.log("hi");
-          setExNicknameMsg("이미 사용중인 닉네임입니다  ");
-        }
-      });
-  });
+  // 모달창
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   // 이메일 유효성 검사
   const onChangeEmail = useCallback((event) => {
@@ -60,7 +48,19 @@ function SignUp() {
     }
   }, []);
 
-  //닉네임 유효성 검사
+  const onClickEmail = useCallback((event) => {
+    // event.preventDefault();
+    console.log(email);
+    axios
+      .post("/accounts/emails", {
+        email: email,
+      })
+      .then((res) => {
+        console.log(res);
+      });
+  });
+
+  //닉네임 유효성 검사 & 중복 검사
   // [TODO] : 닉네임에 특수문자 포함 안되는 유효성 검사 추가하기(특수문자 정규식 추가)
   const onChangeNickname = useCallback((event) => {
     const nicknameCurrent = event.target.value;
@@ -72,7 +72,6 @@ function SignUp() {
       setExNicknameMsg("");
     } else {
       event.preventDefault();
-      console.log(nickname);
       axios
         .post("/accounts/nickname", {
           nickname: nicknameCurrent,
@@ -113,18 +112,21 @@ function SignUp() {
   }, []);
 
   //비밀번호 확인
-  const onChangePasswordConfirm = useCallback((event) => {
-    const passwordConfirmCurrent = event.target.value;
-    setPasswordConfirm(passwordConfirmCurrent);
+  const onChangePasswordConfirm = useCallback(
+    (event) => {
+      const passwordConfirmCurrent = event.target.value;
+      setPasswordConfirm(passwordConfirmCurrent);
 
-    if (password === passwordConfirmCurrent) {
-      setPasswordConfirmMessage("");
-      setIsPasswordConfirm(true);
-    } else {
-      setPasswordConfirmMessage("비밀번호가 일치하지 않습니다");
-      setIsPasswordConfirm(false);
-    }
-  });
+      if (password === passwordConfirmCurrent) {
+        setPasswordConfirmMessage("");
+        setIsPasswordConfirm(true);
+      } else {
+        setPasswordConfirmMessage("비밀번호가 일치하지 않습니다");
+        setIsPasswordConfirm(false);
+      }
+    },
+    [password]
+  );
 
   return (
     <div className="signup">
@@ -141,7 +143,30 @@ function SignUp() {
             <div className="input-email">
               <div className="input-email-header">
                 <span>E-mail</span>
-                <button className="cert">이메일 인증하기</button>
+                <button
+                  className="cert"
+                  onClick={() => {
+                    openModal();
+                    onClickEmail();
+                  }}
+                >
+                  이메일 인증하기
+                </button>
+                <Modal open={modalOpen} close={closeModal} header=" ">
+                  <div className="body-heading1">
+                    {" "}
+                    인증코드가 발송되었습니다
+                  </div>
+                  <div className="body-heading2">
+                    인증코드 입력시 회원가입이 계속됩니다
+                  </div>
+                  <div>
+                    <input placeholder="인증코드를 입력하세요" />
+                    <button type="submit" className="btn-xs">
+                      인증
+                    </button>
+                  </div>
+                </Modal>
               </div>
               <div className="formbox">
                 <input
