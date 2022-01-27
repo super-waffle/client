@@ -303,7 +303,11 @@ function SignUp() {
               <button
                 type="submit"
                 className={`${
-                  isNickname && isEmail && isPassword && isPasswordConfirm
+                  isNickname &&
+                  isEmail &&
+                  isPassword &&
+                  isPasswordConfirm &&
+                  isEmailAuth
                     ? "btn-xl"
                     : "disabled"
                 }`}
