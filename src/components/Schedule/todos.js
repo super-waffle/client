@@ -13,7 +13,6 @@ export default function TodoList() {
     setDailyTodos((currentArr) => [todo, ...currentArr]);
     setTodo('');
   };
-  console.log(dailyTodos);
   return (
     <div>
       <h3>01.28 todo 리스트</h3>

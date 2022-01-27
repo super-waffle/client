@@ -1,6 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import TodoList from './todos';
 import Todaystudy from './todaystudy';
+import Diary from './diary';
 
 export default function Dailydetails() {
   return (
@@ -9,7 +10,6 @@ export default function Dailydetails() {
       style={{
         margin: '2rem 0rem',
         padding: '0rem',
-        border: '1px solid',
       }}
     >
       <Row
@@ -18,14 +18,16 @@ export default function Dailydetails() {
           margin: '0rem',
         }}
       >
-        <Col style={{ border: '1px solid' }}>
+        <Col>
           <TodoList />
         </Col>
-        <Col style={{ border: '1px solid' }}>
-          <Row style={{ border: '1px solid' }}>
+        <Col>
+          <Row>
             <Todaystudy />
           </Row>
-          <Row style={{ border: '1px solid' }}>diary</Row>
+          <Row>
+            <Diary />
+          </Row>
         </Col>
       </Row>
     </Container>

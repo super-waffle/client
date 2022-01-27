@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import getStudies from './testdata';
 import Card from 'react-bootstrap/Card';
 import { Row, Container } from 'react-bootstrap';
