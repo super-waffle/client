@@ -20,18 +20,28 @@ function SignUp() {
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
 
   // 중복 검사
-  const [exNickname, checkExNickname] = useState("");
+  const [exNickname, checkExNickname] = useState(false);
+  const [exNicknameMsg, setExNicknameMsg] = useState("");
 
   //닉네임 중복확인
   const nicknameCheck = useCallback((event) => {
     event.preventDefault();
     console.log(nickname);
     axios
-      .post("http://localhost:3000/signup", {
-        user_nickname: nickname,
+      .post("/accounts/nickname", {
+        nickname: nickname,
       })
       .then((res) => {
         console.log(res);
+        if (res.data.statusCode === 200) {
+          checkExNickname(true);
+          setExNicknameMsg("사용 가능한 닉네임입니다");
+          console.log(checkExNickname);
+        } else {
+          checkExNickname(false);
+          console.log("hi");
+          setExNicknameMsg("이미 사용중인 닉네임입니다  ");
+        }
       });
   });
 
@@ -54,13 +64,33 @@ function SignUp() {
   // [TODO] : 닉네임에 특수문자 포함 안되는 유효성 검사 추가하기(특수문자 정규식 추가)
   const onChangeNickname = useCallback((event) => {
     const nicknameCurrent = event.target.value;
+    console.log(nicknameCurrent);
     setNickname(nicknameCurrent);
     if (nicknameCurrent.length < 2 || nicknameCurrent.length > 10) {
       setNicknameMessage("2글자 이상 10글자 미만으로 입력해주세요");
       setIsNickname(false);
+      setExNicknameMsg("");
     } else {
-      setNicknameMessage("");
-      setIsNickname(true);
+      event.preventDefault();
+      console.log(nickname);
+      axios
+        .post("/accounts/nickname", {
+          nickname: nicknameCurrent,
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.data.statusCode === 200) {
+            checkExNickname(true);
+            setExNicknameMsg("사용 가능한 닉네임입니다");
+            setNicknameMessage("");
+            setIsNickname(true);
+          } else {
+            checkExNickname(false);
+            console.log("hi");
+            setExNicknameMsg("이미 사용중인 닉네임입니다  ");
+            setIsNickname(false);
+          }
+        });
     }
   }, []);
 
@@ -130,9 +160,15 @@ function SignUp() {
             <div className="input-nickname">
               <div className="input-nickname-header">
                 <span>Nickname</span>
-                <button className="cert" onClick={nicknameCheck}>
-                  닉네임 중복검사
-                </button>
+                <div className="confirmbox">
+                  {nickname.length > 0 && (
+                    <span
+                      className={`message ${exNickname ? "success" : "error"}`}
+                    >
+                      {exNicknameMsg}
+                    </span>
+                  )}
+                </div>
               </div>
               <div className="formbox">
                 <input

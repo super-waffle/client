@@ -1,4 +1,8 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+.hidden {
+  display: none;
+}
+
 .signup {
   font-family: "Pretendard";
   height: 100vh;
@@ -125,6 +129,22 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+}
+.signup .signup-feat .signup-feat-box .signup-feat-box-content .input-nickname .input-nickname-header .confirmbox {
+  background-color: white;
+}
+.signup .signup-feat .signup-feat-box .signup-feat-box-content .input-nickname .input-nickname-header .confirmbox span {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 12px;
+}
+.signup .signup-feat .signup-feat-box .signup-feat-box-content .input-nickname .input-nickname-header .confirmbox span.success {
+  color: #6667ab;
+}
+.signup .signup-feat .signup-feat-box .signup-feat-box-content .input-nickname .input-nickname-header .confirmbox span.error {
+  left: 2px;
+  color: #eb5656;
 }
 .signup .signup-feat .signup-feat-box .signup-feat-box-content .input-pwd {
   display: flex;

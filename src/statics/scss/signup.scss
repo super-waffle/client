@@ -125,6 +125,7 @@
             }
           }
         }
+
         background: $bgColor;
         border: 1px solid $borderColor;
         box-sizing: border-box;
@@ -150,6 +151,24 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
+            .confirmbox {
+              background-color: white;
+              span {
+                font-style: normal;
+                font-weight: normal;
+                font-size: 11px;
+                line-height: 12px;
+                &.success {
+                  color: $mainColor;
+                }
+                &.error {
+                  // position: absolute;
+                  // bottom: -20px;
+                  left: 2px;
+                  color: #eb5656;
+                }
+              }
+            }
           }
         }
 
