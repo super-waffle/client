@@ -1,0 +1,173 @@
+@import "main.scss";
+
+.login {
+  font-family: $font-family;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  align-items: center;
+
+  .login-image {
+    height: 100vh;
+    width: auto;
+    img {
+      max-height: 100%;
+    }
+  }
+
+  .login-feat {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+
+    .login-feat-box {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+
+      .login-feat-box-header {
+        display: flex;
+        flex-direction: column;
+        padding: 12px;
+
+        span {
+          font-style: normal;
+          font-weight: normal;
+          font-size: 30px;
+          line-height: 36px;
+        }
+
+        .content {
+          font-style: normal;
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 17px;
+          /* identical to box height */
+          color: #6c757d;
+          padding-top: 6px;
+          padding-bottom: 12px;
+        }
+      }
+
+      .login-feat-box-content {
+        background: $bgColor;
+        border: 1px solid $borderColor;
+        box-sizing: border-box;
+        border-radius: 7px;
+        padding: 20px;
+
+        .input-email {
+          display: flex;
+          flex-direction: column;
+
+          span {
+            padding-bottom: 7px;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 17px;
+          }
+
+          input {
+            height: 40px;
+            background: #ffffff;
+            border: 1px solid #e1e1e1;
+            box-sizing: border-box;
+            border-radius: 7px;
+          }
+
+          :focus {
+            outline: 1.8px solid $mainColor;
+          }
+
+          ::placeholder {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 14px;
+            color: #d5d5d5;
+          }
+        }
+
+        .input-pwd {
+          display: flex;
+          flex-direction: column;
+
+          .input-pwd-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+
+            span {
+              padding-top: 15px;
+              padding-bottom: 7px;
+              font-style: normal;
+              font-weight: normal;
+              font-size: 14px;
+              line-height: 17px;
+            }
+            .content {
+              font-size: 10px;
+              line-height: 12px;
+              color: #8f8f8f;
+            }
+          }
+
+          input {
+            height: 40px;
+            background: #ffffff;
+            border: 1px solid #e1e1e1;
+            box-sizing: border-box;
+            border-radius: 7px;
+          }
+
+          :focus {
+            outline: 1.8px solid $mainColor;
+          }
+
+          ::placeholder {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 14px;
+            color: #d5d5d5;
+          }
+        }
+
+        .submit-btn {
+          padding-top: 30px;
+
+          .btn-xl {
+            cursor: pointer;
+            width: 100%;
+            height: 40px;
+            color: #ffffff;
+            background-color: $mainColor;
+            font-size: 16px;
+            line-height: 19px;
+            border: 0px;
+            border-radius: 7px;
+          }
+        }
+      }
+
+      .login-feat-box-footer {
+        margin-top: 25px;
+        background: $bgColor;
+        border: 1px solid $borderColor;
+        box-sizing: border-box;
+        border-radius: 7px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span {
+          font-size: 14px;
+          color: $textColor;
+          padding: 5px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+
+//fonts
+$font-family: "Pretendard";
+
+// colors
+$mainColor: #6667ab;
+$textColor: #6c757d;
+$bgColor: #fcfcfc;
+$borderColor: #ededed;
+$textWhite: #eeeeee;
+
+// Size Section
+$borderRadius-xl: 10px;
+$borderRadius-m: 7px;
+$borderRadius-xs: 3px;
+
+// default Tags
+// .btn-l {
+//   cursor: pointer;
+//   color: $mainColor;
+//   // background-color: $color2;
+//   border-radius: $borderRadius-m;
+//   border: 0px;
+
+// &:hover {
+//   color: $color2;
+//   background-color: $color1;
+// }
+// }
+// .btn-m {
+//   cursor: pointer;
+//   color: $mainColor;
+//   background-color: $mainColor;
+//   border-radius: $borderRadius-xs;
+//   border: 0px;
+// }
+
+// Component
+// @import "login";
