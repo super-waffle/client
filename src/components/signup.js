@@ -204,187 +204,216 @@ function SignUp() {
         <img src="images/login.jpg" alt=""></img>
       </div>
       <div className="signup-feat">
-        <div className="signup-feat-box">
-          <div className="signup-feat-box-header">
-            <span>Sign Up</span>
-            <div className="content">공부하는습관에 오신걸 환영합니다!</div>
-          </div>
-          <div className="signup-feat-box-content">
-            <div className="input-email">
-              <div className="input-email-header">
-                <span>E-mail</span>
-                <div className={`${isEmailAuth ? "hidden" : ""}`}>
-                  <button
-                    className={`cert ${isEmail ? "" : "hidden"}`}
-                    onClick={() => {
-                      openModal();
-                      onClickEmail();
-                    }}
-                  >
-                    이메일 인증하기
-                  </button>
-                </div>
-                <Modal open={modalOpen} close={closeModal} header=" ">
-                  {!isEmailAuth && !emailExist && (
-                    <div>
-                      <div className="body-heading1">
-                        {" "}
-                        인증코드가 발송되었습니다
-                      </div>
-                      <div className="body-heading2">
-                        인증코드 입력시 회원가입이 계속됩니다
-                      </div>
-                      <div>
-                        <span
-                          className={`auth-message ${
-                            isEmailAuth ? "hidden" : ""
-                          }`}
-                        >
-                          {emailAuthMsg}
-                        </span>
-                        <input
-                          id="emailAuth"
-                          placeholder="인증코드를 입력하세요"
-                          onChange={(e) => setEmailAuth(e.target.value)}
-                          value={emailAuth}
-                        />
-                        <button
-                          type="submit"
-                          className="btn-xs"
-                          onClick={onClickAuthEmail}
-                        >
-                          인증
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                  <div className={`${isEmailAuth ? "show" : "hidden"}`}>
-                    <div className="content">
-                      <img src="icons/success-filled.svg" alt=""></img>
-                      <div className="body-heading1">인증이 완료되었습니다</div>
-                    </div>
-                    <button onClick={closeModal} className="btn-m">
-                      확인
-                    </button>
-                  </div>
-                  <div className={`${emailExist ? "exist" : "hidden"}`}>
-                    <span className="body-heading1">
-                      이미 가입된 회원입니다.
-                    </span>
-                    <div className="pwd-search">
-                      <span className="body-heading2">
-                        비밀번호를 잊으셨나요?
-                      </span>
-                      <span className="body-heading2">비밀번호 찾기</span>
-                    </div>
-                    <button className="btn-m" onClick={closeModal}>
-                      닫기
-                    </button>
-                  </div>
-                </Modal>
-              </div>
-              <div className="formbox">
-                <input
-                  id="email"
-                  type="text"
-                  placeholder="이메일을 입력하세요"
-                  onChange={onChangeEmail}
-                  disabled={isEmailAuth ? true : false}
-                />
-                {email.length > 0 && (
-                  <span className={`message ${isEmail ? "success" : "error"}`}>
-                    {emailMessage}
-                  </span>
-                )}
-              </div>
+        {!signupSuccess && (
+          <div className="signup-feat-box">
+            <div className="signup-feat-box-header">
+              <span>Sign Up</span>
+              <div className="content">공부하는습관에 오신걸 환영합니다!</div>
             </div>
-            <div className="input-nickname">
-              <div className="input-nickname-header">
-                <span>Nickname</span>
-                <div className="confirmbox">
+            <div className="signup-feat-box-content">
+              <div className="input-email">
+                <div className="input-email-header">
+                  <span>E-mail</span>
+                  <div className={`${isEmailAuth ? "hidden" : ""}`}>
+                    <button
+                      className={`cert ${isEmail ? "" : "hidden"}`}
+                      onClick={() => {
+                        openModal();
+                        onClickEmail();
+                      }}
+                    >
+                      이메일 인증하기
+                    </button>
+                  </div>
+                  <Modal open={modalOpen} close={closeModal} header=" ">
+                    {!isEmailAuth && !emailExist && (
+                      <div>
+                        <div className="body-heading1">
+                          {" "}
+                          인증코드가 발송되었습니다
+                        </div>
+                        <div className="body-heading2">
+                          인증코드 입력시 회원가입이 계속됩니다
+                        </div>
+                        <div>
+                          <span
+                            className={`auth-message ${
+                              isEmailAuth ? "hidden" : ""
+                            }`}
+                          >
+                            {emailAuthMsg}
+                          </span>
+                          <input
+                            id="emailAuth"
+                            placeholder="인증코드를 입력하세요"
+                            onChange={(e) => setEmailAuth(e.target.value)}
+                            value={emailAuth}
+                          />
+                          <button
+                            type="submit"
+                            className="btn-xs"
+                            onClick={onClickAuthEmail}
+                          >
+                            인증
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                    <div className={`${isEmailAuth ? "show" : "hidden"}`}>
+                      <div className="content">
+                        <img src="icons/success-filled.svg" alt=""></img>
+                        <div className="body-heading1">
+                          인증이 완료되었습니다
+                        </div>
+                      </div>
+                      <button onClick={closeModal} className="btn-m">
+                        확인
+                      </button>
+                    </div>
+                    <div className={`${emailExist ? "exist" : "hidden"}`}>
+                      <span className="body-heading1">
+                        이미 가입된 회원입니다.
+                      </span>
+                      <div className="pwd-search">
+                        <span className="body-heading2">
+                          비밀번호를 잊으셨나요?
+                        </span>
+                        <span className="body-heading2">비밀번호 찾기</span>
+                      </div>
+                      <button className="btn-m" onClick={closeModal}>
+                        닫기
+                      </button>
+                    </div>
+                  </Modal>
+                </div>
+                <div className="formbox">
+                  <input
+                    id="email"
+                    type="text"
+                    placeholder="이메일을 입력하세요"
+                    onChange={onChangeEmail}
+                    disabled={isEmailAuth ? true : false}
+                  />
+                  {email.length > 0 && (
+                    <span
+                      className={`message ${isEmail ? "success" : "error"}`}
+                    >
+                      {emailMessage}
+                    </span>
+                  )}
+                </div>
+              </div>
+              <div className="input-nickname">
+                <div className="input-nickname-header">
+                  <span>Nickname</span>
+                  <div className="confirmbox">
+                    {nickname.length > 0 && (
+                      <span
+                        className={`message ${
+                          exNickname ? "success" : "error"
+                        }`}
+                      >
+                        {exNicknameMsg}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <div className="formbox">
+                  <input
+                    id="nickname"
+                    type="text"
+                    placeholder="닉네임을 입력하세요"
+                    onChange={onChangeNickname}
+                  />
                   {nickname.length > 0 && (
                     <span
-                      className={`message ${exNickname ? "success" : "error"}`}
+                      className={`message ${isNickname ? "success" : "error"}`}
                     >
-                      {exNicknameMsg}
+                      {nicknameMessage}
                     </span>
                   )}
                 </div>
               </div>
-              <div className="formbox">
-                <input
-                  id="nickname"
-                  type="text"
-                  placeholder="닉네임을 입력하세요"
-                  onChange={onChangeNickname}
-                />
-                {nickname.length > 0 && (
-                  <span
-                    className={`message ${isNickname ? "success" : "error"}`}
-                  >
-                    {nicknameMessage}
-                  </span>
-                )}
+              <div className="input-pwd">
+                <span>Password</span>
+                <div className="formbox">
+                  <input
+                    id="password"
+                    type="password"
+                    placeholder="비밀번호를 입력하세요"
+                    onChange={onChangePassword}
+                  />
+                  {password.length > 0 && (
+                    <span
+                      className={`message ${isPassword ? "success" : "error"}`}
+                    >
+                      {passwordMessage}
+                    </span>
+                  )}
+                </div>
+                <div className="formbox">
+                  <input
+                    id="passwordConfirm"
+                    type="password"
+                    placeholder="비밀번호를 다시 한 번 입력하세요"
+                    onChange={onChangePasswordConfirm}
+                  />
+                  {passwordConfirm.length > 0 && (
+                    <span
+                      className={`message ${
+                        isPasswordConfirm ? "success" : "error"
+                      }`}
+                    >
+                      {passwordConfirmMessage}
+                    </span>
+                  )}
+                </div>
+              </div>
+              <div className="submit-btn">
+                <button
+                  onClick={onSubmit}
+                  type="submit"
+                  className={`${
+                    isNickname &&
+                    isEmail &&
+                    isPassword &&
+                    isPasswordConfirm &&
+                    isEmailAuth
+                      ? "btn-xl"
+                      : "disabled"
+                  }`}
+                  disabled={
+                    isEmailAuth &&
+                    isNickname &&
+                    isEmail &&
+                    isPassword &&
+                    isPasswordConfirm
+                      ? false
+                      : true
+                  }
+                >
+                  SIGN UP
+                </button>
               </div>
             </div>
-            <div className="input-pwd">
-              <span>Password</span>
-              <div className="formbox">
-                <input
-                  id="password"
-                  type="password"
-                  placeholder="비밀번호를 입력하세요"
-                  onChange={onChangePassword}
-                />
-                {password.length > 0 && (
-                  <span
-                    className={`message ${isPassword ? "success" : "error"}`}
-                  >
-                    {passwordMessage}
-                  </span>
-                )}
-              </div>
-              <div className="formbox">
-                <input
-                  id="passwordConfirm"
-                  type="password"
-                  placeholder="비밀번호를 다시 한 번 입력하세요"
-                  onChange={onChangePasswordConfirm}
-                />
-                {passwordConfirm.length > 0 && (
-                  <span
-                    className={`message ${
-                      isPasswordConfirm ? "success" : "error"
-                    }`}
-                  >
-                    {passwordConfirmMessage}
-                  </span>
-                )}
-              </div>
-            </div>
-            <div className="submit-btn">
-              <button
-                onClick={onSubmit}
-                type="submit"
-                className={`${
-                  isNickname &&
-                  isEmail &&
-                  isPassword &&
-                  isPasswordConfirm &&
-                  isEmailAuth
-                    ? "btn-xl"
-                    : "disabled"
-                }`}
-              >
-                SIGN UP
-              </button>
+            <div className="signup-feat-box-footer">
+              <span>이미 공습 회원이신가요? </span>
+              <span>Log In</span>
             </div>
           </div>
-          <div className="signup-feat-box-footer">
-            <span>이미 공습 회원이신가요? </span>
-            <span>Log In</span>
+        )}
+        {signupSuccess && (
+          <div className="signup-success">
+            <span className="signup-success-heading2">
+              회원가입이 완료되었습니다
+            </span>
+            <span className="signup-success-heading1">
+              <img src="icons/_paper-plane.svg" alt=""></img>
+              공습에 오신 걸 환영합니다
+            </span>
+            <button>로그인</button>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

@@ -72,6 +72,32 @@
     display: flex;
     justify-content: space-around;
 
+    .signup-success {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .signup-success-heading1 {
+        font-size: 25px;
+        padding-bottom: 40px;
+        padding-top: 8px;
+        img {
+          height: 20px;
+          color: $mainColor;
+          margin-right: 5px;
+        }
+      }
+      button {
+        cursor: pointer;
+        height: 32px;
+        width: 25%;
+        border: 1px solid $mainColor;
+        background-color: $mainColor;
+        border-radius: 5px;
+        color: white;
+        margin-left: 6px;
+        margin-bottom: 1.5px;
+      }
+    }
     // 회원가입 박스
     .signup-feat-box {
       width: 40%;

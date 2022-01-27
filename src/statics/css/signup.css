@@ -61,6 +61,32 @@
   display: flex;
   justify-content: space-around;
 }
+.signup .signup-feat .signup-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.signup .signup-feat .signup-success .signup-success-heading1 {
+  font-size: 25px;
+  padding-bottom: 40px;
+  padding-top: 8px;
+}
+.signup .signup-feat .signup-success .signup-success-heading1 img {
+  height: 20px;
+  color: #6667ab;
+  margin-right: 5px;
+}
+.signup .signup-feat .signup-success button {
+  cursor: pointer;
+  height: 32px;
+  width: 25%;
+  border: 1px solid #6667ab;
+  background-color: #6667ab;
+  border-radius: 5px;
+  color: white;
+  margin-left: 6px;
+  margin-bottom: 1.5px;
+}
 .signup .signup-feat .signup-feat-box {
   width: 40%;
   display: flex;
