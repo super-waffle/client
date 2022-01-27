@@ -11,6 +11,11 @@
     border-radius: 7px;
     margin-bottom: 0px;
   }
+  :disabled {
+    background-color: #f4f4f4;
+    color: #a5a5a5;
+    font-style: italic;
+  }
 
   // 입력창 테두리
   :focus {
@@ -29,7 +34,7 @@
   // 이메일 인증, 닉네임 중복검사
   .cert {
     cursor: pointer;
-    font-size: 10px;
+    font-size: 11px;
     line-height: 12px;
     color: #8f8f8f;
     border: 0px;
@@ -140,6 +145,16 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
+            .show {
+              display: flex;
+              justify-content: center;
+              img {
+                height: 20px;
+                // margin-bottom: 10px;
+                padding-bottom: 12px;
+                margin-right: 10px;
+              }
+            }
           }
         }
 
