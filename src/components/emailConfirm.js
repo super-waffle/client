@@ -15,10 +15,6 @@ const Modal = (props) => {
               src="icons/_x-btn.svg"
               alt=""
             ></img>
-            {/* <button className="close" onClick={close}>
-              {" "}
-              &times;{" "}
-            </button> */}
           </header>
           <main>{props.children}</main>
         </section>
