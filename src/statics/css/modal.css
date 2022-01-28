@@ -1,0 +1,121 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+.hidden {
+  display: none;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.modal img {
+  cursor: pointer;
+  height: 15px;
+}
+.modal > section {
+  width: 90%;
+  max-width: 450px;
+  margin: 0 auto;
+  border-radius: 0.3rem;
+  background-color: #fcfcfc;
+  animation: modal-show 0.3s;
+  overflow: hidden;
+}
+.modal > section > header {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  padding: 15px;
+  background-color: #fcfcfc;
+  font-weight: 700;
+}
+.modal > section > main {
+  padding: 5px 16px 40px 16px;
+  text-align: center;
+}
+.modal > section > main .body-heading1 {
+  font-size: 20px;
+  line-height: 19px;
+  color: #434343;
+  margin-bottom: 10px;
+}
+.modal > section > main .body-heading2 {
+  font-size: 12px;
+  line-height: 12px;
+  color: #858585;
+  padding-bottom: 32px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.modal > section > main .auth-message {
+  color: #eb5656;
+}
+.modal > section > main .exist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal > section > main .pwd-search {
+  display: flex;
+  justify-content: center;
+}
+.modal > section > main input {
+  height: 32px;
+  width: 65%;
+  background: #f7f7f7;
+  border: 1px solid #e1e1e1;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+.modal > section > main ::placeholder {
+  padding-left: 5px;
+  font-size: 11px;
+  line-height: 12px;
+  color: #cbcbcb;
+}
+.modal > section > main .btn-xs {
+  cursor: pointer;
+  height: 32px;
+  width: 15%;
+  border: 1px solid #6667ab;
+  background-color: #6667ab;
+  border-radius: 5px;
+  color: white;
+  margin-left: 6px;
+  margin-bottom: 1.5px;
+}
+.modal > section > main .btn-m {
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  line-height: 17px;
+  height: 36px;
+  width: 20%;
+  border: none;
+  background: #6667ab;
+  border-radius: 10px;
+}
+.modal > section > footer {
+  padding: 12px 16px;
+  text-align: right;
+}
+.modal > section > footer button {
+  padding: 6px 12px;
+  color: #fff;
+  background-color: #6c757d;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+.modal.openModal {
+  display: flex;
+  align-items: center;
+  animation: modal-bg-show 0.3s;
+}
+
+/*# sourceMappingURL=modal.css.map */
