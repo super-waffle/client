@@ -54,10 +54,14 @@ function SignUp() {
           password: password,
         })
         .then((res) => {
-          console.log(res);
-          setSignupSuccess(true);
+          if (res.data.statusCode === 200) {
+            console.log(res);
+            setSignupSuccess(true);
+          } else {
+            setSignupSuccess(false);
+          }
         })
-        .carch((err) => {
+        .catch((err) => {
           console.log(err);
         });
     },
@@ -88,8 +92,13 @@ function SignUp() {
           email: email,
         })
         .then((res) => {
-          console.log(res.data);
-          setEmailExist(false);
+          if (res.data.statusCode === 200) {
+            console.log(res.data);
+            setEmailExist(false);
+          } else {
+            setEmailExist(true);
+            setEmailAuthMsg("이미 가입된 이메일입니다");
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -115,6 +124,8 @@ function SignUp() {
           if (res.data.statusCode === 200) {
             setIsEmailAuth(true);
             setEmailMessage("이메일 인증이 완료되었습니다");
+          } else {
+            setEmailAuthMsg("인증 코드가 일치하지 않습니다");
           }
         })
         .catch((err) => {
@@ -128,7 +139,7 @@ function SignUp() {
   // [TODO] : 닉네임에 특수문자 포함 안되는 유효성 검사 추가하기(특수문자 정규식 추가)
   const onChangeNickname = useCallback((event) => {
     const nicknameCurrent = event.target.value;
-    console.log(nicknameCurrent);
+    // console.log(nicknameCurrent);
     setNickname(nicknameCurrent);
     if (nicknameCurrent.length < 2 || nicknameCurrent.length > 10) {
       setNicknameMessage("2글자 이상 10글자 미만으로 입력해주세요");
@@ -377,17 +388,14 @@ function SignUp() {
                     isNickname &&
                     isEmail &&
                     isPassword &&
-                    isPasswordConfirm &&
-                    isEmailAuth
+                    // isEmailAuth &&
+                    isPasswordConfirm
                       ? "btn-xl"
                       : "disabled"
                   }`}
                   disabled={
-                    isEmailAuth &&
-                    isNickname &&
-                    isEmail &&
-                    isPassword &&
-                    isPasswordConfirm
+                    // isEmailAuth &&
+                    isNickname && isEmail && isPassword && isPasswordConfirm
                       ? false
                       : true
                   }
