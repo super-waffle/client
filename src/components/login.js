@@ -1,16 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import "../statics/css/login.css";
 import axios from "axios";
 
 function Login() {
-  // const { setUser } = useUserContext();
-  // const history = useHistory();
-  // const [account, setAccount] = useState({
-  //   id: "",
-  //   password: "",
-  // });
+  const navigate = useNavigate();
 
-  // const onChange
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [isLogin, setIsLogin] = useState(false);
+
+  const onSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+      axios
+        .post("accounts/login", {
+          email: email,
+          password: password,
+        })
+        .then((res) => {
+          const STATUS = res.data.statusCode;
+          if (STATUS === 200) {
+            setErrorMsg("");
+            setIsLogin(true);
+            const { accessToken } = res.data.accessToken;
+            axios.defaults.headers.common[
+              "Authorization"
+            ] = `Bearer ${accessToken}`;
+            navigate({
+              pathname: "/home",
+              state: { email: email },
+            });
+            console.log(email);
+          } else if (STATUS === 404) {
+            setErrorMsg("가입되지 않은 사용자입니다");
+            setIsLogin(false);
+            // console.log("가입되지 않은 사용자입니다");
+          } else if (STATUS === 401) {
+            setErrorMsg("비밀번호가 일치하지 않습니다");
+            isLogin(false);
+            // console.log("비밀번호가 일치하지 않습니다");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    [email, password]
+  );
+
   return (
     <div className="login">
       <div className="login-image">
@@ -25,7 +64,12 @@ function Login() {
           <div className="login-feat-box-content">
             <div className="input-email">
               <span>E-mail</span>
-              <input id="email" type="text" placeholder="이메일을 입력하세요" />
+              <input
+                id="email"
+                type="text"
+                placeholder="이메일을 입력하세요"
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className="input-pwd">
               <div className="input-pwd-header">
@@ -36,10 +80,13 @@ function Login() {
                 id="password"
                 type="password"
                 placeholder="비밀번호를 입력하세요"
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className="submit-btn">
-              <button className="btn-xl">LOG IN</button>
+              <button onClick={onSubmit} className="btn-xl">
+                LOG IN
+              </button>
             </div>
           </div>
           <div className="login-feat-box-footer">
