@@ -158,5 +158,9 @@
   color: #6c757d;
   padding: 5px;
 }
+.login .login-feat .login-feat-box .login-feat-box-footer .signup-link {
+  text-decoration: none;
+  color: #6667ab;
+}
 
 /*# sourceMappingURL=login.css.map */

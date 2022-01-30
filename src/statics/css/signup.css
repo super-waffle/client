@@ -232,5 +232,9 @@
   color: #6c757d;
   padding: 5px;
 }
+.signup .signup-feat .signup-feat-box .signup-feat-box-footer .footer-tologin {
+  text-decoration: none;
+  color: #6667ab;
+}
 
 /*# sourceMappingURL=signup.css.map */

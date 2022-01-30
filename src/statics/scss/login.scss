@@ -173,6 +173,10 @@
           color: $textColor;
           padding: 5px;
         }
+        .signup-link {
+          text-decoration: none;
+          color: $mainColor;
+        }
       }
     }
   }

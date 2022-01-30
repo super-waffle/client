@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../statics/css/login.css";
 import axios from "axios";
 
@@ -91,7 +91,9 @@ function Login() {
           </div>
           <div className="login-feat-box-footer">
             <span>공습이 처음이신가요? </span>
-            <span>Create an Account</span>
+            <Link className="signup-link" to={"/signup"}>
+              Create an Account
+            </Link>
           </div>
         </div>
       </div>
