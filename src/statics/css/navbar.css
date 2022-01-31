@@ -30,6 +30,7 @@
   align-items: center;
 }
 .navbar .navbar-profile .navbar-profile-img {
+  cursor: pointer;
   height: 32px;
   margin-right: 40px;
   margin-left: 19px;
@@ -38,14 +39,15 @@
 .navbar-dropdown {
   font-family: "Pretendard";
   position: absolute;
-  top: 52px;
-  right: 15px;
+  top: 46px;
+  right: 20px;
   width: 180px;
   background: #fcfcfc;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   border: #ededed;
   border-radius: 4px;
   color: #4b4b4b;
+  z-index: 1;
 }
 .navbar-dropdown .dropdown-menu {
   cursor: pointer;

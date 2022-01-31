@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../statics/css/navbar.css";
 import axios from "axios";
@@ -6,10 +6,31 @@ import { useState } from "react/cjs/react.development";
 
 function Navbar() {
   const navigate = useNavigate();
+  const dropdownRef = useRef(null);
   const token = localStorage.getItem("accessToken");
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
   const [profileImg, setProfileImg] = useState("");
+  const [isActive, setIsActive] = useState(false);
+
+  const onClickDropdown = () => setIsActive(!isActive);
+
+  useEffect(() => {
+    const pageClickEvent = (event) => {
+      if (
+        dropdownRef.current !== null &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        setIsActive(!isActive);
+      }
+    };
+    if (isActive) {
+      window.addEventListener("click", pageClickEvent);
+    }
+    return () => {
+      window.removeEventListener("click", pageClickEvent);
+    };
+  }, [isActive]);
 
   axios
     .get("/users", {
@@ -53,10 +74,14 @@ function Navbar() {
             className="navbar-profile-img"
             src="icons/_default-user.svg"
             alt=""
+            onClick={onClickDropdown}
           ></img>
         </div>
       </div>
-      <div className="navbar-dropdown">
+      <div
+        ref={dropdownRef}
+        className={`navbar-dropdown ${isActive ? "active" : "hidden"}`}
+      >
         <div className="navbar-dropdown-list">
           <span className="navbar-dropdown-nickname">{nickname}</span>
           <span className="navbar-dropdown-email">{email}</span>
