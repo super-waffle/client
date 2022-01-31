@@ -1,12 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../statics/css/navbar.css";
 import axios from "axios";
+import { useState } from "react/cjs/react.development";
 
 function Navbar() {
-  // console.log("hi");
+  const navigate = useNavigate();
   const token = localStorage.getItem("accessToken");
-  // console.log(token);
+  const [nickname, setNickname] = useState("");
+  const [email, setEmail] = useState("");
+  const [profileImg, setProfileImg] = useState("");
+
   axios
     .get("/users", {
       headers: {
@@ -15,30 +19,69 @@ function Navbar() {
     })
     .then((res) => {
       const USER = res.data.user;
-      const profileImg = USER.userImg;
-      const nickname = USER.userNickname;
-      const email = USER.userEmail;
-      console.log(profileImg, nickname, email);
+      setProfileImg(USER.userImg);
+      setNickname(USER.userNickname);
+      setEmail(USER.userEmail);
+      // console.log(profileImg, nickname, email);
     });
   // console.log(res);
+
   return (
-    <div className="navbar">
-      <div className="navbar-menus">
-        <Link className="menu" to={"/home"}>
-          홈
-        </Link>
-        <Link className="menu" to={"meetingrooms"}>
-          자유열람실
-        </Link>
-        <Link className="menu" to={"/studyrooms"}>
-          스터디룸
-        </Link>
-        <Link className="menu" to={"/schedules"}>
-          일정관리
-        </Link>
+    <div>
+      <div className="navbar">
+        <div className="navbar-menus">
+          <Link className="menu" to={"/home"}>
+            홈
+          </Link>
+          <Link className="menu" to={"meetingrooms"}>
+            자유열람실
+          </Link>
+          <Link className="menu" to={"/studyrooms"}>
+            스터디룸
+          </Link>
+          <Link className="menu" to={"/schedules"}>
+            일정관리
+          </Link>
+        </div>
+        <div className="navbar-profile">
+          <img
+            className="navbar-profile-alarm"
+            src="icons/notice.svg"
+            alt=""
+          ></img>
+          <img
+            className="navbar-profile-img"
+            src="icons/_default-user.svg"
+            alt=""
+          ></img>
+        </div>
       </div>
-      <div className="navbar-profile">
-        <img src="icons/notice.svg" alt=""></img>
+      <div className="navbar-dropdown">
+        <div className="navbar-dropdown-list">
+          <span className="navbar-dropdown-nickname">{nickname}</span>
+          <span className="navbar-dropdown-email">{email}</span>
+        </div>
+        <div className="navbar-dropdown-list">
+          <button
+            className="dropdown-menu"
+            onClick={() => {
+              navigate("profile");
+            }}
+          >
+            내 프로필
+          </button>
+          <button
+            className="dropdown-menu"
+            onClick={() => {
+              navigate("settings");
+            }}
+          >
+            관리실
+          </button>
+        </div>
+        <div className="navbar-dropdown-list">
+          <button className="dropdown-menu">로그아웃</button>
+        </div>
       </div>
     </div>
   );
