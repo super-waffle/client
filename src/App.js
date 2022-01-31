@@ -1,8 +1,10 @@
 import { Outlet, NavLink } from "react-router-dom";
+import Navbar from "./components/navbar";
 
 function App() {
   return (
     <div>
+      <Navbar sticky="top" />
       <h1>공부하는 습관</h1>
       <nav
         style={{
