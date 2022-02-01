@@ -70,12 +70,22 @@ function Navbar() {
             src="icons/notice.svg"
             alt=""
           ></img>
-          <img
-            className="navbar-profile-img"
-            src="icons/_default-user.svg"
-            alt=""
-            onClick={onClickDropdown}
-          ></img>
+          {profileImg === null && (
+            <img
+              className="navbar-profile-img"
+              src="icons/_default-user.svg"
+              alt=""
+              onClick={onClickDropdown}
+            ></img>
+          )}
+          {profileImg !== null && (
+            <img
+              className="navbar-profile-img"
+              src="profileImg"
+              alt=""
+              onClick={onClickDropdown}
+            ></img>
+          )}
         </div>
       </div>
       <div
