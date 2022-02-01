@@ -8,12 +8,35 @@ function Navbar() {
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
   const token = localStorage.getItem("accessToken");
+
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
   const [profileImg, setProfileImg] = useState("");
   const [isActive, setIsActive] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
   const onClickDropdown = () => setIsActive(!isActive);
+
+  useEffect(() => {
+    const bgMode = window.localStorage.getItem("bgMode");
+    if (bgMode === "dark") {
+      document.getElementsByTagName("html")[0].classList.add("ui-dark");
+    }
+  }, []);
+
+  const darkOnOff = () => {
+    if (
+      document.getElementsByTagName("html")[0].classList.contains("ui-dark")
+    ) {
+      document.getElementsByTagName("html")[0].classList.remove("ui-dark");
+      window.localStorage.setItem("bgMode", "light");
+      setIsDark(false);
+    } else {
+      document.getElementsByTagName("html")[0].classList.add("ui-dark");
+      window.localStorage.setItem("bgMode", "dark");
+      setIsDark(true);
+    }
+  };
 
   useEffect(() => {
     const pageClickEvent = (event) => {
@@ -65,6 +88,22 @@ function Navbar() {
           </Link>
         </div>
         <div className="navbar-profile">
+          {!isDark && (
+            <img
+              className="dark-light"
+              src="icons/_sun.svg"
+              alt=""
+              onClick={darkOnOff}
+            ></img>
+          )}
+          {isDark && (
+            <img
+              className="dark-light"
+              src="icons/_moon.svg"
+              alt=""
+              onClick={darkOnOff}
+            ></img>
+          )}
           <img
             className="navbar-profile-alarm"
             src="icons/notice.svg"
@@ -81,7 +120,7 @@ function Navbar() {
           {profileImg !== null && (
             <img
               className="navbar-profile-img"
-              src="profileImg"
+              // src="profileImg"
               alt=""
               onClick={onClickDropdown}
             ></img>
