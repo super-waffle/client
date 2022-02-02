@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "../statics/css/navbarLanding.css";
 
 function NavbarLanding() {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   return (
     <div>
       <div className="auth-btns" sticky="top">
