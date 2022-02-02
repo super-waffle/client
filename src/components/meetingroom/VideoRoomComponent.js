@@ -196,25 +196,42 @@ class VideoRoomComponent extends Component {
         );
     }
 
-    leaveSession() {
-        const mySession = this.state.session;
+    leaveSession(sessionId) {
+        // const mySession = this.state.session;
 
-        if (mySession) {
-            mySession.disconnect();
-        }
+        // if (mySession) {
+        //     mySession.disconnect();
+        // }
 
-        // Empty all properties...
-        this.OV = null;
-        this.setState({
-            session: undefined,
-            subscribers: [],
-            mySessionId: 'SessionA',
-            myUserName: 'OpenVidu_User' + Math.floor(Math.random() * 100),
-            localUser: undefined,
+        // // Empty all properties...
+        // this.OV = null;
+        // this.setState({
+        //     session: undefined,
+        //     subscribers: [],
+        //     mySessionId: 'SessionA',
+        //     myUserName: 'OpenVidu_User' + Math.floor(Math.random() * 100),
+        //     localUser: undefined,
+        // });
+        // if (this.props.leaveSession) {
+        //     this.props.leaveSession();
+        // }
+        return new Promise((resolve, reject) => {
+            var data = JSON.stringify({});
+            axios
+                .delete(this.OPENVIDU_SERVER_URL + '/meetings' + sessionId + '/room', data, {
+                    headers: {
+                        Authorization: 'Basic ' + btoa('OPENVIDUAPP:' + this.OPENVIDU_SERVER_SECRET),
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then((response) => {
+                    console.log('TOKEN', response);
+                    resolve(response.data.token);
+                })
+                .catch((error) => reject(error));
         });
-        if (this.props.leaveSession) {
-            this.props.leaveSession();
-        }
+
+
     }
     camStatusChanged() {
         localUser.setVideoActive(!localUser.isVideoActive());
@@ -560,7 +577,7 @@ class VideoRoomComponent extends Component {
         return new Promise((resolve, reject) => {
             var data = JSON.stringify({ customSessionId: sessionId });
             axios
-                .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions', data, {
+                .post(this.OPENVIDU_SERVER_URL + '/meetings', data, {
                     headers: {
                         Authorization: 'Basic ' + btoa('OPENVIDUAPP:' + this.OPENVIDU_SERVER_SECRET),
                         'Content-Type': 'application/json',
@@ -600,7 +617,7 @@ class VideoRoomComponent extends Component {
         return new Promise((resolve, reject) => {
             var data = JSON.stringify({});
             axios
-                .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
+                .post(this.OPENVIDU_SERVER_URL + '/meetings' + sessionId + '/room', data, {
                     headers: {
                         Authorization: 'Basic ' + btoa('OPENVIDUAPP:' + this.OPENVIDU_SERVER_SECRET),
                         'Content-Type': 'application/json',
