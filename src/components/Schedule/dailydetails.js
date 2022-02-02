@@ -15,10 +15,18 @@ export default function Dailydetails() {
       <Row
         style={{
           padding: '0rem',
+          margin: '1rem 0rem',
+        }}
+      >
+        <h3 style={{ fontWeight: 'bold' }}>선택한 날짜</h3>
+      </Row>
+      <Row
+        style={{
+          padding: '0rem',
           margin: '0rem',
         }}
       >
-        <Col>
+        <Col sm={3} md={3} lg={3}>
           <TodoList />
         </Col>
         <Col>

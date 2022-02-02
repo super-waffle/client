@@ -27,8 +27,8 @@ export default function Diary() {
   }, []);
 
   return (
-    <div>
-      <h3>diary</h3>
+    <div style={{ margin: '1rem 0rem' }}>
+      <h4>갈무리</h4>
       <Row>
         <Col>
           <img
@@ -37,7 +37,13 @@ export default function Diary() {
             alt=""
           />
         </Col>
-        <Col>Today's maxim: {maxim}</Col>
+        <Col
+          style={{
+            fontFamily: 'pretandard',
+          }}
+        >
+          Today's maxim: {maxim}
+        </Col>
       </Row>
     </div>
   );
