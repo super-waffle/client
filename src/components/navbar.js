@@ -16,13 +16,13 @@ function Navbar() {
   const [isActive, setIsActive] = useState(false);
   const [isDark, setIsDark] = useState(false);
 
+  // logout
   const onClickLogout = () => {
     localStorage.removeItem("accessToken");
     navigate("/");
   };
 
-  const onClickDropdown = () => setIsActive(!isActive);
-
+  // darkmode
   useEffect(() => {
     const bgMode = window.localStorage.getItem("bgMode");
     if (bgMode === "dark") {
@@ -44,6 +44,9 @@ function Navbar() {
     }
   };
 
+  // dropdown
+  const onClickDropdown = () => setIsActive(!isActive);
+  // dropdown (외부 클릭시 닫기)
   useEffect(() => {
     const pageClickEvent = (event) => {
       if (
@@ -61,6 +64,7 @@ function Navbar() {
     };
   }, [isActive]);
 
+  // 유저 정보 불러오기
   if (isLogin()) {
     axios
       .get("/users", {
