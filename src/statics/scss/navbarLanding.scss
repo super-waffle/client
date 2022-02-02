@@ -1,0 +1,18 @@
+@import "main.scss";
+
+.auth-btns {
+  display: flex;
+  justify-content: flex-end;
+  .landing {
+    cursor: pointer;
+    border: none;
+    background-color: var(--htmlbgColor);
+    font-size: 14px;
+    padding: 10px;
+
+    &.landing-signup {
+      color: $mainColor;
+      font-weight: 600;
+    }
+  }
+}
