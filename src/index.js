@@ -16,22 +16,28 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/home" element={isLogin() ? <Home /> : <Login />} />
-        <Route
-          path="studyrooms"
-          element={isLogin() ? <Studyrooms /> : <Login />}
-        />
-        <Route
-          path="meetingrooms"
-          element={isLogin() ? <Meetingrooms /> : <Login />}
-        />
-        <Route
-          path="schedules"
-          element={isLogin() ? <Schedule /> : <Login />}
-        />
-        <Route path="profile" element={isLogin() ? <Profile /> : <Login />} />
-        <Route path="settings" element={isLogin() ? <Settings /> : <Login />} />
+        {/* <Route path="/" element={App} /> */}
+        <Route path="/" element={<App />}>
+          <Route path="home" element={isLogin() ? <Home /> : <Login />} />
+          {/* <Route path="home" element={<Home />} /> */}
+          <Route
+            path="studyrooms"
+            element={isLogin() ? <Studyrooms /> : <Login />}
+          />
+          <Route
+            path="meetingrooms"
+            element={isLogin() ? <Meetingrooms /> : <Login />}
+          />
+          <Route
+            path="schedules"
+            element={isLogin() ? <Schedule /> : <Login />}
+          />
+          <Route path="profile" element={isLogin() ? <Profile /> : <Login />} />
+          <Route
+            path="settings"
+            element={isLogin() ? <Settings /> : <Login />}
+          />
+        </Route>
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
       </Routes>
