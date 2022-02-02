@@ -1,12 +1,15 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+// import { useState } from "react/cjs/react.development";
 import Navbar from "./components/navbar";
+import isLogin from "./utils/isLogin";
 import "./statics/css/main.css";
 
 function App() {
+  console.log(isLogin());
   return (
     <div>
-      <Navbar sticky="top" />
+      {isLogin() && <Navbar sticky="top" />}
       <nav
         style={{
           borderBottom: "solid 1px",
@@ -14,6 +17,7 @@ function App() {
         }}
       ></nav>
       <Outlet />
+      <p>Landing Page</p>
     </div>
   );
 }

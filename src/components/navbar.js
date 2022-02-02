@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../statics/css/navbar.css";
 import axios from "axios";
 import { useState } from "react/cjs/react.development";
+import isLogin from "../utils/isLogin";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -14,6 +15,11 @@ function Navbar() {
   const [profileImg, setProfileImg] = useState("");
   const [isActive, setIsActive] = useState(false);
   const [isDark, setIsDark] = useState(false);
+
+  const onClickLogout = () => {
+    localStorage.removeItem("accessToken");
+    navigate("/");
+  };
 
   const onClickDropdown = () => setIsActive(!isActive);
 
@@ -55,20 +61,22 @@ function Navbar() {
     };
   }, [isActive]);
 
-  axios
-    .get("/users", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((res) => {
-      const USER = res.data.user;
-      setProfileImg(USER.userImg);
-      setNickname(USER.userNickname);
-      setEmail(USER.userEmail);
-      // console.log(profileImg, nickname, email);
-    });
-  // console.log(res);
+  if (isLogin()) {
+    axios
+      .get("/users", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        const USER = res.data.user;
+        setProfileImg(USER.userImg);
+        setNickname(USER.userNickname);
+        setEmail(USER.userEmail);
+        // console.log(profileImg, nickname, email);
+      });
+    // console.log(res);
+  }
 
   return (
     <div>
@@ -77,7 +85,7 @@ function Navbar() {
           <Link className="menu" to={"/home"}>
             홈
           </Link>
-          <Link className="menu" to={"meetingrooms"}>
+          <Link className="menu" to={"/meetingrooms"}>
             자유열람실
           </Link>
           <Link className="menu" to={"/studyrooms"}>
@@ -154,7 +162,9 @@ function Navbar() {
           </button>
         </div>
         <div className="navbar-dropdown-list">
-          <button className="dropdown-menu">로그아웃</button>
+          <button className="dropdown-menu" onClick={onClickLogout}>
+            로그아웃
+          </button>
         </div>
       </div>
     </div>
