@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useCallback } from "react";
+import { Link } from "react-router-dom";
 import Modal from "./emailConfirm";
 import "../statics/css/signup.css";
 
@@ -48,11 +49,17 @@ function SignUp() {
       console.log(email, nickname, password);
       setSignupSuccess(false);
       axios
-        .post("accounts", {
-          email: email,
-          nickname: nickname,
-          password: password,
-        })
+        .post(
+          "accounts",
+          {
+            email: email,
+            nickname: nickname,
+            password: password,
+          },
+          {
+            headers: {},
+          }
+        )
         .then((res) => {
           if (res.data.statusCode === 200) {
             console.log(res);
@@ -161,7 +168,7 @@ function SignUp() {
           } else {
             checkExNickname(false);
             console.log("hi");
-            setExNicknameMsg("이미 사용중인 닉네임입니다  ");
+            setExNicknameMsg("이미 사용중인 닉네임입니다");
             setIsNickname(false);
           }
         })
@@ -406,7 +413,9 @@ function SignUp() {
             </div>
             <div className="signup-feat-box-footer">
               <span>이미 공습 회원이신가요? </span>
-              <span>Log In</span>
+              <Link to="/login" className="footer-tologin">
+                Log In
+              </Link>
             </div>
           </div>
         )}
@@ -419,7 +428,7 @@ function SignUp() {
               <img src="icons/_paper-plane.svg" alt=""></img>
               공습에 오신 걸 환영합니다
             </span>
-            <button>로그인</button>
+            <button to="/login">로그인</button>
           </div>
         )}
       </div>

@@ -137,6 +137,11 @@
         .submit-btn {
           padding-top: 30px;
 
+          .message {
+            color: red;
+            font-size: 12px;
+            margin-bottom: 6px;
+          }
           .btn-xl {
             cursor: pointer;
             width: 100%;
@@ -147,6 +152,7 @@
             line-height: 19px;
             border: 0px;
             border-radius: 7px;
+            margin-top: 6px;
           }
         }
       }
@@ -166,6 +172,10 @@
           font-size: 14px;
           color: $textColor;
           padding: 5px;
+        }
+        .signup-link {
+          text-decoration: none;
+          color: $mainColor;
         }
       }
     }

@@ -125,6 +125,11 @@
 .login .login-feat .login-feat-box .login-feat-box-content .submit-btn {
   padding-top: 30px;
 }
+.login .login-feat .login-feat-box .login-feat-box-content .submit-btn .message {
+  color: red;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
 .login .login-feat .login-feat-box .login-feat-box-content .submit-btn .btn-xl {
   cursor: pointer;
   width: 100%;
@@ -135,6 +140,7 @@
   line-height: 19px;
   border: 0px;
   border-radius: 7px;
+  margin-top: 6px;
 }
 .login .login-feat .login-feat-box .login-feat-box-footer {
   margin-top: 25px;
@@ -151,6 +157,10 @@
   font-size: 14px;
   color: #6c757d;
   padding: 5px;
+}
+.login .login-feat .login-feat-box .login-feat-box-footer .signup-link {
+  text-decoration: none;
+  color: #6667ab;
 }
 
 /*# sourceMappingURL=login.css.map */
