@@ -68,9 +68,6 @@
 .sub-navbar .sub-navbar-menus .sub-navbar-menu.active svg path {
   stroke: var(--textColor);
 }
-.sub-navbar .sub-navbar-menus .sub-navbar-menu img {
-  height: 18px;
-}
 .sub-navbar .sub-navbar-menus .sub-navbar-menu span {
   padding-left: 7px;
   padding-right: 3px;
