@@ -11,15 +11,21 @@ import Schedule from "./pages/Schedule";
 import Login from "./components/login";
 import Signup from "./components/signup";
 import isLogin from "./utils/isLogin";
+import HomeAchievement from "./pages/Home_achievement";
+import HomeStatistics from "./pages/Home_statistics";
+import HomeTodays from "./pages/Home_todays";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={App} /> */}
         <Route path="/" element={<App />}>
-          <Route path="home" element={isLogin() ? <Home /> : <Login />} />
-          {/* <Route path="home" element={<Home />} /> */}
+          <Route path="home" element={isLogin() ? <Home /> : <Login />}>
+            <Route path="tab=todays" element={<HomeTodays />} />
+            <Route path="tab=achievement" element={<HomeAchievement />} />
+            <Route path="tab=statistics" element={<HomeStatistics />} />
+          </Route>
+
           <Route
             path="studyrooms"
             element={isLogin() ? <Studyrooms /> : <Login />}
