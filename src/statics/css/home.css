@@ -44,5 +44,15 @@
 .home-profile .home-profile-userimg svg.home-profile-img {
   height: 256px;
 }
+.home-profile .home-profile-nickname {
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--textColor);
+}
+.home-profile .home-profile-email {
+  font-size: 15px;
+  line-height: 18px;
+  color: var(--textColor-darkest);
+}
 
 /*# sourceMappingURL=home.css.map */

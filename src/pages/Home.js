@@ -11,10 +11,7 @@ export default function Home() {
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
   const [profileImg, setProfileImg] = useState("");
-  const [Level, setLevel] = useState("");
-  const [levelImagae, setLevelImage] = useState("");
   const [profileMsg, setProfileMsg] = useState("");
-  const [timeGoal, setTimeGoal] = useState("");
 
   useEffect(() => {
     if (isLogin()) {
@@ -29,10 +26,7 @@ export default function Home() {
           setNickname(USER.userNickname);
           setEmail(USER.userEmail);
           setProfileImg(USER.userImg);
-          setLevel(USER.userLevel.levelName);
-          setLevelImage(USER.userImageLevel.levelImg);
           setProfileMsg(USER.userProfileMsg);
-          setTimeGoal(USER.userTimeGoal);
         });
     }
   });
@@ -73,8 +67,8 @@ export default function Home() {
           )}
         </div>
         <div className="home-profile-nickname">{nickname}</div>
-        <div className="home-profile-email"></div>
-        <div className="home-profile-msg"></div>
+        <div className="home-profile-email">{email}</div>
+        <div className="home-profile-msg">{profileMsg}</div>
       </div>
       <Outlet />
     </div>

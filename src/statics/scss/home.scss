@@ -15,5 +15,13 @@
     }
   }
   .home-profile-nickname {
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--textColor);
+  }
+  .home-profile-email {
+    font-size: 15px;
+    line-height: 18px;
+    color: var(--textColor-darkest);
   }
 }
