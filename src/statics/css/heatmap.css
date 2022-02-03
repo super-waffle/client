@@ -39,38 +39,46 @@
   display: none;
 }
 
-.home-statistics {
+.heatmap text {
   font-family: "Pretendard";
+  font-size: 8px;
 }
-.home-statistics span {
-  font-size: 16px;
-  line-height: 19px;
-  color: var(--textColor);
-  margin-left: 5px;
+.heatmap .react-calendar-heatmap-month-label {
+  fill: var(--textColor-darker);
 }
-.home-statistics .home-statistics-top {
-  margin-bottom: 8vh;
+.heatmap .react-calendar-heatmap .today {
+  stroke: var(--textColor);
 }
-.home-statistics .home-statistics-top .home-statistics-top-box {
-  background: var(--bgColor);
-  border: 1px solid var(--borderColor);
-  box-sizing: border-box;
-  border-radius: 10px;
-  width: 56vw;
-  height: 40vh;
-  margin-top: 9px;
-  padding-left: 24px;
-  padding-right: 24px;
-  padding-top: 10px;
+.heatmap .react-calendar-heatmap rect {
+  cursor: pointer;
+  rx: 3px;
 }
-.home-statistics .home-statistics-bottom .home-statistics-bottom-box {
-  background: var(--bgColor);
-  border: 1px solid var(--borderColor);
-  box-sizing: border-box;
-  border-radius: 10px;
-  width: 56vw;
-  height: 303px;
-  margin-top: 9px;
+.heatmap .react-calendar-heatmap rect:hover {
+  stroke: var(--textColor-dark);
+  border: 0.5px solid var(--textColor-dark);
+}
+.heatmap .react-calendar-heatmap rect:active {
+  stroke: var(--textColor-dark);
+  border: 0.5px solid var(--textColor-dark);
+}
+.heatmap .react-calendar-heatmap rect:visited {
+  stroke: var(--textColor-dark);
+  border: 0.5px solid var(--textColor-dark);
+}
+.heatmap .react-calendar-heatmap .color-beammp-0 {
+  fill: var(--github-01);
+}
+.heatmap .react-calendar-heatmap .color-beammp-1 {
+  fill: var(--github-02);
+}
+.heatmap .react-calendar-heatmap .color-beammp-2 {
+  fill: var(--github-03);
+}
+.heatmap .react-calendar-heatmap .color-beammp-3 {
+  fill: #6667ab;
+}
+.heatmap .react-calendar-heatmap .color-beammp-4 {
+  fill: #2e2f8b;
 }
 
-/*# sourceMappingURL=homeStatistics.css.map */
+/*# sourceMappingURL=heatmap.css.map */
