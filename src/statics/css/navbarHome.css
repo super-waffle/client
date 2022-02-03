@@ -1,0 +1,76 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+:root {
+  --htmlbgColor: #ffffff;
+  --bgColor: #fcfcfc;
+  --bgColor-light: #eaeaea;
+  --borderColor: #ededed;
+  --borderColor2: #d6d6d6;
+  --borderColor3: #e1e1e1;
+  --textWhite: #eeeeee;
+  --textColor: #252525;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #a1a1a1;
+  --textColor-darkest: #c2c2c2;
+}
+
+.ui-dark {
+  background-color: var(--htmlbgColor);
+  --htmlbgColor: #292929;
+  --bgColor: #373737;
+  --bgColor-light: #4a4a4a;
+  --bgColor-lighter: #565656;
+  --bgColor-dark: #1b1b1b;
+  --borderColor: #444444;
+  --borderColor2: #444444;
+  --borderColor3: #444444;
+  --textColor: #ededed;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #8a8a8a;
+  --textColor-darkest: #838383;
+}
+
+.hidden {
+  display: none;
+}
+
+.sub-navbar {
+  position: fixed;
+  left: 0;
+  font-family: "Pretendard";
+  height: 80px;
+  width: 100%;
+  box-shadow: 0px 2px 10px rgba(136, 136, 136, 0.25);
+  display: flex;
+  align-items: flex-end;
+}
+.sub-navbar .sub-navbar-menus {
+  margin-left: 30%;
+  display: flex;
+}
+.sub-navbar .sub-navbar-menus .sub-navbar-menu {
+  cursor: pointer;
+  width: 134px;
+  display: flex;
+  justify-content: center;
+  margin-right: 50px;
+  padding-bottom: 10px;
+  text-decoration: none;
+  color: var(--textColor-darkest);
+  align-items: center;
+}
+.sub-navbar .sub-navbar-menus .sub-navbar-menu svg path {
+  stroke: var(--textColor-darkest);
+}
+.sub-navbar .sub-navbar-menus .sub-navbar-menu.active {
+  color: var(--textColor);
+  border-bottom: 2px solid #6667ab;
+}
+.sub-navbar .sub-navbar-menus .sub-navbar-menu.active svg path {
+  stroke: var(--textColor);
+}
+.sub-navbar .sub-navbar-menus .sub-navbar-menu span {
+  padding-left: 7px;
+  padding-right: 3px;
+}
+
+/*# sourceMappingURL=navbarHome.css.map */
