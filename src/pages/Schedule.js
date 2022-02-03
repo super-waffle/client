@@ -1,7 +1,13 @@
+import Calendar from '../components/Schedule/calendar';
+import '../statics/scss/Schedule.scss';
+
 export default function Schedule() {
   return (
-    <main style={{ padding: '1rem 0' }}>
-      <h2>Schedule</h2>
+    <main
+      className="justify-content-center"
+      style={{ padding: '1rem' }}
+    >
+      <Calendar />
     </main>
   );
 }

@@ -1,13 +1,4 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
-
-//fonts
-$font-family: "Pretendard";
-
-// colors
-$mainColor: #6667ab;
-$textColor: #6c757d;
-
-// light mode
 :root {
   --htmlbgColor: #ffffff;
   --bgColor: #fcfcfc;
@@ -16,14 +7,12 @@ $textColor: #6c757d;
   --borderColor2: #d6d6d6;
   --borderColor3: #e1e1e1;
   --textWhite: #eeeeee;
-
   --textColor: #252525;
   --textColor-dark: #8a8a8a;
   --textColor-darker: #a1a1a1;
   --textColor-darkest: #c2c2c2;
 }
 
-// dark mode
 .ui-dark {
   background-color: var(--htmlbgColor);
   --htmlbgColor: #292929;
@@ -34,42 +23,30 @@ $textColor: #6c757d;
   --borderColor: #444444;
   --borderColor2: #444444;
   --borderColor3: #444444;
-
   --textColor: #ededed;
   --textColor-dark: #8a8a8a;
   --textColor-darker: #8a8a8a;
   --textColor-darkest: #838383;
 }
 
-// Size Section
-$borderRadius-xl: 10px;
-$borderRadius-m: 7px;
-$borderRadius-xs: 3px;
-
 .hidden {
   display: none;
 }
 
-// default Tags
-// .btn-l {
-//   cursor: pointer;
-//   color: $mainColor;
-//   // background-color: $color2;
-//   border-radius: $borderRadius-m;
-//   border: 0px;
+.auth-btns {
+  display: flex;
+  justify-content: flex-end;
+}
+.auth-btns .landing {
+  cursor: pointer;
+  border: none;
+  background-color: var(--htmlbgColor);
+  font-size: 14px;
+  padding: 10px;
+}
+.auth-btns .landing.landing-signup {
+  color: #6667ab;
+  font-weight: 600;
+}
 
-// &:hover {
-//   color: $color2;
-//   background-color: $color1;
-// }
-// }
-// .btn-m {
-//   cursor: pointer;
-//   color: $mainColor;
-//   background-color: $mainColor;
-//   border-radius: $borderRadius-xs;
-//   border: 0px;
-// }
-
-// Component
-// @import "login";
+/*# sourceMappingURL=navbarLanding.css.map */

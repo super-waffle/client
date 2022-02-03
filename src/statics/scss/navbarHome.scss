@@ -1,0 +1,50 @@
+@import "main.scss";
+
+.sub-navbar {
+  position: fixed;
+  left: 0;
+  font-family: $font-family;
+  height: 80px;
+  width: 100%;
+  box-shadow: 0px 2px 10px rgba(136, 136, 136, 0.25);
+  display: flex;
+  align-items: flex-end;
+
+  .sub-navbar-menus {
+    margin-left: 30%;
+    display: flex;
+
+    .sub-navbar-menu {
+      cursor: pointer;
+      width: 134px;
+      display: flex;
+      justify-content: center;
+      margin-right: 50px;
+      padding-bottom: 10px;
+      text-decoration: none;
+      color: var(--textColor-darkest);
+      align-items: center;
+
+      svg {
+        path {
+          stroke: var(--textColor-darkest);
+        }
+      }
+
+      &.active {
+        color: var(--textColor);
+        border-bottom: 2px solid $mainColor;
+        svg {
+          path {
+            stroke: var(--textColor);
+          }
+        }
+      }
+
+      span {
+        padding-left: 7px;
+        padding-right: 3px;
+      }
+    }
+  }
+}
