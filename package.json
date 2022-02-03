@@ -23,7 +23,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:openvidu-react": "npm install --prefix ../library/ && node library-copy.js && cd ../library && npm run create-library"
-        
   },
   "eslintConfig": {
     "extends": [
