@@ -20,6 +20,7 @@ function Navbar() {
   const onClickLogout = () => {
     localStorage.removeItem("accessToken");
     navigate("/");
+    window.location.reload();
   };
 
   // darkmode

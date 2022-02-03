@@ -32,10 +32,15 @@ function Login() {
             axios.defaults.headers.common[
               "Authorization"
             ] = `Bearer ${accessToken}`;
-            navigate({
-              pathname: "/home",
-              state: { email: email },
-            });
+
+            const currentToken = localStorage.getItem("accessToken");
+            if (currentToken !== null) {
+              navigate({
+                pathname: "/home",
+                state: { email: email },
+              });
+              window.location.reload();
+            }
           } else if (STATUS === 404) {
             setErrorMsg("가입되지 않은 사용자입니다");
           } else if (STATUS === 401) {
