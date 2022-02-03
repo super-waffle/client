@@ -33,37 +33,35 @@
   display: none;
 }
 
-.home {
-  background-color: var(--htmlbgColor);
-}
-.home .home-tab {
-  display: flex;
-  margin-left: 8%;
-  padding-top: 60px;
-}
-.home .home-tab .home-profile {
-  position: fixed;
-  top: 108px;
+.home-statistics {
   font-family: "Pretendard";
-  display: flex;
-  flex-direction: column;
 }
-.home .home-tab .home-profile .home-profile-userimg svg.home-profile-img {
-  height: 256px;
-}
-.home .home-tab .home-profile .home-profile-nickname {
-  font-size: 20px;
-  line-height: 24px;
+.home-statistics span {
+  font-size: 16px;
+  line-height: 19px;
   color: var(--textColor);
+  margin-left: 5px;
 }
-.home .home-tab .home-profile .home-profile-email {
-  font-size: 15px;
-  line-height: 18px;
-  color: var(--textColor-darkest);
+.home-statistics .home-statistics-top {
+  margin-bottom: 8vh;
 }
-.home .home-tab .home-contents {
-  padding-top: 60px;
-  padding-left: 23%;
+.home-statistics .home-statistics-top .home-statistics-top-box {
+  background: var(--bgColor);
+  border: 1px solid var(--borderColor);
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 56vw;
+  height: 357px;
+  margin-top: 9px;
+}
+.home-statistics .home-statistics-bottom .home-statistics-bottom-box {
+  background: var(--bgColor);
+  border: 1px solid var(--borderColor);
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 56vw;
+  height: 303px;
+  margin-top: 9px;
 }
 
-/*# sourceMappingURL=home.css.map */
+/*# sourceMappingURL=homeStatistics.css.map */

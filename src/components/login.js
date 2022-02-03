@@ -36,7 +36,7 @@ function Login() {
             const currentToken = localStorage.getItem("accessToken");
             if (currentToken !== null) {
               navigate({
-                pathname: "/home",
+                pathname: "/home/tab=todays",
                 state: { email: email },
               });
               window.location.reload();

@@ -1,6 +1,7 @@
 @import "main.scss";
 
 .navbar {
+  z-index: 5;
   position: fixed;
   top: 0;
   left: 0;
@@ -43,7 +44,7 @@
 }
 .navbar-dropdown {
   font-family: $font-family;
-  position: absolute;
+  position: fixed;
   top: 46px;
   right: 20px;
   width: 180px;
@@ -52,8 +53,9 @@
   border: var(--borderColor);
   border-radius: 4px;
   color: #4b4b4b;
-  z-index: 1;
-  .dropdown-menu {
+  z-index: 6;
+  // button {
+  & button {
     cursor: pointer;
     border: none;
     background-color: var(--bgColor);
@@ -65,6 +67,7 @@
     &:hover {
       background-color: var(--borderColor);
     }
+    // }
   }
   .navbar-dropdown-list {
     display: flex;

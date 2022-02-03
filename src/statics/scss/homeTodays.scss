@@ -1,0 +1,69 @@
+@import "main.scss";
+.home-todays {
+  font-family: $font-family;
+  & span {
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--textColor);
+    margin-left: 5px;
+  }
+  .home-todays-top {
+    display: flex;
+    margin-bottom: 8vh;
+    margin-right: 8%;
+    .home-todays-todos {
+      padding-right: 20px;
+      .home-todays-todos-box {
+        background: var(--bgColor);
+        border: 1px solid var(--borderColor);
+        box-sizing: border-box;
+        width: 24vw;
+        height: 24vh;
+        border-radius: 10px;
+        margin-top: 6px;
+      }
+    }
+    .home-todays-goal-box {
+      background: var(--bgColor);
+      border: 1px solid var(--borderColor);
+      width: 32vw;
+      height: 24vh;
+      border-radius: 10px;
+      margin-top: 6px;
+      margin-right: 15px;
+    }
+  }
+  .home-todays-studyrooms {
+    margin-bottom: 8vh;
+    .home-todays-studyrooms-row {
+      display: flex;
+      .home-todays-studyrooms-box {
+        background: var(--bgColor);
+        border: 1px solid var(--borderColor);
+        box-sizing: border-box;
+        border-radius: 10px;
+        width: 50%;
+        height: 117px;
+        margin-bottom: 1%;
+        margin-top: 9px;
+        margin-right: 15px;
+      }
+    }
+  }
+  .home-todays-meetingrooms {
+    .home-todays-meetingrooms-row {
+      display: flex;
+      .home-todays-meetingrooms-box {
+        background: var(--bgColor);
+        border: 1px solid var(--borderColor);
+        box-sizing: border-box;
+        border-radius: 10px;
+        width: 50%;
+        height: 243px;
+        margin-bottom: 1%;
+        margin-top: 9px;
+        margin-right: 15px;
+      }
+    }
+  }
+}
