@@ -21,14 +21,6 @@ ReactDOM.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route path="home" element={<Home />} />
-          <Route path="studyrooms" element={<Studyrooms />} />
-          <Route path="meetingrooms" element={<Meetingrooms />} />
-          <Route path="schedules" element={<Schedule />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<Signup />} />
           <Route path="home" element={isLogin() ? <Home /> : <Login />}>
             <Route path="tab=todays" element={<HomeTodays />} />
             <Route path="tab=achievement" element={<HomeAchievement />} />
@@ -39,8 +31,10 @@ ReactDOM.render(
             path="studyrooms"
             element={isLogin() ? <Studyrooms /> : <Login />}
           />
-          <Route path="meetingrooms" element={isLogin() ? <Meetingrooms /> : <Login />}/>
-          <Route path="VideoRoomComponent" element={<VideoRoomComponent />} />
+          <Route
+            path="meetingrooms"
+            element={isLogin() ? <Meetingrooms /> : <Login />}
+          />
           <Route
             path="schedules"
             element={isLogin() ? <Schedule /> : <Login />}
@@ -51,6 +45,8 @@ ReactDOM.render(
             element={isLogin() ? <Settings /> : <Login />}
           />
         </Route>
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

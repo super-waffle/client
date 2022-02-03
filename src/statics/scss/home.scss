@@ -1,0 +1,44 @@
+@import "main.scss";
+.home {
+  background-color: var(--htmlbgColor);
+  .home-tab {
+    display: flex;
+    margin-left: 8%;
+    padding-top: 60px;
+    // margin-right: 8%;
+    // left: 8%;
+    .home-profile {
+      position: fixed;
+      top: 108px;
+      font-family: $font-family;
+      display: flex;
+      flex-direction: column;
+      // position: absolute;
+      // left: 8%;
+      // margin-left: 8%;
+      .home-profile-userimg {
+        // z-index: 4;
+        svg {
+          &.home-profile-img {
+            height: 256px;
+          }
+        }
+      }
+      .home-profile-nickname {
+        font-size: 20px;
+        line-height: 24px;
+        color: var(--textColor);
+      }
+      .home-profile-email {
+        font-size: 15px;
+        line-height: 18px;
+        color: var(--textColor-darkest);
+      }
+    }
+
+    .home-contents {
+      padding-top: 60px;
+      padding-left: 23%;
+    }
+  }
+}

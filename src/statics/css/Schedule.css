@@ -1,0 +1,14 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+.month-nav {
+  font-family: Pretendard;
+  font-style: normal;
+  font-size: 40px;
+  line-height: 48px;
+}
+
+.day {
+  font-family: Pretendard;
+  font-size: 18px;
+}
+
+/*# sourceMappingURL=Schedule.css.map */

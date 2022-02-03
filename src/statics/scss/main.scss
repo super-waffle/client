@@ -6,14 +6,49 @@ $font-family: "Pretendard";
 // colors
 $mainColor: #6667ab;
 $textColor: #6c757d;
-$bgColor: #fcfcfc;
-$borderColor: #ededed;
-$textWhite: #eeeeee;
+
+// light mode
+:root {
+  --htmlbgColor: #ffffff;
+  --bgColor: #fcfcfc;
+  --bgColor-light: #eaeaea;
+  --borderColor: #ededed;
+  --borderColor2: #d6d6d6;
+  --borderColor3: #e1e1e1;
+  --textWhite: #eeeeee;
+
+  --textColor: #252525;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #a1a1a1;
+  --textColor-darkest: #c2c2c2;
+}
+
+// dark mode
+.ui-dark {
+  background-color: var(--htmlbgColor);
+  --htmlbgColor: #292929;
+  --bgColor: #373737;
+  --bgColor-light: #4a4a4a;
+  --bgColor-lighter: #565656;
+  --bgColor-dark: #1b1b1b;
+  --borderColor: #444444;
+  --borderColor2: #444444;
+  --borderColor3: #444444;
+
+  --textColor: #ededed;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #8a8a8a;
+  --textColor-darkest: #838383;
+}
 
 // Size Section
 $borderRadius-xl: 10px;
 $borderRadius-m: 7px;
 $borderRadius-xs: 3px;
+
+.hidden {
+  display: none;
+}
 
 // default Tags
 // .btn-l {

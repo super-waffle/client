@@ -15,13 +15,15 @@ var localUser = new UserModel();
 class VideoRoomComponent extends Component {
     constructor(props) {
         super(props);
-        this.OPENVIDU_SERVER_URL = this.props.openviduServerUrl
-            ? this.props.openviduServerUrl
-            : 'https://' + window.location.hostname + ':4443';
+        // this.OPENVIDU_SERVER_URL = this.props.openviduServerUrl
+        //     ? this.props.openviduServerUrl
+        //     : 'https://' + window.location.hostname + ':4443';
+        this.OPENVIDU_SERVER_URL = 'http://localhost:8080'
         this.OPENVIDU_SERVER_SECRET = this.props.openviduSecret ? this.props.openviduSecret : 'MY_SECRET';
         this.hasBeenUpdated = false;
         this.layout = new OpenViduLayout();
-        let sessionName = this.props.sessionName ? this.props.sessionName : 'SessionA';
+        // let sessionName = this.props.sessionName ? this.props.sessionName : 'SessionA';
+        let sessionName = '1';
         let userName = this.props.user ? this.props.user : 'OpenVidu_User' + Math.floor(Math.random() * 100);
         this.remotes = [];
         this.localUserAccessAllowed = false;
@@ -226,7 +228,7 @@ class VideoRoomComponent extends Component {
             var data = JSON.stringify({});
             const token = localStorage.getItem("accessToken");
             axios
-                .delete(this.OPENVIDU_SERVER_URL + '/meetings' + sessionId + '/room', data, {
+                .delete('/meetings/1/room', data, {
                     headers: {
                         Authorization:  'Bearer ' + token,
                         'Content-Type': 'application/json',
@@ -586,8 +588,8 @@ class VideoRoomComponent extends Component {
             var data = JSON.stringify({ customSessionId: sessionId });
             const token = localStorage.getItem("accessToken");
             axios
-                // .post(this.OPENVIDU_SERVER_URL + '/meetings', data, {
-                    .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions', data, {
+                .post('/meetings', data, {
+                    // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions', data, {
                     headers: {
                         Authorization:'Bearer ' + token,
                         'Content-Type': 'application/json',
@@ -628,8 +630,8 @@ class VideoRoomComponent extends Component {
             var data = JSON.stringify({});
             const token = localStorage.getItem("accessToken");
             axios
-                // .post(this.OPENVIDU_SERVER_URL + '/meetings' + sessionId + '/room', data, {
-                    .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
+                .post('/meetings/1/room', data, {
+                    // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
                     headers: {
                         Authorization: 'Bearer ' + token,
                         'Content-Type': 'application/json',
@@ -637,7 +639,7 @@ class VideoRoomComponent extends Component {
                 })
                 .then((response) => {
                     console.log('TOKEN', response);
-                    resolve(response.data.token);
+                    resolve(response.data.sessionToken);
                 })
                 .catch((error) => reject(error));
         });

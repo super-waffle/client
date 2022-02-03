@@ -1,19 +1,60 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+:root {
+  --htmlbgColor: #ffffff;
+  --bgColor: #fcfcfc;
+  --bgColor-light: #eaeaea;
+  --borderColor: #ededed;
+  --borderColor2: #d6d6d6;
+  --borderColor3: #e1e1e1;
+  --textWhite: #eeeeee;
+  --textColor: #252525;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #a1a1a1;
+  --textColor-darkest: #c2c2c2;
+}
+
+.ui-dark {
+  background-color: var(--htmlbgColor);
+  --htmlbgColor: #292929;
+  --bgColor: #373737;
+  --bgColor-light: #4a4a4a;
+  --bgColor-lighter: #565656;
+  --bgColor-dark: #1b1b1b;
+  --borderColor: #444444;
+  --borderColor2: #444444;
+  --borderColor3: #444444;
+  --textColor: #ededed;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #8a8a8a;
+  --textColor-darkest: #838383;
+}
+
+.hidden {
+  display: none;
+}
+
 .signup {
   font-family: "Pretendard";
   height: 100vh;
   background-color: white;
   display: flex;
   align-items: center;
+  background-color: var(--htmlbgColor);
 }
 .signup input {
   height: 40px;
   width: 100%;
-  background: #ffffff;
-  border: 1px solid #e1e1e1;
+  background: var(--htmlbgColor);
+  border: 1px solid var(--borderColor);
   box-sizing: border-box;
   border-radius: 7px;
-  margin-bottom: 0px;
+  color: var(--textColor);
+  padding-left: 5px;
+}
+.signup :disabled {
+  background-color: #f4f4f4;
+  color: #a5a5a5;
+  font-style: italic;
 }
 .signup :focus {
   outline: 1.8px solid #6667ab;
@@ -23,11 +64,12 @@
   font-weight: normal;
   font-size: 12px;
   line-height: 14px;
-  color: #d5d5d5;
+  color: var(--textColor-dark);
+  padding-left: 5px;
 }
 .signup .cert {
   cursor: pointer;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 12px;
   color: #8f8f8f;
   border: 0px;
@@ -39,6 +81,7 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
+  color: var(--textColor);
 }
 .signup .signup-image {
   height: 100vh;
@@ -52,6 +95,32 @@
   display: flex;
   justify-content: space-around;
 }
+.signup .signup-feat .signup-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.signup .signup-feat .signup-success .signup-success-heading1 {
+  font-size: 25px;
+  padding-bottom: 40px;
+  padding-top: 8px;
+}
+.signup .signup-feat .signup-success .signup-success-heading1 img {
+  height: 20px;
+  color: #6667ab;
+  margin-right: 5px;
+}
+.signup .signup-feat .signup-success button {
+  cursor: pointer;
+  height: 32px;
+  width: 25%;
+  border: 1px solid #6667ab;
+  background-color: #6667ab;
+  border-radius: 5px;
+  color: var(--textColor);
+  margin-left: 6px;
+  margin-bottom: 1.5px;
+}
 .signup .signup-feat .signup-feat-box {
   width: 40%;
   display: flex;
@@ -63,6 +132,7 @@
   padding: 12px;
 }
 .signup .signup-feat .signup-feat-box .signup-feat-box-header span {
+  color: var(--textColor);
   font-style: normal;
   font-weight: normal;
   font-size: 30px;
@@ -73,13 +143,13 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
-  color: #6c757d;
+  color: var(--textColor-dark);
   padding-top: 6px;
   padding-bottom: 12px;
 }
 .signup .signup-feat .signup-feat-box .signup-feat-box-content {
-  background: #fcfcfc;
-  border: 1px solid #ededed;
+  background: var(--bgColor);
+  border: 1px solid var(--borderColor);
   box-sizing: border-box;
   border-radius: 7px;
   padding: 20px;
@@ -116,6 +186,16 @@
   justify-content: space-between;
   align-items: baseline;
 }
+.signup .signup-feat .signup-feat-box .signup-feat-box-content .input-email .input-email-header .content {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 25px;
+}
+.signup .signup-feat .signup-feat-box .signup-feat-box-content .input-email .input-email-header .content img {
+  height: 20px;
+  padding-bottom: 12px;
+  margin-right: 10px;
+}
 .signup .signup-feat .signup-feat-box .signup-feat-box-content .input-nickname {
   display: flex;
   flex-direction: column;
@@ -125,6 +205,19 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+}
+.signup .signup-feat .signup-feat-box .signup-feat-box-content .input-nickname .input-nickname-header .confirmbox span {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 12px;
+}
+.signup .signup-feat .signup-feat-box .signup-feat-box-content .input-nickname .input-nickname-header .confirmbox span.success {
+  color: #6667ab;
+}
+.signup .signup-feat .signup-feat-box .signup-feat-box-content .input-nickname .input-nickname-header .confirmbox span.error {
+  left: 2px;
+  color: #eb5656;
 }
 .signup .signup-feat .signup-feat-box .signup-feat-box-content .input-pwd {
   display: flex;
@@ -157,8 +250,8 @@
 }
 .signup .signup-feat .signup-feat-box .signup-feat-box-footer {
   margin-top: 25px;
-  background: #fcfcfc;
-  border: 1px solid #ededed;
+  background: var(--bgColor);
+  border: 1px solid var(--borderColor);
   box-sizing: border-box;
   border-radius: 7px;
   height: 50px;
@@ -168,8 +261,12 @@
 }
 .signup .signup-feat .signup-feat-box .signup-feat-box-footer span {
   font-size: 14px;
-  color: #6c757d;
+  color: var(--textColor);
   padding: 5px;
+}
+.signup .signup-feat .signup-feat-box .signup-feat-box-footer .footer-tologin {
+  text-decoration: none;
+  color: #6667ab;
 }
 
 /*# sourceMappingURL=signup.css.map */

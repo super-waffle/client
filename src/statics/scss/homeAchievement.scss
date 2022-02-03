@@ -1,0 +1,47 @@
+@import "main.scss";
+
+.home-achievement {
+  font-family: $font-family;
+  & span {
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--textColor);
+    margin-left: 5px;
+  }
+  .home-achievement-top {
+    padding-bottom: 8vh;
+    .home-achievement-top-box {
+      display: flex;
+      margin-top: 9px;
+      .home-achievement-level {
+        height: 166px;
+        width: 36vw;
+        background: var(--bgColor);
+        border: 1px solid var(--borderColor);
+        box-sizing: border-box;
+        border-radius: 10px;
+        margin-right: 15px;
+      }
+      .home-achievement-achieve {
+        height: 166px;
+        width: 20vw;
+        background: var(--bgColor);
+        border: 1px solid var(--borderColor);
+        box-sizing: border-box;
+        border-radius: 10px;
+        // margin-right: 15px;
+      }
+    }
+  }
+  .home-achievement-bottom {
+    .home-achievement-dogam {
+      margin-top: 9px;
+      background: var(--bgColor);
+      border: 1px solid var(--borderColor);
+      box-sizing: border-box;
+      border-radius: 10px;
+      width: 100%;
+      height: 967px;
+    }
+  }
+}
