@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import "../statics/css/navbarHome.css";
 
 function NavbarHome() {
-  // const navigate = useNavigate();
   return (
     <div className="sub-navbar">
       <div className="sub-navbar-menus">
