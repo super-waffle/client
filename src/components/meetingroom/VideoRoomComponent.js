@@ -11,6 +11,7 @@ import UserModel from '../../models/user-model';
 import ToolbarComponent from './toolbar/ToolbarComponent';
 
 var localUser = new UserModel();
+var sessionToken;
 
 class VideoRoomComponent extends Component {
     constructor(props) {
@@ -225,20 +226,32 @@ class VideoRoomComponent extends Component {
         //     this.props.leaveSession();
         // }
         return new Promise((resolve, reject) => {
-            var data = JSON.stringify({});
+            // var data = JSON.stringify({
+            //     sessionToken: sessionToken,
+            //     logMeeting: '40',
+            //     logStartTime: '06:58:40'
+            // });
+            console.log("sessiontoken: ", sessionToken);
             const token = localStorage.getItem("accessToken");
             axios
-                .delete('/meetings/1/room', data, {
+                .delete('/meetings/1/room',
+                    { data: { sessionToken: sessionToken,
+                        logMeeting: 40,
+                        logStartTime: '06:58:40'
+                    },
+                    
                     headers: {
                         Authorization:  'Bearer ' + token,
                         'Content-Type': 'application/json',
-                    },
-                })
+                    }})
                 .then((response) => {
-                    console.log('TOKEN', response);
+                    console.log('Leave', response);
                     resolve(response.data.token);
                 })
-                .catch((error) => reject(error));
+                .catch((error) => {
+                    console.log("LEAVE ERROR : " + error);
+                    reject(error)
+                });
         });
 
 
@@ -598,6 +611,7 @@ class VideoRoomComponent extends Component {
                 .then((response) => {
                     console.log('CREATE SESION', response);
                     resolve(response.data.id);
+                    // console.log('URL' + )
                 })
                 .catch((response) => {
                     var error = Object.assign({}, response);
@@ -640,6 +654,7 @@ class VideoRoomComponent extends Component {
                 .then((response) => {
                     console.log('TOKEN', response);
                     resolve(response.data.sessionToken);
+                    sessionToken = response.data.sessionToken;
                 })
                 .catch((error) => reject(error));
         });
