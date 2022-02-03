@@ -10,7 +10,8 @@
     min-width: 400px !important;
   }
   .toolbar{
-    padding: 0 !important;
+    bottom: 10px;
+    /* padding: 0 !important; */
   }
   
   .headerLight{

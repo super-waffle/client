@@ -10,6 +10,11 @@ import Settings from "./pages/Settings";
 import Schedule from "./pages/Schedule";
 import Login from "./components/login";
 import Signup from "./components/signup";
+import isLogin from "./utils/isLogin";
+import HomeAchievement from "./pages/Home_achievement";
+import HomeStatistics from "./pages/Home_statistics";
+import HomeTodays from "./pages/Home_todays";
+import VideoRoomComponent from "./components/meetingroom/VideoRoomComponent"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -24,6 +29,27 @@ ReactDOM.render(
           <Route path="settings" element={<Settings />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="home" element={isLogin() ? <Home /> : <Login />}>
+            <Route path="tab=todays" element={<HomeTodays />} />
+            <Route path="tab=achievement" element={<HomeAchievement />} />
+            <Route path="tab=statistics" element={<HomeStatistics />} />
+          </Route>
+
+          <Route
+            path="studyrooms"
+            element={isLogin() ? <Studyrooms /> : <Login />}
+          />
+          <Route path="meetingrooms" element={isLogin() ? <Meetingrooms /> : <Login />}/>
+          <Route path="VideoRoomComponent" element={<VideoRoomComponent />} />
+          <Route
+            path="schedules"
+            element={isLogin() ? <Schedule /> : <Login />}
+          />
+          <Route path="profile" element={isLogin() ? <Profile /> : <Login />} />
+          <Route
+            path="settings"
+            element={isLogin() ? <Settings /> : <Login />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
