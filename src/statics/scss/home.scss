@@ -1,0 +1,19 @@
+@import "main.scss";
+
+.home-profile {
+  font-family: $font-family;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 108px;
+  left: 8%;
+  .home-profile-userimg {
+    svg {
+      &.home-profile-img {
+        height: 256px;
+      }
+    }
+  }
+  .home-profile-nickname {
+  }
+}

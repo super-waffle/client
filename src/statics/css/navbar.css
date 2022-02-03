@@ -76,7 +76,7 @@
 
 .navbar-dropdown {
   font-family: "Pretendard";
-  position: absolute;
+  position: fixed;
   top: 46px;
   right: 20px;
   width: 180px;
@@ -87,7 +87,7 @@
   color: #4b4b4b;
   z-index: 1;
 }
-.navbar-dropdown .dropdown-menu {
+.navbar-dropdown button {
   cursor: pointer;
   border: none;
   background-color: var(--bgColor);
@@ -97,7 +97,7 @@
   padding-left: 12px;
   color: var(--textColor);
 }
-.navbar-dropdown .dropdown-menu:hover {
+.navbar-dropdown button:hover {
   background-color: var(--borderColor);
 }
 .navbar-dropdown .navbar-dropdown-list {

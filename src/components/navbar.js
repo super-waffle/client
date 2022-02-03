@@ -295,7 +295,7 @@ function Navbar() {
         </div>
         <div className="navbar-dropdown-list">
           <button
-            className="dropdown-menu"
+            // className="dropdown-menu"
             onClick={() => {
               navigate("profile");
             }}
@@ -303,7 +303,7 @@ function Navbar() {
             내 프로필
           </button>
           <button
-            className="dropdown-menu"
+            // className="dropdown-menu"
             onClick={() => {
               navigate("settings");
             }}
@@ -312,9 +312,7 @@ function Navbar() {
           </button>
         </div>
         <div className="navbar-dropdown-list">
-          <button className="dropdown-menu" onClick={onClickLogout}>
-            로그아웃
-          </button>
+          <button onClick={onClickLogout}>로그아웃</button>
         </div>
       </div>
     </div>
