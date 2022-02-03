@@ -277,3 +277,6 @@ yarn-error.log*
 
 #prettier
 .prettierignore
+
+#IntelliJ
+.idea
