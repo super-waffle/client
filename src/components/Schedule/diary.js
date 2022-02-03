@@ -1,4 +1,4 @@
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -28,21 +28,35 @@ export default function Diary() {
 
   return (
     <div style={{ margin: '1rem 0rem' }}>
-      <h4>갈무리</h4>
-      <Row>
-        <Col>
+      <h4 style={{ margin: '1rem 0rem' }}>하루 기록</h4>
+      <Row
+        style={{
+          backgroundColor: '#FCFCFC',
+          borderRadius: '5px',
+          margin: '1rem',
+          padding: '1rem',
+        }}
+      >
+        <Col sm={4} md={4} lg={4}>
           <img
             src={catURL}
-            style={{ width: '15vw' }}
+            style={{
+              width: '15vw',
+              margin: '1rem',
+              borderRadius: '5px',
+            }}
             alt=""
           />
         </Col>
         <Col
           style={{
             fontFamily: 'pretandard',
+            margin: 'auto 0rem',
+            textAlign: 'center',
           }}
         >
-          Today's maxim: {maxim}
+          {/* <h4>{maxim}</h4> */}
+          <h4>과유불급이댜옹~</h4>
         </Col>
       </Row>
     </div>

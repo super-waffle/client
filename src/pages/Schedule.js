@@ -1,4 +1,4 @@
-import Calendar from '../components/Schedule/calendar';
+import Calendar from '../components/Schedule/calendar/calendar';
 import '../statics/scss/Schedule.scss';
 
 export default function Schedule() {
