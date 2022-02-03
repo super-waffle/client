@@ -5,11 +5,12 @@
   input {
     height: 40px;
     width: 100%;
-    background: #ffffff;
-    border: 1px solid #e1e1e1;
+    background: var(--htmlbgColor);
+    border: 1px solid var(--borderColor);
     box-sizing: border-box;
     border-radius: 7px;
-    margin-bottom: 0px;
+    color: var(--textColor);
+    padding-left: 5px;
   }
   :disabled {
     background-color: #f4f4f4;
@@ -28,7 +29,8 @@
     font-weight: normal;
     font-size: 12px;
     line-height: 14px;
-    color: #d5d5d5;
+    color: var(--textColor-dark);
+    padding-left: 5px;
   }
 
   // 이메일 인증, 닉네임 중복검사
@@ -48,6 +50,7 @@
     font-weight: normal;
     font-size: 14px;
     line-height: 17px;
+    color: var(--textColor);
   }
 
   // 회원가입 페이지 기본 설정
@@ -56,6 +59,7 @@
   background-color: white;
   display: flex;
   align-items: center;
+  background-color: var(--htmlbgColor);
 
   // 이미지 설정
   .signup-image {
@@ -93,7 +97,7 @@
         border: 1px solid $mainColor;
         background-color: $mainColor;
         border-radius: 5px;
-        color: white;
+        color: var(--textColor);
         margin-left: 6px;
         margin-bottom: 1.5px;
       }
@@ -112,6 +116,7 @@
 
         // 대제목
         span {
+          color: var(--textColor);
           font-style: normal;
           font-weight: normal;
           font-size: 30px;
@@ -124,7 +129,7 @@
           font-weight: normal;
           font-size: 14px;
           line-height: 17px;
-          color: #6c757d;
+          color: var(--textColor-dark);
           padding-top: 6px;
           padding-bottom: 12px;
         }
@@ -157,8 +162,8 @@
           }
         }
 
-        background: $bgColor;
-        border: 1px solid $borderColor;
+        background: var(--bgColor);
+        border: 1px solid var(--borderColor);
         box-sizing: border-box;
         border-radius: 7px;
         padding: 20px;
@@ -194,7 +199,7 @@
             justify-content: space-between;
             align-items: baseline;
             .confirmbox {
-              background-color: white;
+              // background-color: ;
               span {
                 font-style: normal;
                 font-weight: normal;
@@ -249,8 +254,8 @@
 
       .signup-feat-box-footer {
         margin-top: 25px;
-        background: $bgColor;
-        border: 1px solid $borderColor;
+        background: var(--bgColor);
+        border: 1px solid var(--borderColor);
         box-sizing: border-box;
         border-radius: 7px;
         height: 50px;
@@ -260,7 +265,7 @@
 
         span {
           font-size: 14px;
-          color: $textColor;
+          color: var(--textColor);
           padding: 5px;
         }
         .footer-tologin {
