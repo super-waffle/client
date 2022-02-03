@@ -1,0 +1,90 @@
+@import "main.scss";
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  // text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: $font-family;
+  width: 100%;
+  height: 52px;
+  background-color: #4b4b4b;
+  box-shadow: 0px 5px 10px rgba(136, 136, 136, 0.25);
+  color: #e4e4e4;
+  .navbar-menus {
+    display: flex;
+    margin-left: 15%;
+    .menu {
+      text-decoration: none;
+      color: #e4e4e4;
+      margin-right: 46px;
+    }
+  }
+  .navbar-profile {
+    display: flex;
+    align-items: center;
+    .dark-light {
+      cursor: pointer;
+    }
+    .navbar-profile-img {
+      cursor: pointer;
+      height: 32px;
+      margin-right: 40px;
+      margin-left: 19px;
+    }
+    .navbar-profile-alarm {
+      cursor: pointer;
+      margin-left: 19px;
+    }
+  }
+}
+.navbar-dropdown {
+  font-family: $font-family;
+  position: absolute;
+  top: 46px;
+  right: 20px;
+  width: 180px;
+  background: var(--bgColor);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  border: var(--borderColor);
+  border-radius: 4px;
+  color: #4b4b4b;
+  z-index: 1;
+  .dropdown-menu {
+    cursor: pointer;
+    border: none;
+    background-color: var(--bgColor);
+    padding-top: 8px;
+    padding-bottom: 4px;
+    text-align: start;
+    padding-left: 12px;
+    color: var(--textColor);
+    &:hover {
+      background-color: var(--borderColor);
+    }
+  }
+  .navbar-dropdown-list {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.5px solid var(--borderColor3);
+    .navbar-dropdown-nickname {
+      font-weight: 550;
+      font-size: 16px;
+      line-height: 14px;
+      padding-left: 12px;
+      padding-bottom: 4px;
+      padding-top: 3px;
+      color: var(--textColor);
+    }
+    .navbar-dropdown-email {
+      font-size: 12px;
+      padding-left: 12px;
+      color: var(--textColor-dark);
+    }
+  }
+}

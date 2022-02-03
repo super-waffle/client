@@ -426,6 +426,7 @@ function SignUp() {
             </span>
             <span className="signup-success-heading1">
               <img src="icons/_paper-plane.svg" alt=""></img>
+              <img src="icons/_paper-plane-darkmode.svg" alt=""></img>
               공습에 오신 걸 환영합니다
             </span>
             <button to="/login">로그인</button>

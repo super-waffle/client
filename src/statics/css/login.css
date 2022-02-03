@@ -1,4 +1,34 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+:root {
+  --htmlbgColor: #ffffff;
+  --bgColor: #fcfcfc;
+  --bgColor-light: #eaeaea;
+  --borderColor: #ededed;
+  --borderColor2: #d6d6d6;
+  --borderColor3: #e1e1e1;
+  --textWhite: #eeeeee;
+  --textColor: #252525;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #a1a1a1;
+  --textColor-darkest: #c2c2c2;
+}
+
+.ui-dark {
+  background-color: var(--htmlbgColor);
+  --htmlbgColor: #292929;
+  --bgColor: #373737;
+  --bgColor-light: #4a4a4a;
+  --bgColor-lighter: #565656;
+  --bgColor-dark: #1b1b1b;
+  --borderColor: #444444;
+  --borderColor2: #444444;
+  --borderColor3: #444444;
+  --textColor: #ededed;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #8a8a8a;
+  --textColor-darkest: #838383;
+}
+
 .hidden {
   display: none;
 }
@@ -6,7 +36,7 @@
 .login {
   font-family: "Pretendard";
   height: 100vh;
-  background-color: white;
+  background-color: var(--htmlbgColor);
   display: flex;
   align-items: center;
 }
@@ -33,6 +63,7 @@
   padding: 12px;
 }
 .login .login-feat .login-feat-box .login-feat-box-header span {
+  color: var(--textColor);
   font-style: normal;
   font-weight: normal;
   font-size: 30px;
@@ -44,13 +75,13 @@
   font-size: 14px;
   line-height: 17px;
   /* identical to box height */
-  color: #6c757d;
+  color: var(--textColor-dark);
   padding-top: 6px;
   padding-bottom: 12px;
 }
 .login .login-feat .login-feat-box .login-feat-box-content {
-  background: #fcfcfc;
-  border: 1px solid #ededed;
+  background: var(--bgColor);
+  border: 1px solid var(--borderColor);
   box-sizing: border-box;
   border-radius: 7px;
   padding: 20px;
@@ -60,6 +91,7 @@
   flex-direction: column;
 }
 .login .login-feat .login-feat-box .login-feat-box-content .input-email span {
+  color: var(--textColor);
   padding-bottom: 7px;
   font-style: normal;
   font-weight: normal;
@@ -68,10 +100,12 @@
 }
 .login .login-feat .login-feat-box .login-feat-box-content .input-email input {
   height: 40px;
-  background: #ffffff;
-  border: 1px solid #e1e1e1;
+  background: var(--htmlbgColor);
+  border: 1px solid var(--borderColor3);
   box-sizing: border-box;
   border-radius: 7px;
+  color: var(--textColor);
+  padding-left: 5px;
 }
 .login .login-feat .login-feat-box .login-feat-box-content .input-email :focus {
   outline: 1.8px solid #6667ab;
@@ -81,7 +115,8 @@
   font-weight: normal;
   font-size: 12px;
   line-height: 14px;
-  color: #d5d5d5;
+  color: var(--textColor-darkest);
+  padding-left: 5px;
 }
 .login .login-feat .login-feat-box .login-feat-box-content .input-pwd {
   display: flex;
@@ -93,6 +128,7 @@
   align-items: baseline;
 }
 .login .login-feat .login-feat-box .login-feat-box-content .input-pwd .input-pwd-header span {
+  color: var(--textColor);
   padding-top: 15px;
   padding-bottom: 7px;
   font-style: normal;
@@ -107,10 +143,12 @@
 }
 .login .login-feat .login-feat-box .login-feat-box-content .input-pwd input {
   height: 40px;
-  background: #ffffff;
-  border: 1px solid #e1e1e1;
+  background: var(--htmlbgColor);
+  border: 1px solid var(--borderColor3);
   box-sizing: border-box;
   border-radius: 7px;
+  color: var(--textColor);
+  padding-left: 5px;
 }
 .login .login-feat .login-feat-box .login-feat-box-content .input-pwd :focus {
   outline: 1.8px solid #6667ab;
@@ -120,7 +158,8 @@
   font-weight: normal;
   font-size: 12px;
   line-height: 14px;
-  color: #d5d5d5;
+  color: var(--textColor-darkest);
+  padding-left: 5px;
 }
 .login .login-feat .login-feat-box .login-feat-box-content .submit-btn {
   padding-top: 30px;
@@ -134,7 +173,7 @@
   cursor: pointer;
   width: 100%;
   height: 40px;
-  color: #ffffff;
+  color: white;
   background-color: #6667ab;
   font-size: 16px;
   line-height: 19px;
@@ -144,8 +183,8 @@
 }
 .login .login-feat .login-feat-box .login-feat-box-footer {
   margin-top: 25px;
-  background: #fcfcfc;
-  border: 1px solid #ededed;
+  background: var(--bgColor);
+  border: 1px solid var(--borderColor);
   box-sizing: border-box;
   border-radius: 7px;
   height: 50px;
@@ -155,7 +194,7 @@
 }
 .login .login-feat .login-feat-box .login-feat-box-footer span {
   font-size: 14px;
-  color: #6c757d;
+  color: var(--textColor-dark);
   padding: 5px;
 }
 .login .login-feat .login-feat-box .login-feat-box-footer .signup-link {

@@ -1,7 +1,13 @@
+import React from "react";
+import { Outlet } from "react-router-dom";
+import NavbarHome from "../components/navbarHome";
+
 export default function Home() {
+  console.log("home");
   return (
-    <main style={{ padding: '1rem 0' }}>
-      <h2>Home</h2>
-    </main>
+    <div>
+      <NavbarHome sticky="top" />
+      <Outlet />
+    </div>
   );
 }
