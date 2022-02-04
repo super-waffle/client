@@ -14,6 +14,7 @@ import isLogin from "./utils/isLogin";
 import HomeAchievement from "./pages/Home_achievement";
 import HomeStatistics from "./pages/Home_statistics";
 import HomeTodays from "./pages/Home_todays";
+import StudyRecruitCreate from "./pages/studyRecruitCreate";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,6 +30,10 @@ ReactDOM.render(
           <Route
             path="studyrecruit"
             element={isLogin() ? <StudyRecruit /> : <Login />}
+          />
+          <Route
+            path="studyrecruit/create"
+            element={isLogin() ? <StudyRecruitCreate /> : <Login />}
           />
           <Route
             path="meetingrooms"

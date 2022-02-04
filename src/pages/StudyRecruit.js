@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import "../statics/css/studyRecruit.css";
 
 export default function StudyRecruit() {
+  const navigate = useNavigate();
   return (
     <div className="studyrecruit">
       <div className="studyrecruit-heading">
@@ -14,7 +16,12 @@ export default function StudyRecruit() {
           <select></select>
           <input placeholder="방제목, 글 내용으로 검색하세요" />
         </div>
-        <button className="studyrecruit-create">모집글 작성하기</button>
+        <button
+          className="studyrecruit-create"
+          onClick={() => navigate("create")}
+        >
+          모집글 작성하기
+        </button>
       </div>
       <div className="studyrecruit-board">
         <table>
