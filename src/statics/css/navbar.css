@@ -105,6 +105,7 @@
   text-align: start;
   padding-left: 12px;
   color: var(--textColor);
+  font-size: 14px;
 }
 .navbar-dropdown button:hover {
   background-color: var(--borderColor);
