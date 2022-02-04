@@ -1,3 +1,5 @@
+import StudyDatePicker from "../components/datepicker";
+import StudyDatePickerStart from "../components/datepickerStart";
 import "../statics/css/studyRecruitCreate.css";
 
 export default function StudyRecruitCreate() {
@@ -9,38 +11,57 @@ export default function StudyRecruitCreate() {
       <div className="recruit-create-contents">
         <div className="recruit-create-content">
           <table className="recruit-create-content-category">
-            <tr>
-              <td className="recruit-create-content-row a1">카테고리</td>
-              <td>
-                <select></select>
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td className="recruit-create-content-row a1">카테고리</td>
+                <td>
+                  <select></select>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
         <div className="recruit-create-content">
           <table>
-            <tr>
-              <td className="recruit-create-content-row a1">스터디 이름</td>
-              <td className="recruit-create-content-row a2">
-                <input placeholder="스터디 이름을 입력하세요" />
-              </td>
-            </tr>
-            <tr>
-              <td className="recruit-create-content-row a1">한줄 소개</td>
-              <td className="recruit-create-content-row a2">
-                <input placeholder="간단한 소개를 작성해주세요" />
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td className="recruit-create-content-row a1">스터디 이름</td>
+                <td className="recruit-create-content-row a2">
+                  <input
+                    className="recruit-input"
+                    placeholder="스터디 이름을 입력하세요"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td className="recruit-create-content-row a1">한줄 소개</td>
+                <td className="recruit-create-content-row a2">
+                  <input
+                    className="recruit-input"
+                    placeholder="간단한 소개를 작성해주세요"
+                  />
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
         <div className="recruit-create-content">
           <table>
-            <tr>
-              <td className="recruit-create-content-row a1">스터디 요일</td>
-            </tr>
-            <tr>
-              <td className="recruit-create-content-row a1">모집 기간</td>
-            </tr>
+            <tbody>
+              <tr>
+                <td className="recruit-create-content-row a1">스터디 요일</td>
+              </tr>
+              <tr>
+                <td className="recruit-create-content-row a1">모집 기간</td>
+                <td className="recruit-create-content-row a3">
+                  <StudyDatePickerStart />
+                </td>
+                <td className="recruit-create-content-row a3">-</td>
+                <td className="recruit-create-content-row a3">
+                  <StudyDatePicker />
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
         <div className="recruit-create-content">

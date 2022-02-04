@@ -44,9 +44,9 @@
 .recruit-create {
   font-family: "Pretendard";
   padding-top: 80px;
-  padding-left: 25%;
+  padding-left: 28%;
   background-color: var(--htmlbgColor);
-  padding-right: 25%;
+  padding-right: 28%;
 }
 .recruit-create .recruit-create-heading {
   font-size: 20px;
@@ -76,7 +76,10 @@
 .recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.a2 {
   width: 32rem;
 }
-.recruit-create .recruit-create-contents .recruit-create-content input {
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.a3 {
+  padding-right: 10px;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-input {
   background: var(--bgColor);
   border: 1px solid var(--borderColor);
   box-sizing: border-box;
@@ -114,7 +117,7 @@
   background-color: var(--bgColor);
   padding: 12px;
 }
-.recruit-create button {
+.recruit-create center button {
   cursor: pointer;
   border: none;
   border-radius: 7px;
