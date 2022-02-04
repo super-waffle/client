@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home";
-import Studyrooms from "./pages/Studyrooms";
+import StudyRecruit from "./pages/StudyRecruit";
 import Meetingrooms from "./pages/Meetingrooms";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
@@ -27,8 +27,8 @@ ReactDOM.render(
           </Route>
 
           <Route
-            path="studyrooms"
-            element={isLogin() ? <Studyrooms /> : <Login />}
+            path="studyrecruit"
+            element={isLogin() ? <StudyRecruit /> : <Login />}
           />
           <Route
             path="meetingrooms"
