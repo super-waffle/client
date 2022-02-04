@@ -114,5 +114,19 @@
   background-color: var(--bgColor);
   padding: 12px;
 }
+.recruit-create button {
+  cursor: pointer;
+  border: none;
+  border-radius: 7px;
+  color: #eeeeee;
+  background-color: #6667ab;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  width: 8rem;
+  height: 36px;
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
 
 /*# sourceMappingURL=studyRecruitCreate.css.map */

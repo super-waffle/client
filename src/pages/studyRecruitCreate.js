@@ -53,7 +53,9 @@ export default function StudyRecruitCreate() {
           </div>
         </div>
       </div>
-      <button>스터디 개설</button>
+      <center>
+        <button>스터디 개설</button>
+      </center>
     </div>
   );
 }
