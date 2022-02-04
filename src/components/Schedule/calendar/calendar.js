@@ -60,7 +60,7 @@ export default function Calendar() {
     'SAT',
     'SUN',
   ];
-  const today = new Date();
+  const [today, setToday] = useState(new Date(), []);
   const [weekly, setWeekly] = useState(getCalendarData);
   return (
     <>

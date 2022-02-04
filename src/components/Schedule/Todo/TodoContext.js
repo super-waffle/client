@@ -1,4 +1,23 @@
-import React, { useReducer } from 'react';
+import React, {
+  useReducer,
+  createContext,
+  useContext,
+  useRef,
+} from 'react';
+import axios from 'axios';
+
+const token = localStorage.getItem('accessToken');
+const todoList = createContext([]);
+console.log(token);
+axios
+  .get('/todos?date=2022-02-03', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  .then((response) => {
+    console.log(response);
+  });
 
 const initialTodos = [
   {
@@ -42,10 +61,36 @@ function todoReducer(state, action) {
   }
 }
 
+const TodoStateContext = createContext();
+const TodoDispatchContext = createContext();
+const TodoNextIdContext = createContext();
+
 export function TodoProvider({ children }) {
   const [state, dispatch] = useReducer(
     todoReducer,
     initialTodos
   );
-  return children;
+  const nextId = useRef(5);
+
+  return (
+    <TodoStateContext.Provider value={state}>
+      <TodoDispatchContext.Provider value={dispatch}>
+        <TodoNextIdContext.Provider value={nextId}>
+          {children}
+        </TodoNextIdContext.Provider>
+      </TodoDispatchContext.Provider>
+    </TodoStateContext.Provider>
+  );
+}
+
+export function useTodoState() {
+  return useContext(TodoStateContext);
+}
+
+export function useTodoDispatch() {
+  return useContext(TodoDispatchContext);
+}
+
+export function useTodoNextId() {
+  return useContext(TodoNextIdContext);
 }
