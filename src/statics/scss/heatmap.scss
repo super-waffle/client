@@ -1,0 +1,54 @@
+@import "main.scss";
+
+.heatmap {
+  & text {
+    font-family: $font-family;
+    font-size: 8px;
+  }
+  .react-calendar-heatmap-month-label {
+    fill: var(--textColor-darker);
+  }
+  .react-calendar-heatmap {
+    .today {
+      stroke: var(--textColor);
+    }
+
+    rect {
+      cursor: pointer;
+      rx: 3px;
+
+      &:hover {
+        stroke: var(--textColor-dark);
+        border: 0.5px solid var(--textColor-dark);
+      }
+      &:active {
+        stroke: var(--textColor-dark);
+        border: 0.5px solid var(--textColor-dark);
+      }
+      &:visited {
+        stroke: var(--textColor-dark);
+        border: 0.5px solid var(--textColor-dark);
+      }
+    }
+
+    .color-beammp-0 {
+      fill: var(--github-01);
+    }
+
+    .color-beammp-1 {
+      fill: var(--github-02);
+    }
+
+    .color-beammp-2 {
+      fill: var(--github-03);
+    }
+
+    .color-beammp-3 {
+      fill: $mainColor;
+    }
+
+    .color-beammp-4 {
+      fill: #2e2f8b;
+    }
+  }
+}
