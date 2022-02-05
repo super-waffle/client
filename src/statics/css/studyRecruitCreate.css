@@ -77,7 +77,12 @@
   width: 32rem;
 }
 .recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.a3 {
-  padding-right: 10px;
+  padding-right: 3rem;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.date {
+  font-size: 12px;
+  padding-right: 0.4rem;
+  color: var(--textColor-dark);
 }
 .recruit-create .recruit-create-contents .recruit-create-content .recruit-input {
   background: var(--bgColor);

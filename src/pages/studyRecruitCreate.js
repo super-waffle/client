@@ -53,10 +53,11 @@ export default function StudyRecruitCreate() {
               </tr>
               <tr>
                 <td className="recruit-create-content-row a1">모집 기간</td>
+                <td className="recruit-create-content-row date">시작일</td>
                 <td className="recruit-create-content-row a3">
                   <StudyDatePickerStart />
                 </td>
-                <td className="recruit-create-content-row a3">-</td>
+                <td className="recruit-create-content-row date">종료일</td>
                 <td className="recruit-create-content-row a3">
                   <StudyDatePicker />
                 </td>
