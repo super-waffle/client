@@ -1,8 +1,38 @@
+import { useState } from "react";
 import StudyDatePicker from "../components/datepicker";
 import StudyDatePickerStart from "../components/datepickerStart";
 import "../statics/css/studyRecruitCreate.css";
 
 export default function StudyRecruitCreate() {
+  const [isMonday, setIsMonday] = useState(false);
+  const onClickIsMonday = () => {
+    setIsMonday(!isMonday);
+  };
+  const [isTuesday, setIsTuesday] = useState(false);
+  const onClickIsTuesday = () => {
+    setIsTuesday(!isTuesday);
+  };
+  const [isWednesday, setIsWednesday] = useState(false);
+  const onClickIsWednesday = () => {
+    setIsWednesday(!isWednesday);
+  };
+  const [isThursday, setIsThursday] = useState(false);
+  const onClickIsThursday = () => {
+    setIsThursday(!isThursday);
+  };
+  const [isFriday, setIsFriday] = useState(false);
+  const onClickIsFriday = () => {
+    setIsFriday(!isFriday);
+  };
+  const [isSaturday, setIsSaturday] = useState(false);
+  const onClickIsSaturday = () => {
+    setIsSaturday(!isSaturday);
+  };
+  const [isSunday, setIsSunday] = useState(false);
+  const onClickIsSunday = () => {
+    setIsSunday(!isSunday);
+  };
+
   return (
     <div className="recruit-create">
       <div className="recruit-create-heading">
@@ -46,11 +76,92 @@ export default function StudyRecruitCreate() {
           </table>
         </div>
         <div className="recruit-create-content">
-          <table>
+          <table className="recruit-create-content__day">
             <tbody>
               <tr>
                 <td className="recruit-create-content-row a1">스터디 요일</td>
+                <td className="recruit-create-content-row day">
+                  <button
+                    id="day-picker"
+                    className={`recruit-create-content-row day-name ${
+                      isMonday ? "selected" : ""
+                    }`}
+                    onClick={onClickIsMonday}
+                  >
+                    Mon
+                  </button>
+                </td>
+                <td className="recruit-create-content-row day">
+                  <button
+                    id="day-picker"
+                    className={`recruit-create-content-row day-name ${
+                      isTuesday ? "selected" : ""
+                    }`}
+                    onClick={onClickIsTuesday}
+                  >
+                    Tue
+                  </button>
+                </td>
+                <td className="recruit-create-content-row day">
+                  <button
+                    id="day-picker"
+                    className={`recruit-create-content-row day-name ${
+                      isWednesday ? "selected" : ""
+                    }`}
+                    onClick={onClickIsWednesday}
+                  >
+                    Wed
+                  </button>
+                </td>
+                <td className="recruit-create-content-row day">
+                  <button
+                    id="day-picker"
+                    className={`recruit-create-content-row day-name ${
+                      isThursday ? "selected" : ""
+                    }`}
+                    onClick={onClickIsThursday}
+                  >
+                    Thu
+                  </button>
+                </td>
+                <td className="recruit-create-content-row day">
+                  <button
+                    id="day-picker"
+                    className={`recruit-create-content-row day-name ${
+                      isFriday ? "selected" : ""
+                    }`}
+                    onClick={onClickIsFriday}
+                  >
+                    Fri
+                  </button>
+                </td>
+                <td className="recruit-create-content-row day">
+                  <button
+                    id="day-picker"
+                    className={`recruit-create-content-row day-name ${
+                      isSaturday ? "selected" : ""
+                    }`}
+                    onClick={onClickIsSaturday}
+                  >
+                    Sat
+                  </button>
+                </td>
+                <td className="recruit-create-content-row day">
+                  <button
+                    id="day-picker"
+                    className={`recruit-create-content-row day-name ${
+                      isSunday ? "selected" : ""
+                    }`}
+                    onClick={onClickIsSunday}
+                  >
+                    Sun
+                  </button>
+                </td>
               </tr>
+            </tbody>
+          </table>
+          <table>
+            <tbody>
               <tr>
                 <td className="recruit-create-content-row a1">모집 기간</td>
                 <td className="recruit-create-content-row date">시작일</td>

@@ -64,8 +64,8 @@
 .recruit-create .recruit-create-contents .recruit-create-content table {
   margin: 33px 5px 33px 5px;
 }
-.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row {
-  margin-bottom: 15px;
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row .test {
+  display: flex;
 }
 .recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.a1 {
   font-size: 14px;
@@ -83,6 +83,28 @@
   font-size: 12px;
   padding-right: 0.4rem;
   color: var(--textColor-dark);
+  width: 3rem;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.day {
+  padding-right: 0.5rem;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.day-name {
+  border: none;
+  font-size: 12px;
+  color: var(--textColor);
+  background-color: var(--bgColor-light);
+  border-radius: 100%;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.selected {
+  border: none;
+  font-size: 12px;
+  color: #eeeeee;
+  background-color: #6667ab;
+  border-radius: 100%;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 .recruit-create .recruit-create-contents .recruit-create-content .recruit-input {
   background: var(--bgColor);

@@ -24,9 +24,15 @@
 
       & table {
         margin: 33px 5px 33px 5px;
+        // &.recruit-create-content__day {
+        //   // margin: 33px 5px 10px 5px;
+        // }
       }
       .recruit-create-content-row {
-        margin-bottom: 15px;
+        // margin-bottom: 15px;
+        .test {
+          display: flex;
+        }
         &.a1 {
           font-size: 14px;
           line-height: 17px;
@@ -43,6 +49,29 @@
           font-size: 12px;
           padding-right: 0.4rem;
           color: var(--textColor-dark);
+          width: 3rem;
+        }
+        &.day {
+          padding-right: 0.5rem;
+          // width: 20rem;
+        }
+        &.day-name {
+          border: none;
+          font-size: 12px;
+          color: var(--textColor);
+          background-color: var(--bgColor-light);
+          border-radius: 100%;
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+        &.selected {
+          border: none;
+          font-size: 12px;
+          color: #eeeeee;
+          background-color: $mainColor;
+          border-radius: 100%;
+          width: 2.5rem;
+          height: 2.5rem;
         }
       }
       .recruit-input {
