@@ -27,6 +27,7 @@ export default function StudyDatePicker() {
     "November",
     "December",
   ];
+
   return (
     <DatePicker
       locale="ko"

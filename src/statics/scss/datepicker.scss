@@ -22,12 +22,43 @@
   .react-datepicker__header {
     border: none;
     background-color: var(--bgColor);
+    color: var(--textColor);
 
     .arrow {
       cursor: pointer;
       border: none;
       background-color: var(--bgColor);
       margin: 0px 10px 2px 10px;
+    }
+
+    .react-datepicker__day-name {
+      color: var(--textColor);
+    }
+  }
+  .react-datepicker__month {
+    background-color: var(--bgColor);
+    margin: 0;
+    padding: 0.4rem;
+
+    .react-datepicker__day {
+      color: var(--textColor);
+      &:hover {
+        background-color: var(--bgColor-light);
+      }
+      &.react-datepicker__day--disabled {
+        color: var(--textColor-darker);
+        &:hover {
+          background-color: var(--bgColor);
+        }
+      }
+      &.react-datepicker__day--selected {
+        background-color: $mainColor;
+        color: #eeeeee;
+      }
+      &.react-datepicker__day--keyboard-selected {
+        background-color: $mainColor;
+        color: #eeeeee;
+      }
     }
   }
 

@@ -29,7 +29,7 @@
   --borderColor3: #444444;
   --textColor: #ededed;
   --textColor-dark: #8a8a8a;
-  --textColor-darker: #8a8a8a;
+  --textColor-darker: #6f6f6f;
   --textColor-darkest: #838383;
   --github-01: rgba(102, 103, 171, 0.2);
   --github-02: rgba(102, 103, 171, 0.4);
@@ -65,12 +65,41 @@
 .react-datepicker .react-datepicker__header {
   border: none;
   background-color: var(--bgColor);
+  color: var(--textColor);
 }
 .react-datepicker .react-datepicker__header .arrow {
   cursor: pointer;
   border: none;
   background-color: var(--bgColor);
   margin: 0px 10px 2px 10px;
+}
+.react-datepicker .react-datepicker__header .react-datepicker__day-name {
+  color: var(--textColor);
+}
+.react-datepicker .react-datepicker__month {
+  background-color: var(--bgColor);
+  margin: 0;
+  padding: 0.4rem;
+}
+.react-datepicker .react-datepicker__month .react-datepicker__day {
+  color: var(--textColor);
+}
+.react-datepicker .react-datepicker__month .react-datepicker__day:hover {
+  background-color: var(--bgColor-light);
+}
+.react-datepicker .react-datepicker__month .react-datepicker__day.react-datepicker__day--disabled {
+  color: var(--textColor-darker);
+}
+.react-datepicker .react-datepicker__month .react-datepicker__day.react-datepicker__day--disabled:hover {
+  background-color: var(--bgColor);
+}
+.react-datepicker .react-datepicker__month .react-datepicker__day.react-datepicker__day--selected {
+  background-color: #6667ab;
+  color: #eeeeee;
+}
+.react-datepicker .react-datepicker__month .react-datepicker__day.react-datepicker__day--keyboard-selected {
+  background-color: #6667ab;
+  color: #eeeeee;
 }
 .react-datepicker .date-customerheader {
   display: flex;
