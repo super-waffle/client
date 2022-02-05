@@ -81,9 +81,9 @@
 }
 .recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.date {
   font-size: 12px;
-  padding-right: 0.4rem;
+  padding-right: 0.2rem;
   color: var(--textColor-dark);
-  width: 3rem;
+  width: 2.5rem;
 }
 .recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.day {
   padding-right: 0.5rem;

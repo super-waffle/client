@@ -4,9 +4,20 @@ import StudyDatePickerStart from "../components/datepickerStart";
 import "../statics/css/studyRecruitCreate.css";
 
 export default function StudyRecruitCreate() {
+  // [TODO]: studies api 완성되면 어떤 데이터를 post 해야하는지 보고 아래의 함수 완성하기
+  // const [studyRecruit, setStudyRecruit] = useState({
+
+  // })
+  const [days, setDays] = useState([]);
   const [isMonday, setIsMonday] = useState(false);
-  const onClickIsMonday = () => {
+  const onClickIsMonday = (event) => {
+    event.preventDefault();
     setIsMonday(!isMonday);
+    console.log(isMonday);
+    if (!isMonday) {
+      setDays((days) => [...days, 0]);
+      console.log(days);
+    }
   };
   const [isTuesday, setIsTuesday] = useState(false);
   const onClickIsTuesday = () => {
