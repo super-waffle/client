@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { forwardRef, useState } from "react";
 import { addDays } from "date-fns";
 
 import DatePicker, { registerLocale } from "react-datepicker";
@@ -8,11 +8,11 @@ import "../statics/css/datepicker.css";
 import ko from "date-fns/locale/ko";
 registerLocale("ko", ko);
 
-// CSS Modules, react-datepicker-cssmodules.css
-// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-
 export default function StudyDatePicker() {
+  // 기본 설정 날짜는 오늘날짜 +7일로 설정해둠
+  // startDate의 값을 server로 보내줄 예정
   const [startDate, setStartDate] = useState(addDays(new Date(), 7));
+
   const months = [
     "January",
     "February",
@@ -28,13 +28,23 @@ export default function StudyDatePicker() {
     "December",
   ];
 
+  // 버튼 커스텀
+  const CustomInput = forwardRef(({ value, onClick }, ref) => (
+    <button className="custom-input" onClick={onClick} ref={ref}>
+      {value}
+    </button>
+  ));
+
   return (
     <DatePicker
-      locale="ko"
-      showPropperArrow={false}
+      locale="ko" // 달력 한국어로 바꾸기
+      showPopperArrow={false} // 달력 위의 화살표 없애기
       selected={startDate}
       onChange={(date) => setStartDate(date)}
-      minDate={addDays(new Date(), 1)}
+      minDate={addDays(new Date(), 1)} // 오늘 이전의 날짜는 선택 불가능하도록 설정
+      customInput={<CustomInput />}
+      dateFormat="yyyy/MM/dd"
+      // 달력 윗부분 디자인 바꾸기 (버튼, 월 이름, 배경 색상 등)
       renderCustomHeader={({
         date,
         decreaseMonth,

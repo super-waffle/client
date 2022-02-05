@@ -48,7 +48,7 @@
 .react-datepicker__input-container {
   font-family: "Pretendard";
 }
-.react-datepicker__input-container input {
+.react-datepicker__input-container .custom-input {
   color: var(--textColor);
   font-size: 14px;
   width: 6.5rem;

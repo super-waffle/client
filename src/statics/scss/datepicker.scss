@@ -5,7 +5,7 @@
 }
 .react-datepicker__input-container {
   font-family: $font-family;
-  & input {
+  .custom-input {
     color: var(--textColor);
     font-size: 14px;
     width: 6.5rem;
