@@ -1,6 +1,8 @@
 import { useState } from "react";
 import StudyDatePicker from "../components/datepicker";
 import StudyDatePickerStart from "../components/datepickerStart";
+import Modal from "../components/modal";
+import TimePicker from "../components/timepicker";
 import "../statics/css/studyRecruitCreate.css";
 
 export default function StudyRecruitCreate() {
@@ -16,6 +18,7 @@ export default function StudyRecruitCreate() {
     console.log(isMonday);
     if (!isMonday) {
       setDays((days) => [...days, 0]);
+      openModal();
       console.log(days);
     }
   };
@@ -42,6 +45,15 @@ export default function StudyRecruitCreate() {
   const [isSunday, setIsSunday] = useState(false);
   const onClickIsSunday = () => {
     setIsSunday(!isSunday);
+  };
+
+  // 시간 설정 모달창
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -101,6 +113,7 @@ export default function StudyRecruitCreate() {
                   >
                     Mon
                   </button>
+                  <Modal open={modalOpen} close={closeModal} header=" "></Modal>
                 </td>
                 <td className="recruit-create-content-row day">
                   <button

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
-import Modal from "./emailConfirm";
+import Modal from "./modal";
 import "../statics/css/signup.css";
 
 function SignUp() {
