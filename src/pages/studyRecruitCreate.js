@@ -1,23 +1,26 @@
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import ReactTooltip from "react-tooltip";
 import StudyDatePicker from "../components/datepicker";
 import StudyDatePickerStart from "../components/datepickerStart";
 import TimePicker from "../components/timepicker";
+import isLogin from "../utils/isLogin";
 import "../statics/css/studyRecruitCreate.css";
+import axios from "axios";
+import { useIsRTL } from "react-bootstrap/esm/ThemeProvider";
 
 export default function StudyRecruitCreate() {
-  // [TODO]: studies api 완성되면 어떤 데이터를 post 해야하는지 보고 아래의 함수 완성하기
-  // const [studyRecruit, setStudyRecruit] = useState({
-
-  // })
-  // const [days, setDays] = useState([]);
+  const [days, setDays] = useState({
+    dayNumber: 0,
+    timeStart: "",
+    timeEnd: "",
+  });
   const [mondayStartTime, setMondayStartTime] = useState("");
   const [mondayEndTime, setMondayEndTime] = useState("");
   const [isMonday, setIsMonday] = useState(false);
+
+  // console.log(days);
+
   console.log("mon", mondayStartTime, mondayEndTime, isMonday);
-  if (isMonday) {
-    console.log("hi");
-  }
 
   const [tuesdayStartTime, setTuesdayStartTime] = useState("");
   const [tuesdayEndTime, setTuesdayEndTime] = useState("");
@@ -100,6 +103,64 @@ export default function StudyRecruitCreate() {
     setModalOpenSun(false);
   };
 
+  // [TODO]: studies api 완성되면 어떤 데이터를 post 해야하는지 보고 아래의 함수 완성하기
+
+  const [studyTitle, setStudyTitle] = useState("");
+  const [studyShortDesc, setStudyShotrDesc] = useState("");
+  const [studyDesc, setStudyDesc] = useState("");
+  const [studyRecruitEnd, setStudyRecruitEnd] = useState("");
+  console.log(studyTitle, studyShortDesc, studyDesc, studyRecruitEnd);
+
+  // [TODO]: 스터디 상세정보 글자수 실시간으로 보여주기 (1000자 제한)
+  const onChangeStudyDesc = useCallback((event) => {
+    setStudyDesc(event.target.value);
+  });
+  useMemo(() => {
+    if (isMonday) {
+      setDays((prevState) => ({
+        ...prevState,
+        dayNumber: 1,
+        timeStart: mondayStartTime,
+        timeEnd: mondayEndTime,
+      }));
+    }
+  }, [mondayEndTime, mondayStartTime]);
+
+  const [userSeq, setUserSeq] = useState("");
+  const [studyRecruit, setStudyRecruit] = useState({
+    hostSea: 0,
+    categorySeq: 0,
+    studyTitle: "",
+    studyShortDesc: "",
+    sturyDesc: "",
+    studyRecruitEnd: "",
+    day: [{ dayNumber: 0, timeStart: "", timeEnd: "" }],
+  });
+  if (isLogin()) {
+    const TOKEN = localStorage.getItem("accessToken");
+    axios
+      .get("/users", {
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+        },
+      })
+      .then((res) => {
+        setUserSeq(res.data.user.userNickname);
+      });
+    // axios.post("/studies", {
+    //   hostSea: userSeq,
+    //   categorySeq: 0,
+    //   studyTitle: studyTitle,
+    //   studyShortDesc: studyShortDesc,
+    //   sturyDesc: studyDesc,
+    //   studyRecruitEnd: "",
+    //   day: [{ dayNumber: 0, timeStart: "", timeEnd: "" }],
+    //   headers: {
+    //     Authorization: `Bearer ${TOKEN}`,
+    //   },
+    // });
+  }
+
   return (
     <div className="recruit-create">
       <div className="recruit-create-heading">
@@ -127,6 +188,9 @@ export default function StudyRecruitCreate() {
                   <input
                     className="recruit-input"
                     placeholder="스터디 이름을 입력하세요"
+                    onChange={useCallback((event) => {
+                      setStudyTitle(event.target.value);
+                    })}
                   />
                 </td>
               </tr>
@@ -136,6 +200,9 @@ export default function StudyRecruitCreate() {
                   <input
                     className="recruit-input"
                     placeholder="간단한 소개를 작성해주세요"
+                    onChange={useCallback((event) => {
+                      setStudyShotrDesc(event.target.value);
+                    })}
                   />
                 </td>
               </tr>
@@ -391,7 +458,7 @@ export default function StudyRecruitCreate() {
                 </td>
                 <td className="recruit-create-content-row date">종료일</td>
                 <td className="recruit-create-content-row a3">
-                  <StudyDatePicker />
+                  <StudyDatePicker endDate={setStudyRecruitEnd} />
                 </td>
               </tr>
             </tbody>
@@ -403,6 +470,7 @@ export default function StudyRecruitCreate() {
             <textarea
               placeholder="스터디 모집 사항을 상세히 적어주세요"
               maxLength={1000}
+              onChange={onChangeStudyDesc}
             ></textarea>
           </div>
         </div>

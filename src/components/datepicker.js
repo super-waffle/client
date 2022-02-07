@@ -6,12 +6,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import "../statics/css/datepicker.css";
 
 import ko from "date-fns/locale/ko";
+import { propTypes } from "react-bootstrap/esm/Image";
 registerLocale("ko", ko);
 
-export default function StudyDatePicker() {
+export default function StudyDatePicker(props) {
   // 기본 설정 날짜는 오늘날짜 +7일로 설정해둠
   // startDate의 값을 server로 보내줄 예정
   const [startDate, setStartDate] = useState(addDays(new Date(), 7));
+  props.endDate(startDate);
 
   const months = [
     "January",
