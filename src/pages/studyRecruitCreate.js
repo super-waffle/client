@@ -105,11 +105,12 @@ export default function StudyRecruitCreate() {
 
   // [TODO]: studies api 완성되면 어떤 데이터를 post 해야하는지 보고 아래의 함수 완성하기
 
+  const [userSeq, setUserSeq] = useState("");
   const [studyTitle, setStudyTitle] = useState("");
   const [studyShortDesc, setStudyShotrDesc] = useState("");
   const [studyDesc, setStudyDesc] = useState("");
   const [studyRecruitEnd, setStudyRecruitEnd] = useState("");
-  console.log(studyTitle, studyShortDesc, studyDesc, studyRecruitEnd);
+  console.log(userSeq, studyTitle, studyShortDesc, studyDesc, studyRecruitEnd);
 
   // [TODO]: 스터디 상세정보 글자수 실시간으로 보여주기 (1000자 제한)
   const onChangeStudyDesc = useCallback((event) => {
@@ -126,7 +127,6 @@ export default function StudyRecruitCreate() {
     }
   }, [mondayEndTime, mondayStartTime]);
 
-  const [userSeq, setUserSeq] = useState("");
   const [studyRecruit, setStudyRecruit] = useState({
     hostSea: 0,
     categorySeq: 0,
@@ -145,21 +145,35 @@ export default function StudyRecruitCreate() {
         },
       })
       .then((res) => {
-        setUserSeq(res.data.user.userNickname);
+        setUserSeq(res.data.user.userSeq);
       });
-    // axios.post("/studies", {
-    //   hostSea: userSeq,
-    //   categorySeq: 0,
-    //   studyTitle: studyTitle,
-    //   studyShortDesc: studyShortDesc,
-    //   sturyDesc: studyDesc,
-    //   studyRecruitEnd: "",
-    //   day: [{ dayNumber: 0, timeStart: "", timeEnd: "" }],
-    //   headers: {
-    //     Authorization: `Bearer ${TOKEN}`,
-    //   },
-    // });
   }
+
+  const onSubmitStudy = useCallback(() => {
+    const TOKEN = localStorage.getItem("accessToken");
+    axios
+      .post("/studies", {
+        hostSea: userSeq,
+        categorySeq: 0,
+        studyTitle: studyTitle,
+        studyShortDesc: studyShortDesc,
+        sturyDesc: studyDesc,
+        studyRecruitEnd: studyRecruitEnd,
+        day: [
+          {
+            dayNumber: 1,
+            timeStart: mondayStartTime,
+            timeEnd: mondayStartTime,
+          },
+        ],
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      });
+  });
 
   return (
     <div className="recruit-create">
@@ -476,7 +490,7 @@ export default function StudyRecruitCreate() {
         </div>
       </div>
       <center>
-        <button>스터디 개설</button>
+        <button onClick={onSubmitStudy}>스터디 개설</button>
       </center>
     </div>
   );
