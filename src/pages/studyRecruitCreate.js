@@ -113,7 +113,14 @@ export default function StudyRecruitCreate() {
                   >
                     Mon
                   </button>
-                  <Modal open={modalOpen} close={closeModal} header=" "></Modal>
+                  {/* <Modal open={modalOpen} close={closeModal} header=" ">
+                    <div>시간 설정</div>
+                  </Modal> */}
+                  <TimePicker
+                    open={modalOpen}
+                    close={closeModal}
+                    header=" "
+                  ></TimePicker>
                 </td>
                 <td className="recruit-create-content-row day">
                   <button
