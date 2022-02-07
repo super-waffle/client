@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import "../statics/css/timepicker.css";
 
 const TimePicker = (props) => {
@@ -55,13 +55,11 @@ const TimePicker = (props) => {
     setFinMinute(e.target.value);
   };
   console.log(startTime, startMinute, finTime, finMinute);
+  const startTimeData = startTime + ":" + startMinute + ":00";
+  const finishTimeData = finTime + ":" + finMinute + ":00";
 
   // 시간, 분 선택 옵션
   const SelectBox = (props) => {
-    console.log(typeof Number(startTime));
-    console.log(Number(startTime));
-    const tmpStartTime = Number(startTime);
-    // console.log(props);
     return (
       <select value={props.value} onChange={props.onChange}>
         {props.options.map((option) => (
@@ -72,24 +70,47 @@ const TimePicker = (props) => {
       </select>
     );
   };
-  const SelectBoxFinTime = (props) => {
-    // console.log(typeof Number(startTime));
-    // console.log(Number(startTime));
-    const tmpStartTime = Number(startTime);
-    console.log(tmpStartTime);
-    // console.log(props);
-    return (
-      <select value={props.value} onChange={props.onChange}>
-        {props.options.map((option) => {
-          tmpStartTime < Number(option.value) && (
-            <option key={option.value} value={option.value}>
-              {option.name}
-            </option>
-          );
-        })}
-      </select>
-    );
-  };
+
+  // [TODO]: 시작시간 선택하면 그 이전 시간은 종료시간으로 선택하지 못하는 기능 구현중...
+  // const [isAble, setIsAble] = useState(false);
+  // const SelectBoxFinTime = (props) => {
+  //   // console.log(typeof Number(startTime));
+  //   // console.log(Number(startTime));
+  //   const tmpStartTime = Number(startTime);
+  //   const compare = (val) => {
+  //     if (tmpStartTime < val) {
+  //       setIsAble(true);
+  //     } else {
+  //       setIsAble(false);
+  //     }
+  //   };
+  //   console.log(tmpStartTime);
+  //   // console.log(props);
+  //   return (
+  //     <select value={props.value} onChange={props.onChange}>
+  //       {/* {props.options.map((option) => {
+  //         tmpStartTime < Number(option.value) && (
+  //           <option key={option.value} value={option.value}>
+  //             {option.name}
+  //           </option>
+  //         );
+  //       })} */}
+  //       {props.options.map((option) => {
+  //         tmpStartTime < Number(option.value) && (
+  //           <option key={option.value} value={option.value}>
+  //             {option.name}
+  //           </option>
+  //         );
+  //       })}
+  //     </select>
+  //   );
+  // };
+
+  const onSubmit = useCallback((event) => {
+    props.setStartTimeData(startTimeData);
+    props.setEndTimeData(finishTimeData);
+    close();
+  });
   const { open, close, header } = props;
 
   return (
@@ -157,7 +178,7 @@ const TimePicker = (props) => {
               ></SelectBox>
               <span className="main-body-time">분</span>
             </div>
-            <button className="main-footer" onClick={close}>
+            <button className="main-footer" onClick={onSubmit}>
               설정 완료
             </button>
           </main>

@@ -10,12 +10,13 @@ export default function StudyRecruitCreate() {
 
   // })
   const [days, setDays] = useState([]);
-  const [mondayTimeData, setMondayTimeData] = useState(0);
+  const [mondayStartTime, setMondayStartTime] = useState("");
+  const [mondayEndTime, setMondayEndTime] = useState("");
+  console.log(mondayEndTime, mondayStartTime);
   const [isMonday, setIsMonday] = useState(false);
   const onClickIsMonday = (event) => {
     event.preventDefault();
     setIsMonday(!isMonday);
-
     if (!isMonday) {
       setDays((days) => [...days, 0]);
       openModal();
@@ -119,7 +120,8 @@ export default function StudyRecruitCreate() {
                   <TimePicker
                     open={modalOpen}
                     close={closeModal}
-                    setTimeData={setMondayTimeData}
+                    setStartTimeData={setMondayStartTime}
+                    setEndTimeData={setMondayEndTime}
                   ></TimePicker>
                 </td>
                 <td className="recruit-create-content-row day">
