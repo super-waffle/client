@@ -88,6 +88,9 @@
 .recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.day {
   padding-right: 0.5rem;
 }
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.day .tooltip-day {
+  padding: 8px;
+}
 .recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.day-name {
   border: none;
   font-size: 12px;

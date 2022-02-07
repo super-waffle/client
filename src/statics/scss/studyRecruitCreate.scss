@@ -54,6 +54,10 @@
         &.day {
           padding-right: 0.5rem;
           // width: 20rem;
+          & .tooltip-day {
+            padding: 8px;
+            // background-color: $mainColor;
+          }
         }
         &.day-name {
           border: none;

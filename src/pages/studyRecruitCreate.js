@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ReactTooltip from "react-tooltip";
 import StudyDatePicker from "../components/datepicker";
 import StudyDatePickerStart from "../components/datepickerStart";
 import TimePicker from "../components/timepicker";
@@ -17,84 +18,36 @@ export default function StudyRecruitCreate() {
   if (isMonday) {
     console.log("hi");
   }
-  // if (mondayEndTime && mondayStartTime) {
-  //   setIsMonday(!isMonday);
-  // }
-  // const onClickIsMonday = (event) => {
-  //   event.preventDefault();
-  //   setIsMonday(!isMonday);
-  //   if (!isMonday) {
-  //     setDays((days) => [...days, 0]);
-  //     openModal();
-  //     if (mondayStartTime && mondayEndTime) {
-  //       console.log("hi");
-  //     }
-  //   }
-  // };
+
   const [tuesdayStartTime, setTuesdayStartTime] = useState("");
   const [tuesdayEndTime, setTuesdayEndTime] = useState("");
   const [isTuesday, setIsTuesday] = useState(false);
   console.log("tue", tuesdayStartTime, tuesdayEndTime, isTuesday);
-  // const onClickIsTuesday = () => {
-  //   setIsTuesday(!isTuesday);
-  //   if (!isTuesday) {
-  //     setDays((days) => [...days, 0]);
-  //     openModal();
-  //   }
-  // };
+
   const [wednesdayStartTime, setWednesdayStartTime] = useState("");
   const [wednesdayEndTime, setWednesdayEndTime] = useState("");
   const [isWednesday, setIsWednesday] = useState(false);
   console.log("wed", wednesdayStartTime, wednesdayEndTime, isWednesday);
-  // const [isWednesday, setIsWednesday] = useState(false);
-  // const onClickIsWednesday = () => {
-  //   setIsWednesday(!isWednesday);
-  // };
 
   const [thursdayStartTime, setThursdayStartTime] = useState("");
   const [thursdayEndTime, setThursdayEndTime] = useState("");
   const [isThursday, setIsThursday] = useState(false);
   console.log("thu", thursdayStartTime, thursdayEndTime, isThursday);
-  // const [isThursday, setIsThursday] = useState(false);
-  // const onClickIsThursday = () => {
-  //   setIsThursday(!isThursday);
-  // };
 
   const [fridayStartTime, setFridayStartTime] = useState("");
   const [fridayEndTime, setFridayEndTime] = useState("");
   const [isFriday, setIsFriday] = useState(false);
   console.log("fri", fridayStartTime, fridayEndTime, isFriday);
-  // const [isFriday, setIsFriday] = useState(false);
-  // const onClickIsFriday = () => {
-  //   setIsFriday(!isFriday);
-  // };
 
   const [saturdayStartTime, setSaturdayStartTime] = useState("");
   const [saturdayEndTime, setSaturdayEndTime] = useState("");
   const [isSaturday, setIsSaturday] = useState(false);
   console.log("sat", saturdayStartTime, saturdayEndTime, isSaturday);
-  // const [isSaturday, setIsSaturday] = useState(false);
-  // const onClickIsSaturday = () => {
-  //   setIsSaturday(!isSaturday);
-  // };
 
   const [sundayStartTime, setSundayStartTime] = useState("");
   const [sundayEndTime, setSundayEndTime] = useState("");
   const [isSunday, setIsSunday] = useState(false);
   console.log("sun", sundayStartTime, sundayEndTime, isSunday);
-  // const [isSunday, setIsSunday] = useState(false);
-  // const onClickIsSunday = () => {
-  //   setIsSunday(!isSunday);
-  // };
-
-  // 시간 설정 모달창
-  // const [modalOpen, setModalOpen] = useState(false);
-  // const openModal = () => {
-  //   setModalOpen(true);
-  // };
-  // const closeModal = () => {
-  //   setModalOpen(false);
-  // };
 
   const [modalOpenMon, setModalOpenMon] = useState(false);
   const [modalOpenTue, setModalOpenTue] = useState(false);
@@ -197,13 +150,26 @@ export default function StudyRecruitCreate() {
                 <td className="recruit-create-content-row day">
                   <button
                     id="day-picker"
+                    data-tip
+                    data-for="tooltip-mon"
                     className={`recruit-create-content-row day-name ${
                       isMonday ? "selected" : ""
-                    }`}
+                    } `}
                     onClick={openModalMon}
                   >
                     Mon
                   </button>
+                  {isMonday && (
+                    <ReactTooltip
+                      id="tooltip-mon"
+                      className="tooltip-day"
+                      place="top"
+                      effect="solid"
+                    >
+                      {mondayStartTime.substring(0, 5)} ~{" "}
+                      {mondayEndTime.substring(0, 5)}
+                    </ReactTooltip>
+                  )}
                   <TimePicker
                     open={modalOpenMon}
                     close={closeModalMon}
@@ -217,6 +183,8 @@ export default function StudyRecruitCreate() {
                 <td className="recruit-create-content-row day">
                   <button
                     id="day-picker"
+                    data-tip
+                    data-for="tooltip-tue"
                     className={`recruit-create-content-row day-name ${
                       isTuesday ? "selected" : ""
                     }`}
@@ -224,6 +192,17 @@ export default function StudyRecruitCreate() {
                   >
                     Tue
                   </button>
+                  {isTuesday && (
+                    <ReactTooltip
+                      id="tooltip-tue"
+                      className="tooltip-day"
+                      place="top"
+                      effect="solid"
+                    >
+                      {tuesdayStartTime.substring(0, 5)} ~{" "}
+                      {tuesdayEndTime.substring(0, 5)}
+                    </ReactTooltip>
+                  )}
                   <TimePicker
                     open={modalOpenTue}
                     close={closeModalTue}
@@ -237,6 +216,8 @@ export default function StudyRecruitCreate() {
                 <td className="recruit-create-content-row day">
                   <button
                     id="day-picker"
+                    data-tip
+                    data-for="tooltip-wed"
                     className={`recruit-create-content-row day-name ${
                       isWednesday ? "selected" : ""
                     }`}
@@ -244,6 +225,17 @@ export default function StudyRecruitCreate() {
                   >
                     Wed
                   </button>
+                  {isWednesday && (
+                    <ReactTooltip
+                      id="tooltip-wed"
+                      className="tooltip-day"
+                      place="top"
+                      effect="solid"
+                    >
+                      {wednesdayStartTime.substring(0, 5)} ~{" "}
+                      {wednesdayEndTime.substring(0, 5)}
+                    </ReactTooltip>
+                  )}
                   <TimePicker
                     open={modalOpenWed}
                     close={closeModalWed}
@@ -257,6 +249,8 @@ export default function StudyRecruitCreate() {
                 <td className="recruit-create-content-row day">
                   <button
                     id="day-picker"
+                    data-tip
+                    data-for="tooltip-thu"
                     className={`recruit-create-content-row day-name ${
                       isThursday ? "selected" : ""
                     }`}
@@ -264,6 +258,17 @@ export default function StudyRecruitCreate() {
                   >
                     Thu
                   </button>
+                  {isThursday && (
+                    <ReactTooltip
+                      id="tooltip-thu"
+                      className="tooltip-day"
+                      place="top"
+                      effect="solid"
+                    >
+                      {thursdayStartTime.substring(0, 5)} ~{" "}
+                      {thursdayEndTime.substring(0, 5)}
+                    </ReactTooltip>
+                  )}
                   <TimePicker
                     open={modalOpenThu}
                     close={closeModalThu}
@@ -277,6 +282,8 @@ export default function StudyRecruitCreate() {
                 <td className="recruit-create-content-row day">
                   <button
                     id="day-picker"
+                    data-tip
+                    data-for="tooltip-fri"
                     className={`recruit-create-content-row day-name ${
                       isFriday ? "selected" : ""
                     }`}
@@ -284,6 +291,17 @@ export default function StudyRecruitCreate() {
                   >
                     Fri
                   </button>
+                  {isFriday && (
+                    <ReactTooltip
+                      id="tooltip-fri"
+                      className="tooltip-day"
+                      place="top"
+                      effect="solid"
+                    >
+                      {fridayStartTime.substring(0, 5)} ~{" "}
+                      {fridayEndTime.substring(0, 5)}
+                    </ReactTooltip>
+                  )}
                   <TimePicker
                     open={modalOpenFri}
                     close={closeModalFri}
@@ -297,6 +315,8 @@ export default function StudyRecruitCreate() {
                 <td className="recruit-create-content-row day">
                   <button
                     id="day-picker"
+                    data-tip
+                    data-for="tooltip-sat"
                     className={`recruit-create-content-row day-name ${
                       isSaturday ? "selected" : ""
                     }`}
@@ -304,6 +324,17 @@ export default function StudyRecruitCreate() {
                   >
                     Sat
                   </button>
+                  {isSaturday && (
+                    <ReactTooltip
+                      id="tooltip-sat"
+                      className="tooltip-day"
+                      place="top"
+                      effect="solid"
+                    >
+                      {saturdayStartTime.substring(0, 5)} ~{" "}
+                      {saturdayEndTime.substring(0, 5)}
+                    </ReactTooltip>
+                  )}
                   <TimePicker
                     open={modalOpenSat}
                     close={closeModalSat}
@@ -317,6 +348,8 @@ export default function StudyRecruitCreate() {
                 <td className="recruit-create-content-row day">
                   <button
                     id="day-picker"
+                    data-tip
+                    data-for="tooltip-sun"
                     className={`recruit-create-content-row day-name ${
                       isSunday ? "selected" : ""
                     }`}
@@ -324,6 +357,17 @@ export default function StudyRecruitCreate() {
                   >
                     Sun
                   </button>
+                  {isSunday && (
+                    <ReactTooltip
+                      id="tooltip-sun"
+                      className="tooltip-day"
+                      place="top"
+                      effect="solid"
+                    >
+                      {sundayStartTime.substring(0, 5)} ~{" "}
+                      {sundayEndTime.substring(0, 5)}
+                    </ReactTooltip>
+                  )}
                   <TimePicker
                     open={modalOpenSun}
                     close={closeModalSun}
