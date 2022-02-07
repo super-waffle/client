@@ -95,9 +95,20 @@
   padding-left: 3px;
   padding-right: 8px;
 }
-.modal > section > main .main-footer {
+.modal > section > main .main-footer-cancel {
+  border: 1.5px solid #6667ab;
+  border-radius: 5px;
+  width: 75px;
+  height: 24px;
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--textColor);
+  background-color: var(--bgColor);
+  margin-right: 6px;
+}
+.modal > section > main .main-footer-submit {
   border: none;
-  width: 90px;
+  width: 75px;
   height: 24px;
   font-size: 10px;
   line-height: 12px;

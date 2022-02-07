@@ -1,7 +1,8 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import "../statics/css/timepicker.css";
 
 const TimePicker = (props) => {
+  // console.log("mondaytimepicker", props.setIsDay);
   const HOURS = [
     { value: "00", name: "00" },
     { value: "01", name: "01" },
@@ -37,8 +38,8 @@ const TimePicker = (props) => {
     { value: "40", name: "40" },
     { value: "50", name: "50" },
   ];
-
   const [startTime, setStartTime] = useState("12");
+  // console.log(startTime);
   const [startMinute, setStartMinute] = useState("00");
   const [finTime, setFinTime] = useState("12");
   const [finMinute, setFinMinute] = useState("00");
@@ -54,7 +55,7 @@ const TimePicker = (props) => {
   const onChangeFinMin = (e) => {
     setFinMinute(e.target.value);
   };
-  console.log(startTime, startMinute, finTime, finMinute);
+  // console.log(startTime, startMinute, finTime, finMinute);
   const startTimeData = startTime + ":" + startMinute + ":00";
   const finishTimeData = finTime + ":" + finMinute + ":00";
 
@@ -106,11 +107,22 @@ const TimePicker = (props) => {
   //   );
   // };
 
-  const onSubmit = useCallback((event) => {
+  const onSubmit = () => {
     props.setStartTimeData(startTimeData);
     props.setEndTimeData(finishTimeData);
+    props.setIsDay(true);
     close();
-  });
+  };
+  const onCancel = () => {
+    props.setStartTimeData("");
+    props.setEndTimeData("");
+    setStartTime("12");
+    setStartMinute("00");
+    setFinTime("12");
+    setFinMinute("00");
+    props.setIsDay(false);
+    close();
+  };
   const { open, close, header } = props;
 
   return (
@@ -178,9 +190,14 @@ const TimePicker = (props) => {
               ></SelectBox>
               <span className="main-body-time">분</span>
             </div>
-            <button className="main-footer" onClick={onSubmit}>
-              설정 완료
-            </button>
+            <div className="main-footer">
+              <button className="main-footer-cancel" onClick={onCancel}>
+                설정 초기화
+              </button>
+              <button className="main-footer-submit" onClick={onSubmit}>
+                설정 완료
+              </button>
+            </div>
           </main>
         </section>
       ) : null}

@@ -51,9 +51,20 @@
           padding-right: 8px;
         }
       }
-      & .main-footer {
+      & .main-footer-cancel {
+        border: 1.5px solid $mainColor;
+        border-radius: 5px;
+        width: 75px;
+        height: 24px;
+        font-size: 10px;
+        line-height: 12px;
+        color: var(--textColor);
+        background-color: var(--bgColor);
+        margin-right: 6px;
+      }
+      & .main-footer-submit {
         border: none;
-        width: 90px;
+        width: 75px;
         height: 24px;
         font-size: 10px;
         line-height: 12px;

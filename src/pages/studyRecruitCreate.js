@@ -9,55 +9,142 @@ export default function StudyRecruitCreate() {
   // const [studyRecruit, setStudyRecruit] = useState({
 
   // })
-  const [days, setDays] = useState([]);
+  // const [days, setDays] = useState([]);
   const [mondayStartTime, setMondayStartTime] = useState("");
   const [mondayEndTime, setMondayEndTime] = useState("");
-  console.log(mondayEndTime, mondayStartTime);
   const [isMonday, setIsMonday] = useState(false);
-  const onClickIsMonday = (event) => {
-    event.preventDefault();
-    setIsMonday(!isMonday);
-    if (!isMonday) {
-      setDays((days) => [...days, 0]);
-      openModal();
-    }
-  };
+  console.log("mon", mondayStartTime, mondayEndTime, isMonday);
+  if (isMonday) {
+    console.log("hi");
+  }
+  // if (mondayEndTime && mondayStartTime) {
+  //   setIsMonday(!isMonday);
+  // }
+  // const onClickIsMonday = (event) => {
+  //   event.preventDefault();
+  //   setIsMonday(!isMonday);
+  //   if (!isMonday) {
+  //     setDays((days) => [...days, 0]);
+  //     openModal();
+  //     if (mondayStartTime && mondayEndTime) {
+  //       console.log("hi");
+  //     }
+  //   }
+  // };
+  const [tuesdayStartTime, setTuesdayStartTime] = useState("");
+  const [tuesdayEndTime, setTuesdayEndTime] = useState("");
   const [isTuesday, setIsTuesday] = useState(false);
-  const onClickIsTuesday = () => {
-    setIsTuesday(!isTuesday);
-    if (!isTuesday) {
-      setDays((days) => [...days, 0]);
-      openModal();
-    }
-  };
+  console.log("tue", tuesdayStartTime, tuesdayEndTime, isTuesday);
+  // const onClickIsTuesday = () => {
+  //   setIsTuesday(!isTuesday);
+  //   if (!isTuesday) {
+  //     setDays((days) => [...days, 0]);
+  //     openModal();
+  //   }
+  // };
+  const [wednesdayStartTime, setWednesdayStartTime] = useState("");
+  const [wednesdayEndTime, setWednesdayEndTime] = useState("");
   const [isWednesday, setIsWednesday] = useState(false);
-  const onClickIsWednesday = () => {
-    setIsWednesday(!isWednesday);
-  };
+  console.log("wed", wednesdayStartTime, wednesdayEndTime, isWednesday);
+  // const [isWednesday, setIsWednesday] = useState(false);
+  // const onClickIsWednesday = () => {
+  //   setIsWednesday(!isWednesday);
+  // };
+
+  const [thursdayStartTime, setThursdayStartTime] = useState("");
+  const [thursdayEndTime, setThursdayEndTime] = useState("");
   const [isThursday, setIsThursday] = useState(false);
-  const onClickIsThursday = () => {
-    setIsThursday(!isThursday);
-  };
+  console.log("thu", thursdayStartTime, thursdayEndTime, isThursday);
+  // const [isThursday, setIsThursday] = useState(false);
+  // const onClickIsThursday = () => {
+  //   setIsThursday(!isThursday);
+  // };
+
+  const [fridayStartTime, setFridayStartTime] = useState("");
+  const [fridayEndTime, setFridayEndTime] = useState("");
   const [isFriday, setIsFriday] = useState(false);
-  const onClickIsFriday = () => {
-    setIsFriday(!isFriday);
-  };
+  console.log("fri", fridayStartTime, fridayEndTime, isFriday);
+  // const [isFriday, setIsFriday] = useState(false);
+  // const onClickIsFriday = () => {
+  //   setIsFriday(!isFriday);
+  // };
+
+  const [saturdayStartTime, setSaturdayStartTime] = useState("");
+  const [saturdayEndTime, setSaturdayEndTime] = useState("");
   const [isSaturday, setIsSaturday] = useState(false);
-  const onClickIsSaturday = () => {
-    setIsSaturday(!isSaturday);
-  };
+  console.log("sat", saturdayStartTime, saturdayEndTime, isSaturday);
+  // const [isSaturday, setIsSaturday] = useState(false);
+  // const onClickIsSaturday = () => {
+  //   setIsSaturday(!isSaturday);
+  // };
+
+  const [sundayStartTime, setSundayStartTime] = useState("");
+  const [sundayEndTime, setSundayEndTime] = useState("");
   const [isSunday, setIsSunday] = useState(false);
-  const onClickIsSunday = () => {
-    setIsSunday(!isSunday);
-  };
+  console.log("sun", sundayStartTime, sundayEndTime, isSunday);
+  // const [isSunday, setIsSunday] = useState(false);
+  // const onClickIsSunday = () => {
+  //   setIsSunday(!isSunday);
+  // };
 
   // 시간 설정 모달창
-  const [modalOpen, setModalOpen] = useState(false);
-  const openModal = () => {
-    setModalOpen(true);
+  // const [modalOpen, setModalOpen] = useState(false);
+  // const openModal = () => {
+  //   setModalOpen(true);
+  // };
+  // const closeModal = () => {
+  //   setModalOpen(false);
+  // };
+
+  const [modalOpenMon, setModalOpenMon] = useState(false);
+  const [modalOpenTue, setModalOpenTue] = useState(false);
+  const [modalOpenWed, setModalOpenWed] = useState(false);
+  const [modalOpenThu, setModalOpenThu] = useState(false);
+  const [modalOpenFri, setModalOpenFri] = useState(false);
+  const [modalOpenSat, setModalOpenSat] = useState(false);
+  const [modalOpenSun, setModalOpenSun] = useState(false);
+
+  const openModalMon = () => {
+    setModalOpenMon(true);
   };
-  const closeModal = () => {
-    setModalOpen(false);
+  const closeModalMon = () => {
+    setModalOpenMon(false);
+  };
+  const openModalTue = () => {
+    setModalOpenTue(true);
+  };
+  const closeModalTue = () => {
+    setModalOpenTue(false);
+  };
+  const openModalWed = () => {
+    setModalOpenWed(true);
+  };
+  const closeModalWed = () => {
+    setModalOpenWed(false);
+  };
+  const openModalThu = () => {
+    setModalOpenThu(true);
+  };
+  const closeModalThu = () => {
+    setModalOpenThu(false);
+  };
+  const openModalFri = () => {
+    setModalOpenFri(true);
+  };
+  const closeModalFri = () => {
+    setModalOpenFri(false);
+  };
+  const openModalSat = () => {
+    setModalOpenSat(true);
+  };
+  const closeModalSat = () => {
+    setModalOpenSat(false);
+  };
+  const openModalSun = () => {
+    setModalOpenSun(true);
+  };
+  const closeModalSun = () => {
+    setModalOpenSun(false);
   };
 
   return (
@@ -113,15 +200,18 @@ export default function StudyRecruitCreate() {
                     className={`recruit-create-content-row day-name ${
                       isMonday ? "selected" : ""
                     }`}
-                    onClick={onClickIsMonday}
+                    onClick={openModalMon}
                   >
                     Mon
                   </button>
                   <TimePicker
-                    open={modalOpen}
-                    close={closeModal}
+                    open={modalOpenMon}
+                    close={closeModalMon}
+                    startTimeData={mondayStartTime}
+                    endTimeData={mondayEndTime}
                     setStartTimeData={setMondayStartTime}
                     setEndTimeData={setMondayEndTime}
+                    setIsDay={setIsMonday}
                   ></TimePicker>
                 </td>
                 <td className="recruit-create-content-row day">
@@ -130,10 +220,19 @@ export default function StudyRecruitCreate() {
                     className={`recruit-create-content-row day-name ${
                       isTuesday ? "selected" : ""
                     }`}
-                    onClick={onClickIsTuesday}
+                    onClick={openModalTue}
                   >
                     Tue
                   </button>
+                  <TimePicker
+                    open={modalOpenTue}
+                    close={closeModalTue}
+                    startTimeData={tuesdayStartTime}
+                    endTimeData={tuesdayEndTime}
+                    setStartTimeData={setTuesdayStartTime}
+                    setEndTimeData={setTuesdayEndTime}
+                    setIsDay={setIsTuesday}
+                  ></TimePicker>
                 </td>
                 <td className="recruit-create-content-row day">
                   <button
@@ -141,10 +240,19 @@ export default function StudyRecruitCreate() {
                     className={`recruit-create-content-row day-name ${
                       isWednesday ? "selected" : ""
                     }`}
-                    onClick={onClickIsWednesday}
+                    onClick={openModalWed}
                   >
                     Wed
                   </button>
+                  <TimePicker
+                    open={modalOpenWed}
+                    close={closeModalWed}
+                    startTimeData={wednesdayStartTime}
+                    endTimeData={wednesdayEndTime}
+                    setStartTimeData={setWednesdayStartTime}
+                    setEndTimeData={setWednesdayEndTime}
+                    setIsDay={setIsWednesday}
+                  ></TimePicker>
                 </td>
                 <td className="recruit-create-content-row day">
                   <button
@@ -152,10 +260,19 @@ export default function StudyRecruitCreate() {
                     className={`recruit-create-content-row day-name ${
                       isThursday ? "selected" : ""
                     }`}
-                    onClick={onClickIsThursday}
+                    onClick={openModalThu}
                   >
                     Thu
                   </button>
+                  <TimePicker
+                    open={modalOpenThu}
+                    close={closeModalThu}
+                    startTimeData={thursdayStartTime}
+                    endTimeData={thursdayEndTime}
+                    setStartTimeData={setThursdayStartTime}
+                    setEndTimeData={setThursdayEndTime}
+                    setIsDay={setIsThursday}
+                  ></TimePicker>
                 </td>
                 <td className="recruit-create-content-row day">
                   <button
@@ -163,10 +280,19 @@ export default function StudyRecruitCreate() {
                     className={`recruit-create-content-row day-name ${
                       isFriday ? "selected" : ""
                     }`}
-                    onClick={onClickIsFriday}
+                    onClick={openModalFri}
                   >
                     Fri
                   </button>
+                  <TimePicker
+                    open={modalOpenFri}
+                    close={closeModalFri}
+                    startTimeData={fridayStartTime}
+                    endTimeData={fridayEndTime}
+                    setStartTimeData={setFridayStartTime}
+                    setEndTimeData={setFridayEndTime}
+                    setIsDay={setIsFriday}
+                  ></TimePicker>
                 </td>
                 <td className="recruit-create-content-row day">
                   <button
@@ -174,10 +300,19 @@ export default function StudyRecruitCreate() {
                     className={`recruit-create-content-row day-name ${
                       isSaturday ? "selected" : ""
                     }`}
-                    onClick={onClickIsSaturday}
+                    onClick={openModalSat}
                   >
                     Sat
                   </button>
+                  <TimePicker
+                    open={modalOpenSat}
+                    close={closeModalSat}
+                    startTimeData={saturdayStartTime}
+                    endTimeData={saturdayEndTime}
+                    setStartTimeData={setSaturdayStartTime}
+                    setEndTimeData={setSaturdayEndTime}
+                    setIsDay={setIsSaturday}
+                  ></TimePicker>
                 </td>
                 <td className="recruit-create-content-row day">
                   <button
@@ -185,10 +320,19 @@ export default function StudyRecruitCreate() {
                     className={`recruit-create-content-row day-name ${
                       isSunday ? "selected" : ""
                     }`}
-                    onClick={onClickIsSunday}
+                    onClick={openModalSun}
                   >
                     Sun
                   </button>
+                  <TimePicker
+                    open={modalOpenSun}
+                    close={closeModalSun}
+                    startTimeData={sundayStartTime}
+                    endTimeData={sundayEndTime}
+                    setStartTimeData={setSundayStartTime}
+                    setEndTimeData={setSundayEndTime}
+                    setIsDay={setIsSunday}
+                  ></TimePicker>
                 </td>
               </tr>
             </tbody>
