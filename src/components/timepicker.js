@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../statics/css/timepicker.css";
 
 const TimePicker = (props) => {
@@ -38,22 +38,58 @@ const TimePicker = (props) => {
     { value: "50", name: "50" },
   ];
 
+  const [startTime, setStartTime] = useState("12");
+  const [startMinute, setStartMinute] = useState("00");
+  const [finTime, setFinTime] = useState("12");
+  const [finMinute, setFinMinute] = useState("00");
+  const onChangeStartHour = (e) => {
+    setStartTime(e.target.value);
+  };
+  const onChangeStartMin = (e) => {
+    setStartMinute(e.target.value);
+  };
+  const onChangeFinTime = (e) => {
+    setFinTime(e.target.value);
+  };
+  const onChangeFinMin = (e) => {
+    setFinMinute(e.target.value);
+  };
+  console.log(startTime, startMinute, finTime, finMinute);
+
+  // 시간, 분 선택 옵션
   const SelectBox = (props) => {
+    console.log(typeof Number(startTime));
+    console.log(Number(startTime));
+    const tmpStartTime = Number(startTime);
+    // console.log(props);
     return (
-      <select>
+      <select value={props.value} onChange={props.onChange}>
         {props.options.map((option) => (
-          <option
-            key={option.value}
-            value={option.value}
-            defaultValue={props.defaultValue === option.value}
-          >
+          <option key={option.value} value={option.value}>
             {option.name}
           </option>
         ))}
       </select>
     );
   };
-
+  const SelectBoxFinTime = (props) => {
+    // console.log(typeof Number(startTime));
+    // console.log(Number(startTime));
+    const tmpStartTime = Number(startTime);
+    console.log(tmpStartTime);
+    // console.log(props);
+    return (
+      <select value={props.value} onChange={props.onChange}>
+        {props.options.map((option) => {
+          tmpStartTime < Number(option.value) && (
+            <option key={option.value} value={option.value}>
+              {option.name}
+            </option>
+          );
+        })}
+      </select>
+    );
+  };
   const { open, close, header } = props;
 
   return (
@@ -93,16 +129,32 @@ const TimePicker = (props) => {
             <div className="main-heading">스터디 시간 설정</div>
             <div className="main-body-select">
               <span className="main-body-title">시작시간</span>
-              <SelectBox options={HOURS} defaultValue="12"></SelectBox>
+              <SelectBox
+                options={HOURS}
+                value={startTime}
+                onChange={onChangeStartHour}
+              ></SelectBox>
               <span className="main-body-time">시</span>
-              <SelectBox options={MINUTES} defaultValue="00"></SelectBox>
+              <SelectBox
+                options={MINUTES}
+                value={startMinute}
+                onChange={onChangeStartMin}
+              ></SelectBox>
               <span className="main-body-time">분</span>
             </div>
             <div className="main-body-select">
               <span className="main-body-title">종료시간</span>
-              <SelectBox options={HOURS} defaultValue="12"></SelectBox>
+              <SelectBox
+                options={HOURS}
+                value={finTime}
+                onChange={onChangeFinTime}
+              ></SelectBox>
               <span className="main-body-time">시</span>
-              <SelectBox options={MINUTES} defaultValue="00"></SelectBox>
+              <SelectBox
+                options={MINUTES}
+                value={finMinute}
+                onChange={onChangeFinMin}
+              ></SelectBox>
               <span className="main-body-time">분</span>
             </div>
             <button className="main-footer" onClick={close}>
