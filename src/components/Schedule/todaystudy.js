@@ -9,13 +9,7 @@ export default function Todaystudy() {
       <h4>오늘의 스터디 일정</h4>
       <Row>
         {studies.map((study, index) => (
-          <Col
-            key={index}
-            sm={5}
-            md={5}
-            lg={5}
-            style={{ margin: '0.5rem' }}
-          >
+          <Col key={index} style={{ margin: '0.5rem' }}>
             <Card
               style={{
                 margin: '0.5rem',
@@ -35,7 +29,10 @@ export default function Todaystudy() {
                 style={{ margin: '0rem 0.5rem' }}
               >
                 <p>{study.study_desc}</p>
-                현원{study.study_capacity} #{study.category}
+                <p>
+                  현원{study.study_capacity} #
+                  {study.category}
+                </p>
               </Card.Subtitle>
             </Card>
           </Col>

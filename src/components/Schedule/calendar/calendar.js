@@ -1,4 +1,4 @@
-import Dailydetails from './dailydetails';
+import Dailydetails from '../dailydetails';
 import classNames from 'classnames';
 import { Container, Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,7 +21,7 @@ const StudyCard = (event) => {
             margin: '1rem 0rem',
             border: '0px',
             backgroundColor: 'transparent',
-            paddingLeft: '0.5rem',
+            padding: '0.5rem',
           }}
         >
           <Card.Title style={{ fontWeight: 'bold' }}>
@@ -60,7 +60,7 @@ export default function Calendar() {
     'SAT',
     'SUN',
   ];
-  const today = new Date();
+  const [today, setToday] = useState(new Date(), []);
   const [weekly, setWeekly] = useState(getCalendarData);
   return (
     <>
@@ -116,6 +116,7 @@ export default function Calendar() {
                     backgroundColor: '#F2F1F6',
                     borderRadius: '5px',
                     paddingBottom: '0.5rem',
+                    marginBottom: '2rem',
                   }}
                 >
                   <p
