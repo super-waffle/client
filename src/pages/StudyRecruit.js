@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import CategorySelect from "../components/categorySelect";
 import "../statics/css/studyRecruit.css";
 
 export default function StudyRecruit() {
@@ -13,7 +14,7 @@ export default function StudyRecruit() {
       </div>
       <div className="studyrecuit-middle">
         <div className="studyrecruit-search">
-          <select></select>
+          <CategorySelect className="studyrecruit-category" />
           <input placeholder="방제목, 글 내용으로 검색하세요" />
         </div>
         <button

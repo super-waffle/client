@@ -68,6 +68,9 @@
   display: flex;
   justify-content: space-between;
 }
+.studyrecruit .studyrecuit-middle .studyrecruit-category {
+  width: 8rem;
+}
 .studyrecruit .studyrecuit-middle .studyrecruit-search input {
   background-color: var(--bgColor);
   border: 1px solid var(--borderColor);
@@ -79,6 +82,9 @@
 .studyrecruit .studyrecuit-middle .studyrecruit-search ::placeholder {
   color: var(--textColor-darkest);
   font-size: 10px;
+}
+.studyrecruit .studyrecuit-middle .studyrecruit-search :focus {
+  outline: 0.8px solid #6667ab;
 }
 .studyrecruit .studyrecuit-middle .studyrecruit-create {
   cursor: pointer;
