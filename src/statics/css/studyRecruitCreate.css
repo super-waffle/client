@@ -119,6 +119,7 @@
   margin-bottom: 5px;
   margin-top: 5px;
   padding-left: 8px;
+  font-size: 12px;
 }
 .recruit-create .recruit-create-contents .recruit-create-content ::placeholder {
   font-size: 12px;

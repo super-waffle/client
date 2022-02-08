@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCallback } from "react/cjs/react.development";
 import CategorySelect from "../components/categorySelect";
+import Paginator from "../components/paginator";
 import "../statics/css/studyRecruit.css";
 import isLogin from "../utils/isLogin";
 
@@ -10,7 +12,52 @@ export default function StudyRecruit() {
   const TOKEN = localStorage.getItem("accessToken");
   const [category, setCategory] = useState("");
   const [postData, setPostData] = useState([]);
-  // console.log(postData);
+  const [searchInput, setSearchInput] = useState("");
+  const [currenPage, setCurrentPage] = useState(1);
+  // console.log(
+  //   "page: ",
+  //   currenPage,
+  //   "search: ",
+  //   searchInput,
+  //   "category: ",
+  //   category
+  // );
+
+  const onChangeSearch = useCallback((event) => {
+    setSearchInput(event.target.value);
+  });
+
+  const onClickSearch = useCallback(() => {
+    if (isLogin) {
+      axios
+        .get(
+          "/studies?page=" +
+            currenPage +
+            "&type=" +
+            category +
+            "&key=" +
+            searchInput,
+          {
+            headers: {
+              Authorization: `Bearer ${TOKEN}`,
+            },
+          }
+        )
+        .then((res) => {
+          const data = res.data.data;
+          setPostData((prevState) => ({
+            ...prevState,
+            data,
+          }));
+        });
+    }
+  });
+  const onKeyEnter = (event) => {
+    if (event.key === "Enter") {
+      onClickSearch();
+    }
+  };
+
   useEffect(() => {
     if (isLogin) {
       axios
@@ -40,7 +87,29 @@ export default function StudyRecruit() {
       <div className="studyrecuit-middle">
         <div className="studyrecruit-search">
           <CategorySelect categoryseq={setCategory} />
-          <input placeholder="방제목, 글 내용으로 검색하세요" />
+          <div className="studyrecruit-search__bar">
+            <input
+              onKeyPress={onKeyEnter}
+              onChange={onChangeSearch}
+              placeholder="방제목, 글 내용으로 검색하세요"
+            />
+            <svg
+              className="studyrecruit-search__icon"
+              onClick={onClickSearch}
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.625 16.6249L13.0736 13.0672L16.625 16.6249ZM15.0417 8.31242C15.0417 10.0971 14.3327 11.8087 13.0707 13.0707C11.8088 14.3326 10.0972 15.0416 8.3125 15.0416C6.52781 15.0416 4.81622 14.3326 3.55426 13.0707C2.29229 11.8087 1.58333 10.0971 1.58333 8.31242C1.58333 6.52773 2.29229 4.81614 3.55426 3.55418C4.81622 2.29222 6.52781 1.58325 8.3125 1.58325C10.0972 1.58325 11.8088 2.29222 13.0707 3.55418C14.3327 4.81614 15.0417 6.52773 15.0417 8.31242V8.31242Z"
+                stroke="var(--textColor-darker)"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
         </div>
         <button
           className="studyrecruit-create"
@@ -107,6 +176,9 @@ export default function StudyRecruit() {
               ))}
           </tbody>
         </table>
+        <div className="studyrecruit-pagination">
+          <Paginator currentpage={setCurrentPage} />
+        </div>
       </div>
     </div>
   );
