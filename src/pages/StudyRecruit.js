@@ -10,7 +10,7 @@ export default function StudyRecruit() {
   const TOKEN = localStorage.getItem("accessToken");
   const [category, setCategory] = useState("");
   const [postData, setPostData] = useState([]);
-  console.log(postData);
+  // console.log(postData);
   useEffect(() => {
     if (isLogin) {
       axios
@@ -98,14 +98,7 @@ export default function StudyRecruit() {
                     {post.studyHeadcount}/6
                   </td>
                 </tr>
-                // <option key={option.categorySeq} value={option.categorySeq}>
-                //   {option.categoryName}
-                // </option>
               ))}
-            <tr>
-              {/* <td>1</td>
-              <td>Faucibus viverra diam feugiat pellentesque condimentum.</td> */}
-            </tr>
           </tbody>
         </table>
       </div>

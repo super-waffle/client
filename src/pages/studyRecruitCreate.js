@@ -278,12 +278,11 @@ export default function StudyRecruitCreate() {
         }
       )
       .then((res) => {
-        console.log(res);
         navigate("/studyrecruit");
       });
   });
-  console.log(days);
-  console.log(categorySeq);
+  // console.log(days);
+  // console.log(categorySeq);
   return (
     <div className="recruit-create">
       <div className="recruit-create-heading">
