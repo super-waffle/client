@@ -6,51 +6,156 @@ import TimePicker from "../components/timepicker";
 import isLogin from "../utils/isLogin";
 import "../statics/css/studyRecruitCreate.css";
 import axios from "axios";
-import { useIsRTL } from "react-bootstrap/esm/ThemeProvider";
 
 export default function StudyRecruitCreate() {
-  const [days, setDays] = useState({
+  const [mondayStartTime, setMondayStartTime] = useState("");
+  const [mondayEndTime, setMondayEndTime] = useState("");
+  const [isMonday, setIsMonday] = useState(false);
+  const [monday, setMonday] = useState({
     dayNumber: 0,
     timeStart: "",
     timeEnd: "",
   });
-  const [mondayStartTime, setMondayStartTime] = useState("");
-  const [mondayEndTime, setMondayEndTime] = useState("");
-  const [isMonday, setIsMonday] = useState(false);
+  useMemo(() => {
+    if (isMonday) {
+      setMonday((prevState) => ({
+        ...prevState,
+        dayNumber: 1,
+        timeStart: mondayStartTime,
+        timeEnd: mondayEndTime,
+      }));
+    }
+  }, [mondayEndTime, mondayStartTime]);
 
   // console.log(days);
 
-  console.log("mon", mondayStartTime, mondayEndTime, isMonday);
+  console.log("mon", mondayStartTime, mondayEndTime, isMonday, monday);
 
   const [tuesdayStartTime, setTuesdayStartTime] = useState("");
   const [tuesdayEndTime, setTuesdayEndTime] = useState("");
   const [isTuesday, setIsTuesday] = useState(false);
-  console.log("tue", tuesdayStartTime, tuesdayEndTime, isTuesday);
+  const [tuesday, setTuesday] = useState({
+    dayNumber: 0,
+    timeStart: "",
+    timeEnd: "",
+  });
+  useMemo(() => {
+    if (isTuesday) {
+      setTuesday((prevState) => ({
+        ...prevState,
+        dayNumber: 2,
+        timeStart: tuesdayStartTime,
+        timeEnd: tuesdayEndTime,
+      }));
+    }
+  }, [tuesdayEndTime, tuesdayStartTime]);
+  console.log("tue", tuesdayStartTime, tuesdayEndTime, isTuesday, tuesday);
 
   const [wednesdayStartTime, setWednesdayStartTime] = useState("");
   const [wednesdayEndTime, setWednesdayEndTime] = useState("");
   const [isWednesday, setIsWednesday] = useState(false);
-  console.log("wed", wednesdayStartTime, wednesdayEndTime, isWednesday);
+  const [wednesday, setWednesday] = useState({
+    dayNumber: 0,
+    timeStart: "",
+    timeEnd: "",
+  });
+  useMemo(() => {
+    if (isWednesday) {
+      setWednesday((prevState) => ({
+        ...prevState,
+        dayNumber: 3,
+        timeStart: wednesdayStartTime,
+        timeEnd: wednesdayEndTime,
+      }));
+    }
+  }, [wednesdayEndTime, wednesdayStartTime]);
+  console.log(
+    "wed",
+    wednesdayStartTime,
+    wednesdayEndTime,
+    isWednesday,
+    wednesday
+  );
 
   const [thursdayStartTime, setThursdayStartTime] = useState("");
   const [thursdayEndTime, setThursdayEndTime] = useState("");
   const [isThursday, setIsThursday] = useState(false);
-  console.log("thu", thursdayStartTime, thursdayEndTime, isThursday);
+  const [thursday, setThursday] = useState({
+    dayNumber: 0,
+    timeStart: "",
+    timeEnd: "",
+  });
+  useMemo(() => {
+    if (isThursday) {
+      setThursday((prevState) => ({
+        ...prevState,
+        dayNumber: 4,
+        timeStart: thursdayStartTime,
+        timeEnd: thursdayEndTime,
+      }));
+    }
+  }, [thursdayEndTime, thursdayStartTime]);
+  console.log("thu", thursdayStartTime, thursdayEndTime, isThursday, thursday);
 
   const [fridayStartTime, setFridayStartTime] = useState("");
   const [fridayEndTime, setFridayEndTime] = useState("");
   const [isFriday, setIsFriday] = useState(false);
-  console.log("fri", fridayStartTime, fridayEndTime, isFriday);
+  const [friday, setFriday] = useState({
+    dayNumber: 0,
+    timeStart: "",
+    timeEnd: "",
+  });
+  useMemo(() => {
+    if (isFriday) {
+      setFriday((prevState) => ({
+        ...prevState,
+        dayNumber: 5,
+        timeStart: fridayStartTime,
+        timeEnd: fridayEndTime,
+      }));
+    }
+  }, [fridayEndTime, fridayStartTime]);
+  console.log("fri", fridayStartTime, fridayEndTime, isFriday, friday);
 
   const [saturdayStartTime, setSaturdayStartTime] = useState("");
   const [saturdayEndTime, setSaturdayEndTime] = useState("");
   const [isSaturday, setIsSaturday] = useState(false);
-  console.log("sat", saturdayStartTime, saturdayEndTime, isSaturday);
+  const [saturday, setSaturday] = useState({
+    dayNumber: 0,
+    timeStart: "",
+    timeEnd: "",
+  });
+  useMemo(() => {
+    if (isSaturday) {
+      setSaturday((prevState) => ({
+        ...prevState,
+        dayNumber: 6,
+        timeStart: saturdayStartTime,
+        timeEnd: saturdayEndTime,
+      }));
+    }
+  }, [saturdayEndTime, saturdayStartTime]);
+  console.log("sat", saturdayStartTime, saturdayEndTime, isSaturday, saturday);
 
   const [sundayStartTime, setSundayStartTime] = useState("");
   const [sundayEndTime, setSundayEndTime] = useState("");
   const [isSunday, setIsSunday] = useState(false);
-  console.log("sun", sundayStartTime, sundayEndTime, isSunday);
+  const [sunday, setSunday] = useState({
+    dayNumber: 7,
+    timeStart: "",
+    timeEnd: "",
+  });
+  useMemo(() => {
+    if (isSunday) {
+      setSunday((prevState) => ({
+        ...prevState,
+        dayNumber: 7,
+        timeStart: sundayStartTime,
+        timeEnd: sundayEndTime,
+      }));
+    }
+  }, [sundayEndTime, sundayStartTime]);
+  console.log("sun", sundayStartTime, sundayEndTime, isSunday, sunday);
 
   const [modalOpenMon, setModalOpenMon] = useState(false);
   const [modalOpenTue, setModalOpenTue] = useState(false);
@@ -116,26 +221,9 @@ export default function StudyRecruitCreate() {
   const onChangeStudyDesc = useCallback((event) => {
     setStudyDesc(event.target.value);
   });
-  useMemo(() => {
-    if (isMonday) {
-      setDays((prevState) => ({
-        ...prevState,
-        dayNumber: 1,
-        timeStart: mondayStartTime,
-        timeEnd: mondayEndTime,
-      }));
-    }
-  }, [mondayEndTime, mondayStartTime]);
 
-  const [studyRecruit, setStudyRecruit] = useState({
-    hostSea: 0,
-    categorySeq: 0,
-    studyTitle: "",
-    studyShortDesc: "",
-    sturyDesc: "",
-    studyRecruitEnd: "",
-    day: [{ dayNumber: 0, timeStart: "", timeEnd: "" }],
-  });
+  const [days, setDays] = useState([]);
+
   if (isLogin()) {
     const TOKEN = localStorage.getItem("accessToken");
     axios
@@ -151,30 +239,50 @@ export default function StudyRecruitCreate() {
 
   const onSubmitStudy = useCallback(() => {
     const TOKEN = localStorage.getItem("accessToken");
+    if (isMonday) {
+      setDays((days) => [...days, monday]);
+    }
+    if (isTuesday) {
+      setDays((days) => [...days, tuesday]);
+    }
+    if (isWednesday) {
+      setDays((days) => [...days, wednesday]);
+    }
+    if (isThursday) {
+      setDays((days) => [...days, thursday]);
+    }
+    if (isFriday) {
+      setDays((days) => [...days, friday]);
+    }
+    if (isSaturday) {
+      setDays((days) => [...days, saturday]);
+    }
+    if (isSunday) {
+      setDays((days) => [...days, sunday]);
+    }
     axios
-      .post("/studies", {
-        hostSea: userSeq,
-        categorySeq: 0,
-        studyTitle: studyTitle,
-        studyShortDesc: studyShortDesc,
-        sturyDesc: studyDesc,
-        studyRecruitEnd: studyRecruitEnd,
-        day: [
-          {
-            dayNumber: 1,
-            timeStart: mondayStartTime,
-            timeEnd: mondayStartTime,
-          },
-        ],
-        headers: {
-          Authorization: `Bearer ${TOKEN}`,
+      .post(
+        "/studies",
+        {
+          hostSea: userSeq,
+          categorySeq: 1,
+          studyTitle: studyTitle,
+          studyShortDesc: studyShortDesc,
+          sturyDesc: studyDesc,
+          studyRecruitEnd: studyRecruitEnd,
+          day: days,
         },
-      })
+        {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+          },
+        }
+      )
       .then((res) => {
         console.log(res);
       });
   });
-
+  console.log(days);
   return (
     <div className="recruit-create">
       <div className="recruit-create-heading">
