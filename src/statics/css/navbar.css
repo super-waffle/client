@@ -14,6 +14,7 @@
   --github-01: #e8eaee;
   --github-02: #d5d6f5;
   --github-03: #9fa2e3;
+  --board-textColor: #646464;
 }
 
 .ui-dark {
@@ -28,11 +29,12 @@
   --borderColor3: #444444;
   --textColor: #ededed;
   --textColor-dark: #8a8a8a;
-  --textColor-darker: #8a8a8a;
+  --textColor-darker: #6f6f6f;
   --textColor-darkest: #838383;
   --github-01: rgba(102, 103, 171, 0.2);
   --github-02: rgba(102, 103, 171, 0.4);
   --github-03: rgba(102, 103, 171, 0.7);
+  --board-textColor: #ededed;
 }
 
 .hidden {
@@ -103,6 +105,7 @@
   text-align: start;
   padding-left: 12px;
   color: var(--textColor);
+  font-size: 14px;
 }
 .navbar-dropdown button:hover {
   background-color: var(--borderColor);

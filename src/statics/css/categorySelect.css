@@ -41,37 +41,16 @@
   display: none;
 }
 
-.home {
-  background-color: var(--htmlbgColor);
-}
-.home .home-tab {
-  display: flex;
-  margin-left: 8%;
-  padding-top: 60px;
-}
-.home .home-tab .home-profile {
-  position: fixed;
-  top: 108px;
+.category-select {
   font-family: "Pretendard";
-  display: flex;
-  flex-direction: column;
-}
-.home .home-tab .home-profile .home-profile-userimg svg.home-profile-img {
-  height: 256px;
-}
-.home .home-tab .home-profile .home-profile-nickname {
-  font-size: 20px;
-  line-height: 24px;
-  color: var(--textColor);
-}
-.home .home-tab .home-profile .home-profile-email {
-  font-size: 15px;
-  line-height: 18px;
-  color: var(--textColor-darkest);
-}
-.home .home-tab .home-contents {
-  padding-top: 60px;
-  padding-left: 23%;
+  font-size: 13px;
+  border: 1px solid var(--borderColor);
+  background-color: var(--bgColor);
+  width: 7rem;
+  height: 30px;
+  border-radius: 5px;
+  padding-left: 5px;
+  color: var(--textColor-dark);
 }
 
-/*# sourceMappingURL=home.css.map */
+/*# sourceMappingURL=categorySelect.css.map */

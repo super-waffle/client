@@ -94,8 +94,8 @@ function Navbar() {
           <Link className="menu" to={"/meetingrooms"}>
             자유열람실
           </Link>
-          <Link className="menu" to={"/studyrooms"}>
-            스터디룸
+          <Link className="menu" to={"/studyrecruit"}>
+            스터디 모집
           </Link>
           <Link className="menu" to={"/schedules"}>
             일정관리

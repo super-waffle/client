@@ -1,0 +1,13 @@
+@import "main.scss";
+
+.category-select {
+  font-family: $font-family;
+  font-size: 13px;
+  border: 1px solid var(--borderColor);
+  background-color: var(--bgColor);
+  width: 7rem;
+  height: 30px;
+  border-radius: 5px;
+  padding-left: 5px;
+  color: var(--textColor-dark);
+}

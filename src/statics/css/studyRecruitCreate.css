@@ -1,0 +1,165 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+:root {
+  --htmlbgColor: #ffffff;
+  --bgColor: #fcfcfc;
+  --bgColor-light: #eaeaea;
+  --borderColor: #ededed;
+  --borderColor2: #d6d6d6;
+  --borderColor3: #e1e1e1;
+  --textWhite: #eeeeee;
+  --textColor: #252525;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #a1a1a1;
+  --textColor-darkest: #c2c2c2;
+  --github-01: #e8eaee;
+  --github-02: #d5d6f5;
+  --github-03: #9fa2e3;
+  --board-textColor: #646464;
+}
+
+.ui-dark {
+  background-color: var(--htmlbgColor);
+  --htmlbgColor: #292929;
+  --bgColor: #373737;
+  --bgColor-light: #4a4a4a;
+  --bgColor-lighter: #565656;
+  --bgColor-dark: #1b1b1b;
+  --borderColor: #444444;
+  --borderColor2: #444444;
+  --borderColor3: #444444;
+  --textColor: #ededed;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #6f6f6f;
+  --textColor-darkest: #838383;
+  --github-01: rgba(102, 103, 171, 0.2);
+  --github-02: rgba(102, 103, 171, 0.4);
+  --github-03: rgba(102, 103, 171, 0.7);
+  --board-textColor: #ededed;
+}
+
+.hidden {
+  display: none;
+}
+
+.recruit-create {
+  font-family: "Pretendard";
+  padding-top: 80px;
+  padding-left: 28%;
+  background-color: var(--htmlbgColor);
+  padding-right: 28%;
+}
+.recruit-create .recruit-create-heading {
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--textColor);
+  border-bottom: 1px solid var(--textColor);
+  padding-bottom: 12px;
+}
+.recruit-create .recruit-create-heading span {
+  padding-left: 5px;
+}
+.recruit-create .recruit-create-contents .recruit-create-content {
+  border-bottom: 1px solid var(--textColor-darkest);
+}
+.recruit-create .recruit-create-contents .recruit-create-content table {
+  margin: 33px 5px 33px 5px;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row .test {
+  display: flex;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.a1 {
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--textColor);
+  width: 8rem;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.a2 {
+  width: 32rem;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.a3 {
+  padding-right: 3rem;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.date {
+  font-size: 12px;
+  padding-right: 0.2rem;
+  color: var(--textColor-dark);
+  width: 2.5rem;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.day {
+  padding-right: 0.5rem;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.day .tooltip-day {
+  padding: 8px;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.day-name {
+  border: none;
+  font-size: 12px;
+  color: var(--textColor);
+  background-color: var(--bgColor-light);
+  border-radius: 100%;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-row.selected {
+  border: none;
+  font-size: 12px;
+  color: #eeeeee;
+  background-color: #6667ab;
+  border-radius: 100%;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-input {
+  background: var(--bgColor);
+  border: 1px solid var(--borderColor);
+  box-sizing: border-box;
+  border-radius: 7px;
+  height: 30px;
+  width: 95%;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding-left: 8px;
+}
+.recruit-create .recruit-create-contents .recruit-create-content ::placeholder {
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--textColor-darkest);
+}
+.recruit-create .recruit-create-contents .recruit-create-content :focus {
+  outline: 0.8px solid #6667ab;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-description {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--textColor);
+  margin: 40px 0px 33px 5px;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-description span {
+  margin-bottom: 20px;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-description textarea {
+  width: 100%;
+  height: 240px;
+  border-radius: 10px;
+  border: 1px solid var(--borderColor);
+  background-color: var(--bgColor);
+  padding: 12px;
+}
+.recruit-create center button {
+  cursor: pointer;
+  border: none;
+  border-radius: 7px;
+  color: #eeeeee;
+  background-color: #6667ab;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  width: 8rem;
+  height: 36px;
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+/*# sourceMappingURL=studyRecruitCreate.css.map */

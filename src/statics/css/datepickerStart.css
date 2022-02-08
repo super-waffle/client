@@ -41,37 +41,19 @@
   display: none;
 }
 
-.home {
-  background-color: var(--htmlbgColor);
-}
-.home .home-tab {
+.datepicker-start {
+  cursor: default;
+  color: var(--textColor-darker);
+  font-size: 14px;
+  width: 6.5rem;
+  text-align: center;
+  border: 1px solid var(--borderColor);
+  border-radius: 5px;
+  height: 30px;
+  background-color: var(--bgColor);
   display: flex;
-  margin-left: 8%;
-  padding-top: 60px;
-}
-.home .home-tab .home-profile {
-  position: fixed;
-  top: 108px;
-  font-family: "Pretendard";
-  display: flex;
-  flex-direction: column;
-}
-.home .home-tab .home-profile .home-profile-userimg svg.home-profile-img {
-  height: 256px;
-}
-.home .home-tab .home-profile .home-profile-nickname {
-  font-size: 20px;
-  line-height: 24px;
-  color: var(--textColor);
-}
-.home .home-tab .home-profile .home-profile-email {
-  font-size: 15px;
-  line-height: 18px;
-  color: var(--textColor-darkest);
-}
-.home .home-tab .home-contents {
-  padding-top: 60px;
-  padding-left: 23%;
+  align-items: center;
+  justify-content: center;
 }
 
-/*# sourceMappingURL=home.css.map */
+/*# sourceMappingURL=datepickerStart.css.map */

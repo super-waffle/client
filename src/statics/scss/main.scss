@@ -25,6 +25,8 @@ $textColor: #6c757d;
   --github-01: #e8eaee;
   --github-02: #d5d6f5;
   --github-03: #9fa2e3;
+
+  --board-textColor: #646464;
 }
 
 // dark mode
@@ -41,12 +43,14 @@ $textColor: #6c757d;
 
   --textColor: #ededed;
   --textColor-dark: #8a8a8a;
-  --textColor-darker: #8a8a8a;
+  --textColor-darker: #6f6f6f;
   --textColor-darkest: #838383;
 
   --github-01: rgba(102, 103, 171, 0.2);
   --github-02: rgba(102, 103, 171, 0.4);
   --github-03: rgba(102, 103, 171, 0.7);
+
+  --board-textColor: #ededed;
 }
 
 // Size Section
