@@ -10,6 +10,7 @@ import OpenViduLayout from '../../layout/openvidu-layout';
 import UserModel from '../../models/user-model';
 import ToolbarComponent from './toolbar/ToolbarComponent';
 import TimeComponent from './time/TimeComponent'
+import UserComponent from './user/userComponent'
 
 
 
@@ -616,6 +617,7 @@ class VideoRoomComponent extends Component {
                     </div>
                     <div className='right'>
                         <TimeComponent onCreate={this.setTime} onPause={this.setPause}/>
+                        <UserComponent/>
                         {localUser !== undefined && localUser.getStreamManager() !== undefined && (
                             <div style={chatDisplay}>
                                 <ChatComponent

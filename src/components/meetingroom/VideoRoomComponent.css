@@ -81,9 +81,10 @@
     top: 40px;
     bottom: 0;
     margin-left: 20px;
+    margin-right: 50px;
     margin-bottom: 50px;
     height: inherit;
-    min-width: 400px !important;
+    min-width: 100px !important;
     width: inherit;
   }
   
