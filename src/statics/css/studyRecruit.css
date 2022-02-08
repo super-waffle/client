@@ -162,6 +162,13 @@
   font-size: 11px;
   line-height: 24px;
 }
+.studyrecruit .studyrecruit-board table .studyrecruit-board-body .studyrecruit-board-body__link {
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--textColor);
+  padding-top: 0.2rem;
+}
 .studyrecruit .studyrecruit-board table .studyrecruit-board-body .studyrecruit-board-body__category {
   font-size: 12px;
   color: #6667ab;

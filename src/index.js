@@ -38,7 +38,7 @@ ReactDOM.render(
             element={isLogin() ? <StudyRecruitCreate /> : <Login />}
           />
           <Route
-            path="studyrecruit/:no"
+            path="studyrecruit/:studyseq"
             element={isLogin() ? <StudyRecruitDetail /> : <Login />}
           />
           <Route

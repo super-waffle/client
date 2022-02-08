@@ -1,0 +1,17 @@
+@import "main.scss";
+
+.studyrecruit-detail {
+  font-family: $font-family;
+  background-color: var(--htmlbgColor);
+  padding-top: 100px;
+  padding-left: 20%;
+  padding-right: 20%;
+  .studyrecruit-detail-box {
+    width: 100%;
+    height: 720px;
+    background-color: var(--bgColor);
+    border-radius: 10px;
+    border: 1px solid var(--borderColor);
+    padding: 20px;
+  }
+}

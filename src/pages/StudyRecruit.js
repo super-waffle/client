@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCallback } from "react/cjs/react.development";
 import CategorySelect from "../components/categorySelect";
 import Paginator from "../components/paginator";
@@ -155,7 +155,13 @@ export default function StudyRecruit() {
                         {post.categoryName}
                       </span>
                       <span className="studyrecruit-board-body__title">
-                        {post.studyTitle}
+                        <Link
+                          className="studyrecruit-board-body__link"
+                          to={`/studyrecruit/${post.studySeq}`}
+                        >
+                          {post.studyTitle}
+                        </Link>
+                        {/* {post.studyTitle} */}
                       </span>
                     </div>
 
