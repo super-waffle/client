@@ -120,10 +120,10 @@
   border-radius: 8px 0 0 0;
 }
 .studyrecruit .studyrecruit-board table .studyrecruit-board-head.title {
-  width: 26rem;
+  width: 25rem;
 }
 .studyrecruit .studyrecruit-board table .studyrecruit-board-head.host {
-  width: 6rem;
+  width: 7rem;
 }
 .studyrecruit .studyrecruit-board table .studyrecruit-board-head.date {
   width: 6rem;
@@ -134,6 +134,47 @@
 }
 .studyrecruit .studyrecruit-board table .studyrecruit-board-head.ppl svg {
   margin-bottom: 3px;
+}
+.studyrecruit .studyrecruit-board table .studyrecruit-board-body-tr {
+  border-bottom: 1px solid var(--bgColor-light);
+}
+.studyrecruit .studyrecruit-board table .studyrecruit-board-body {
+  padding: 0.4rem;
+}
+.studyrecruit .studyrecruit-board table .studyrecruit-board-body.number {
+  text-align: center;
+  color: var(--textColor-dark);
+  font-size: 11px;
+  line-height: 24px;
+}
+.studyrecruit .studyrecruit-board table .studyrecruit-board-body .studyrecruit-board-body__title {
+  padding-top: 0.2rem;
+  font-size: 14px;
+  line-height: 24px;
+  padding-left: 0.8rem;
+  color: var(--textColor);
+}
+.studyrecruit .studyrecruit-board table .studyrecruit-board-body .studyrecruit-board-body__shortdesc {
+  font-size: 12px;
+  line-height: 24px;
+  padding-bottom: 0.2rem;
+  padding-left: 0.8rem;
+  color: var(--textColor-darker);
+}
+.studyrecruit .studyrecruit-board table .studyrecruit-board-body.host {
+  text-align: center;
+  font-size: 14px;
+  line-height: 24px;
+}
+.studyrecruit .studyrecruit-board table .studyrecruit-board-body.enddate {
+  text-align: center;
+  font-size: 14px;
+  line-height: 24px;
+}
+.studyrecruit .studyrecruit-board table .studyrecruit-board-body.headcount {
+  text-align: center;
+  font-size: 14px;
+  line-height: 24px;
 }
 
 /*# sourceMappingURL=studyRecruit.css.map */

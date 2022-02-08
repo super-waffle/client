@@ -9,19 +9,26 @@ export default function StudyRecruit() {
   const navigate = useNavigate();
   const TOKEN = localStorage.getItem("accessToken");
   const [category, setCategory] = useState("");
+  const [postData, setPostData] = useState([]);
+  console.log(postData);
   useEffect(() => {
     if (isLogin) {
       axios
-        .get("/studies?page=&type=&key=", {
+        .get("/studies?page=1&type=0&key=", {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
+          const data = res.data.data;
+          setPostData((prevState) => ({
+            ...prevState,
+            data,
+          }));
         });
     }
-  });
+  }, []);
   return (
     <div className="studyrecruit">
       <div className="studyrecruit-heading">
@@ -67,6 +74,34 @@ export default function StudyRecruit() {
             </tr>
           </thead>
           <tbody>
+            {postData.data &&
+              postData.data.map((post) => (
+                <tr className="studyrecruit-board-body-tr">
+                  <td className="studyrecruit-board-body number">
+                    {post.studySeq}
+                  </td>
+                  <td className="studyrecruit-board-body">
+                    <div className="studyrecruit-board-body__title">
+                      {post.studyTitle}
+                    </div>
+                    <div className="studyrecruit-board-body__shortdesc">
+                      {post.studyShortDesc}
+                    </div>
+                  </td>
+                  <td className="studyrecruit-board-body host">
+                    {post.hostNickname}
+                  </td>
+                  <td className="studyrecruit-board-body enddate">
+                    {post.studyRecruitEnd}
+                  </td>
+                  <td className="studyrecruit-board-body headcount">
+                    {post.studyHeadcount}/6
+                  </td>
+                </tr>
+                // <option key={option.categorySeq} value={option.categorySeq}>
+                //   {option.categoryName}
+                // </option>
+              ))}
             <tr>
               {/* <td>1</td>
               <td>Faucibus viverra diam feugiat pellentesque condimentum.</td> */}

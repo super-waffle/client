@@ -81,10 +81,10 @@
           border-radius: 8px 0 0 0;
         }
         &.title {
-          width: 26rem;
+          width: 25rem;
         }
         &.host {
-          width: 6rem;
+          width: 7rem;
         }
         &.date {
           width: 6rem;
@@ -95,6 +95,47 @@
           & svg {
             margin-bottom: 3px;
           }
+        }
+      }
+      .studyrecruit-board-body-tr {
+        border-bottom: 1px solid var(--bgColor-light);
+      }
+      .studyrecruit-board-body {
+        padding: 0.4rem;
+        &.number {
+          text-align: center;
+          color: var(--textColor-dark);
+          font-size: 11px;
+          line-height: 24px;
+        }
+        .studyrecruit-board-body__title {
+          padding-top: 0.2rem;
+          font-size: 14px;
+          line-height: 24px;
+          padding-left: 0.8rem;
+          color: var(--textColor);
+        }
+        .studyrecruit-board-body__shortdesc {
+          font-size: 12px;
+          line-height: 24px;
+          padding-bottom: 0.2rem;
+          padding-left: 0.8rem;
+          color: var(--textColor-darker);
+        }
+        &.host {
+          text-align: center;
+          font-size: 14px;
+          line-height: 24px;
+        }
+        &.enddate {
+          text-align: center;
+          font-size: 14px;
+          line-height: 24px;
+        }
+        &.headcount {
+          text-align: center;
+          font-size: 14px;
+          line-height: 24px;
         }
       }
     }

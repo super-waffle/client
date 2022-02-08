@@ -267,7 +267,7 @@ export default function StudyRecruitCreate() {
           categorySeq: categorySeq,
           studyTitle: studyTitle,
           studyShortDesc: studyShortDesc,
-          sturyDesc: studyDesc,
+          studyDesc: studyDesc,
           studyRecruitEnd: studyRecruitEnd,
           day: days,
         },
