@@ -6,6 +6,8 @@ import TimePicker from "../components/timepicker";
 import isLogin from "../utils/isLogin";
 import "../statics/css/studyRecruitCreate.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import CategorySelect from "../components/categorySelect";
 
 export default function StudyRecruitCreate() {
   const [mondayStartTime, setMondayStartTime] = useState("");
@@ -26,9 +28,6 @@ export default function StudyRecruitCreate() {
       }));
     }
   }, [mondayEndTime, mondayStartTime]);
-
-  // console.log(days);
-
   console.log("mon", mondayStartTime, mondayEndTime, isMonday, monday);
 
   const [tuesdayStartTime, setTuesdayStartTime] = useState("");
@@ -208,8 +207,6 @@ export default function StudyRecruitCreate() {
     setModalOpenSun(false);
   };
 
-  // [TODO]: studies api 완성되면 어떤 데이터를 post 해야하는지 보고 아래의 함수 완성하기
-
   const [userSeq, setUserSeq] = useState("");
   const [studyTitle, setStudyTitle] = useState("");
   const [studyShortDesc, setStudyShotrDesc] = useState("");
@@ -223,6 +220,7 @@ export default function StudyRecruitCreate() {
   });
 
   const [days, setDays] = useState([]);
+  const navigate = useNavigate();
 
   if (isLogin()) {
     const TOKEN = localStorage.getItem("accessToken");
@@ -280,6 +278,7 @@ export default function StudyRecruitCreate() {
       )
       .then((res) => {
         console.log(res);
+        navigate("/studyrecruit");
       });
   });
   console.log(days);
@@ -295,7 +294,7 @@ export default function StudyRecruitCreate() {
               <tr>
                 <td className="recruit-create-content-row a1">카테고리</td>
                 <td>
-                  <select></select>
+                  <CategorySelect />
                 </td>
               </tr>
             </tbody>
