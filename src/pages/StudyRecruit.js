@@ -1,9 +1,27 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CategorySelect from "../components/categorySelect";
 import "../statics/css/studyRecruit.css";
+import isLogin from "../utils/isLogin";
 
 export default function StudyRecruit() {
   const navigate = useNavigate();
+  const TOKEN = localStorage.getItem("accessToken");
+  const [category, setCategory] = useState("");
+  useEffect(() => {
+    if (isLogin) {
+      axios
+        .get("/studies?page=&type=&key=", {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    }
+  });
   return (
     <div className="studyrecruit">
       <div className="studyrecruit-heading">
@@ -14,7 +32,7 @@ export default function StudyRecruit() {
       </div>
       <div className="studyrecuit-middle">
         <div className="studyrecruit-search">
-          <CategorySelect className="studyrecruit-category" />
+          <CategorySelect categoryseq={setCategory} />
           <input placeholder="방제목, 글 내용으로 검색하세요" />
         </div>
         <button

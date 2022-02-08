@@ -3,9 +3,10 @@ import { useEffect, useMemo, useState } from "react";
 import isLogin from "../utils/isLogin";
 import "../statics/css/categorySelect.css";
 
-export default function CategorySelect() {
+export default function CategorySelect(props) {
   const TOKEN = localStorage.getItem("accessToken");
   const [options, setOptions] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
     if (isLogin()) {
@@ -25,9 +26,17 @@ export default function CategorySelect() {
         });
     }
   }, []);
+
+  // console.log(selectedCategory);
+  props.categoryseq(selectedCategory);
   const SelectBox = (props) => {
+    // console.log(props.options.category);
     return (
-      <select className="category-select">
+      <select
+        className="category-select"
+        value={selectedCategory}
+        onChange={(e) => setSelectedCategory(e.target.value)}
+      >
         <option>카테고리 선택</option>
         {props.options.category &&
           props.options.category.map((option) => (
@@ -39,5 +48,5 @@ export default function CategorySelect() {
     );
   };
 
-  return <SelectBox options={options}></SelectBox>;
+  return <SelectBox options={options} value={selectedCategory}></SelectBox>;
 }

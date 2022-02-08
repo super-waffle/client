@@ -212,6 +212,7 @@ export default function StudyRecruitCreate() {
   const [studyShortDesc, setStudyShotrDesc] = useState("");
   const [studyDesc, setStudyDesc] = useState("");
   const [studyRecruitEnd, setStudyRecruitEnd] = useState("");
+  const [categorySeq, setCategorySeq] = useState("");
   console.log(userSeq, studyTitle, studyShortDesc, studyDesc, studyRecruitEnd);
 
   // [TODO]: 스터디 상세정보 글자수 실시간으로 보여주기 (1000자 제한)
@@ -263,7 +264,7 @@ export default function StudyRecruitCreate() {
         "/studies",
         {
           hostSea: userSeq,
-          categorySeq: 1,
+          categorySeq: categorySeq,
           studyTitle: studyTitle,
           studyShortDesc: studyShortDesc,
           sturyDesc: studyDesc,
@@ -282,6 +283,7 @@ export default function StudyRecruitCreate() {
       });
   });
   console.log(days);
+  console.log(categorySeq);
   return (
     <div className="recruit-create">
       <div className="recruit-create-heading">
@@ -294,7 +296,7 @@ export default function StudyRecruitCreate() {
               <tr>
                 <td className="recruit-create-content-row a1">카테고리</td>
                 <td>
-                  <CategorySelect />
+                  <CategorySelect categoryseq={setCategorySeq} />
                 </td>
               </tr>
             </tbody>
