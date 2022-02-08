@@ -1,22 +1,22 @@
-import axios from "axios";
-import React from "react";
-import { useState } from "react/cjs/react.development";
-import isLogin from "../utils/isLogin";
-import "../statics/css/homeAchievement.css";
+import axios from 'axios';
+import React from 'react';
+import { useState } from 'react';
+import isLogin from '../utils/isLogin';
+import '../statics/css/homeAchievement.css';
 
 export default function HomeAchievement() {
-  const TOKEN = localStorage.getItem("accessToken");
+  const TOKEN = localStorage.getItem('accessToken');
 
-  const [nickname, setNickname] = useState("");
-  const [level, setLevel] = useState("");
-  const [levelName, setLevelName] = useState("");
-  const [levelImg, setLevelImg] = useState("");
-  const [timeGoal, setTimeGoal] = useState("");
-  const [timeTotal, setTimeTotal] = useState("");
+  const [nickname, setNickname] = useState('');
+  const [level, setLevel] = useState('');
+  const [levelName, setLevelName] = useState('');
+  const [levelImg, setLevelImg] = useState('');
+  const [timeGoal, setTimeGoal] = useState('');
+  const [timeTotal, setTimeTotal] = useState('');
 
   if (isLogin()) {
     axios
-      .get("/users", {
+      .get('/users', {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },
