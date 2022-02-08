@@ -589,6 +589,7 @@ export default function StudyRecruitCreate() {
           <div className="recruit-create-content-description">
             <span>스터디 소개</span>
             <textarea
+              type="text"
               placeholder="스터디 모집 사항을 상세히 적어주세요"
               maxLength={1000}
               onChange={onChangeStudyDesc}
