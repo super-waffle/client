@@ -36,6 +36,10 @@ ReactDOM.render(
             element={isLogin() ? <Meetingrooms /> : <Login />}
           />
           <Route
+            path="videoRoomComponent"
+            element={isLogin() ? <VideoRoomComponent /> : <Login />}
+          />
+          <Route
             path="schedules"
             element={isLogin() ? <Schedule /> : <Login />}
           />
