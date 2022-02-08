@@ -44,17 +44,18 @@
 .pagination {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 3rem;
   font-family: "Pretendard";
 }
 .pagination a {
   text-decoration: none;
+  font-size: 12px;
   border: none;
   color: var(--textColor);
 }
 .pagination li {
-  width: 2rem;
-  height: 2rem;
+  width: 1.6rem;
+  height: 1.6rem;
   text-align: center;
   display: flex;
   align-items: center;
