@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './ToolbarComponent.css';
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 
 import Mic from '@material-ui/icons/Mic';
 import MicOff from '@material-ui/icons/MicOff';
@@ -72,21 +70,14 @@ export default class ToolbarComponent extends Component {
 
     render() {
         const mySessionId = this.props.sessionId;
-        const localUser = this.props.user;
+        const localUser = this.props.localUser;
         return (
-            <AppBar className="toolbar" id="header">
-                <Toolbar className="toolbar">
-                    <div id="navSessionInfo">
-                        <img
-                            id="header_img"
-                            alt="OpenVidu Logo"
-                            // src={logo}
-                        />
-
+            <div className='tool'>
+                    {/* <div id="navSessionInfo">
                         {this.props.sessionId && <div id="titleContent">
                             <span id="session-title">{mySessionId}</span>
                         </div>}
-                    </div>
+                    </div> */}
 
                     <div className="buttonsContent">
                         <IconButton color="inherit" className="navButton" id="navMicButton" onClick={this.micStatusChanged}>
@@ -94,13 +85,9 @@ export default class ToolbarComponent extends Component {
                         </IconButton>
 
                         <IconButton color="inherit" className="navButton" id="navCamButton" onClick={this.camStatusChanged}>
-                            {localUser !== undefined && localUser.isVideoActive() ? (
-                                <Videocam />
-                            ) : (
-                                <VideocamOff color="secondary" />
-                            )}
+                            {localUser !== undefined && localUser.isVideoActive() ? (<Videocam />) : (<VideocamOff color="secondary" />)}
                         </IconButton>
-
+{/* 
                         <IconButton color="inherit" className="navButton" onClick={this.screenShare}>
                             {localUser !== undefined && localUser.isScreenShareActive() ? <PictureInPicture /> : <ScreenShare />}
                         </IconButton>
@@ -110,26 +97,27 @@ export default class ToolbarComponent extends Component {
                                 <IconButton onClick={this.stopScreenShare} id="navScreenButton">
                                     <StopScreenShare color="secondary" />
                                 </IconButton>
-                            )}
+                            )} */}
 
                         <IconButton color="inherit" className="navButton" onClick={this.switchCamera}>
                             <SwitchVideoIcon />
                         </IconButton>
-                        <IconButton color="inherit" className="navButton" onClick={this.toggleFullscreen}>
+                        {/* <IconButton color="inherit" className="navButton" onClick={this.toggleFullscreen}>
                             {localUser !== undefined && this.state.fullscreen ? <FullscreenExit /> : <Fullscreen />}
-                        </IconButton>
+                        </IconButton> */}
                         <IconButton color="secondary" className="navButton" onClick={this.leaveSession} id="navLeaveButton">
                             <PowerSettingsNew />
                         </IconButton>
                          <IconButton color="inherit" onClick={this.toggleChat} id="navChatButton">
-                            {this.props.showNotification && <div id="point" className="" />}
+                            {/* {this.props.showNotification && <div id="point" className="" />} */}
                             <Tooltip title="Chat">
                                 <QuestionAnswer />
                             </Tooltip>
                         </IconButton>
                     </div>
-                </Toolbar>
-            </AppBar>
+               
+            
+            </div>
         );
     }
 }
