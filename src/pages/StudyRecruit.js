@@ -81,9 +81,15 @@ export default function StudyRecruit() {
                     {post.studySeq}
                   </td>
                   <td className="studyrecruit-board-body">
-                    <div className="studyrecruit-board-body__title">
-                      {post.studyTitle}
+                    <div>
+                      <span className="studyrecruit-board-body__category">
+                        {post.categoryName}
+                      </span>
+                      <span className="studyrecruit-board-body__title">
+                        {post.studyTitle}
+                      </span>
                     </div>
+
                     <div className="studyrecruit-board-body__shortdesc">
                       {post.studyShortDesc}
                     </div>
