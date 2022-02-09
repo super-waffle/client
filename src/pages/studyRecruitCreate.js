@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import ReactTooltip from "react-tooltip";
 import StudyDatePicker from "../components/datepicker";
 import StudyDatePickerStart from "../components/datepickerStart";
@@ -235,30 +235,73 @@ export default function StudyRecruitCreate() {
         setUserSeq(res.data.user.userSeq);
       });
   }
+  function onRemove(id) {
+    setDays(days.filter((days) => days.dayNumber !== id));
+  }
+
+  useEffect(() => {
+    if (isMonday) {
+      onRemove(1);
+      setDays((days) => [...days, monday]);
+      console.log("ismonday");
+    } else if (!isMonday) {
+      onRemove(1);
+      console.log("cancel monday");
+    }
+  }, [isMonday, monday]);
+  useEffect(() => {
+    if (isTuesday) {
+      onRemove(2);
+      setDays((days) => [...days, tuesday]);
+    } else if (!isTuesday) {
+      onRemove(2);
+    }
+  }, [isTuesday, tuesday]);
+
+  useEffect(() => {
+    if (isWednesday) {
+      onRemove(3);
+      setDays((days) => [...days, wednesday]);
+    } else if (!isWednesday) {
+      onRemove(3);
+    }
+  }, [isWednesday, wednesday]);
+
+  useEffect(() => {
+    if (isThursday) {
+      onRemove(4);
+      setDays((days) => [...days, thursday]);
+    } else if (!isThursday) {
+      onRemove(4);
+    }
+  }, [isThursday, thursday]);
+  useEffect(() => {
+    if (isFriday) {
+      onRemove(5);
+      setDays((days) => [...days, friday]);
+    } else if (!isFriday) {
+      onRemove(5);
+    }
+  }, [isFriday, friday]);
+  useEffect(() => {
+    if (isSaturday) {
+      onRemove(6);
+      setDays((days) => [...days, saturday]);
+    } else if (!isSaturday) {
+      onRemove(6);
+    }
+  }, [isSaturday, saturday]);
+  useEffect(() => {
+    if (isSunday) {
+      onRemove(7);
+      setDays((days) => [...days, sunday]);
+    } else if (!isSunday) {
+      onRemove(7);
+    }
+  }, [isSunday, sunday]);
 
   const onSubmitStudy = useCallback(() => {
     const TOKEN = localStorage.getItem("accessToken");
-    if (isMonday) {
-      setDays((days) => [...days, monday]);
-    }
-    if (isTuesday) {
-      setDays((days) => [...days, tuesday]);
-    }
-    if (isWednesday) {
-      setDays((days) => [...days, wednesday]);
-    }
-    if (isThursday) {
-      setDays((days) => [...days, thursday]);
-    }
-    if (isFriday) {
-      setDays((days) => [...days, friday]);
-    }
-    if (isSaturday) {
-      setDays((days) => [...days, saturday]);
-    }
-    if (isSunday) {
-      setDays((days) => [...days, sunday]);
-    }
     axios
       .post(
         "/studies",
@@ -280,7 +323,7 @@ export default function StudyRecruitCreate() {
       .then((res) => {
         navigate("/studyrecruit");
       });
-  });
+  }, []);
   // console.log(days);
   // console.log(categorySeq);
   return (

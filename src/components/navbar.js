@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../statics/css/navbar.css";
 import axios from "axios";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 import isLogin from "../utils/isLogin";
 
 function Navbar() {
