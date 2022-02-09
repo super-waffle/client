@@ -1,5 +1,5 @@
 import React from "react";
-import { Component } from "react/cjs/react.development";
+import { Component } from "react";
 import "./Timer.css";
  
 class Timer extends Component{
