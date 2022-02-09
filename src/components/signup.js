@@ -57,7 +57,7 @@ function SignUp() {
       setSignupSuccess(false);
       axios
         .post(
-          process.env.REACT_APP_SERVER_URL + 'accounts',
+          process.env.REACT_APP_SERVER_URL + '/accounts',
           {
             email: email,
             nickname: nickname,

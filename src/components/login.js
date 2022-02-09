@@ -16,7 +16,7 @@ function Login() {
       axios
         .post(
           process.env.REACT_APP_SERVER_URL +
-            'accounts/login',
+            '/accounts/login',
           {
             email: email,
             password: password,
