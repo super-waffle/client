@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import isLogin from "../utils/isLogin";
@@ -80,6 +80,19 @@ export default function StudyRecruitDetail() {
     }
   };
   console.log(data);
+
+  const onApply = useCallback(() => {
+    axios
+      .post("/studies/" + studyseq + "/application", {
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      });
+  }, [TOKEN, studyseq]);
+
   return (
     <div className="studyrecruit-detail">
       <div className="studyrecruit-detail-box">
@@ -163,7 +176,10 @@ export default function StudyRecruitDetail() {
         {/* {userSeq !== host} */}
         <center>
           <div className="studyrecruit-detail-box-footer">
-            <button className="studyrecruit-detail-box-footer__btn">
+            <button
+              onClick={onApply}
+              className="studyrecruit-detail-box-footer__btn"
+            >
               스터디 신청
             </button>
           </div>
