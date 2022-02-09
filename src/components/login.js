@@ -43,10 +43,7 @@ function Login() {
             const currentToken =
               localStorage.getItem('accessToken');
             if (currentToken !== null) {
-              navigate({
-                pathname: '/home/tab=todays',
-                state: { email: email },
-              });
+              navigate('/home/tab=todays');
               window.location.reload();
             }
           } else if (STATUS === 404) {
