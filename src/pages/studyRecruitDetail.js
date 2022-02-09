@@ -3,18 +3,28 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import isLogin from "../utils/isLogin";
 import "../statics/css/studyRecruitDetail.css";
-import { post } from "jquery";
 
 export default function StudyRecruitDetail() {
   const TOKEN = localStorage.getItem("accessToken");
-  const [data, setData] = useState([]);
-  const [studyDay, setStudyDay] = useState({
-    dayNum: 0,
-    startTime: "",
-    endTime: "",
-  });
-
   const { studyseq } = useParams();
+  const [data, setData] = useState([]);
+  const [todayDate, setTodayDate] = useState(new Date());
+  console.log(todayDate);
+
+  // function changeDateFormat() {
+  //   setTodayDate(new Date());
+  //   const d = todayDate;
+  //   return (
+  //     d.getFullYear() +
+  //     "-" +
+  //     (d.getMonth() + 1 > 9
+  //       ? (d.getMonth() + 1).toString()
+  //       : "0" + (d.getMonth() + 1)) +
+  //     "-" +
+  //     (d.getDate() > 9 ? d.getDate().toString() : "0" + d.getDate().toString())
+  //   );
+  // }
+  // console.log(changeDateFormat());
 
   useEffect(() => {
     if (isLogin) {
@@ -33,7 +43,31 @@ export default function StudyRecruitDetail() {
           }));
         });
     }
-  }, []);
+  }, [TOKEN, studyseq]);
+
+  const numberToDay = (num) => {
+    if (num === 1) {
+      return "월";
+    }
+    if (num === 2) {
+      return "화";
+    }
+    if (num === 3) {
+      return "수";
+    }
+    if (num === 4) {
+      return "목";
+    }
+    if (num === 5) {
+      return "금";
+    }
+    if (num === 6) {
+      return "토";
+    }
+    if (num === 7) {
+      return "일";
+    }
+  };
   // console.log(data.apidata.day);
   return (
     <div className="studyrecruit-detail">
@@ -73,21 +107,25 @@ export default function StudyRecruitDetail() {
                         key={days.dayNumber}
                         className="studyrecruit-detail-box-body__day"
                       >
-                        {days.dayNumber}
+                        {numberToDay(days.dayNumber)}
                         {days.timeStart.slice(0, 5)} ~{" "}
                         {days.timeEnd.slice(0, 5)}
                       </td>
                     ))}
                 </tr>
+                <tr>
+                  <td className="studyrecruit-detail-box-body__title">
+                    모집 기간
+                  </td>
+                  {data.apidata && (
+                    <td className="studyrecruit-detail-box-body__enddate">
+                      ~ {data.apidata.studyRecruitEnd}
+                    </td>
+                  )}
+                </tr>
               </tbody>
             </table>
           </div>
-          <span className="studyrecruit-detail-box-body__title">모집 기간</span>
-          {data.apidata && (
-            <span className="studyrecruit-detail-box-body__enddate">
-              ~ {data.apidata.studyRecruitEnd}
-            </span>
-          )}
           {data.apidata && (
             <div className="studyrecruit-detail-box-body__shortdesc">
               {data.apidata.studyShortDesc}

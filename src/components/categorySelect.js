@@ -17,7 +17,7 @@ export default function CategorySelect(props) {
           },
         })
         .then((res) => {
-          console.log(res.data.list);
+          // console.log(res.data.list);
           const category = res.data.list;
           setOptions((prevState) => ({
             ...prevState,
