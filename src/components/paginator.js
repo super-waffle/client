@@ -1,13 +1,16 @@
 import Pagination from "react-js-pagination";
 import { useState } from "react";
 import "../statics/css/paginator.css";
+import { useEffect } from "react/cjs/react.development";
 
 export default function Paginator(props) {
   const [page, setPage] = useState(1);
   const handlePageChange = (page) => {
     setPage(page);
   };
-  props.currentpage(page);
+  useEffect(() => {
+    props.currentpage(page);
+  }, []);
   return (
     <Pagination
       activePage={page}

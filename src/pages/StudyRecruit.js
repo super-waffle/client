@@ -105,8 +105,8 @@ export default function StudyRecruit() {
               <path
                 d="M16.625 16.6249L13.0736 13.0672L16.625 16.6249ZM15.0417 8.31242C15.0417 10.0971 14.3327 11.8087 13.0707 13.0707C11.8088 14.3326 10.0972 15.0416 8.3125 15.0416C6.52781 15.0416 4.81622 14.3326 3.55426 13.0707C2.29229 11.8087 1.58333 10.0971 1.58333 8.31242C1.58333 6.52773 2.29229 4.81614 3.55426 3.55418C4.81622 2.29222 6.52781 1.58325 8.3125 1.58325C10.0972 1.58325 11.8088 2.29222 13.0707 3.55418C14.3327 4.81614 15.0417 6.52773 15.0417 8.31242V8.31242Z"
                 stroke="var(--textColor-darker)"
-                stroke-width="2"
-                stroke-linecap="round"
+                strokeWidth="2"
+                strokeLinecap="round"
               />
             </svg>
           </div>
@@ -145,7 +145,7 @@ export default function StudyRecruit() {
           <tbody>
             {postData.data &&
               postData.data.map((post) => (
-                <tr className="studyrecruit-board-body-tr">
+                <tr key={post.studySeq} className="studyrecruit-board-body-tr">
                   <td className="studyrecruit-board-body number">
                     {post.studySeq}
                   </td>
