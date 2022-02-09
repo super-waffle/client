@@ -44,9 +44,26 @@
 .studyrecruit-detail {
   font-family: "Pretendard";
   background-color: var(--htmlbgColor);
-  padding-top: 100px;
+  padding-top: 80px;
   padding-left: 20%;
   padding-right: 20%;
+}
+.studyrecruit-detail .studyrecruit-detail-goback {
+  font-size: 12px;
+  padding-bottom: 9px;
+  padding-left: 6px;
+}
+.studyrecruit-detail .studyrecruit-detail-goback .studyrecruit-detail-goback__link {
+  text-decoration: none;
+  color: var(--textColor);
+  padding-right: 2px;
+}
+.studyrecruit-detail .studyrecruit-detail-goback svg {
+  margin-bottom: 0.2rem;
+  margin-right: 2px;
+}
+.studyrecruit-detail .studyrecruit-detail-goback .studyrecruit-detail-goback__category {
+  color: var(--textColor-darker);
 }
 .studyrecruit-detail .studyrecruit-detail-box {
   display: flex;
