@@ -243,10 +243,8 @@ export default function StudyRecruitCreate() {
     if (isMonday) {
       onRemove(1);
       setDays((days) => [...days, monday]);
-      console.log("ismonday");
     } else if (!isMonday) {
       onRemove(1);
-      console.log("cancel monday");
     }
   }, [isMonday, monday]);
   useEffect(() => {

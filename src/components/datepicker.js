@@ -6,8 +6,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import "../statics/css/datepicker.css";
 
 import ko from "date-fns/locale/ko";
-import { propTypes } from "react-bootstrap/esm/Image";
-import ChangeDateFormat from "./dateformat";
 registerLocale("ko", ko);
 
 export default function StudyDatePicker(props) {
@@ -27,7 +25,9 @@ export default function StudyDatePicker(props) {
       (d.getDate() > 9 ? d.getDate().toString() : "0" + d.getDate().toString())
     );
   }
-  props.endDate(changeDateFormat());
+  useEffect(() => {
+    props.endDate(changeDateFormat());
+  }, []);
 
   const months = [
     "January",
