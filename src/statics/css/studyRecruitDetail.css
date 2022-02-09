@@ -137,5 +137,29 @@
   height: 30px;
   border-radius: 5px;
 }
+.studyrecruit-detail .studyrecruit-detail-box .studyapply-modal-msg {
+  font-size: 14px;
+  color: var(--textColor);
+  margin-bottom: 25px;
+}
+.studyrecruit-detail .studyrecruit-detail-box .studyapply-modal-ok {
+  background-color: #6667ab;
+  color: #eeeeee;
+  border: none;
+  width: 3.8rem;
+  height: 1.8rem;
+  font-size: 12px;
+  border-radius: 5px;
+  margin-right: 8px;
+}
+.studyrecruit-detail .studyrecruit-detail-box .studyapply-modal-go-to-mystudy {
+  background-color: var(--bgColor);
+  color: var(--textColor);
+  border: 1px solid #6667ab;
+  width: 8rem;
+  height: 1.8rem;
+  font-size: 12px;
+  border-radius: 5px;
+}
 
 /*# sourceMappingURL=studyRecruitDetail.css.map */

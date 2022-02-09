@@ -99,5 +99,29 @@
       height: 30px;
       border-radius: 5px;
     }
+    .studyapply-modal-msg {
+      font-size: 14px;
+      color: var(--textColor);
+      margin-bottom: 25px;
+    }
+    .studyapply-modal-ok {
+      background-color: $mainColor;
+      color: #eeeeee;
+      border: none;
+      width: 3.8rem;
+      height: 1.8rem;
+      font-size: 12px;
+      border-radius: 5px;
+      margin-right: 8px;
+    }
+    .studyapply-modal-go-to-mystudy {
+      background-color: var(--bgColor);
+      color: var(--textColor);
+      border: 1px solid $mainColor;
+      width: 8rem;
+      height: 1.8rem;
+      font-size: 12px;
+      border-radius: 5px;
+    }
   }
 }

@@ -4,14 +4,26 @@ import { useParams } from "react-router-dom";
 
 import isLogin from "../utils/isLogin";
 import "../statics/css/studyRecruitDetail.css";
+import Modal from "../components/modal";
 
 export default function StudyRecruitDetail() {
   const TOKEN = localStorage.getItem("accessToken");
   const { studyseq } = useParams();
   const [data, setData] = useState([]);
   const [todayDate, setTodayDate] = useState(new Date());
+  const [isSuccess, setIsSuccess] = useState(false);
   const [userSeq, setUserSeq] = useState("");
 
+  // 모달창
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  // yyyy-mm-dd
   function changeDateFormat() {
     if (setTodayDate === null) {
       console.log("no date");
@@ -29,6 +41,7 @@ export default function StudyRecruitDetail() {
     );
   }
 
+  // 데이터 받아오기
   useEffect(() => {
     if (isLogin) {
       axios
@@ -56,6 +69,7 @@ export default function StudyRecruitDetail() {
     }
   }, [TOKEN, studyseq]);
 
+  // 요일 숫자를 이름으로 바꿔주기
   const numberToDay = (num) => {
     if (num === 1) {
       return "월";
@@ -81,15 +95,26 @@ export default function StudyRecruitDetail() {
   };
   console.log(data);
 
+  // 스터디 신청
   const onApply = useCallback(() => {
     axios
-      .post("/studies/" + studyseq + "/application", {
-        headers: {
-          Authorization: `Bearer ${TOKEN}`,
-        },
-      })
+      .post(
+        "/studies/" + studyseq + "/application",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+          },
+        }
+      )
       .then((res) => {
         console.log(res);
+        if (res.data.statusCode === 200) {
+          setIsSuccess(true);
+        } else if (res.data.statusCode === 409) {
+          setIsSuccess(false);
+        }
+        openModal();
       });
   }, [TOKEN, studyseq]);
 
@@ -182,6 +207,24 @@ export default function StudyRecruitDetail() {
             >
               스터디 신청
             </button>
+            <Modal open={modalOpen} close={closeModal} header=" ">
+              {isSuccess && (
+                <div className="studyapply-modal-msg">
+                  신청이 완료되었습니다
+                </div>
+              )}
+              {!isSuccess && (
+                <div className="studyapply-modal-msg">
+                  이미 신청한 스터디입니다
+                </div>
+              )}
+              <button className="studyapply-modal-ok" onClick={closeModal}>
+                확인
+              </button>
+              <button className="studyapply-modal-go-to-mystudy">
+                내 스터디 보러가기
+              </button>
+            </Modal>
           </div>
         </center>
       </div>
