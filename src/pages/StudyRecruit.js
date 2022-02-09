@@ -1,24 +1,28 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import CategorySelect from "../components/categorySelect";
-import "../statics/css/studyRecruit.css";
-import isLogin from "../utils/isLogin";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import CategorySelect from '../components/categorySelect';
+import '../statics/css/studyRecruit.css';
+import isLogin from '../utils/isLogin';
 
 export default function StudyRecruit() {
   const navigate = useNavigate();
-  const TOKEN = localStorage.getItem("accessToken");
-  const [category, setCategory] = useState("");
+  const TOKEN = localStorage.getItem('accessToken');
+  const [category, setCategory] = useState('');
   const [postData, setPostData] = useState([]);
   // console.log(postData);
   useEffect(() => {
     if (isLogin) {
       axios
-        .get("/studies?page=1&type=0&key=", {
-          headers: {
-            Authorization: `Bearer ${TOKEN}`,
-          },
-        })
+        .get(
+          process.env.REACT_APP_SERVER_URL +
+            '/studies?page=1&type=0&key=',
+          {
+            headers: {
+              Authorization: `Bearer ${TOKEN}`,
+            },
+          }
+        )
         .then((res) => {
           // console.log(res);
           const data = res.data.data;
@@ -44,7 +48,7 @@ export default function StudyRecruit() {
         </div>
         <button
           className="studyrecruit-create"
-          onClick={() => navigate("create")}
+          onClick={() => navigate('create')}
         >
           모집글 작성하기
         </button>
@@ -53,10 +57,18 @@ export default function StudyRecruit() {
         <table>
           <thead>
             <tr className="studyrecruit-board-th">
-              <th className="studyrecruit-board-head num">#</th>
-              <th className="studyrecruit-board-head title">제목</th>
-              <th className="studyrecruit-board-head host">글쓴이</th>
-              <th className="studyrecruit-board-head date">모집기한</th>
+              <th className="studyrecruit-board-head num">
+                #
+              </th>
+              <th className="studyrecruit-board-head title">
+                제목
+              </th>
+              <th className="studyrecruit-board-head host">
+                글쓴이
+              </th>
+              <th className="studyrecruit-board-head date">
+                모집기한
+              </th>
               <th className="studyrecruit-board-head ppl">
                 <svg
                   width="15"

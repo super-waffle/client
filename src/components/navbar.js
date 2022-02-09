@@ -76,7 +76,7 @@ function Navbar() {
   // 유저 정보 불러오기
   if (isLogin()) {
     axios
-      .get('/users', {
+      .get(process.env.REACT_APP_SERVER_URL + '/users', {
         headers: {
           Authorization: `Bearer ${token}`,
         },

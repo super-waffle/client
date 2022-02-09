@@ -10,11 +10,15 @@ const token = localStorage.getItem('accessToken');
 const todoList = createContext([]);
 console.log(token);
 axios
-  .get('/todos?date=2022-02-03', {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
+  .get(
+    process.env.REACT_APP_SERVER_URL +
+      '/todos?date=2022-02-03',
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  )
   .then((response) => {
     console.log(response);
   });
