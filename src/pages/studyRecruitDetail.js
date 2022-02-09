@@ -10,6 +10,7 @@ export default function StudyRecruitDetail() {
   const { studyseq } = useParams();
   const [data, setData] = useState([]);
   const [todayDate, setTodayDate] = useState(new Date());
+  const [userSeq, setUserSeq] = useState("");
 
   function changeDateFormat() {
     if (setTodayDate === null) {
@@ -31,13 +32,21 @@ export default function StudyRecruitDetail() {
   useEffect(() => {
     if (isLogin) {
       axios
+        .get("/users", {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+          },
+        })
+        .then((res) => {
+          setUserSeq(res.data.user.userSeq);
+        });
+      axios
         .get("/studies/" + studyseq, {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
         })
         .then((res) => {
-          console.log(res.data);
           const apidata = res.data;
           setData((prevState) => ({
             ...prevState,
@@ -70,7 +79,7 @@ export default function StudyRecruitDetail() {
       return "일";
     }
   };
-  // console.log(data.apidata.day);
+  console.log(data);
   return (
     <div className="studyrecruit-detail">
       <div className="studyrecruit-detail-box">
@@ -150,6 +159,8 @@ export default function StudyRecruitDetail() {
             )}
           </div>
         </div>
+        {/* [TODO]: userSeq hostSeq 비교해서 상세정보 페이지 차이 만들기 */}
+        {/* {userSeq !== host} */}
         <center>
           <div className="studyrecruit-detail-box-footer">
             <button className="studyrecruit-detail-box-footer__btn">
