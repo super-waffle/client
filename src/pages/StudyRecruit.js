@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useCallback } from "react/cjs/react.development";
+
 import CategorySelect from "../components/categorySelect";
 import Paginator from "../components/paginator";
-import "../statics/css/studyRecruit.css";
 import isLogin from "../utils/isLogin";
+
+import "../statics/css/studyRecruit.css";
 
 export default function StudyRecruit() {
   const navigate = useNavigate();

@@ -2,6 +2,7 @@ import React, { forwardRef, useEffect, useState } from "react";
 import { addDays } from "date-fns";
 
 import DatePicker, { registerLocale } from "react-datepicker";
+
 import "react-datepicker/dist/react-datepicker.css";
 import "../statics/css/datepicker.css";
 

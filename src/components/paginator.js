@@ -1,7 +1,7 @@
+import { useState, useEffect } from "react";
+
 import Pagination from "react-js-pagination";
-import { useState } from "react";
 import "../statics/css/paginator.css";
-import { useEffect } from "react/cjs/react.development";
 
 export default function Paginator(props) {
   const [page, setPage] = useState(1);

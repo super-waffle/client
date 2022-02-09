@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
+
 import isLogin from "../utils/isLogin";
 import "../statics/css/categorySelect.css";
 
