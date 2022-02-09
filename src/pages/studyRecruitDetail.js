@@ -34,7 +34,7 @@ export default function StudyRecruitDetail() {
         });
     }
   }, []);
-  console.log(data);
+  // console.log(data.apidata.day);
   return (
     <div className="studyrecruit-detail">
       <div className="studyrecruit-detail-box">
@@ -69,15 +69,14 @@ export default function StudyRecruitDetail() {
                   </td>
                   {data.apidata &&
                     data.apidata.day.map((days) => (
-                      <>
-                        <span className="studyrecruit-detail-box-body__day">
-                          {days.dayNumber}
-                        </span>
-                        <span className="studyrecruit-detail-box-body__day">
-                          {days.timeStart.slice(0, 5)} ~{" "}
-                          {days.timeEnd.slice(0, 5)}
-                        </span>
-                      </>
+                      <td
+                        key={days.dayNumber}
+                        className="studyrecruit-detail-box-body__day"
+                      >
+                        {days.dayNumber}
+                        {days.timeStart.slice(0, 5)} ~{" "}
+                        {days.timeEnd.slice(0, 5)}
+                      </td>
                     ))}
                 </tr>
               </tbody>
