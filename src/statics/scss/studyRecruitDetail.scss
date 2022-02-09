@@ -80,14 +80,17 @@
         padding-top: 40px;
         font-size: 12px;
         font-weight: 450;
+        color: var(--textColor);
         // line-height: 14px;
       }
       .studyrecruit-detail-box-body__desc {
         padding-top: 25px;
         font-size: 12px;
+        color: var(--textColor);
       }
     }
     .studyrecruit-detail-box-footer__btn {
+      cursor: pointer;
       border: none;
       background-color: $mainColor;
       color: #eeeeee;

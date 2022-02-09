@@ -120,12 +120,15 @@
   padding-top: 40px;
   font-size: 12px;
   font-weight: 450;
+  color: var(--textColor);
 }
 .studyrecruit-detail .studyrecruit-detail-box .studyrecruit-detail-box-body .studyrecruit-detail-box-body__desc {
   padding-top: 25px;
   font-size: 12px;
+  color: var(--textColor);
 }
 .studyrecruit-detail .studyrecruit-detail-box .studyrecruit-detail-box-footer__btn {
+  cursor: pointer;
   border: none;
   background-color: #6667ab;
   color: #eeeeee;
