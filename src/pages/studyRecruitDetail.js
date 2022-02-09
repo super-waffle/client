@@ -10,22 +10,23 @@ export default function StudyRecruitDetail() {
   const { studyseq } = useParams();
   const [data, setData] = useState([]);
   const [todayDate, setTodayDate] = useState(new Date());
-  console.log(todayDate);
 
-  // function changeDateFormat() {
-  //   setTodayDate(new Date());
-  //   const d = todayDate;
-  //   return (
-  //     d.getFullYear() +
-  //     "-" +
-  //     (d.getMonth() + 1 > 9
-  //       ? (d.getMonth() + 1).toString()
-  //       : "0" + (d.getMonth() + 1)) +
-  //     "-" +
-  //     (d.getDate() > 9 ? d.getDate().toString() : "0" + d.getDate().toString())
-  //   );
-  // }
-  // console.log(changeDateFormat());
+  function changeDateFormat() {
+    if (setTodayDate === null) {
+      console.log("no date");
+    }
+    return (
+      todayDate.getFullYear() +
+      "-" +
+      (todayDate.getMonth() + 1 > 9
+        ? (todayDate.getMonth() + 1).toString()
+        : "0" + (todayDate.getMonth() + 1)) +
+      "-" +
+      (todayDate.getDate() > 9
+        ? todayDate.getDate().toString()
+        : "0" + todayDate.getDate().toString())
+    );
+  }
 
   useEffect(() => {
     if (isLogin) {
@@ -73,74 +74,89 @@ export default function StudyRecruitDetail() {
   return (
     <div className="studyrecruit-detail">
       <div className="studyrecruit-detail-box">
-        <div className="studyrecruit-detail-box-heading__first">
-          {data.apidata && (
-            <div className="studyrecruit-detail-box-heading__title">
-              {data.apidata.studyTitle}
-            </div>
-          )}
-          {data.apidata && (
-            <div className="studyrecruit-detail-box-heading__category">
-              {data.apidata.categoryName}
-            </div>
-          )}
-        </div>
-        <div className="studyrecruit-detail-box-heading__second">
-          <div className="studyrecruit-detail-box-heading__profileImage"></div>
-          {data.apidata && (
-            <div className="studyrecruit-detail-box-heading__nickname">
-              {data.apidata.hostNickName}
-            </div>
-          )}
-        </div>
-        <hr></hr>
-        <div className="studyrecruit-detail-box-body">
-          <div className="studyrecruit-detail-box-body__time">
-            <table>
-              <tbody>
-                <tr>
-                  <td className="studyrecruit-detail-box-body__title">
-                    스터디 일정
-                  </td>
-                  {data.apidata &&
-                    data.apidata.day.map((days) => (
-                      <td
-                        key={days.dayNumber}
-                        className="studyrecruit-detail-box-body__day"
-                      >
-                        {numberToDay(days.dayNumber)}
-                        {days.timeStart.slice(0, 5)} ~{" "}
-                        {days.timeEnd.slice(0, 5)}
-                      </td>
-                    ))}
-                </tr>
-                <tr>
-                  <td className="studyrecruit-detail-box-body__title">
-                    모집 기간
-                  </td>
-                  {data.apidata && (
-                    <td className="studyrecruit-detail-box-body__enddate">
-                      ~ {data.apidata.studyRecruitEnd}
-                    </td>
-                  )}
-                </tr>
-              </tbody>
-            </table>
+        <div>
+          <div className="studyrecruit-detail-box-heading__first">
+            {data.apidata && (
+              <div className="studyrecruit-detail-box-heading__title">
+                {data.apidata.studyTitle}
+              </div>
+            )}
+            {data.apidata && (
+              <div className="studyrecruit-detail-box-heading__category">
+                {data.apidata.categoryName}
+              </div>
+            )}
           </div>
-          {data.apidata && (
-            <div className="studyrecruit-detail-box-body__shortdesc">
-              {data.apidata.studyShortDesc}
+          <div className="studyrecruit-detail-box-heading__second">
+            <div className="studyrecruit-detail-box-heading__profileImage"></div>
+            {data.apidata && (
+              <div className="studyrecruit-detail-box-heading__nickname">
+                {data.apidata.hostNickName}
+              </div>
+            )}
+          </div>
+          <hr></hr>
+          <div className="studyrecruit-detail-box-body">
+            <div className="studyrecruit-detail-box-body__time">
+              <table>
+                <tbody>
+                  <tr className="studyrecruit-detail-box-body__row">
+                    <td className="studyrecruit-detail-box-body__title">
+                      스터디 일정
+                    </td>
+                    {data.apidata &&
+                      data.apidata.day.map((days) => (
+                        <td key={days.dayNumber}>
+                          <div className="studyrecruit-detail-box-body__days">
+                            <div className="studyrecruit-detail-box-body__day name">
+                              {numberToDay(days.dayNumber)}
+                            </div>
+                            <div className="studyrecruit-detail-box-body__day timestart">
+                              {days.timeStart.slice(0, 5)} ~{" "}
+                            </div>
+                            <div className="studyrecruit-detail-box-body__day timeend">
+                              {days.timeEnd.slice(0, 5)}
+                            </div>
+                          </div>
+                        </td>
+                      ))}
+                  </tr>
+                </tbody>
+              </table>
+              <table>
+                <tbody>
+                  <tr className="studyrecruit-detail-box-body__row">
+                    <td className="studyrecruit-detail-box-body__title">
+                      모집 기간
+                    </td>
+                    {data.apidata && (
+                      <td className="studyrecruit-detail-box-body__enddate">
+                        {changeDateFormat()} ~ {data.apidata.studyRecruitEnd}
+                      </td>
+                    )}
+                  </tr>
+                </tbody>
+              </table>
             </div>
-          )}
-          {data.apidata && (
-            <div className="studyrecruit-detail-box-body__desc">
-              {data.apidata.studyDesc}
-            </div>
-          )}
+            {data.apidata && (
+              <div className="studyrecruit-detail-box-body__shortdesc">
+                {data.apidata.studyShortDesc}
+              </div>
+            )}
+            {data.apidata && (
+              <div className="studyrecruit-detail-box-body__desc">
+                {data.apidata.studyDesc}
+              </div>
+            )}
+          </div>
         </div>
-        <div className="studyrecruit-detail-box-footer">
-          <button>스터디 신청</button>
-        </div>
+        <center>
+          <div className="studyrecruit-detail-box-footer">
+            <button className="studyrecruit-detail-box-footer__btn">
+              스터디 신청
+            </button>
+          </div>
+        </center>
       </div>
     </div>
   );

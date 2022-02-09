@@ -49,6 +49,9 @@
   padding-right: 20%;
 }
 .studyrecruit-detail .studyrecruit-detail-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   height: 720px;
   background-color: var(--bgColor);
@@ -82,6 +85,9 @@
   color: var(--textColor-darker);
   padding-left: 6px;
 }
+.studyrecruit-detail .studyrecruit-detail-box .studyrecruit-detail-box-body .studyrecruit-detail-box-body__row {
+  height: 24px;
+}
 .studyrecruit-detail .studyrecruit-detail-box .studyrecruit-detail-box-body .studyrecruit-detail-box-body__title {
   font-size: 13px;
   line-height: 14px;
@@ -89,15 +95,44 @@
   color: var(--textColor);
   width: 4.5rem;
 }
+.studyrecruit-detail .studyrecruit-detail-box .studyrecruit-detail-box-body .studyrecruit-detail-box-body__days {
+  display: flex;
+}
 .studyrecruit-detail .studyrecruit-detail-box .studyrecruit-detail-box-body .studyrecruit-detail-box-body__day {
   font-size: 12px;
   line-height: 14px;
   color: var(--textColor);
+  padding-right: 5px;
+}
+.studyrecruit-detail .studyrecruit-detail-box .studyrecruit-detail-box-body .studyrecruit-detail-box-body__day.name {
+  color: #6667ab;
+  font-weight: 500;
+}
+.studyrecruit-detail .studyrecruit-detail-box .studyrecruit-detail-box-body .studyrecruit-detail-box-body__day.timeend {
+  margin-right: 10px;
 }
 .studyrecruit-detail .studyrecruit-detail-box .studyrecruit-detail-box-body .studyrecruit-detail-box-body__enddate {
   font-size: 12px;
   line-height: 14px;
   color: var(--textColor);
+}
+.studyrecruit-detail .studyrecruit-detail-box .studyrecruit-detail-box-body .studyrecruit-detail-box-body__shortdesc {
+  padding-top: 40px;
+  font-size: 12px;
+  font-weight: 450;
+}
+.studyrecruit-detail .studyrecruit-detail-box .studyrecruit-detail-box-body .studyrecruit-detail-box-body__desc {
+  padding-top: 25px;
+  font-size: 12px;
+}
+.studyrecruit-detail .studyrecruit-detail-box .studyrecruit-detail-box-footer__btn {
+  border: none;
+  background-color: #6667ab;
+  color: #eeeeee;
+  font-size: 14px;
+  width: 8rem;
+  height: 30px;
+  border-radius: 5px;
 }
 
 /*# sourceMappingURL=studyRecruitDetail.css.map */
