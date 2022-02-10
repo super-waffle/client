@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
+
 import isLogin from "../utils/isLogin";
 import "../statics/css/categorySelect.css";
 
@@ -17,7 +18,7 @@ export default function CategorySelect(props) {
           },
         })
         .then((res) => {
-          console.log(res.data.list);
+          // console.log(res.data.list);
           const category = res.data.list;
           setOptions((prevState) => ({
             ...prevState,
@@ -28,7 +29,9 @@ export default function CategorySelect(props) {
   }, []);
 
   // console.log(selectedCategory);
-  props.categoryseq(selectedCategory);
+  useEffect(() => {
+    props.categoryseq(selectedCategory);
+  }, [selectedCategory]);
   const SelectBox = (props) => {
     // console.log(props.options.category);
     return (

@@ -1,5 +1,5 @@
 {
-  "proxy": "http://i6a301.p.ssafy.io:8080",
+  "proxy": "http://localhost:8080",
   "name": "client",
   "version": "0.1.0",
   "private": true,
@@ -30,6 +30,7 @@
     "react-datepicker": "^4.6.0",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
+    "react-js-pagination": "^3.0.3",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "react-select": "^5.2.2",

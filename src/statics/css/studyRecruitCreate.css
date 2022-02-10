@@ -119,6 +119,8 @@
   margin-bottom: 5px;
   margin-top: 5px;
   padding-left: 8px;
+  font-size: 12px;
+  color: var(--textColor);
 }
 .recruit-create .recruit-create-contents .recruit-create-content ::placeholder {
   font-size: 12px;
@@ -136,8 +138,17 @@
   color: var(--textColor);
   margin: 40px 0px 33px 5px;
 }
-.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-description span {
-  margin-bottom: 20px;
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-description .recruit-create-content-description__title {
+  display: flex;
+  justify-content: space-between;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-description .recruit-create-content-description__title span {
+  margin-bottom: 10px;
+}
+.recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-description .recruit-create-content-description__title span.recruit-create-content-description__title-length {
+  color: var(--textColor-darker);
+  margin-top: 10px;
+  padding-right: 5px;
 }
 .recruit-create .recruit-create-contents .recruit-create-content .recruit-create-content-description textarea {
   width: 100%;
@@ -146,6 +157,7 @@
   border: 1px solid var(--borderColor);
   background-color: var(--bgColor);
   padding: 12px;
+  color: var(--textColor);
 }
 .recruit-create center button {
   cursor: pointer;

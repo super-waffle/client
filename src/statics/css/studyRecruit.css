@@ -71,20 +71,34 @@
 .studyrecruit .studyrecuit-middle .studyrecruit-category {
   width: 8rem;
 }
-.studyrecruit .studyrecuit-middle .studyrecruit-search input {
+.studyrecruit .studyrecuit-middle .studyrecruit-search {
+  display: flex;
+}
+.studyrecruit .studyrecuit-middle .studyrecruit-search .studyrecruit-search__bar {
   background-color: var(--bgColor);
   border: 1px solid var(--borderColor);
-  width: 32vw;
+  border-radius: 5px;
+  padding-right: 10px;
   margin-left: 8px;
+}
+.studyrecruit .studyrecuit-middle .studyrecruit-search .studyrecruit-search__bar svg {
+  cursor: pointer;
+}
+.studyrecruit .studyrecuit-middle .studyrecruit-search input {
+  background-color: var(--bgColor);
+  border: none;
+  width: 32vw;
+  height: 30px;
   border-radius: 5px;
   padding-left: 7px;
+  font-size: 12px;
 }
 .studyrecruit .studyrecuit-middle .studyrecruit-search ::placeholder {
   color: var(--textColor-darkest);
   font-size: 10px;
 }
 .studyrecruit .studyrecuit-middle .studyrecruit-search :focus {
-  outline: 0.8px solid #6667ab;
+  outline: none;
 }
 .studyrecruit .studyrecuit-middle .studyrecruit-create {
   cursor: pointer;
@@ -147,6 +161,13 @@
   color: var(--textColor-dark);
   font-size: 11px;
   line-height: 24px;
+}
+.studyrecruit .studyrecruit-board table .studyrecruit-board-body .studyrecruit-board-body__link {
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--textColor);
+  padding-top: 0.2rem;
 }
 .studyrecruit .studyrecruit-board table .studyrecruit-board-body .studyrecruit-board-body__category {
   font-size: 12px;

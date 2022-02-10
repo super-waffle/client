@@ -1,26 +1,43 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState, useCallback } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import CategorySelect from "../components/categorySelect";
-import "../statics/css/studyRecruit.css";
+import Paginator from "../components/paginator";
 import isLogin from "../utils/isLogin";
+
+import "../statics/css/studyRecruit.css";
 
 export default function StudyRecruit() {
   const navigate = useNavigate();
   const TOKEN = localStorage.getItem("accessToken");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(0);
   const [postData, setPostData] = useState([]);
-  // console.log(postData);
-  useEffect(() => {
+  const [searchInput, setSearchInput] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+
+  console.log(
+    "page: ",
+    currentPage,
+    "search: ",
+    searchInput,
+    "category: ",
+    category
+  );
+
+  const onChangeSearch = useCallback((event) => {
+    setSearchInput(event.target.value);
+  });
+
+  const onClickSearch = useCallback(() => {
     if (isLogin) {
       axios
-        .get("/studies?page=1&type=0&key=", {
+        .get("/studies?page=1&type=" + category + "&key=" + searchInput, {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
         })
         .then((res) => {
-          // console.log(res);
           const data = res.data.data;
           setPostData((prevState) => ({
             ...prevState,
@@ -28,7 +45,45 @@ export default function StudyRecruit() {
           }));
         });
     }
-  }, []);
+  });
+
+  const onKeyEnter = (event) => {
+    if (event.key === "Enter") {
+      onClickSearch();
+    }
+  };
+
+  useEffect(() => {
+    if (isLogin) {
+      if (!category) {
+        setCategory(0);
+      }
+      axios
+        .get(
+          "/studies?page=" +
+            currentPage +
+            "&type=" +
+            category +
+            "&key=" +
+            searchInput,
+          {
+            headers: {
+              Authorization: `Bearer ${TOKEN}`,
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+          console.log("hi");
+          const data = res.data.data;
+          setPostData((prevState) => ({
+            ...prevState,
+            data,
+          }));
+        });
+    }
+  }, [currentPage, category, searchInput]);
+
   return (
     <div className="studyrecruit">
       <div className="studyrecruit-heading">
@@ -40,7 +95,29 @@ export default function StudyRecruit() {
       <div className="studyrecuit-middle">
         <div className="studyrecruit-search">
           <CategorySelect categoryseq={setCategory} />
-          <input placeholder="방제목, 글 내용으로 검색하세요" />
+          <div className="studyrecruit-search__bar">
+            <input
+              onKeyPress={onKeyEnter}
+              onChange={onChangeSearch}
+              placeholder="방제목, 글 내용으로 검색하세요"
+            />
+            <svg
+              className="studyrecruit-search__icon"
+              onClick={onClickSearch}
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.625 16.6249L13.0736 13.0672L16.625 16.6249ZM15.0417 8.31242C15.0417 10.0971 14.3327 11.8087 13.0707 13.0707C11.8088 14.3326 10.0972 15.0416 8.3125 15.0416C6.52781 15.0416 4.81622 14.3326 3.55426 13.0707C2.29229 11.8087 1.58333 10.0971 1.58333 8.31242C1.58333 6.52773 2.29229 4.81614 3.55426 3.55418C4.81622 2.29222 6.52781 1.58325 8.3125 1.58325C10.0972 1.58325 11.8088 2.29222 13.0707 3.55418C14.3327 4.81614 15.0417 6.52773 15.0417 8.31242V8.31242Z"
+                stroke="var(--textColor-darker)"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
         </div>
         <button
           className="studyrecruit-create"
@@ -76,7 +153,7 @@ export default function StudyRecruit() {
           <tbody>
             {postData.data &&
               postData.data.map((post) => (
-                <tr className="studyrecruit-board-body-tr">
+                <tr key={post.studySeq} className="studyrecruit-board-body-tr">
                   <td className="studyrecruit-board-body number">
                     {post.studySeq}
                   </td>
@@ -86,7 +163,13 @@ export default function StudyRecruit() {
                         {post.categoryName}
                       </span>
                       <span className="studyrecruit-board-body__title">
-                        {post.studyTitle}
+                        <Link
+                          className="studyrecruit-board-body__link"
+                          to={`/studyrecruit/${post.studySeq}`}
+                        >
+                          {post.studyTitle}
+                        </Link>
+                        {/* {post.studyTitle} */}
                       </span>
                     </div>
 
@@ -107,6 +190,9 @@ export default function StudyRecruit() {
               ))}
           </tbody>
         </table>
+        <div className="studyrecruit-pagination">
+          <Paginator currentpage={setCurrentPage} />
+        </div>
       </div>
     </div>
   );
