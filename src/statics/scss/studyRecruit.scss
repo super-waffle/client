@@ -1,0 +1,173 @@
+@import "main.scss";
+
+.studyrecruit {
+  font-family: $font-family;
+  padding-top: 80px;
+  padding-left: 20%;
+  background-color: var(--htmlbgColor);
+  padding-right: 20%;
+
+  .studyrecruit-heading {
+    display: flex;
+    flex-direction: column;
+    .studyrecruit-h1 {
+      font-size: 20px;
+      line-height: 24px;
+      color: var(--textColor);
+      padding-bottom: 6px;
+    }
+    .studyrecruit-h2 {
+      font-size: 12px;
+      line-height: 14px;
+      color: var(--textColor-dark);
+    }
+  }
+
+  .studyrecuit-middle {
+    padding-top: 21px;
+    display: flex;
+    justify-content: space-between;
+    .studyrecruit-category {
+      width: 8rem;
+    }
+    .studyrecruit-search {
+      display: flex;
+      .studyrecruit-search__bar {
+        background-color: var(--bgColor);
+        border: 1px solid var(--borderColor);
+        border-radius: 5px;
+        padding-right: 10px;
+        margin-left: 8px;
+        & svg {
+          cursor: pointer;
+        }
+      }
+      & input {
+        background-color: var(--bgColor);
+        border: none;
+        width: 32vw;
+        height: 30px;
+        border-radius: 5px;
+        padding-left: 7px;
+        font-size: 12px;
+      }
+      ::placeholder {
+        color: var(--textColor-darkest);
+        font-size: 10px;
+      }
+      :focus {
+        // outline: 0.8px solid $mainColor;
+        outline: none;
+      }
+    }
+    .studyrecruit-create {
+      cursor: pointer;
+      border: 1px solid $mainColor;
+      border-radius: 5px;
+      background-color: $mainColor;
+      color: #eeeeee;
+      font-size: 14px;
+      line-height: 17px;
+      width: 126px;
+      height: 30px;
+    }
+  }
+  .studyrecruit-board {
+    margin-top: 21px;
+    & table {
+      background-color: var(--bgColor);
+      border-radius: 8px;
+      // border: 1px solid #d7d7d7;
+      box-sizing: border-box;
+      width: 100%;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      .studyrecruit-board-head {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 24px;
+        color: var(--board-textColor);
+        background-color: var(--bgColor-light);
+        padding: 0.4rem;
+        text-align: center;
+
+        &.num {
+          width: 3rem;
+          border-radius: 8px 0 0 0;
+        }
+        &.title {
+          width: 25rem;
+        }
+        &.host {
+          width: 7rem;
+        }
+        &.date {
+          width: 6rem;
+        }
+        &.ppl {
+          width: 4rem;
+          border-radius: 0 8px 0 0;
+          & svg {
+            margin-bottom: 3px;
+          }
+        }
+      }
+      .studyrecruit-board-body-tr {
+        border-bottom: 1px solid var(--bgColor-light);
+      }
+      .studyrecruit-board-body {
+        padding: 0.4rem;
+        &.number {
+          text-align: center;
+          color: var(--textColor-dark);
+          font-size: 11px;
+          line-height: 24px;
+        }
+        .studyrecruit-board-body__link {
+          text-decoration: none;
+          font-size: 14px;
+          line-height: 24px;
+          color: var(--textColor);
+          // font-weight: 350;
+          padding-top: 0.2rem;
+        }
+        .studyrecruit-board-body__category {
+          font-size: 12px;
+          color: $mainColor;
+          padding-left: 0.8rem;
+        }
+        .studyrecruit-board-body__title {
+          padding-top: 0.2rem;
+          font-size: 14px;
+          line-height: 24px;
+          padding-left: 0.8rem;
+          color: var(--textColor);
+        }
+        .studyrecruit-board-body__shortdesc {
+          font-size: 12px;
+          line-height: 24px;
+          padding-bottom: 0.2rem;
+          padding-left: 0.8rem;
+          color: var(--textColor-darker);
+        }
+        &.host {
+          text-align: center;
+          font-size: 14px;
+          line-height: 24px;
+          color: var(--textColor);
+        }
+        &.enddate {
+          text-align: center;
+          font-size: 14px;
+          line-height: 24px;
+          color: var(--textColor);
+        }
+        &.headcount {
+          text-align: center;
+          font-size: 14px;
+          line-height: 24px;
+          color: var(--textColor);
+        }
+      }
+    }
+  }
+}

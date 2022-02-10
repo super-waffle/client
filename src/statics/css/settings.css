@@ -1,0 +1,76 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+:root {
+  --htmlbgColor: #ffffff;
+  --bgColor: #fcfcfc;
+  --bgColor-light: #eaeaea;
+  --borderColor: #ededed;
+  --borderColor2: #d6d6d6;
+  --borderColor3: #e1e1e1;
+  --textWhite: #eeeeee;
+  --textColor: #252525;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #a1a1a1;
+  --textColor-darkest: #c2c2c2;
+  --github-01: #e8eaee;
+  --github-02: #d5d6f5;
+  --github-03: #9fa2e3;
+  --board-textColor: #646464;
+}
+
+.ui-dark {
+  background-color: var(--htmlbgColor);
+  --htmlbgColor: #292929;
+  --bgColor: #373737;
+  --bgColor-light: #4a4a4a;
+  --bgColor-lighter: #565656;
+  --bgColor-dark: #1b1b1b;
+  --borderColor: #444444;
+  --borderColor2: #444444;
+  --borderColor3: #444444;
+  --textColor: #ededed;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #6f6f6f;
+  --textColor-darkest: #838383;
+  --github-01: rgba(102, 103, 171, 0.2);
+  --github-02: rgba(102, 103, 171, 0.4);
+  --github-03: rgba(102, 103, 171, 0.7);
+  --board-textColor: #ededed;
+}
+
+.hidden {
+  display: none;
+}
+
+.settings {
+  background-color: var(--htmlbgColor);
+  display: flex;
+}
+.settings .settings-sidebar {
+  margin-right: 50px;
+  padding-left: 10%;
+}
+.settings .settings-sidebar .settings-myprofile {
+  font-family: "Pretendard";
+  display: flex;
+  align-items: center;
+  padding-top: 80px;
+  padding-bottom: 14px;
+  padding-left: 10%;
+  margin-left: 10px;
+}
+.settings .settings-sidebar .settings-myprofile .settings-myprofile__img {
+  margin-right: 13px;
+}
+.settings .settings-sidebar .settings-myprofile .settings-myprofile__text .settings-myprofile__text-nickname {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--textColor);
+}
+.settings .settings-sidebar .settings-myprofile .settings-myprofile__text .settings-myprofile__text-email {
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--textColor-darker);
+}
+
+/*# sourceMappingURL=settings.css.map */

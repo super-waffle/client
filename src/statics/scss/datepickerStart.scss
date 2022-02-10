@@ -1,0 +1,17 @@
+@import "main.scss";
+
+.datepicker-start {
+  cursor: default;
+  color: var(--textColor-darker);
+  font-size: 14px;
+  width: 6.5rem;
+  text-align: center;
+  border: 1px solid var(--borderColor);
+  border-radius: 5px;
+  height: 30px;
+  background-color: var(--bgColor);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,169 @@
+@import "main.scss";
+
+.recruit-create {
+  font-family: $font-family;
+  padding-top: 80px;
+  padding-left: 28%;
+  background-color: var(--htmlbgColor);
+  padding-right: 28%;
+
+  .recruit-create-heading {
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--textColor);
+    border-bottom: 1px solid var(--textColor);
+    padding-bottom: 12px;
+    & span {
+      padding-left: 5px;
+    }
+  }
+
+  .recruit-create-contents {
+    .recruit-create-content {
+      border-bottom: 1px solid var(--textColor-darkest);
+
+      & table {
+        margin: 33px 5px 33px 5px;
+        // &.recruit-create-content__day {
+        //   // margin: 33px 5px 10px 5px;
+        // }
+      }
+      .recruit-create-content-row {
+        // margin-bottom: 15px;
+        .test {
+          display: flex;
+        }
+        &.a1 {
+          font-size: 14px;
+          line-height: 17px;
+          color: var(--textColor);
+          width: 8rem;
+        }
+        &.a2 {
+          width: 32rem;
+        }
+        &.a3 {
+          padding-right: 3rem;
+        }
+        &.date {
+          font-size: 12px;
+          padding-right: 0.2rem;
+          color: var(--textColor-dark);
+          width: 2.5rem;
+        }
+        &.day {
+          padding-right: 0.5rem;
+          // width: 20rem;
+          & .tooltip-day {
+            padding: 8px;
+            // background-color: $mainColor;
+          }
+        }
+        &.day-name {
+          border: none;
+          font-size: 12px;
+          color: var(--textColor);
+          background-color: var(--bgColor-light);
+          border-radius: 100%;
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+        &.selected {
+          border: none;
+          font-size: 12px;
+          color: #eeeeee;
+          background-color: $mainColor;
+          border-radius: 100%;
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+      }
+      .recruit-input {
+        background: var(--bgColor);
+        border: 1px solid var(--borderColor);
+        box-sizing: border-box;
+        border-radius: 7px;
+        height: 30px;
+        width: 95%;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        padding-left: 8px;
+        font-size: 12px;
+        color: var(--textColor);
+      }
+      ::placeholder {
+        font-size: 12px;
+        line-height: 14px;
+        color: var(--textColor-darkest);
+      }
+      :focus {
+        outline: 0.8px solid $mainColor;
+      }
+
+      .recruit-create-content-description {
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        line-height: 17px;
+        color: var(--textColor);
+        margin: 40px 0px 33px 5px;
+        .recruit-create-content-description__title {
+          display: flex;
+          justify-content: space-between;
+          & span {
+            margin-bottom: 10px;
+            &.recruit-create-content-description__title-length {
+              color: var(--textColor-darker);
+              margin-top: 10px;
+              padding-right: 5px;
+            }
+          }
+        }
+        & textarea {
+          width: 100%;
+          height: 240px;
+          border-radius: 10px;
+          border: 1px solid var(--borderColor);
+          background-color: var(--bgColor);
+          padding: 12px;
+          color: var(--textColor);
+        }
+      }
+    }
+  }
+  center {
+    & button {
+      cursor: pointer;
+      border: none;
+      border-radius: 7px;
+      color: #eeeeee;
+      background-color: $mainColor;
+      font-size: 16px;
+      line-height: 19px;
+      text-align: center;
+      width: 8rem;
+      height: 36px;
+      margin-top: 40px;
+      margin-bottom: 60px;
+    }
+  }
+  .recuit-create-alert {
+    color: red;
+    font-weight: 600;
+    margin-right: 5px;
+  }
+  .recruit-create-errormsg {
+    font-size: 14px;
+    color: var(--textColor);
+  }
+  .recruit-create-errorbtn {
+    border: none;
+    background-color: $mainColor;
+    color: #eeeeee;
+    border-radius: 5px;
+    font-size: 12px;
+    height: 25px;
+    width: 3.5rem;
+    margin-top: 16px;
+  }
+}

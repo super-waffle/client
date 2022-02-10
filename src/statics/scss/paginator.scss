@@ -1,0 +1,37 @@
+@import "main.scss";
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  font-family: $font-family;
+  & a {
+    text-decoration: none;
+    font-size: 12px;
+    border: none;
+    color: var(--textColor);
+  }
+  & li {
+    width: 1.6rem;
+    height: 1.6rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0.2rem 0 0.2rem;
+
+    &.active {
+      background-color: $mainColor;
+      border-radius: 100%;
+      & a {
+        color: #eeeeee;
+      }
+    }
+    &.disabled {
+      & a {
+        cursor: default;
+        color: var(--textColor-darkest);
+      }
+    }
+  }
+}

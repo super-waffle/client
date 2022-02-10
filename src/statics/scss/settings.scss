@@ -1,0 +1,35 @@
+@import "main.scss";
+
+.settings {
+  background-color: var(--htmlbgColor);
+  display: flex;
+  .settings-sidebar {
+    margin-right: 50px;
+    padding-left: 10%;
+    .settings-myprofile {
+      font-family: $font-family;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      padding-bottom: 14px;
+      padding-left: 10%;
+      margin-left: 10px;
+      .settings-myprofile__img {
+        margin-right: 13px;
+      }
+      .settings-myprofile__text {
+        .settings-myprofile__text-nickname {
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 24px;
+          color: var(--textColor);
+        }
+        .settings-myprofile__text-email {
+          font-size: 14px;
+          line-height: 17px;
+          color: var(--textColor-darker);
+        }
+      }
+    }
+  }
+}
