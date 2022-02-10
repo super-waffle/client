@@ -19,6 +19,7 @@ import HomeAchievement from './pages/Home_achievement';
 import HomeStatistics from './pages/Home_statistics';
 import HomeTodays from './pages/Home_todays';
 import VideoRoomComponent from './components/meetingroom/VideoRoomComponent';
+import MeetingroomVideo from './components/meetingroom/MeetingroomVideo';
 import StudyRecruitCreate from './pages/studyRecruitCreate';
 
 ReactDOM.render(
@@ -61,6 +62,11 @@ ReactDOM.render(
             element={
               isLogin() ? <Meetingrooms /> : <Login />
             }
+          />
+          
+          <Route
+            path="meetingrooms/:meetingSeq"
+            element={isLogin() ? <MeetingroomVideo /> : <Login />}
           />
           <Route
             path="videoRoomComponent"

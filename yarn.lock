@@ -10182,6 +10182,11 @@
   "resolved" "https://registry.npmjs.org/wildemitter/-/wildemitter-1.2.1.tgz"
   "version" "1.2.1"
 
+"with-router@^1.0.1":
+  "integrity" "sha512-Jc/rG+uhJ9iqRWJjQAB9kKQiwk+L35p9OsXqDJU/n/BoFEsgEQLcXzYZ/MS4jsnXsjYs07C/hQhsSZSUir85NA=="
+  "resolved" "https://registry.npmjs.org/with-router/-/with-router-1.0.1.tgz"
+  "version" "1.0.1"
+
 "wolfy87-eventemitter@5.2.9":
   "integrity" "sha512-P+6vtWyuDw+MB01X7UeF8TaHBvbCovf4HPEMF/SV7BdDc1SMTiBy13SRD71lQh4ExFTG1d/WNzDGDCyOKSMblw=="
   "resolved" "https://registry.npmjs.org/wolfy87-eventemitter/-/wolfy87-eventemitter-5.2.9.tgz"

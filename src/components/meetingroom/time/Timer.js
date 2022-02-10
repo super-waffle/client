@@ -15,9 +15,7 @@ class Timer extends Component{
 
     return (
       <div className="timer">
-        <span className="digits">
-          {timeString}
-        </span>
+        <span className="digits">{timeString}</span>
       </div>
     );
   }

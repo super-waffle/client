@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./TimeComponent.css";
 import Timer from "./Timer";
 import ControlButtons from "./ControlButtons";
@@ -8,9 +8,9 @@ function StopWatch(props) {
   const [isPaused, setIsPaused] = useState(true);
   const [time, setTime] = useState(0);
   props.onCreate(time);
-  props.onPause(isPaused);
+  // props.onPause(isPaused);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let interval = null;
   
     if (isActive && isPaused === false) {
