@@ -34,10 +34,27 @@
     border: 1px solid var(--borderColor);
     padding: 20px;
 
+    .studyrecruit-detail-box-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .studyrecruit-detail-box-heading__first-host-btn {
+        border: none;
+        text-decoration: none;
+        background-color: var(--bgColor);
+        font-size: 12px;
+        color: var(--textColor-dark);
+        padding-right: 5px;
+        &.update {
+          margin-right: 10px;
+        }
+      }
+    }
+
     .studyrecruit-detail-box-heading__first {
       display: flex;
-      padding-bottom: 10px;
-      padding-left: 6px;
+      padding: 5px 0 10px 6px;
+      // padding-left: 6px;
       .studyrecruit-detail-box-heading__title {
         font-weight: 600;
         font-size: 16px;
@@ -55,10 +72,15 @@
       }
     }
     .studyrecruit-detail-box-heading__second {
+      display: flex;
+      align-items: center;
       font-size: 14px;
       line-height: 14px;
       color: var(--textColor-darker);
       padding-left: 6px;
+      & svg {
+        margin-right: 7px;
+      }
     }
     .studyrecruit-detail-box-body {
       .studyrecruit-detail-box-body__row {
@@ -106,6 +128,18 @@
         color: var(--textColor);
       }
     }
+
+    .studyrecruit-detail-box-footer__host {
+      cursor: pointer;
+      border: none;
+      background-color: $mainColor;
+      color: #eeeeee;
+      font-size: 14px;
+      border-radius: 5px;
+      height: 30px;
+      width: 10rem;
+    }
+
     .studyrecruit-detail-box-footer__btn {
       cursor: pointer;
       border: none;
