@@ -30,7 +30,6 @@ export default function StudyRecruitCreate() {
       }));
     }
   }, [mondayEndTime, mondayStartTime]);
-  console.log("mon", mondayStartTime, mondayEndTime, isMonday, monday);
 
   const [tuesdayStartTime, setTuesdayStartTime] = useState("");
   const [tuesdayEndTime, setTuesdayEndTime] = useState("");
@@ -50,7 +49,6 @@ export default function StudyRecruitCreate() {
       }));
     }
   }, [tuesdayEndTime, tuesdayStartTime]);
-  console.log("tue", tuesdayStartTime, tuesdayEndTime, isTuesday, tuesday);
 
   const [wednesdayStartTime, setWednesdayStartTime] = useState("");
   const [wednesdayEndTime, setWednesdayEndTime] = useState("");
@@ -70,13 +68,6 @@ export default function StudyRecruitCreate() {
       }));
     }
   }, [wednesdayEndTime, wednesdayStartTime]);
-  console.log(
-    "wed",
-    wednesdayStartTime,
-    wednesdayEndTime,
-    isWednesday,
-    wednesday
-  );
 
   const [thursdayStartTime, setThursdayStartTime] = useState("");
   const [thursdayEndTime, setThursdayEndTime] = useState("");
@@ -96,7 +87,6 @@ export default function StudyRecruitCreate() {
       }));
     }
   }, [thursdayEndTime, thursdayStartTime]);
-  console.log("thu", thursdayStartTime, thursdayEndTime, isThursday, thursday);
 
   const [fridayStartTime, setFridayStartTime] = useState("");
   const [fridayEndTime, setFridayEndTime] = useState("");
@@ -116,7 +106,6 @@ export default function StudyRecruitCreate() {
       }));
     }
   }, [fridayEndTime, fridayStartTime]);
-  console.log("fri", fridayStartTime, fridayEndTime, isFriday, friday);
 
   const [saturdayStartTime, setSaturdayStartTime] = useState("");
   const [saturdayEndTime, setSaturdayEndTime] = useState("");
@@ -136,7 +125,6 @@ export default function StudyRecruitCreate() {
       }));
     }
   }, [saturdayEndTime, saturdayStartTime]);
-  console.log("sat", saturdayStartTime, saturdayEndTime, isSaturday, saturday);
 
   const [sundayStartTime, setSundayStartTime] = useState("");
   const [sundayEndTime, setSundayEndTime] = useState("");
@@ -156,7 +144,6 @@ export default function StudyRecruitCreate() {
       }));
     }
   }, [sundayEndTime, sundayStartTime]);
-  console.log("sun", sundayStartTime, sundayEndTime, isSunday, sunday);
 
   const [modalOpenMon, setModalOpenMon] = useState(false);
   const [modalOpenTue, setModalOpenTue] = useState(false);
@@ -299,17 +286,30 @@ export default function StudyRecruitCreate() {
     }
   }, [isSunday, sunday]);
 
-  console.log(
-    userSeq,
-    typeof Number(categorySeq),
-    Number(categorySeq),
-    studyTitle,
-    studyShortDesc,
-    studyDesc,
-    studyRecruitEnd,
-    days,
-    studyDesc.length
-  );
+  // console.log(
+  //   userSeq,
+  //   typeof Number(categorySeq),
+  //   Number(categorySeq),
+  //   studyTitle,
+  //   studyShortDesc,
+  //   studyDesc,
+  //   studyRecruitEnd,
+  //   days,
+  //   studyDesc.length
+  // );
+  // console.log("mon", mondayStartTime, mondayEndTime, isMonday, monday);
+  // console.log("tue", tuesdayStartTime, tuesdayEndTime, isTuesday, tuesday);
+  // console.log(
+  //   "wed",
+  //   wednesdayStartTime,
+  //   wednesdayEndTime,
+  //   isWednesday,
+  //   wednesday
+  // );
+  // console.log("thu", thursdayStartTime, thursdayEndTime, isThursday, thursday);
+  // console.log("fri", fridayStartTime, fridayEndTime, isFriday, friday);
+  // console.log("sat", saturdayStartTime, saturdayEndTime, isSaturday, saturday);
+  // console.log("sun", sundayStartTime, sundayEndTime, isSunday, sunday);
 
   const onSubmitStudy = useCallback(() => {
     const TOKEN = localStorage.getItem("accessToken");
@@ -651,7 +651,12 @@ export default function StudyRecruitCreate() {
         </div>
         <div className="recruit-create-content">
           <div className="recruit-create-content-description">
-            <span>스터디 소개</span>
+            <div className="recruit-create-content-description__title">
+              <span>스터디 소개</span>
+              <span className="recruit-create-content-description__title-length">
+                {studyDesc.length}/1000
+              </span>
+            </div>
             <textarea
               type="text"
               placeholder="스터디 모집 사항을 상세히 적어주세요"

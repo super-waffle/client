@@ -46,6 +46,7 @@ export default function StudyRecruit() {
         });
     }
   });
+
   const onKeyEnter = (event) => {
     if (event.key === "Enter") {
       onClickSearch();
@@ -54,6 +55,9 @@ export default function StudyRecruit() {
 
   useEffect(() => {
     if (isLogin) {
+      if (!category) {
+        setCategory(0);
+      }
       axios
         .get(
           "/studies?page=" +
@@ -69,7 +73,8 @@ export default function StudyRecruit() {
           }
         )
         .then((res) => {
-          // console.log(res);
+          console.log(res.data);
+          console.log("hi");
           const data = res.data.data;
           setPostData((prevState) => ({
             ...prevState,
@@ -77,7 +82,8 @@ export default function StudyRecruit() {
           }));
         });
     }
-  }, [currentPage]);
+  }, [currentPage, category, searchInput]);
+
   return (
     <div className="studyrecruit">
       <div className="studyrecruit-heading">
