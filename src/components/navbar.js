@@ -27,27 +27,19 @@ function Navbar() {
   useEffect(() => {
     const bgMode = window.localStorage.getItem('bgMode');
     if (bgMode === 'dark') {
-      document
-        .getElementsByTagName('html')[0]
-        .classList.add('ui-dark');
+      document.getElementsByTagName('html')[0].classList.add('ui-dark');
     }
   }, []);
 
   const darkOnOff = () => {
     if (
-      document
-        .getElementsByTagName('html')[0]
-        .classList.contains('ui-dark')
+      document.getElementsByTagName('html')[0].classList.contains('ui-dark')
     ) {
-      document
-        .getElementsByTagName('html')[0]
-        .classList.remove('ui-dark');
+      document.getElementsByTagName('html')[0].classList.remove('ui-dark');
       window.localStorage.setItem('bgMode', 'light');
       setIsDark(false);
     } else {
-      document
-        .getElementsByTagName('html')[0]
-        .classList.add('ui-dark');
+      document.getElementsByTagName('html')[0].classList.add('ui-dark');
       window.localStorage.setItem('bgMode', 'dark');
       setIsDark(true);
     }
@@ -93,7 +85,6 @@ function Navbar() {
       // console.log(res);
     }
   }, []);
-
 
   return (
     <div>
@@ -190,11 +181,7 @@ function Navbar() {
               </g>
               <defs>
                 <clipPath id="clip0_753_4048">
-                  <rect
-                    width="13"
-                    height="13"
-                    fill="white"
-                  />
+                  <rect width="13" height="13" fill="white" />
                 </clipPath>
               </defs>
             </svg>
@@ -302,17 +289,11 @@ function Navbar() {
       </div>
       <div
         ref={dropdownRef}
-        className={`navbar-dropdown ${
-          isActive ? 'active' : 'hidden'
-        }`}
+        className={`navbar-dropdown ${isActive ? 'active' : 'hidden'}`}
       >
         <div className="navbar-dropdown-list">
-          <span className="navbar-dropdown-nickname">
-            {nickname}
-          </span>
-          <span className="navbar-dropdown-email">
-            {email}
-          </span>
+          <span className="navbar-dropdown-nickname">{nickname}</span>
+          <span className="navbar-dropdown-email">{email}</span>
         </div>
         <div className="navbar-dropdown-list">
           <button

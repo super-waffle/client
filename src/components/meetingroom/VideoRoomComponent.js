@@ -323,18 +323,22 @@ class VideoRoomComponent extends Component {
       console.log('sessiontoken  : ', sessionToken);
       const token = localStorage.getItem('accessToken');
       axios
-        .delete('/meetings/1/room', {
-          data: {
-            sessionToken: sessionToken,
-            logMeeting: this.state.time / 60, //총공부한시간
-            logStartTime: meetingStartTime,
-          },
+        .delete(
+          process.env.REACT_APP_SERVER_URL +
+            '/meetings/1/room',
+          {
+            data: {
+              sessionToken: sessionToken,
+              logMeeting: this.state.time / 60, //총공부한시간
+              logStartTime: meetingStartTime,
+            },
 
-          headers: {
-            Authorization: 'Bearer ' + token,
-            'Content-Type': 'application/json',
-          },
-        })
+            headers: {
+              Authorization: 'Bearer ' + token,
+              'Content-Type': 'application/json',
+            },
+          }
+        )
         .then((response) => {
           console.log('Leave', response);
           resolve(response.data.token);
@@ -853,20 +857,28 @@ class VideoRoomComponent extends Component {
       const token = localStorage.getItem('accessToken');
       axios
         .all([
-          axios.post('/meetings/1/room', data, {
-            // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
-            headers: {
-              Authorization: 'Bearer ' + token,
-              'Content-Type': 'application/json',
-            },
-          }),
-          axios.get('/users', {
-            // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
-            headers: {
-              Authorization: 'Bearer ' + token,
-              'Content-Type': 'application/json',
-            },
-          }),
+          axios.post(
+            process.env.REACT_APP_SERVER_URL +
+              '/meetings/1/room',
+            data,
+            {
+              // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
+              headers: {
+                Authorization: 'Bearer ' + token,
+                'Content-Type': 'application/json',
+              },
+            }
+          ),
+          axios.get(
+            process.env.REACT_APP_SERVER_URL + '/users',
+            {
+              // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
+              headers: {
+                Authorization: 'Bearer ' + token,
+                'Content-Type': 'application/json',
+              },
+            }
+          ),
         ])
 
         .then(
