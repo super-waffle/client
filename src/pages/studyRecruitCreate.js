@@ -396,6 +396,7 @@ export default function StudyRecruitCreate() {
                 <td className="recruit-create-content-row a2">
                   <input
                     className="recruit-input"
+                    maxLength="50"
                     placeholder="스터디 이름을 입력하세요"
                     onChange={useCallback((event) => {
                       setStudyTitle(event.target.value);
@@ -408,6 +409,7 @@ export default function StudyRecruitCreate() {
                 <td className="recruit-create-content-row a2">
                   <input
                     className="recruit-input"
+                    maxLength="50"
                     placeholder="간단한 소개를 작성해주세요"
                     onChange={useCallback((event) => {
                       setStudyShotrDesc(event.target.value);
