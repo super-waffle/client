@@ -2,12 +2,11 @@ import React, { forwardRef, useEffect, useState } from "react";
 import { addDays } from "date-fns";
 
 import DatePicker, { registerLocale } from "react-datepicker";
+
 import "react-datepicker/dist/react-datepicker.css";
 import "../statics/css/datepicker.css";
 
 import ko from "date-fns/locale/ko";
-import { propTypes } from "react-bootstrap/esm/Image";
-import ChangeDateFormat from "./dateformat";
 registerLocale("ko", ko);
 
 export default function StudyDatePicker(props) {
@@ -15,8 +14,7 @@ export default function StudyDatePicker(props) {
   const [startDate, setStartDate] = useState(addDays(new Date(), 7));
 
   //yyyy-mm-dd 포맷 날짜 생성
-  function changeDateFormat() {
-    const d = startDate;
+  function changeDateFormat(d) {
     return (
       d.getFullYear() +
       "-" +
@@ -27,7 +25,9 @@ export default function StudyDatePicker(props) {
       (d.getDate() > 9 ? d.getDate().toString() : "0" + d.getDate().toString())
     );
   }
-  props.endDate(changeDateFormat());
+  useEffect(() => {
+    props.endDate(changeDateFormat(startDate));
+  }, [startDate]);
 
   const months = [
     "January",

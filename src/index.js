@@ -18,6 +18,7 @@ import HomeStatistics from './pages/Home_statistics';
 import HomeTodays from './pages/Home_todays';
 import VideoRoomComponent from './components/meetingroom/VideoRoomComponent';
 import StudyRecruitCreate from './pages/studyRecruitCreate';
+import StudyRecruitDetail from "./pages/studyRecruitDetail";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -38,6 +39,10 @@ ReactDOM.render(
             <Route
               path="studyrecruit/create"
               element={isLogin() ? <StudyRecruitCreate /> : <Login />}
+            />
+            <Route
+              path="studyrecruit/:studyseq"
+              element={isLogin() ? <StudyRecruitDetail /> : <Login />}
             />
             <Route
               path="meetingrooms"
@@ -66,5 +71,5 @@ ReactDOM.render(
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

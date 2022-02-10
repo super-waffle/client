@@ -31,20 +31,33 @@
       width: 8rem;
     }
     .studyrecruit-search {
-      & input {
+      display: flex;
+      .studyrecruit-search__bar {
         background-color: var(--bgColor);
         border: 1px solid var(--borderColor);
-        width: 32vw;
+        border-radius: 5px;
+        padding-right: 10px;
         margin-left: 8px;
+        & svg {
+          cursor: pointer;
+        }
+      }
+      & input {
+        background-color: var(--bgColor);
+        border: none;
+        width: 32vw;
+        height: 30px;
         border-radius: 5px;
         padding-left: 7px;
+        font-size: 12px;
       }
       ::placeholder {
         color: var(--textColor-darkest);
         font-size: 10px;
       }
       :focus {
-        outline: 0.8px solid $mainColor;
+        // outline: 0.8px solid $mainColor;
+        outline: none;
       }
     }
     .studyrecruit-create {
@@ -108,6 +121,14 @@
           color: var(--textColor-dark);
           font-size: 11px;
           line-height: 24px;
+        }
+        .studyrecruit-board-body__link {
+          text-decoration: none;
+          font-size: 14px;
+          line-height: 24px;
+          color: var(--textColor);
+          // font-weight: 350;
+          padding-top: 0.2rem;
         }
         .studyrecruit-board-body__category {
           font-size: 12px;
