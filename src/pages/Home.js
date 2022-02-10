@@ -22,7 +22,7 @@ export default function Home() {
           },
         })
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           const USER = res.data.user;
           setNickname(USER.userNickname);
           setEmail(USER.userEmail);

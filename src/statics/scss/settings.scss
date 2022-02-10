@@ -3,9 +3,11 @@
 .settings {
   background-color: var(--htmlbgColor);
   display: flex;
+  padding-right: 18%;
   .settings-sidebar {
     margin-right: 50px;
     padding-left: 10%;
+    // padding-right: 10%;
     .settings-myprofile {
       font-family: $font-family;
       display: flex;

@@ -1,0 +1,19 @@
+@import "main.scss";
+
+.settings-profile {
+  // background-color: var(--bgColor);
+  width: 100%;
+  .settings-profile__box {
+    padding: 80px 10px 0 15px;
+    // .settings-profile__box-text {
+    // }
+    .settings-profile__box-heading {
+      border-bottom: 1px solid var(--textColor-darkest);
+      color: var(--textColor);
+      padding-left: 6px;
+      padding-bottom: 15px;
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+}

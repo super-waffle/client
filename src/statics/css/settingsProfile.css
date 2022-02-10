@@ -41,37 +41,19 @@
   display: none;
 }
 
-.settings {
-  background-color: var(--htmlbgColor);
-  display: flex;
-  padding-right: 18%;
+.settings-profile {
+  width: 100%;
 }
-.settings .settings-sidebar {
-  margin-right: 50px;
-  padding-left: 10%;
+.settings-profile .settings-profile__box {
+  padding: 80px 10px 0 15px;
 }
-.settings .settings-sidebar .settings-myprofile {
-  font-family: "Pretendard";
-  display: flex;
-  align-items: center;
-  padding-top: 80px;
-  padding-bottom: 14px;
-  padding-left: 10%;
-  margin-left: 10px;
-}
-.settings .settings-sidebar .settings-myprofile .settings-myprofile__img {
-  margin-right: 13px;
-}
-.settings .settings-sidebar .settings-myprofile .settings-myprofile__text .settings-myprofile__text-nickname {
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
+.settings-profile .settings-profile__box .settings-profile__box-heading {
+  border-bottom: 1px solid var(--textColor-darkest);
   color: var(--textColor);
-}
-.settings .settings-sidebar .settings-myprofile .settings-myprofile__text .settings-myprofile__text-email {
-  font-size: 14px;
-  line-height: 17px;
-  color: var(--textColor-darker);
+  padding-left: 6px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  line-height: 24px;
 }
 
-/*# sourceMappingURL=settings.css.map */
+/*# sourceMappingURL=settingsProfile.css.map */

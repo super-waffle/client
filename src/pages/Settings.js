@@ -20,7 +20,7 @@ export default function Settings() {
         })
         .then((res) => {
           const USER = res.data.user;
-          console.log(USER);
+          // console.log(USER);
           setProfileImg(USER.userImg);
           setNickname(USER.userNickname);
           setEmail(USER.userEmail);
