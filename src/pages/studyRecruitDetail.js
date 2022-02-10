@@ -95,7 +95,7 @@ export default function StudyRecruitDetail() {
       return "일";
     }
   };
-  console.log(data);
+  // console.log(data);
 
   // 스터디 신청
   const onApply = useCallback(() => {
@@ -110,7 +110,7 @@ export default function StudyRecruitDetail() {
         }
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.data.statusCode === 200) {
           setIsSuccess(true);
         } else if (res.data.statusCode === 409) {

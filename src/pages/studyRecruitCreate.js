@@ -10,6 +10,7 @@ import CategorySelect from "../components/categorySelect";
 import isLogin from "../utils/isLogin";
 
 import "../statics/css/studyRecruitCreate.css";
+import Modal from "../components/modal";
 
 export default function StudyRecruitCreate() {
   const [mondayStartTime, setMondayStartTime] = useState("");
@@ -314,6 +315,14 @@ export default function StudyRecruitCreate() {
   // console.log("sat", saturdayStartTime, saturdayEndTime, isSaturday, saturday);
   // console.log("sun", sundayStartTime, sundayEndTime, isSunday, sunday);
 
+  const [errorCode, setErrorCode] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
   const onSubmitStudy = useCallback(() => {
     const TOKEN = localStorage.getItem("accessToken");
     axios
@@ -335,7 +344,19 @@ export default function StudyRecruitCreate() {
         }
       )
       .then((res) => {
-        navigate("/studyrecruit");
+        console.log(res);
+        if (res.data.statusCode === 200) {
+          navigate("/studyrecruit");
+        } else if (res.data.statusCode === 406) {
+          setErrorCode(406);
+          openModal();
+        } else if (res.data.statusCode === 407) {
+          setErrorCode(407);
+          openModal();
+        } else if (res.data.statusCode === 408) {
+          setErrorCode(408);
+          openModal();
+        }
       });
   }, [
     userSeq,
@@ -672,6 +693,29 @@ export default function StudyRecruitCreate() {
       <center>
         <button onClick={onSubmitStudy}>스터디 개설</button>
       </center>
+      <Modal open={modalOpen} close={closeModal} header=" ">
+        <div>
+          <span className="recuit-create-alert">!</span>
+          {errorCode === 408 && (
+            <span className="recruit-create-errormsg">
+              스터디 요일과 시간을 설정해주세요
+            </span>
+          )}
+          {errorCode === 406 && (
+            <span className="recruit-create-errormsg">
+              카테고리를 선택해주세요
+            </span>
+          )}
+          {errorCode === 407 && (
+            <span className="recruit-create-errormsg">
+              입력되지 않은 항목이 있습니다
+            </span>
+          )}
+        </div>
+        <button className="recruit-create-errorbtn" onClick={closeModal}>
+          확인
+        </button>
+      </Modal>
     </div>
   );
 }
