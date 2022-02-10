@@ -19,6 +19,12 @@ import HomeTodays from './pages/Home_todays';
 import VideoRoomComponent from './components/meetingroom/VideoRoomComponent';
 import StudyRecruitCreate from './pages/studyRecruitCreate';
 import StudyRecruitDetail from "./pages/studyRecruitDetail";
+import SettingsProfile from "./pages/SettingsProfile";
+import SettingsAdmin from "./pages/SettingsAdmin";
+import SettingsAlarm from "./pages/SettingsAlarm";
+import SettingsStudy from "./pages/SettingsStudy";
+import SettingsMeeting from "./pages/SettingsMeeting";
+import SettingsMeetingFavorite from "./pages/SettingsMeetingFavorite";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -32,44 +38,45 @@ ReactDOM.render(
               <Route path="tab=statistics" element={<HomeStatistics />} />
             </Route>
 
-            <Route
-              path="studyrecruit"
-              element={isLogin() ? <StudyRecruit /> : <Login />}
-            />
-            <Route
-              path="studyrecruit/create"
-              element={isLogin() ? <StudyRecruitCreate /> : <Login />}
-            />
-            <Route
-              path="studyrecruit/:studyseq"
-              element={isLogin() ? <StudyRecruitDetail /> : <Login />}
-            />
-            <Route
-              path="meetingrooms"
-              element={isLogin() ? <Meetingrooms /> : <Login />}
-            />
-            <Route
-              path="videoRoomComponent"
-              element={isLogin() ? <VideoRoomComponent /> : <Login />}
-            />
-            <Route
-              path="schedules"
-              element={isLogin() ? <Schedule /> : <Login />}
-            />
-            <Route
-              path="profile"
-              element={isLogin() ? <Profile /> : <Login />}
-            />
-            <Route
-              path="settings"
-              element={isLogin() ? <Settings /> : <Login />}
-            />
+          <Route
+            path="studyrecruit"
+            element={isLogin() ? <StudyRecruit /> : <Login />}
+          />
+          <Route
+            path="studyrecruit/create"
+            element={isLogin() ? <StudyRecruitCreate /> : <Login />}
+          />
+          <Route
+            path="studyrecruit/:studyseq"
+            element={isLogin() ? <StudyRecruitDetail /> : <Login />}
+          />
+          <Route
+            path="meetingrooms"
+            element={isLogin() ? <Meetingrooms /> : <Login />}
+          />
+          <Route
+            path="videoRoomComponent"
+            element={isLogin() ? <VideoRoomComponent /> : <Login />}
+          />
+          <Route
+            path="schedules"
+            element={isLogin() ? <Schedule /> : <Login />}
+          />
+          <Route path="profile" element={isLogin() ? <Profile /> : <Login />} />
+          <Route path="settings" element={isLogin() ? <Settings /> : <Login />}>
+            <Route path="profile" element={<SettingsProfile />} />
+            <Route path="admin" element={<SettingsAdmin />} />
+            <Route path="alarm" element={<SettingsAlarm />} />
+            <Route path="study" element={<SettingsStudy />} />
+            <Route path="meeting" element={<SettingsMeeting />} />
+            <Route path="meeting-fav" element={<SettingsMeetingFavorite />} />
           </Route>
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<Signup />} />
-        </Routes>
-      </BrowserRouter>
-    </Provider>
+        </Route>
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+      </Routes>
+    </BrowserRouter>
+
   </React.StrictMode>,
   document.getElementById("root")
 );
