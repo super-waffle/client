@@ -66,23 +66,25 @@ function Navbar() {
   }, [isActive]);
 
   // 유저 정보 불러오기
-  if (isLogin()) {
-    axios
-      .get("/users", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        const USER = res.data.user;
-        // console.log(USER);
-        setProfileImg(USER.userImg);
-        setNickname(USER.userNickname);
-        setEmail(USER.userEmail);
-        // console.log(profileImg, nickname, email);
-      });
-    // console.log(res);
-  }
+  useEffect(() => {
+    if (isLogin()) {
+      axios
+        .get("/users", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          const USER = res.data.user;
+          // console.log(USER);
+          setProfileImg(USER.userImg);
+          setNickname(USER.userNickname);
+          setEmail(USER.userEmail);
+          // console.log(profileImg, nickname, email);
+        });
+      // console.log(res);
+    }
+  }, []);
 
   return (
     <div>

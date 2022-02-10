@@ -29,7 +29,7 @@ export default function Home() {
           setProfileMsg(USER.userProfileMsg);
         });
     }
-  });
+  }, []);
 
   return (
     <div className="home">

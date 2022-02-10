@@ -211,18 +211,21 @@ export default function StudyRecruitCreate() {
   const [days, setDays] = useState([]);
   const navigate = useNavigate();
 
-  if (isLogin()) {
-    const TOKEN = localStorage.getItem("accessToken");
-    axios
-      .get("/users", {
-        headers: {
-          Authorization: `Bearer ${TOKEN}`,
-        },
-      })
-      .then((res) => {
-        setUserSeq(res.data.user.userSeq);
-      });
-  }
+  useEffect(() => {
+    if (isLogin()) {
+      const TOKEN = localStorage.getItem("accessToken");
+      axios
+        .get("/users", {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+          },
+        })
+        .then((res) => {
+          setUserSeq(res.data.user.userSeq);
+        });
+    }
+  }, []);
+
   function onRemove(id) {
     setDays(days.filter((days) => days.dayNumber !== id));
   }
