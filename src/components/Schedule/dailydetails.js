@@ -1,9 +1,10 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import DailyTodoList from './Todo/todos';
 import Todaystudy from './todaystudy';
 import Diary from './diary';
+import { useSelector } from 'react-redux';
 
 export default function Dailydetails() {
+  const selectDay = useSelector((state) => state.schedule.selectedDay);
   return (
     <Container
       fluid
@@ -24,7 +25,9 @@ export default function Dailydetails() {
             textAlign: 'center',
           }}
         >
-          선택한 날짜
+          {JSON.parse(selectDay).split('-')[0]}년{' '}
+          {parseInt(JSON.parse(selectDay).split('-')[1])}월{' '}
+          {parseInt(JSON.parse(selectDay).split('-')[2])}일{' '}
         </h3>
       </Row>
       <Row
@@ -34,7 +37,7 @@ export default function Dailydetails() {
         }}
       >
         <Col sm={4} md={4} lg={4}>
-          <DailyTodoList />
+          {/* <DailyTodoList /> */}
         </Col>
         <Col sm={8} md={8} lg={8}>
           <Row>

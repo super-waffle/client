@@ -1,21 +1,23 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "./App";
-import Home from "./pages/Home";
-import StudyRecruit from "./pages/StudyRecruit";
-import Meetingrooms from "./pages/Meetingrooms";
-import Profile from "./pages/Profile";
-import Settings from "./pages/Settings";
-import Schedule from "./pages/Schedule";
-import Login from "./components/login";
-import Signup from "./components/signup";
-import isLogin from "./utils/isLogin";
-import HomeAchievement from "./pages/Home_achievement";
-import HomeStatistics from "./pages/Home_statistics";
-import HomeTodays from "./pages/Home_todays";
-import VideoRoomComponent from "./components/meetingroom/VideoRoomComponent";
-import StudyRecruitCreate from "./pages/studyRecruitCreate";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
+import App from './App';
+import Home from './pages/Home';
+import StudyRecruit from './pages/StudyRecruit';
+import Meetingrooms from './pages/Meetingrooms';
+import Profile from './pages/Profile';
+import Settings from './pages/Settings';
+import Schedule from './pages/Schedule';
+import Login from './components/login';
+import Signup from './components/signup';
+import isLogin from './utils/isLogin';
+import HomeAchievement from './pages/Home_achievement';
+import HomeStatistics from './pages/Home_statistics';
+import HomeTodays from './pages/Home_todays';
+import VideoRoomComponent from './components/meetingroom/VideoRoomComponent';
+import StudyRecruitCreate from './pages/studyRecruitCreate';
 import StudyRecruitDetail from "./pages/studyRecruitDetail";
 import SettingsProfile from "./pages/SettingsProfile";
 import SettingsAdmin from "./pages/SettingsAdmin";
@@ -26,14 +28,15 @@ import SettingsMeetingFavorite from "./pages/SettingsMeetingFavorite";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="home" element={isLogin() ? <Home /> : <Login />}>
-            <Route path="tab=todays" element={<HomeTodays />} />
-            <Route path="tab=achievement" element={<HomeAchievement />} />
-            <Route path="tab=statistics" element={<HomeStatistics />} />
-          </Route>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route path="home" element={isLogin() ? <Home /> : <Login />}>
+              <Route path="tab=todays" element={<HomeTodays />} />
+              <Route path="tab=achievement" element={<HomeAchievement />} />
+              <Route path="tab=statistics" element={<HomeStatistics />} />
+            </Route>
 
           <Route
             path="studyrecruit"
@@ -73,6 +76,7 @@ ReactDOM.render(
         <Route path="signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
+
   </React.StrictMode>,
   document.getElementById("root")
 );

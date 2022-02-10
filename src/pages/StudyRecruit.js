@@ -121,7 +121,7 @@ export default function StudyRecruit() {
         </div>
         <button
           className="studyrecruit-create"
-          onClick={() => navigate("create")}
+          onClick={() => navigate('create')}
         >
           모집글 작성하기
         </button>
@@ -130,10 +130,18 @@ export default function StudyRecruit() {
         <table>
           <thead>
             <tr className="studyrecruit-board-th">
-              <th className="studyrecruit-board-head num">#</th>
-              <th className="studyrecruit-board-head title">제목</th>
-              <th className="studyrecruit-board-head host">글쓴이</th>
-              <th className="studyrecruit-board-head date">모집기한</th>
+              <th className="studyrecruit-board-head num">
+                #
+              </th>
+              <th className="studyrecruit-board-head title">
+                제목
+              </th>
+              <th className="studyrecruit-board-head host">
+                글쓴이
+              </th>
+              <th className="studyrecruit-board-head date">
+                모집기한
+              </th>
               <th className="studyrecruit-board-head ppl">
                 <svg
                   width="15"
