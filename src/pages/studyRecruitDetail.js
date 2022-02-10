@@ -13,6 +13,7 @@ export default function StudyRecruitDetail() {
   const [todayDate, setTodayDate] = useState(new Date());
   const [isSuccess, setIsSuccess] = useState(false);
   const [userSeq, setUserSeq] = useState("");
+  const [hostSeq, setHostSeq] = useState("");
 
   // 모달창
   const [modalOpen, setModalOpen] = useState(false);
@@ -61,6 +62,7 @@ export default function StudyRecruitDetail() {
         })
         .then((res) => {
           const apidata = res.data;
+          setHostSeq(apidata.hostSeq);
           setData((prevState) => ({
             ...prevState,
             apidata,
@@ -144,20 +146,70 @@ export default function StudyRecruitDetail() {
       </div>
       <div className="studyrecruit-detail-box">
         <div>
-          <div className="studyrecruit-detail-box-heading__first">
-            {data.apidata && (
-              <div className="studyrecruit-detail-box-heading__title">
-                {data.apidata.studyTitle}
-              </div>
-            )}
-            {data.apidata && (
-              <div className="studyrecruit-detail-box-heading__category">
-                {data.apidata.categoryName}
+          <div className="studyrecruit-detail-box-heading">
+            <div className="studyrecruit-detail-box-heading__first">
+              {data.apidata && (
+                <div className="studyrecruit-detail-box-heading__title">
+                  {data.apidata.studyTitle}
+                </div>
+              )}
+              {data.apidata && (
+                <div className="studyrecruit-detail-box-heading__category">
+                  {data.apidata.categoryName}
+                </div>
+              )}
+            </div>
+            {userSeq === hostSeq && (
+              <div className="studyrecruit-detail-box-heading__first-host">
+                {/* [TODO]: update, delete 페이지로 링크 필요 */}
+                <Link
+                  to={"/"}
+                  className="studyrecruit-detail-box-heading__first-host-btn update"
+                >
+                  수정
+                </Link>
+                <Link
+                  to={"/"}
+                  className="studyrecruit-detail-box-heading__first-host-btn"
+                >
+                  삭제
+                </Link>
               </div>
             )}
           </div>
           <div className="studyrecruit-detail-box-heading__second">
-            <div className="studyrecruit-detail-box-heading__profileImage"></div>
+            {data.apidata && (
+              <div className="studyrecruit-detail-box-heading__profileImage">
+                {data.apidata.hostImg === null && (
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g clipPath="url(#clip0_233_15455)">
+                      <path
+                        d="M0 20C0 8.95431 8.95431 0 20 0C31.0457 0 40 8.95431 40 20C40 31.0457 31.0457 40 20 40C8.95431 40 0 31.0457 0 20Z"
+                        fill="#f4f4f4"
+                      />
+                      <path
+                        d="M40 34.9906V40.0023H0V35.009C2.32658 31.8997 5.34651 29.3762 8.81965 27.6391C12.2928 25.9019 16.1233 24.9991 20.0067 25.0023C28.18 25.0023 35.44 28.9256 40 34.9906ZM26.67 15.0006C26.67 16.7688 25.9676 18.4645 24.7174 19.7147C23.4671 20.9649 21.7714 21.6673 20.0033 21.6673C18.2352 21.6673 16.5395 20.9649 15.2893 19.7147C14.039 18.4645 13.3367 16.7688 13.3367 15.0006C13.3367 13.2325 14.039 11.5368 15.2893 10.2866C16.5395 9.03636 18.2352 8.33398 20.0033 8.33398C21.7714 8.33398 23.4671 9.03636 24.7174 10.2866C25.9676 11.5368 26.67 13.2325 26.67 15.0006Z"
+                        fill="#c0c0c0"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_233_15455">
+                        <path
+                          d="M0 20C0 8.95431 8.95431 0 20 0C31.0457 0 40 8.95431 40 20C40 31.0457 31.0457 40 20 40C8.95431 40 0 31.0457 0 20Z"
+                          fill="white"
+                        />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                )}
+              </div>
+            )}
             {data.apidata && (
               <div className="studyrecruit-detail-box-heading__nickname">
                 {data.apidata.hostNickName}
@@ -219,36 +271,43 @@ export default function StudyRecruitDetail() {
             )}
           </div>
         </div>
-        {/* [TODO]: userSeq hostSeq 비교해서 상세정보 페이지 차이 만들기 */}
-        {/* {userSeq !== host} */}
-        <center>
-          <div className="studyrecruit-detail-box-footer">
-            <button
-              onClick={onApply}
-              className="studyrecruit-detail-box-footer__btn"
-            >
-              스터디 신청
+        {userSeq !== hostSeq && (
+          <center>
+            <div className="studyrecruit-detail-box-footer">
+              <button
+                onClick={onApply}
+                className="studyrecruit-detail-box-footer__btn"
+              >
+                스터디 신청
+              </button>
+              <Modal open={modalOpen} close={closeModal} header=" ">
+                {isSuccess && (
+                  <div className="studyapply-modal-msg">
+                    신청이 완료되었습니다
+                  </div>
+                )}
+                {!isSuccess && (
+                  <div className="studyapply-modal-msg">
+                    이미 신청한 스터디입니다
+                  </div>
+                )}
+                <button className="studyapply-modal-ok" onClick={closeModal}>
+                  확인
+                </button>
+                <button className="studyapply-modal-go-to-mystudy">
+                  내 스터디 보러가기
+                </button>
+              </Modal>
+            </div>
+          </center>
+        )}
+        {userSeq === hostSeq && (
+          <center>
+            <button className="studyrecruit-detail-box-footer__host">
+              신청자 목록 조회하기
             </button>
-            <Modal open={modalOpen} close={closeModal} header=" ">
-              {isSuccess && (
-                <div className="studyapply-modal-msg">
-                  신청이 완료되었습니다
-                </div>
-              )}
-              {!isSuccess && (
-                <div className="studyapply-modal-msg">
-                  이미 신청한 스터디입니다
-                </div>
-              )}
-              <button className="studyapply-modal-ok" onClick={closeModal}>
-                확인
-              </button>
-              <button className="studyapply-modal-go-to-mystudy">
-                내 스터디 보러가기
-              </button>
-            </Modal>
-          </div>
-        </center>
+          </center>
+        )}
       </div>
     </div>
   );
