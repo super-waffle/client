@@ -31,7 +31,7 @@ export default function CategorySelect(props) {
   // console.log(selectedCategory);
   useEffect(() => {
     props.categoryseq(selectedCategory);
-  }, []);
+  }, [selectedCategory]);
   const SelectBox = (props) => {
     // console.log(props.options.category);
     return (

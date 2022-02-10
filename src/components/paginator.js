@@ -5,12 +5,13 @@ import "../statics/css/paginator.css";
 
 export default function Paginator(props) {
   const [page, setPage] = useState(1);
+
   const handlePageChange = (page) => {
     setPage(page);
   };
   useEffect(() => {
     props.currentpage(page);
-  }, []);
+  }, [page]);
   return (
     <Pagination
       activePage={page}

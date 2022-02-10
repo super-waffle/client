@@ -214,8 +214,7 @@ export default function StudyRecruitCreate() {
   const [studyShortDesc, setStudyShotrDesc] = useState("");
   const [studyDesc, setStudyDesc] = useState("");
   const [studyRecruitEnd, setStudyRecruitEnd] = useState("");
-  const [categorySeq, setCategorySeq] = useState("");
-  console.log(userSeq, studyTitle, studyShortDesc, studyDesc, studyRecruitEnd);
+  const [categorySeq, setCategorySeq] = useState(0);
 
   // [TODO]: 스터디 상세정보 글자수 실시간으로 보여주기 (1000자 제한)
   const onChangeStudyDesc = useCallback((event) => {
@@ -300,6 +299,18 @@ export default function StudyRecruitCreate() {
     }
   }, [isSunday, sunday]);
 
+  console.log(
+    userSeq,
+    typeof Number(categorySeq),
+    Number(categorySeq),
+    studyTitle,
+    studyShortDesc,
+    studyDesc,
+    studyRecruitEnd,
+    days,
+    studyDesc.length
+  );
+
   const onSubmitStudy = useCallback(() => {
     const TOKEN = localStorage.getItem("accessToken");
     axios
@@ -307,7 +318,7 @@ export default function StudyRecruitCreate() {
         "/studies",
         {
           hostSea: userSeq,
-          categorySeq: categorySeq,
+          categorySeq: Number(categorySeq),
           studyTitle: studyTitle,
           studyShortDesc: studyShortDesc,
           studyDesc: studyDesc,
@@ -323,7 +334,16 @@ export default function StudyRecruitCreate() {
       .then((res) => {
         navigate("/studyrecruit");
       });
-  }, []);
+  }, [
+    userSeq,
+    categorySeq,
+    studyTitle,
+    studyShortDesc,
+    studyDesc,
+    studyRecruitEnd,
+    days,
+  ]);
+
   // console.log(days);
   // console.log(categorySeq);
   return (

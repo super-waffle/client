@@ -11,18 +11,19 @@ import "../statics/css/studyRecruit.css";
 export default function StudyRecruit() {
   const navigate = useNavigate();
   const TOKEN = localStorage.getItem("accessToken");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(0);
   const [postData, setPostData] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  const [currenPage, setCurrentPage] = useState(1);
-  // console.log(
-  //   "page: ",
-  //   currenPage,
-  //   "search: ",
-  //   searchInput,
-  //   "category: ",
-  //   category
-  // );
+  const [currentPage, setCurrentPage] = useState(1);
+
+  console.log(
+    "page: ",
+    currentPage,
+    "search: ",
+    searchInput,
+    "category: ",
+    category
+  );
 
   const onChangeSearch = useCallback((event) => {
     setSearchInput(event.target.value);
@@ -31,19 +32,11 @@ export default function StudyRecruit() {
   const onClickSearch = useCallback(() => {
     if (isLogin) {
       axios
-        .get(
-          "/studies?page=" +
-            currenPage +
-            "&type=" +
-            category +
-            "&key=" +
-            searchInput,
-          {
-            headers: {
-              Authorization: `Bearer ${TOKEN}`,
-            },
-          }
-        )
+        .get("/studies?page=1&type=" + category + "&key=" + searchInput, {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+          },
+        })
         .then((res) => {
           const data = res.data.data;
           setPostData((prevState) => ({
@@ -62,11 +55,19 @@ export default function StudyRecruit() {
   useEffect(() => {
     if (isLogin) {
       axios
-        .get("/studies?page=1&type=0&key=", {
-          headers: {
-            Authorization: `Bearer ${TOKEN}`,
-          },
-        })
+        .get(
+          "/studies?page=" +
+            currentPage +
+            "&type=" +
+            category +
+            "&key=" +
+            searchInput,
+          {
+            headers: {
+              Authorization: `Bearer ${TOKEN}`,
+            },
+          }
+        )
         .then((res) => {
           // console.log(res);
           const data = res.data.data;
@@ -76,7 +77,7 @@ export default function StudyRecruit() {
           }));
         });
     }
-  }, []);
+  }, [currentPage]);
   return (
     <div className="studyrecruit">
       <div className="studyrecruit-heading">

@@ -14,8 +14,7 @@ export default function StudyDatePicker(props) {
   const [startDate, setStartDate] = useState(addDays(new Date(), 7));
 
   //yyyy-mm-dd 포맷 날짜 생성
-  function changeDateFormat() {
-    const d = startDate;
+  function changeDateFormat(d) {
     return (
       d.getFullYear() +
       "-" +
@@ -27,8 +26,8 @@ export default function StudyDatePicker(props) {
     );
   }
   useEffect(() => {
-    props.endDate(changeDateFormat());
-  }, []);
+    props.endDate(changeDateFormat(startDate));
+  }, [startDate]);
 
   const months = [
     "January",
