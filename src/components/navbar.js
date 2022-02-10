@@ -4,43 +4,42 @@ import "../statics/css/navbar.css";
 import axios from "axios";
 import isLogin from "../utils/isLogin";
 
-
 function Navbar() {
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
-  const token = localStorage.getItem('accessToken');
+  const token = localStorage.getItem("accessToken");
 
-  const [nickname, setNickname] = useState('');
-  const [email, setEmail] = useState('');
-  const [profileImg, setProfileImg] = useState('');
+  const [nickname, setNickname] = useState("");
+  const [email, setEmail] = useState("");
+  const [profileImg, setProfileImg] = useState("");
   const [isActive, setIsActive] = useState(false);
   const [isDark, setIsDark] = useState(false);
 
   // logout
   const onClickLogout = () => {
-    localStorage.removeItem('accessToken');
-    navigate('/');
+    localStorage.removeItem("accessToken");
+    navigate("/");
     window.location.reload();
   };
 
   // darkmode
   useEffect(() => {
-    const bgMode = window.localStorage.getItem('bgMode');
-    if (bgMode === 'dark') {
-      document.getElementsByTagName('html')[0].classList.add('ui-dark');
+    const bgMode = window.localStorage.getItem("bgMode");
+    if (bgMode === "dark") {
+      document.getElementsByTagName("html")[0].classList.add("ui-dark");
     }
   }, []);
 
   const darkOnOff = () => {
     if (
-      document.getElementsByTagName('html')[0].classList.contains('ui-dark')
+      document.getElementsByTagName("html")[0].classList.contains("ui-dark")
     ) {
-      document.getElementsByTagName('html')[0].classList.remove('ui-dark');
-      window.localStorage.setItem('bgMode', 'light');
+      document.getElementsByTagName("html")[0].classList.remove("ui-dark");
+      window.localStorage.setItem("bgMode", "light");
       setIsDark(false);
     } else {
-      document.getElementsByTagName('html')[0].classList.add('ui-dark');
-      window.localStorage.setItem('bgMode', 'dark');
+      document.getElementsByTagName("html")[0].classList.add("ui-dark");
+      window.localStorage.setItem("bgMode", "dark");
       setIsDark(true);
     }
   };
@@ -58,10 +57,10 @@ function Navbar() {
       }
     };
     if (isActive) {
-      window.addEventListener('click', pageClickEvent);
+      window.addEventListener("click", pageClickEvent);
     }
     return () => {
-      window.removeEventListener('click', pageClickEvent);
+      window.removeEventListener("click", pageClickEvent);
     };
   }, [isActive]);
 
@@ -90,16 +89,16 @@ function Navbar() {
     <div>
       <div className="navbar">
         <div className="navbar-menus">
-          <Link className="menu" to={'/home/tab=todays'}>
+          <Link className="menu" to={"/home/tab=todays"}>
             홈
           </Link>
-          <Link className="menu" to={'/meetingrooms'}>
+          <Link className="menu" to={"/meetingrooms"}>
             자유열람실
           </Link>
-          <Link className="menu" to={'/studyrecruit'}>
+          <Link className="menu" to={"/studyrecruit"}>
             스터디 모집
           </Link>
-          <Link className="menu" to={'/schedules'}>
+          <Link className="menu" to={"/schedules"}>
             일정관리
           </Link>
         </div>
@@ -289,7 +288,7 @@ function Navbar() {
       </div>
       <div
         ref={dropdownRef}
-        className={`navbar-dropdown ${isActive ? 'active' : 'hidden'}`}
+        className={`navbar-dropdown ${isActive ? "active" : "hidden"}`}
       >
         <div className="navbar-dropdown-list">
           <span className="navbar-dropdown-nickname">{nickname}</span>
@@ -299,7 +298,8 @@ function Navbar() {
           <button
             // className="dropdown-menu"
             onClick={() => {
-              navigate('profile');
+              navigate("profile");
+              setIsActive(!isActive);
             }}
           >
             내 프로필
@@ -307,7 +307,8 @@ function Navbar() {
           <button
             // className="dropdown-menu"
             onClick={() => {
-              navigate('settings');
+              navigate("settings/profile");
+              setIsActive(!isActive);
             }}
           >
             관리실
