@@ -70,7 +70,6 @@
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  height: 720px;
   background-color: var(--bgColor);
   border-radius: 10px;
   border: 1px solid var(--borderColor);
@@ -163,16 +162,18 @@
   padding-top: 25px;
   font-size: 12px;
   color: var(--textColor);
+  white-space: pre-wrap;
 }
 .studyrecruit-detail .studyrecruit-detail-box .studyrecruit-detail-box-footer__host {
   cursor: pointer;
   border: none;
   background-color: #6667ab;
   color: #eeeeee;
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 5px;
   height: 30px;
-  width: 10rem;
+  width: 9rem;
+  margin-top: 5rem;
 }
 .studyrecruit-detail .studyrecruit-detail-box .studyrecruit-detail-box-footer__btn {
   cursor: pointer;

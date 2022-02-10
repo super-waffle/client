@@ -147,4 +147,23 @@
       margin-bottom: 60px;
     }
   }
+  .recuit-create-alert {
+    color: red;
+    font-weight: 600;
+    margin-right: 5px;
+  }
+  .recruit-create-errormsg {
+    font-size: 14px;
+    color: var(--textColor);
+  }
+  .recruit-create-errorbtn {
+    border: none;
+    background-color: $mainColor;
+    color: #eeeeee;
+    border-radius: 5px;
+    font-size: 12px;
+    height: 25px;
+    width: 3.5rem;
+    margin-top: 16px;
+  }
 }
