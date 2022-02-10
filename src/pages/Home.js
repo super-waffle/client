@@ -29,7 +29,7 @@ export default function Home() {
           setProfileMsg(USER.userProfileMsg);
         });
     }
-  });
+  }, []);
 
   return (
     <div className="home">
@@ -65,13 +65,9 @@ export default function Home() {
               </svg>
             )}
           </div>
-          <div className="home-profile-nickname">
-            {nickname}
-          </div>
+          <div className="home-profile-nickname">{nickname}</div>
           <div className="home-profile-email">{email}</div>
-          <div className="home-profile-msg">
-            {profileMsg}
-          </div>
+          <div className="home-profile-msg">{profileMsg}</div>
         </div>
         <div className="home-contents">
           <Outlet />

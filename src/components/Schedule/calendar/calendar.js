@@ -6,32 +6,46 @@ import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
-import getCalendarData from './calendarData';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import Card from 'react-bootstrap/Card';
+import { useSelector, useDispatch } from 'react-redux';
+import { toPrevWeek, toNextWeek, selectDay } from '../scheduleSlice';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 const StudyCard = (event) => {
   const studies = event.arr;
   return (
     <>
-      {studies.map((study, index) => (
-        <Card
-          key={index}
-          style={{
-            margin: '1rem 0rem',
-            border: '0px',
-            backgroundColor: 'transparent',
-            padding: '0.5rem',
-          }}
-        >
-          <Card.Title style={{ fontWeight: 'bold' }}>
-            {study.studyName}
-          </Card.Title>
-          <Card.Subtitle>
-            {study.startTime}~{study.endTime}
-          </Card.Subtitle>
-        </Card>
-      ))}
+      <p
+        style={{
+          margin: '2rem 0rem',
+          fontFamily: 'pretandard',
+          fontSize: '26px',
+          paddingLeft: '0.5rem',
+        }}
+      >
+        {studies && studies.date.split('-')[2]}
+      </p>
+      {studies &&
+        studies.studySchedules.map((study, index) => (
+          <Card
+            key={index}
+            style={{
+              margin: '1rem 0rem',
+              border: '0px',
+              backgroundColor: 'transparent',
+              padding: '0.5rem',
+            }}
+          >
+            <Card.Title style={{ fontWeight: 'bold' }}>
+              {study.title}
+            </Card.Title>
+            <Card.Subtitle>
+              {study.startTime}~{study.endTime}
+            </Card.Subtitle>
+          </Card>
+        ))}
     </>
   );
 };
@@ -51,17 +65,33 @@ export default function Calendar() {
     'November',
     'December',
   ];
-  const days = [
-    'MON',
-    'TUE',
-    'WED',
-    'THU',
-    'FRI',
-    'SAT',
-    'SUN',
-  ];
-  const [today, setToday] = useState(new Date(), []);
-  const [weekly, setWeekly] = useState(getCalendarData);
+  const days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+  const dispatch = useDispatch();
+  const today = useSelector((state) => state.schedule.today);
+  const startDay = useSelector((state) => state.schedule.startDay);
+  const [weekly, setWeekly] = useState([]);
+  console.log(startDay);
+  const getSchedule = () => {
+    try {
+      axios
+        .get(
+          process.env.REACT_APP_SERVER_URL +
+            `/schedules?date=${JSON.parse(startDay)}`,
+          {
+            headers: {
+              Authorization: `Bearer ` + localStorage.getItem('accessToken'),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          setWeekly(res.data.map);
+        });
+    } catch (err) {
+      console.log('Error:', err);
+    }
+  };
+  useEffect(() => getSchedule(), [startDay]);
   return (
     <>
       <Container
@@ -72,13 +102,14 @@ export default function Calendar() {
       >
         <Row>
           <p className={classNames('month-nav')}>
-            {monthNames[today.getMonth()]}{' '}
+            {monthNames[parseInt(startDay.split('-')[1]) - 1]}{' '}
             <FontAwesomeIcon
               icon={faChevronLeft}
               size="xs"
               style={{
                 opacity: 0.5,
               }}
+              onClick={() => dispatch(toPrevWeek())}
             />{' '}
             <FontAwesomeIcon
               icon={faChevronRight}
@@ -86,6 +117,7 @@ export default function Calendar() {
               style={{
                 opacity: 0.5,
               }}
+              onClick={() => dispatch(toNextWeek())}
             />
           </p>
         </Row>
@@ -102,7 +134,13 @@ export default function Calendar() {
               <Col
                 key={index}
                 style={{ margin: '0.3rem' }}
-                selected={false}
+                onClick={() =>
+                  dispatch(
+                    selectDay(
+                      JSON.stringify(weekly ? weekly[index + 1]['date'] : null)
+                    )
+                  )
+                }
               >
                 <p style={{ marginTop: '1rem' }}>{day}</p>
                 <div
@@ -119,19 +157,7 @@ export default function Calendar() {
                     marginBottom: '2rem',
                   }}
                 >
-                  <p
-                    style={{
-                      margin: '2rem 0rem',
-                      fontFamily: 'pretandard',
-                      fontSize: '26px',
-                      paddingLeft: '0.5rem',
-                    }}
-                  >
-                    {parseInt(
-                      weekly[day].date.split('-').slice(2)
-                    )}
-                  </p>
-                  <StudyCard arr={weekly[day].studies} />
+                  {weekly && <StudyCard arr={weekly[index + 1]} />}
                 </div>
               </Col>
             ))}
