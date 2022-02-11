@@ -22,7 +22,7 @@ export default function SettingsProfile() {
         })
         .then((res) => {
           const USER = res.data.user;
-          console.log(USER);
+          // console.log(USER);
           setProfileImg(USER.userImg);
           setNickname(USER.userNickname);
           setEmail(USER.userEmail);
@@ -40,12 +40,7 @@ export default function SettingsProfile() {
   const saveFileImage = (e) => {
     setFileImage(URL.createObjectURL(e.target.files[0]));
     setProfileImg(e.target.files[0]);
-    console.log(fileImage);
-  };
-  const deleteFileImage = () => {
-    URL.revokeObjectURL(fileImage);
-    setFileImage("");
-    setProfileImg(null);
+    // console.log(fileImage);
   };
 
   // dropdown
@@ -81,6 +76,27 @@ export default function SettingsProfile() {
   dataWithoutImg.append("timeGoal", timeGoal);
   dataWithoutImg.append("profileMessage", profileMsg);
 
+  // 이미지 삭제할 경우 서버에 전달
+  const deleteFileImage = () => {
+    URL.revokeObjectURL(fileImage);
+    setFileImage("");
+    setProfileImg(null);
+    setIsActive(!isActive);
+    axios
+      .patch(
+        process.env.REACT_APP_SERVER_URL + "/users/profile/image",
+        dataWithoutImg,
+        {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+          },
+        }
+      )
+      .then((res) => {
+        // console.log(res);
+      });
+  };
+
   // 서버에 전달
   const onClickUpdate = useCallback(() => {
     if (fileImage) {
@@ -92,7 +108,8 @@ export default function SettingsProfile() {
           },
         })
         .then((res) => {
-          console.log(res);
+          window.location.reload();
+          // console.log(res);
         });
     } else if (!fileImage) {
       axios
@@ -103,12 +120,13 @@ export default function SettingsProfile() {
           },
         })
         .then((res) => {
-          console.log(res);
+          window.location.reload();
+          // console.log(res);
         });
     }
   });
-  console.log(nickname, email, profileImg, profileMsg, timeGoal);
-  console.log(fileImage);
+  // console.log(nickname, email, profileImg, profileMsg, timeGoal);
+  // console.log(fileImage);
   return (
     <div className="settings-profile">
       <div className="settings-profile__box">
@@ -223,6 +241,7 @@ export default function SettingsProfile() {
                     id="file"
                     accept="image/*"
                     onChange={saveFileImage}
+                    onClick={() => setIsActive(!isActive)}
                   />
                 </div>
                 <button onClick={deleteFileImage}>프로필 사진 삭제하기</button>
