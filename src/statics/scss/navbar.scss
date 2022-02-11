@@ -30,11 +30,38 @@
     .dark-light {
       cursor: pointer;
     }
-    .navbar-profile-img {
-      cursor: pointer;
+    .navbar-profile-img-wrapper {
+      position: relative;
+      width: 32px;
       height: 32px;
+      border-radius: 100%;
       margin-right: 40px;
       margin-left: 19px;
+      & img {
+        cursor: pointer;
+        position: relative;
+        top: -32px;
+        left: 0;
+        transform: translate(50, 50);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        margin: auto;
+        border-radius: 100%;
+        // padding-right: 10px;
+      }
+      & svg {
+        cursor: pointer;
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: translate(50, 50);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        margin: auto;
+        border-radius: 100%;
+      }
     }
     .navbar-profile-alarm {
       cursor: pointer;
