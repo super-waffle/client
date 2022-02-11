@@ -79,6 +79,9 @@
   background-color: var(--bgColor);
   margin-bottom: 66px;
 }
+.settings-admin .settings-admin-input-nickname .modal > section {
+  max-width: 450px;
+}
 .settings-admin .settings-admin-input-nickname .settings-admin-input-nickname-header {
   font-size: 14px;
   margin-bottom: 30px;
@@ -116,6 +119,57 @@
   margin-left: 5px;
 }
 .settings-admin .settings-admin-input-nickname button:disabled {
+  cursor: default;
+  background-color: #808080;
+}
+.settings-admin .settings-admin-input-pwd .settings-admin-input-heading {
+  font-size: 14px;
+  text-align: left;
+  color: var(--textColor);
+  padding: 20px 0 10px 60px;
+}
+.settings-admin .settings-admin-input-pwd input {
+  background-color: var(--bgColor);
+  border: 1px solid var(--borderColor);
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: var(--textColor);
+  width: 16rem;
+  border-radius: 5px;
+  height: 30px;
+}
+.settings-admin .settings-admin-input-pwd ::placeholder {
+  color: var(--textColor-darker);
+}
+.settings-admin .settings-admin-input-pwd :focus {
+  outline: 1px solid #6667ab;
+}
+.settings-admin .settings-admin-input-pwd .message {
+  font-size: 12px;
+  position: relative;
+  top: -5px;
+}
+.settings-admin .settings-admin-input-pwd .message.confirm {
+  left: -40px;
+}
+.settings-admin .settings-admin-input-pwd .message.success {
+  color: #6667ab;
+}
+.settings-admin .settings-admin-input-pwd .message.error {
+  color: red;
+}
+.settings-admin .settings-admin-input-pwd button {
+  cursor: pointer;
+  border: none;
+  background-color: #6667ab;
+  color: #eeeeee;
+  font-size: 12px;
+  width: 8rem;
+  height: 28px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.settings-admin .settings-admin-input-pwd button:disabled {
   cursor: default;
   background-color: #808080;
 }

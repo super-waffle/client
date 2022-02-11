@@ -38,6 +38,11 @@
     margin-bottom: 66px;
   }
   .settings-admin-input-nickname {
+    .modal {
+      > section {
+        max-width: 450px;
+      }
+    }
     .settings-admin-input-nickname-header {
       font-size: 14px;
       margin-bottom: 30px;
@@ -74,6 +79,61 @@
       height: 30px;
       border-radius: 5px;
       margin-left: 5px;
+      &:disabled {
+        cursor: default;
+        background-color: #808080;
+      }
+    }
+  }
+  .settings-admin-input-pwd {
+    // width: 30rem;
+    .settings-admin-input-heading {
+      font-size: 14px;
+      text-align: left;
+      color: var(--textColor);
+      padding: 20px 0 10px 60px;
+    }
+    & input {
+      background-color: var(--bgColor);
+      border: 1px solid var(--borderColor);
+      margin-bottom: 10px;
+      font-size: 12px;
+      color: var(--textColor);
+      width: 16rem;
+      border-radius: 5px;
+      height: 30px;
+    }
+    ::placeholder {
+      color: var(--textColor-darker);
+    }
+    :focus {
+      outline: 1px solid $mainColor;
+    }
+    .message {
+      font-size: 12px;
+      position: relative;
+      top: -5px;
+      // left: -50px;
+      &.confirm {
+        left: -40px;
+      }
+      &.success {
+        color: $mainColor;
+      }
+      &.error {
+        color: red;
+      }
+    }
+    & button {
+      cursor: pointer;
+      border: none;
+      background-color: $mainColor;
+      color: #eeeeee;
+      font-size: 12px;
+      width: 8rem;
+      height: 28px;
+      border-radius: 5px;
+      margin-top: 20px;
       &:disabled {
         cursor: default;
         background-color: #808080;

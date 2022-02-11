@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import Modal from "../components/modal";
+import ModalLarge from "../components/modalLarge";
 import isLogin from "../utils/isLogin";
 
 import "../statics/css/settingsAdmin.css";
@@ -26,6 +27,8 @@ export default function SettingsAdmin() {
   }, []);
 
   // 모달창
+  const [nicknameChange, setNicknameChange] = useState(false);
+  const [pwdChange, setPwdChange] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => {
     setModalOpen(true);
@@ -33,8 +36,16 @@ export default function SettingsAdmin() {
   const closeModal = () => {
     setModalOpen(false);
   };
+  const [modalOpenLarge, setModalOpenLarge] = useState(false);
+  const openModalLarge = () => {
+    setModalOpenLarge(true);
+    console.log("click", modalOpenLarge);
+  };
+  const closeModalLarge = () => {
+    setModalOpenLarge(false);
+  };
 
-  // 닉네임 중복검사
+  // 닉네임 중복검사 & 유효성 검사
   const [isNickname, setIsNickname] = useState(false);
   const [nicknameMessage, setNicknameMessage] = useState("");
   const [exNickname, checkExNickname] = useState(false);
@@ -75,9 +86,8 @@ export default function SettingsAdmin() {
         });
     }
   }, []);
-  console.log(nickname);
-  // let data = new FormData();
-  // data.append("nickname", nickname);
+
+  // 닉네임 수정후 서버에 데이터 전달
   const onClickNicknameChange = useCallback(() => {
     axios
       .patch(
@@ -94,9 +104,74 @@ export default function SettingsAdmin() {
         if (res.data.statusCode === 200) {
           window.location.reload();
         }
+        setNicknameChange(false);
       });
   });
-  console.log(isNickname, exNickname);
+
+  // 비밀번호 유효성 검사
+  const [pwdBefore, setPwdBefore] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [passwordMessage, setPasswordMessage] = useState("");
+  const [passwordConfirmMessage, setPasswordConfirmMessage] = useState("");
+  const [isPassword, setIsPassword] = useState(false);
+  const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
+
+  const onChangePassword = useCallback((event) => {
+    const passwordRegex =
+      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+    const passwordCurrent = event.target.value;
+    setPassword(passwordCurrent);
+
+    if (!passwordRegex.test(passwordCurrent)) {
+      setPasswordMessage(
+        "영문자+숫자+특수문자 조합으로 8자리 이상 입력해주세요"
+      );
+      setIsPassword(false);
+    } else {
+      setPasswordMessage("");
+      setIsPassword(true);
+    }
+  }, []);
+
+  const onChangePasswordConfirm = useCallback(
+    (event) => {
+      const passwordConfirmCurrent = event.target.value;
+      setPasswordConfirm(passwordConfirmCurrent);
+
+      if (password === passwordConfirmCurrent) {
+        setPasswordConfirmMessage("");
+        setIsPasswordConfirm(true);
+      } else {
+        setPasswordConfirmMessage("비밀번호가 일치하지 않습니다");
+        setIsPasswordConfirm(false);
+      }
+    },
+    [password]
+  );
+
+  const onClickPwdChange = useCallback(() => {
+    axios
+      .patch(
+        process.env.REACT_APP_SERVER_URL + "/users/password",
+        {
+          password: pwdBefore,
+          newPassword: password,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        if (res.data.statusCode === 200) {
+          window.location.reload();
+        }
+      });
+  });
+  // console.log(pwdBefore);
   return (
     <div className="settings-admin">
       <div className="settings-admin-nicknameChange">
@@ -105,7 +180,13 @@ export default function SettingsAdmin() {
           <div className="settings-admin__body-text">
             닉네임 변경 시 기존 닉네임은 일주일동안 이용할 수 없습니다.
           </div>
-          <button className="settings-admin__body-btn" onClick={openModal}>
+          <button
+            className="settings-admin__body-btn"
+            onClick={() => {
+              setNicknameChange(true);
+              openModal();
+            }}
+          >
             닉네임 변경하기
           </button>
         </div>
@@ -115,7 +196,13 @@ export default function SettingsAdmin() {
         <div className="settings-admin__header">비밀번호 변경하기</div>
         <div className="settings-admin__body">
           <div className="settings-admin__body-text"></div>
-          <button className="settings-admin__body-btn">
+          <button
+            className="settings-admin__body-btn"
+            onClick={() => {
+              openModalLarge();
+              setPwdChange(true);
+            }}
+          >
             비밀번호 변경하기
           </button>
         </div>
@@ -146,40 +233,105 @@ export default function SettingsAdmin() {
       </div>
 
       <Modal open={modalOpen} close={closeModal} header="">
-        <div className="settings-admin-input-nickname">
-          <div className="settings-admin-input-nickname-header">
-            <span>닉네임 변경</span>
+        {nicknameChange && (
+          <div className="settings-admin-input-nickname">
+            <div className="settings-admin-input-nickname-header">
+              <span>닉네임 변경</span>
 
-            <div className="settings-admin-confirmbox">
-              {nickname.length > 0 && (
-                <span className={`message ${exNickname ? "success" : "error"}`}>
-                  {exNicknameMsg}
-                </span>
-              )}
-              {nickname.length > 0 && (
-                <span className={`message ${isNickname ? "success" : "error"}`}>
-                  {nicknameMessage}
-                </span>
-              )}
+              <div className="settings-admin-confirmbox">
+                {nickname.length > 0 && (
+                  <span
+                    className={`message ${exNickname ? "success" : "error"}`}
+                  >
+                    {exNicknameMsg}
+                  </span>
+                )}
+                {nickname.length > 0 && (
+                  <span
+                    className={`message ${isNickname ? "success" : "error"}`}
+                  >
+                    {nicknameMessage}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className="settings-admin-formbox">
+              <input
+                id="nickname"
+                type="text"
+                placeholder="닉네임을 입력하세요"
+                onChange={onChangeNickname}
+              />
+              <button
+                disabled={isNickname && exNickname ? false : true}
+                // className={`${isNickname ? "" : "disabled"}`}
+                onClick={onClickNicknameChange}
+              >
+                확인
+              </button>
             </div>
           </div>
-          <div className="settings-admin-formbox">
-            <input
-              id="nickname"
-              type="text"
-              placeholder="닉네임을 입력하세요"
-              onChange={onChangeNickname}
-            />
+        )}
+      </Modal>
+      <ModalLarge open={modalOpenLarge} close={closeModalLarge} header="">
+        {pwdChange && (
+          <div className="settings-admin-input-pwd">
+            <div className="settings-admin-input-current-pwd">
+              <div className="settings-admin-input-heading">현재 비밀번호</div>
+              <input
+                type="password"
+                placeholder="비밀번호를 입력하세요"
+                onChange={(e) => {
+                  setPwdBefore(e.target.value);
+                }}
+              />
+            </div>
+            <div className="settings-admin-input-new-pwd">
+              <div className="settings-admin-input-heading">
+                새로운 비밀번호
+              </div>
+              <div className="formbox">
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="새로운 비밀번호를 입력하세요"
+                  onChange={onChangePassword}
+                />
+                {password.length > 0 && (
+                  <div
+                    className={`message ${isPassword ? "success" : "error"}`}
+                  >
+                    {passwordMessage}
+                  </div>
+                )}
+              </div>
+              <div className="formbox">
+                <input
+                  id="passwordConfirm"
+                  type="password"
+                  placeholder="비밀번호를 다시 한 번 입력하세요"
+                  onChange={onChangePasswordConfirm}
+                />
+                {passwordConfirm.length > 0 && (
+                  <div
+                    className={`confirm message ${
+                      isPasswordConfirm ? "success" : "error"
+                    }`}
+                  >
+                    {passwordConfirmMessage}
+                  </div>
+                )}
+              </div>
+            </div>
             <button
-              disabled={isNickname && exNickname ? false : true}
-              // className={`${isNickname ? "" : "disabled"}`}
-              onClick={onClickNicknameChange}
+              disabled={isPassword && isPasswordConfirm ? false : true}
+              onClick={onClickPwdChange}
             >
-              확인
+              비밀번호 변경하기
             </button>
           </div>
-        </div>
-      </Modal>
+        )}
+      </ModalLarge>
     </div>
   );
 }
