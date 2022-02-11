@@ -1,5 +1,83 @@
 @import "main.scss";
 
-// .setting-admin {
-
-// }
+.settings-admin {
+  font-family: $font-family;
+  width: 100%;
+  padding-top: 80px;
+  .settings-admin__header {
+    border-bottom: 1px solid var(--textColor-darkest);
+    color: var(--textColor);
+    padding-left: 6px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .settings-admin__body-text {
+    padding-top: 15px;
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--textColor-darker);
+    margin-bottom: 13px;
+    .settings-admin__body-text-head {
+      font-weight: 500;
+      color: var(--textColor-dark);
+      margin-bottom: 3px;
+    }
+    .settings-admin__body-text-body {
+      margin-bottom: 10px;
+    }
+  }
+  .settings-admin__body-btn {
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--textColor-dark);
+    width: 126px;
+    height: 30px;
+    border: 1px solid var(--borderColor);
+    background-color: var(--bgColor);
+    margin-bottom: 66px;
+  }
+  .settings-admin-input-nickname {
+    .settings-admin-input-nickname-header {
+      font-size: 14px;
+      margin-bottom: 30px;
+      color: var(--textColor);
+    }
+    & input {
+      color: var(--textColor);
+      font-size: 12px;
+      background-color: var(--bgColor);
+      border: 1px solid var(--borderColor);
+    }
+    :focus {
+      outline: 1px solid $mainColor;
+    }
+    .message {
+      font-size: 12px;
+      position: relative;
+      top: 20px;
+      // left: -50px;
+      &.success {
+        color: $mainColor;
+      }
+      &.error {
+        color: red;
+      }
+    }
+    & button {
+      cursor: pointer;
+      border: none;
+      background-color: $mainColor;
+      color: #eeeeee;
+      font-size: 13px;
+      width: 3rem;
+      height: 30px;
+      border-radius: 5px;
+      margin-left: 5px;
+      &:disabled {
+        cursor: default;
+        background-color: #808080;
+      }
+    }
+  }
+}

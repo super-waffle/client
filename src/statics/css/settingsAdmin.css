@@ -41,4 +41,83 @@
   display: none;
 }
 
+.settings-admin {
+  font-family: "Pretendard";
+  width: 100%;
+  padding-top: 80px;
+}
+.settings-admin .settings-admin__header {
+  border-bottom: 1px solid var(--textColor-darkest);
+  color: var(--textColor);
+  padding-left: 6px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  line-height: 24px;
+}
+.settings-admin .settings-admin__body-text {
+  padding-top: 15px;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--textColor-darker);
+  margin-bottom: 13px;
+}
+.settings-admin .settings-admin__body-text .settings-admin__body-text-head {
+  font-weight: 500;
+  color: var(--textColor-dark);
+  margin-bottom: 3px;
+}
+.settings-admin .settings-admin__body-text .settings-admin__body-text-body {
+  margin-bottom: 10px;
+}
+.settings-admin .settings-admin__body-btn {
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--textColor-dark);
+  width: 126px;
+  height: 30px;
+  border: 1px solid var(--borderColor);
+  background-color: var(--bgColor);
+  margin-bottom: 66px;
+}
+.settings-admin .settings-admin-input-nickname .settings-admin-input-nickname-header {
+  font-size: 14px;
+  margin-bottom: 30px;
+  color: var(--textColor);
+}
+.settings-admin .settings-admin-input-nickname input {
+  color: var(--textColor);
+  font-size: 12px;
+  background-color: var(--bgColor);
+  border: 1px solid var(--borderColor);
+}
+.settings-admin .settings-admin-input-nickname :focus {
+  outline: 1px solid #6667ab;
+}
+.settings-admin .settings-admin-input-nickname .message {
+  font-size: 12px;
+  position: relative;
+  top: 20px;
+}
+.settings-admin .settings-admin-input-nickname .message.success {
+  color: #6667ab;
+}
+.settings-admin .settings-admin-input-nickname .message.error {
+  color: red;
+}
+.settings-admin .settings-admin-input-nickname button {
+  cursor: pointer;
+  border: none;
+  background-color: #6667ab;
+  color: #eeeeee;
+  font-size: 13px;
+  width: 3rem;
+  height: 30px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+.settings-admin .settings-admin-input-nickname button:disabled {
+  cursor: default;
+  background-color: #808080;
+}
+
 /*# sourceMappingURL=settingsAdmin.css.map */
