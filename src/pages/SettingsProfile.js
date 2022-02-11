@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import isLogin from "../utils/isLogin";
 import "../statics/css/settingsProfile.css";
 
@@ -10,6 +10,8 @@ export default function SettingsProfile() {
   const [profileMsg, setProfileMsg] = useState("");
   const [timeGoal, setTimeGoal] = useState("");
   const TOKEN = localStorage.getItem("accessToken");
+
+  // 유저 정보 불러오기
   useEffect(() => {
     if (isLogin()) {
       axios
@@ -29,21 +31,53 @@ export default function SettingsProfile() {
         });
     }
   }, []);
-  console.log(nickname, email, profileImg, profileMsg, timeGoal);
 
+  // 업로드한 이미지 바로 보여주기
   const [fileImage, setFileImage] = useState("");
+  const imageURL = "https://i6a301.p.ssafy.io:8080/images/" + profileImg;
+  // console.log(fileImage);
 
   const saveFileImage = (e) => {
     setFileImage(URL.createObjectURL(e.target.files[0]));
     setProfileImg(e.target.files[0]);
     console.log(fileImage);
   };
+  const deleteFileImage = () => {
+    URL.revokeObjectURL(fileImage);
+    setFileImage("");
+    setProfileImg(null);
+  };
 
+  // dropdown
+  const [isActive, setIsActive] = useState(false);
+  const dropdownRef = useRef(null);
+  const onClickDropdown = () => setIsActive(!isActive);
+  // dropdown (외부 클릭시 닫기)
+  useEffect(() => {
+    const pageClickEvent = (event) => {
+      if (
+        dropdownRef.current !== null &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        setIsActive(!isActive);
+      }
+    };
+    if (isActive) {
+      window.addEventListener("click", pageClickEvent);
+    }
+    return () => {
+      window.removeEventListener("click", pageClickEvent);
+    };
+  }, [isActive]);
+
+  // form data 형식으로 바꿔서 서버에 전달하기
   let data = new FormData();
 
   data.append("timeGoal", timeGoal);
   data.append("profileMessage", profileMsg);
-  data.append("file", new FormData().append("profileImage", null));
+  data.append("profileImage", profileImg);
+
+  // 서버에 전달
   const onClickUpdate = useCallback(() => {
     axios
       .patch(process.env.REACT_APP_SERVER_URL + "/users", data, {
@@ -56,6 +90,7 @@ export default function SettingsProfile() {
         console.log(res);
       });
   });
+  console.log(nickname, email, profileImg, profileMsg, timeGoal);
   return (
     <div className="settings-profile">
       <div className="settings-profile__box">
@@ -94,7 +129,9 @@ export default function SettingsProfile() {
             </button>
           </div>
           <div className="settings-profile__box-img">
-            {profileImg === null && (
+            <div className="settings-profile__box-text__title">프로필 사진</div>
+            <div className="settings-profile__box-img-file-wrapper">
+              {/* {profileImg === null && ( */}
               <svg
                 className="settings-profile__box-img-file"
                 width="250"
@@ -122,8 +159,26 @@ export default function SettingsProfile() {
                   </clipPath>
                 </defs>
               </svg>
-            )}
-            <button className="settings-profile-box-img-edit">
+              {/* )} */}
+              {profileImg !== null && !fileImage && (
+                <img
+                  className="settings-profile__box-img-file"
+                  src={imageURL}
+                  alt=""
+                />
+              )}
+              {profileImg !== null && fileImage && (
+                <img
+                  className="settings-profile__box-img-file"
+                  src={fileImage}
+                  alt=""
+                />
+              )}
+            </div>
+            <button
+              className="settings-profile-box-img-edit"
+              onClick={onClickDropdown}
+            >
               <svg
                 width="17"
                 height="17"
@@ -138,7 +193,25 @@ export default function SettingsProfile() {
               </svg>
               EDIT
             </button>
-            <input type="file" accept="image/*" onChange={saveFileImage} />
+            <div
+              ref={dropdownRef}
+              className={`profileImageEdit-dropdown ${
+                isActive ? "active" : "hidden"
+              }`}
+            >
+              <div className="profileImageEdit-dropdown-list">
+                <div class="filebox">
+                  <label for="file">프로필 사진 업로드</label>
+                  <input
+                    type="file"
+                    id="file"
+                    accept="image/*"
+                    onChange={saveFileImage}
+                  />
+                </div>
+                <button onClick={deleteFileImage}>프로필 사진 삭제하기</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
