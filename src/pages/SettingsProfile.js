@@ -77,20 +77,38 @@ export default function SettingsProfile() {
   data.append("profileMessage", profileMsg);
   data.append("profileImage", profileImg);
 
+  let dataWithoutImg = new FormData();
+  dataWithoutImg.append("timeGoal", timeGoal);
+  dataWithoutImg.append("profileMessage", profileMsg);
+
   // 서버에 전달
   const onClickUpdate = useCallback(() => {
-    axios
-      .patch(process.env.REACT_APP_SERVER_URL + "/users", data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${TOKEN}`,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-      });
+    if (fileImage) {
+      axios
+        .patch(process.env.REACT_APP_SERVER_URL + "/users", data, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${TOKEN}`,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    } else if (!fileImage) {
+      axios
+        .patch(process.env.REACT_APP_SERVER_URL + "/users", dataWithoutImg, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${TOKEN}`,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    }
   });
   console.log(nickname, email, profileImg, profileMsg, timeGoal);
+  console.log(fileImage);
   return (
     <div className="settings-profile">
       <div className="settings-profile__box">
@@ -131,7 +149,6 @@ export default function SettingsProfile() {
           <div className="settings-profile__box-img">
             <div className="settings-profile__box-text__title">프로필 사진</div>
             <div className="settings-profile__box-img-file-wrapper">
-              {/* {profileImg === null && ( */}
               <svg
                 className="settings-profile__box-img-file"
                 width="250"
@@ -159,7 +176,6 @@ export default function SettingsProfile() {
                   </clipPath>
                 </defs>
               </svg>
-              {/* )} */}
               {profileImg !== null && !fileImage && (
                 <img
                   className="settings-profile__box-img-file"
@@ -200,8 +216,8 @@ export default function SettingsProfile() {
               }`}
             >
               <div className="profileImageEdit-dropdown-list">
-                <div class="filebox">
-                  <label for="file">프로필 사진 업로드</label>
+                <div className="filebox">
+                  <label htmlFor="file">프로필 사진 업로드</label>
                   <input
                     type="file"
                     id="file"
