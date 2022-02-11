@@ -21,6 +21,7 @@ import HomeTodays from './pages/Home_todays';
 import VideoRoomComponent from './components/meetingroom/VideoRoomComponent';
 import MeetingroomVideo from './components/meetingroom/MeetingroomVideo';
 import StudyRecruitCreate from './pages/studyRecruitCreate';
+import VideoRoomComponentCopy from './components/meetingroom/VideoRoomComponent copy'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -72,6 +73,12 @@ ReactDOM.render(
             path="videoRoomComponent"
             element={
               isLogin() ? <VideoRoomComponent /> : <Login />
+            }
+          />
+          <Route
+            path="videoRoomComponentCopy"
+            element={
+              isLogin() ? <VideoRoomComponentCopy /> : <Login />
             }
           />
           <Route

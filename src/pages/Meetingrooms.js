@@ -35,6 +35,10 @@ export default function Meetingrooms() {
       {/* onClick={"window.location.reload();"} */}
        openvidu
       </Link>
+      <Link className="menu" to={"/videoRoomComponentCopy"} onClick={"window.location.reload();"}>
+      
+       copyfile
+      </Link>
 
       <div>
         <table>      
