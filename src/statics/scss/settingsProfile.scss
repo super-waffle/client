@@ -78,6 +78,24 @@
     }
     .settings-profile__box-img {
       margin-top: 25px;
+      .settings-profile__box-img-file {
+        position: relative;
+      }
+      .settings-profile-box-img-edit {
+        cursor: pointer;
+        border: 1px solid var(--borderColor);
+        background-color: var(--bgColor);
+        border-radius: 5px;
+        color: var(--textColor-dark);
+        position: relative;
+        left: -65px;
+        top: 65px;
+
+        & svg {
+          margin-right: 5px;
+          margin-bottom: 2px;
+        }
+      }
     }
   }
 }
