@@ -1,0 +1,191 @@
+@import "main.scss";
+
+.settings-profile {
+  width: 100%;
+  .settings-profile__box {
+    padding: 80px 10px 0 15px;
+    // color: var(--textColor);
+    // .settings-profile__box-text {
+    // }
+    .settings-profile__box-heading {
+      border-bottom: 1px solid var(--textColor-darkest);
+      color: var(--textColor);
+      padding-left: 6px;
+      padding-bottom: 15px;
+      font-size: 18px;
+      line-height: 24px;
+    }
+    .settings-profile__box-body {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 10px 0 5px;
+    }
+    .settings-profile__box-text {
+      color: var(--textColor);
+      width: 46%;
+      margin-right: 4rem;
+      .settings-profile__box-text__title {
+        font-size: 14px;
+        line-height: 17px;
+        margin-top: 20px;
+        margin-bottom: 6px;
+      }
+      .settings-profile__box-text__disabled {
+        background-color: var(--bgColor-light);
+        border-radius: 5px;
+        border: 1px solid var(--borderColor);
+        padding: 5px;
+        font-style: italic;
+        color: var(--textColor-dark);
+        font-size: 12px;
+      }
+      .settings-profile__box-text__timegoal {
+        background-color: var(--bgColor);
+        border-radius: 5px;
+        border: 1px solid var(--borderColor);
+        padding: 5px;
+        color: var(--textColor);
+        font-size: 12px;
+        height: 30px;
+        width: 100%;
+      }
+      :focus {
+        outline: 1px solid $mainColor;
+      }
+      .settings-profile__box-text__msg {
+        background-color: var(--bgColor);
+        border-radius: 5px;
+        border: 1px solid var(--borderColor);
+        padding: 5px;
+        color: var(--textColor);
+        font-size: 12px;
+        height: 120px;
+        width: 100%;
+        white-space: pre-wrap;
+      }
+      .settings-profile__box-btn {
+        cursor: pointer;
+        border: none;
+        font-size: 13px;
+        background-color: $mainColor;
+        color: #eeeeee;
+        width: 7rem;
+        height: 28px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+    }
+    .settings-profile__box-img {
+      .settings-profile__box-text__title {
+        font-size: 14px;
+        line-height: 17px;
+        margin-top: 20px;
+        margin-bottom: 6px;
+      }
+      .settings-profile__box-img-file-wrapper {
+        position: relative;
+        width: 250px;
+        height: 250px;
+        border-radius: 100%;
+        & img {
+          position: relative;
+          top: -250px;
+          left: 0;
+          transform: translate(50, 50);
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          margin: auto;
+          border-radius: 100%;
+        }
+        & svg {
+          position: relative;
+          top: 0;
+          left: 0;
+          transform: translate(50, 50);
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          margin: auto;
+          border-radius: 100%;
+        }
+      }
+
+      .settings-profile-box-img-edit {
+        // z-index: 3;
+        cursor: pointer;
+        border: 1px solid var(--borderColor);
+        background-color: var(--bgColor);
+        border-radius: 5px;
+        color: var(--textColor-dark);
+        position: relative;
+        left: 180px;
+        top: -65px;
+
+        & svg {
+          margin-right: 5px;
+          margin-bottom: 2px;
+        }
+      }
+      .profileImageEdit-dropdown {
+        font-family: $font-family;
+        position: relative;
+        top: -60px;
+        right: -160px;
+        width: 180px;
+        background: var(--bgColor);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+        border: var(--borderColor);
+        border-radius: 4px;
+        color: #4b4b4b;
+        z-index: 6;
+
+        & button {
+          cursor: pointer;
+          border: none;
+          background-color: var(--bgColor);
+          padding-top: 8px;
+          padding-bottom: 4px;
+          text-align: start;
+          padding-left: 12px;
+          color: var(--textColor);
+          font-size: 14px;
+          &:hover {
+            background-color: var(--borderColor);
+          }
+        }
+        .profileImageEdit-dropdown-list {
+          display: flex;
+          flex-direction: column;
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem;
+          border-bottom: 0.5px solid var(--borderColor3);
+          .filebox {
+            & input[type="file"] {
+              position: absolute;
+              width: 0;
+              height: 0;
+              padding: 0;
+              overflow: hidden;
+              border: 0;
+            }
+            & label {
+              cursor: pointer;
+              background-color: var(--bgColor);
+              padding-top: 8px;
+              padding-bottom: 4px;
+              text-align: start;
+              padding-left: 12px;
+              color: var(--textColor);
+              font-size: 14px;
+              width: 100%;
+              &:hover {
+                background-color: var(--borderColor);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

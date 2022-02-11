@@ -78,8 +78,35 @@
       line-height: 14px;
       color: var(--textColor-darker);
       padding-left: 6px;
-      & svg {
-        margin-right: 7px;
+      .studyrecruit-detail-img-wrapper {
+        position: relative;
+        width: 24px;
+        height: 24px;
+        border-radius: 100%;
+        margin-right: 5px;
+        & img {
+          position: relative;
+          top: -24px;
+          left: 0;
+          transform: translate(50, 50);
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          margin: auto;
+          border-radius: 100%;
+          // padding-right: 10px;
+        }
+        & svg {
+          position: relative;
+          top: 0;
+          left: 0;
+          transform: translate(50, 50);
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          margin: auto;
+          border-radius: 100%;
+        }
       }
     }
     .studyrecruit-detail-box-body {

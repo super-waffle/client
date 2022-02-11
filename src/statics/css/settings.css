@@ -44,6 +44,7 @@
 .settings {
   background-color: var(--htmlbgColor);
   display: flex;
+  padding-right: 18%;
 }
 .settings .settings-sidebar {
   margin-right: 50px;
@@ -58,8 +59,34 @@
   padding-left: 10%;
   margin-left: 10px;
 }
-.settings .settings-sidebar .settings-myprofile .settings-myprofile__img {
+.settings .settings-sidebar .settings-myprofile .settings-myprofile-img-wrapper {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 100%;
   margin-right: 13px;
+}
+.settings .settings-sidebar .settings-myprofile .settings-myprofile-img-wrapper img {
+  position: relative;
+  top: -42px;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 100%;
+}
+.settings .settings-sidebar .settings-myprofile .settings-myprofile-img-wrapper svg {
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 100%;
 }
 .settings .settings-sidebar .settings-myprofile .settings-myprofile__text .settings-myprofile__text-nickname {
   font-weight: 600;
