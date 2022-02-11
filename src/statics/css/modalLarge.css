@@ -41,7 +41,8 @@
   display: none;
 }
 
-.modal {
+.modalLarge {
+  font-family: "Pretendard";
   display: none;
   position: fixed;
   top: 0;
@@ -51,109 +52,80 @@
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.6);
 }
-.modal svg {
+.modalLarge svg {
   cursor: pointer;
   height: 15px;
 }
-.modal > section {
-  width: 90%;
-  max-width: 500px;
+.modalLarge > section {
+  width: 80%;
+  max-width: 400px;
   margin: 0 auto;
   border-radius: 0.3rem;
-  background-color: #fcfcfc;
+  background-color: var(--htmlbgColor);
   animation: modal-show 0.3s;
   overflow: hidden;
 }
-.modal > section > header {
+.modalLarge > section > header {
   display: flex;
   justify-content: flex-end;
   position: relative;
-  padding: 15px;
-  background-color: #fcfcfc;
+  padding: 15px 15px 0px 15px;
+  background-color: var(--htmlbgColor);
   font-weight: 700;
 }
-.modal > section > main {
-  padding: 5px 16px 40px 16px;
+.modalLarge > section > main {
+  padding: 5px 16px 30px 16px;
   text-align: center;
 }
-.modal > section > main .body-heading1 {
-  font-size: 20px;
-  line-height: 19px;
-  color: #434343;
-  margin-bottom: 10px;
+.modalLarge > section > main .main-heading {
+  font-size: 14px;
+  color: var(--textColor);
+  padding-bottom: 20px;
+  font-weight: 500;
 }
-.modal > section > main .body-heading2 {
+.modalLarge > section > main .main-body-select {
   font-size: 12px;
-  line-height: 12px;
-  color: #858585;
-  padding-bottom: 32px;
-  padding-left: 4px;
-  padding-right: 4px;
+  columns: var(--textColor);
+  padding-bottom: 10px;
 }
-.modal > section > main .auth-message {
-  color: #eb5656;
+.modalLarge > section > main .main-body-select .main-body-title {
+  padding-right: 18px;
 }
-.modal > section > main .exist {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.modalLarge > section > main .main-body-select .main-body-time {
+  padding-left: 3px;
+  padding-right: 8px;
 }
-.modal > section > main .pwd-search {
-  display: flex;
-  justify-content: center;
-}
-.modal > section > main input {
-  height: 32px;
-  width: 65%;
-  background: #f7f7f7;
-  border: 1px solid #e1e1e1;
-  box-sizing: border-box;
+.modalLarge > section > main .main-footer-cancel {
+  border: 1.5px solid #6667ab;
   border-radius: 5px;
-}
-.modal > section > main ::placeholder {
-  padding-left: 5px;
-  font-size: 11px;
+  width: 75px;
+  height: 24px;
+  font-size: 10px;
   line-height: 12px;
-  color: #cbcbcb;
+  color: var(--textColor);
+  background-color: var(--bgColor);
+  margin-right: 6px;
 }
-.modal > section > main .btn-xs {
-  cursor: pointer;
-  height: 32px;
-  width: 15%;
-  border: 1px solid #6667ab;
-  background-color: #6667ab;
-  border-radius: 5px;
-  color: white;
-  margin-left: 6px;
-  margin-bottom: 1.5px;
-}
-.modal > section > main .btn-m {
-  cursor: pointer;
-  color: white;
-  font-size: 16px;
-  line-height: 17px;
-  height: 36px;
-  width: 20%;
+.modalLarge > section > main .main-footer-submit {
   border: none;
-  background: #6667ab;
-  border-radius: 10px;
+  width: 75px;
+  height: 24px;
+  font-size: 10px;
+  line-height: 12px;
+  border-radius: 5px;
+  color: #eeeeee;
+  background-color: #6667ab;
+  margin-top: 16px;
 }
-.modal > section > footer {
+.modalLarge > section > footer {
   padding: 12px 16px;
   text-align: right;
 }
-.modal > section > footer button {
-  padding: 6px 12px;
-  color: #fff;
-  background-color: #6c757d;
-  border-radius: 5px;
-  font-size: 13px;
-}
 
-.modal.openModal {
+.modalLarge.openModalLarge {
   display: flex;
   align-items: center;
   animation: modal-bg-show 0.3s;
 }
 
-/*# sourceMappingURL=modal.css.map */
+/*# sourceMappingURL=modalLarge.css.map */

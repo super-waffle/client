@@ -14,8 +14,7 @@ export default function StudyRecruitDetail() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [userSeq, setUserSeq] = useState("");
   const [hostSeq, setHostSeq] = useState("");
-  const imageURL =
-    "https://i6a301.p.ssafy.io:8080/images/" + data.apidata.hostImg;
+  const [profileImg, setProfileImg] = useState("");
 
   // 모달창
   const [modalOpen, setModalOpen] = useState(false);
@@ -46,6 +45,7 @@ export default function StudyRecruitDetail() {
 
   // 데이터 받아오기
   useEffect(() => {
+    // test();
     if (isLogin) {
       axios
         .get("/users", {
@@ -65,13 +65,15 @@ export default function StudyRecruitDetail() {
         .then((res) => {
           const apidata = res.data;
           setHostSeq(apidata.hostSeq);
+          setProfileImg(apidata.hostImg);
           setData((prevState) => ({
             ...prevState,
             apidata,
           }));
         });
     }
-  }, [TOKEN, studyseq]);
+  }, []);
+  const imageURL = "https://i6a301.p.ssafy.io:8080/images/" + profileImg;
 
   // 요일 숫자를 이름으로 바꿔주기
   const numberToDay = (num) => {
@@ -97,7 +99,6 @@ export default function StudyRecruitDetail() {
       return "일";
     }
   };
-  // console.log(data);
 
   // 스터디 신청
   const onApply = useCallback(() => {
