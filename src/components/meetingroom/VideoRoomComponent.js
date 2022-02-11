@@ -428,6 +428,7 @@ class VideoRoomComponent extends Component {
   }
 
   toggleFullscreen() {
+    // console.log(this.state.subscribers);
     const document = window.document;
     const fs = document.getElementById("container");
     if (
@@ -604,8 +605,8 @@ class VideoRoomComponent extends Component {
     var chatDisplay = { display: this.state.chatDisplay };
 
     return (
-      <div className="video-room-contaier" id="video-room-contaier">
-        <div className="video-content" id="video-content">
+      <div className="videoRoomContaier" id="video-room-contaier">
+        <div className="videoContent" id="video-content">
           <div className="container" id="container">
               <DialogExtensionComponent
                 showDialog={this.state.showExtensionDialog}
@@ -642,7 +643,7 @@ class VideoRoomComponent extends Component {
           </div>
         </div>
 
-        <div className="video-button-footer" id="video-button-footer">
+        <div className="videoButtonFooter" id="video-button-footer">
           <ToolbarComponent
             sessionId={mySessionId}
             user={localUser}

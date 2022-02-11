@@ -41,7 +41,12 @@
 } */
 
 .toolbar {
-  min-height: 40px !important;
+  min-height: 100px !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  position: fixed !important;
+  background-color: #fcfcfc;
 }
 
 #titleContent {
@@ -59,6 +64,8 @@
   text-align: center;
   margin: auto;
   min-width: 400px;
+  color: #000;
+  font-size: 2rem !important;
 }
 .navButton {
   height: 40px !important;

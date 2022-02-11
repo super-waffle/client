@@ -22,6 +22,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 // const logo = require('../../assets/images/openvidu_logo.png');
 
+  
 export default class ToolbarComponent extends Component {
     constructor(props) {
         super(props);
@@ -74,7 +75,7 @@ export default class ToolbarComponent extends Component {
         const mySessionId = this.props.sessionId;
         const localUser = this.props.user;
         return (
-            <AppBar className="toolbar" id="header">
+            <AppBar position='fixed' >
                 <Toolbar className="toolbar">
                     <div id="navSessionInfo">
                         {/* <img
@@ -89,7 +90,7 @@ export default class ToolbarComponent extends Component {
                     </div>
 
                     <div className="buttonsContent">
-                        <IconButton color="inherit" className="navButton" id="navMicButton" onClick={this.micStatusChanged}>
+                        <IconButton size="large" color="inherit" className="navButton" id="navMicButton" onClick={this.micStatusChanged}>
                             {localUser !== undefined && localUser.isAudioActive() ? <Mic /> : <MicOff color="secondary" />}
                         </IconButton>
 
