@@ -642,7 +642,7 @@ class VideoRoomComponent extends Component {
           </div>
         </div>
 
-        <div className="button-footer" id="button-footer">
+        <div className="video-button-footer" id="video-button-footer">
           <ToolbarComponent
             sessionId={mySessionId}
             user={localUser}
