@@ -4,9 +4,12 @@ import { Row, Col, Container } from 'react-bootstrap';
 
 export default function Todaystudy() {
   const studies = getStudies();
+
   return (
     <Container>
-      <h4>오늘의 스터디 일정</h4>
+      <h5 style={{ fontFamily: 'pretandard', fontWeight: 'bold' }}>
+        오늘의 스터디 일정
+      </h5>
       <Row>
         {studies.map((study, index) => (
           <Col key={index} style={{ margin: '0.5rem' }}>
@@ -22,16 +25,12 @@ export default function Todaystudy() {
                   fontWeight: 'bold',
                 }}
               >
-                {study.study_title} {study.time_start}~
-                {study.tiem_end}
+                {study.study_title} {study.time_start}~{study.tiem_end}
               </Card.Title>
-              <Card.Subtitle
-                style={{ margin: '0rem 0.5rem' }}
-              >
+              <Card.Subtitle style={{ margin: '0rem 0.5rem' }}>
                 <p>{study.study_desc}</p>
                 <p>
-                  현원{study.study_capacity} #
-                  {study.category}
+                  현원{study.study_capacity} #{study.category}
                 </p>
               </Card.Subtitle>
             </Card>

@@ -1,12 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { get } from 'jquery';
 
+//월요일 날짜 찾기
 function getMonday(d) {
   d = new Date(d);
   var day = d.getDay(),
     diff = d.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
   return new Date(d.setDate(diff));
 }
-
 // 날짜 형식 변경
 function changeDateFormat(d) {
   return (
@@ -19,7 +21,6 @@ function changeDateFormat(d) {
     (d.getDate() > 9 ? d.getDate().toString() : '0' + d.getDate().toString())
   );
 }
-
 function changeStartDateFormat(d) {
   d = new Date(d);
   return (
@@ -35,11 +36,7 @@ function changeStartDateFormat(d) {
 
 const today = JSON.stringify(changeDateFormat(new Date()));
 const startDay = JSON.stringify(changeDateFormat(getMonday(new Date())));
-console.log(
-  new Date(JSON.parse(startDay)).setDate(
-    new Date(JSON.parse(startDay)).getDate() - 7
-  )
-);
+
 export const scheduleSlice = createSlice({
   name: 'schedule',
   initialState: {

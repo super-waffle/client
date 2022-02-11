@@ -1,30 +1,30 @@
+import { useState, useCallback } from 'react';
 import React from 'react';
-import styled from 'styled-components';
-import TodoItem from './TodoItem';
-import { useTodoState } from './TodoContext';
+import { useSelector } from 'react-redux';
+import TodoItem from './todoItem';
+import axios from 'axios';
 
-const TodoListBlock = styled.div`
-  flex: 1;
-  padding: 1rem 1.5rem;
-  padding-bottom: 2rem;
-  overflow-y: auto;
-`;
-
-function TodoList() {
-  const todos = useTodoState();
-
+export default function TodoList({ dailyList }) {
+  const selectedDay = useSelector((state) => state.schedule.selectedDay);
+  console.log('투두리스트 렌더링');
   return (
-    <TodoListBlock>
-      {todos.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          id={todo.id}
-          text={todo.text}
-          done={todo.done}
-        />
-      ))}
-    </TodoListBlock>
+    <div>
+      <h5 style={{ fontFamily: 'pretandard', fontWeight: 'bold' }}>
+        {parseInt(selectedDay.split('-')[2].slice(0, 2))}일의 할일
+      </h5>
+      <div
+        style={{
+          background: '#fcfcfc',
+          border: '1px solid #ededed',
+          boxSizing: 'border-box',
+          borderRadius: '5px',
+          margin: '1.5rem 0rem',
+        }}
+      >
+        {dailyList &&
+          dailyList.map((todo, index) => <TodoItem key={index} todo={todo} />)}
+        <h4>+ todo create</h4>
+      </div>
+    </div>
   );
 }
-
-export default TodoList;

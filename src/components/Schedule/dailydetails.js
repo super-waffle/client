@@ -2,8 +2,9 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Todaystudy from './todaystudy';
 import Diary from './diary';
 import { useSelector } from 'react-redux';
+import TodoList from './Todo/todoList';
 
-export default function Dailydetails() {
+export default function Dailydetails({ dailyList }) {
   const selectDay = useSelector((state) => state.schedule.selectedDay);
   return (
     <Container
@@ -22,7 +23,8 @@ export default function Dailydetails() {
         <h3
           style={{
             fontWeight: 'bold',
-            textAlign: 'center',
+            textAlign: 'left',
+            fontFamily: 'pretandard',
           }}
         >
           {JSON.parse(selectDay).split('-')[0]}년{' '}
@@ -37,7 +39,7 @@ export default function Dailydetails() {
         }}
       >
         <Col sm={4} md={4} lg={4}>
-          {/* <DailyTodoList /> */}
+          <TodoList dailyList={dailyList} />
         </Col>
         <Col sm={8} md={8} lg={8}>
           <Row>

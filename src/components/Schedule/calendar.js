@@ -1,4 +1,4 @@
-import Dailydetails from '../dailydetails';
+import Dailydetails from './dailydetails';
 import classNames from 'classnames';
 import { Container, Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,9 +9,10 @@ import {
 import { useState, useCallback } from 'react';
 import Card from 'react-bootstrap/Card';
 import { useSelector, useDispatch } from 'react-redux';
-import { toPrevWeek, toNextWeek, selectDay } from '../scheduleSlice';
+import { toPrevWeek, toNextWeek, selectDay } from './scheduleSlice';
 import axios from 'axios';
 import { useEffect } from 'react';
+import isLogin from '../../utils/isLogin';
 
 const StudyCard = (event) => {
   const studies = event.arr;
@@ -27,7 +28,7 @@ const StudyCard = (event) => {
       >
         {studies && studies.date.split('-')[2]}
       </p>
-      {studies &&
+      {studies ? (
         studies.studySchedules.map((study, index) => (
           <Card
             key={index}
@@ -45,7 +46,14 @@ const StudyCard = (event) => {
               {study.startTime}~{study.endTime}
             </Card.Subtitle>
           </Card>
-        ))}
+        ))
+      ) : (
+        <Card>
+          <Card.Title style={{ fontWeight: 'bold' }}>
+            오늘 일정이 없어요!
+          </Card.Title>
+        </Card>
+      )}
     </>
   );
 };
@@ -69,29 +77,53 @@ export default function Calendar() {
   const dispatch = useDispatch();
   const today = useSelector((state) => state.schedule.today);
   const startDay = useSelector((state) => state.schedule.startDay);
+  const selectedDay = useSelector((state) => state.schedule.selectedDay);
   const [weekly, setWeekly] = useState([]);
-  console.log(startDay);
+  const [dailyList, setDailyList] = useState([]);
   const getSchedule = () => {
+    if (isLogin()) {
+      try {
+        axios
+          .get(
+            process.env.REACT_APP_SERVER_URL +
+              `/schedules?date=${JSON.parse(startDay)}`,
+            {
+              headers: {
+                Authorization: `Bearer ` + localStorage.getItem('accessToken'),
+              },
+            }
+          )
+          .then((res) => {
+            setWeekly(res.data.map);
+          });
+      } catch (err) {
+        console.log('Error:', err);
+      }
+    } else {
+      console.log('Need Login');
+    }
+  };
+  useEffect(() => getSchedule(), [startDay]);
+  async function getTodos() {
     try {
-      axios
+      const response = await axios
         .get(
           process.env.REACT_APP_SERVER_URL +
-            `/schedules?date=${JSON.parse(startDay)}`,
+            `/todos?date=${JSON.parse(selectedDay)}`,
           {
             headers: {
               Authorization: `Bearer ` + localStorage.getItem('accessToken'),
             },
           }
         )
-        .then((res) => {
-          console.log(res);
-          setWeekly(res.data.map);
+        .then((response) => {
+          setDailyList(response.data.todoList);
+          console.log('투두리스트 업데이트', selectedDay, response.data);
         });
     } catch (err) {
-      console.log('Error:', err);
+      console.log(err);
     }
-  };
-  useEffect(() => getSchedule(), [startDay]);
+  }
   return (
     <>
       <Container
@@ -134,24 +166,26 @@ export default function Calendar() {
               <Col
                 key={index}
                 style={{ margin: '0.3rem' }}
-                onClick={() =>
+                onClick={() => {
                   dispatch(
                     selectDay(
                       JSON.stringify(weekly ? weekly[index + 1]['date'] : null)
                     )
-                  )
-                }
+                  );
+                  getTodos();
+                }}
               >
                 <p style={{ marginTop: '1rem' }}>{day}</p>
                 <div
                   className={classNames('day-line')}
                   style={{
+                    background: '#6c75cd',
                     border: 'solid 2px #6C757D',
                   }}
                 />
                 <div
                   style={{
-                    backgroundColor: '#F2F1F6',
+                    // backgroundColor: '#F2F1F6',
                     borderRadius: '5px',
                     paddingBottom: '0.5rem',
                     marginBottom: '2rem',
@@ -163,7 +197,7 @@ export default function Calendar() {
             ))}
           </Row>
         </Row>
-        <Dailydetails />
+        <Dailydetails dailyList={dailyList} />
       </Container>
     </>
   );
