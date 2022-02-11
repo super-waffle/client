@@ -24,6 +24,7 @@ import SettingsAlarm from "./pages/SettingsAlarm";
 import SettingsStudy from "./pages/SettingsStudy";
 import SettingsMeeting from "./pages/SettingsMeeting";
 import SettingsMeetingFavorite from "./pages/SettingsMeetingFavorite";
+import VideoComponent from "./components/meetingroom/VideoComponent"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -52,6 +53,10 @@ ReactDOM.render(
             <Route
               path="meetingrooms"
               element={isLogin() ? <Meetingrooms /> : <Login />}
+            />
+             <Route
+              path="videoComponent"
+              element={isLogin() ? <VideoComponent /> : <Login />}
             />
             <Route
               path="schedules"
