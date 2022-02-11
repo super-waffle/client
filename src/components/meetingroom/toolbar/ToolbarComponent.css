@@ -1,36 +1,19 @@
-
-.toolbar{
-  position: fixed; 
-  bottom: 0; 
-  width: 100%;
-}
-.tool{
-  position: fixed; 
-  bottom: 0; 
-  width: 100%;
-}
-@media only screen and (max-width: 700px) {
-  #titleContent, #navChatButton {
-      display: none;
-  }
-}
-/* 
-.buttonsContent{
-  text-align: center;
-} */
-/* #header {
+#header {
   color: #ffffff;
   height: 40px;
   background-color: #333333;
+  /* padding: 0 14px 0 0; */
   position: absolute;
-  top: 0;
+  /* top: 0;
   left: 0;
-  z-index: 999999;
+  z-index: 999999; */
   min-width: 400px !important;
 }
+.toolbar {
+  padding: 0 !important;
+}
 
-
-.headerLight{
+.headerLight {
   color: #706969 !important;
   background-color: #eeeeee !important;
 }
@@ -51,7 +34,7 @@
   top: 0;
 }
 
-#titleContent{
+#titleContent {
   max-width: 100px;
   background-color: #494949;
   margin: 5px -18px;
@@ -63,8 +46,8 @@
   margin-top: 20px;
 }
 
-.titleContentLight{
-  background-color: #dfdfdf !important; 
+.titleContentLight {
+  background-color: #dfdfdf !important;
   color: #000;
 }
 
@@ -74,26 +57,28 @@
   margin-top: 10px;
 }
 
-#session-title{
-  font-family: 'Open Sans', sans-serif; 
+#session-title {
+  font-family: "Open Sans", sans-serif;
 }
 
-
-#point{
-width: 10px;
-height: 10px;
-position: absolute;
-top: 12px;
-right: 33px;
-border-radius: 50%;
-background-color: #ffa600;
-border: 1px solid #000;
-z-index: 99999;
+#point {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 12px;
+  right: 33px;
+  border-radius: 50%;
+  background-color: #ffa600;
+  border: 1px solid #000;
+  z-index: 99999;
 }
-.pointLight{
-border: 1px solid #ffffff !important;
+.pointLight {
+  border: 1px solid #ffffff !important;
 }
 
-
-
-} */ 
+@media only screen and (max-width: 700px) {
+  #titleContent,
+  #navChatButton {
+    display: none;
+  }
+}

@@ -105,7 +105,7 @@ class VideoRoomComponent extends Component {
       animate: true, // Whether you want to animate the transitions
     };
     // sessionToken = null;
-    this.layout.initLayoutContainer(
+    this.layout.initLayout(
       document.getElementById('layout'),
       openViduLayoutOptions
     );
