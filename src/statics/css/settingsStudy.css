@@ -1,0 +1,98 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+:root {
+  --htmlbgColor: #ffffff;
+  --bgColor: #fcfcfc;
+  --bgColor-light: #eaeaea;
+  --borderColor: #ededed;
+  --borderColor2: #d6d6d6;
+  --borderColor3: #e1e1e1;
+  --textWhite: #eeeeee;
+  --textColor: #252525;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #a1a1a1;
+  --textColor-darkest: #c2c2c2;
+  --github-01: #e8eaee;
+  --github-02: #d5d6f5;
+  --github-03: #9fa2e3;
+  --board-textColor: #646464;
+}
+
+.ui-dark {
+  background-color: var(--htmlbgColor);
+  --htmlbgColor: #292929;
+  --bgColor: #373737;
+  --bgColor-light: #4a4a4a;
+  --bgColor-lighter: #565656;
+  --bgColor-dark: #1b1b1b;
+  --borderColor: #444444;
+  --borderColor2: #444444;
+  --borderColor3: #444444;
+  --textColor: #ededed;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #6f6f6f;
+  --textColor-darkest: #838383;
+  --github-01: rgba(102, 103, 171, 0.2);
+  --github-02: rgba(102, 103, 171, 0.4);
+  --github-03: rgba(102, 103, 171, 0.7);
+  --board-textColor: #ededed;
+}
+
+.hidden {
+  display: none;
+}
+
+.settings-study {
+  padding-top: 80px;
+  width: 100%;
+}
+.settings-study .settings-study-heading {
+  padding-left: 10px;
+}
+.settings-study .settings-study-heading .settings-study-heading__h1 {
+  font-size: 20px;
+  color: var(--textColor);
+}
+.settings-study .settings-study-heading .settings-study-heading__h2 {
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--textColor-dark);
+  margin-bottom: 17px;
+}
+.settings-study .settings-study-mystudies table {
+  width: 100%;
+  border-top: 1.5px solid var(--textColor);
+  border-bottom: 1.5px solid var(--textColor);
+}
+.settings-study .settings-study-mystudies table tbody tr.settings-study-mystudy {
+  border-bottom: 1px solid var(--textColor-darkest);
+}
+.settings-study .settings-study-mystudies table tbody tr.is-check {
+  background-color: var(--bgColor);
+}
+.settings-study .settings-study-mystudies table tbody tr.is-check .settings-study-mystudy-category {
+  color: rgba(102, 103, 171, 0.7);
+}
+.settings-study .settings-study-mystudies table tbody tr .settings-study-mystudy-category {
+  font-size: 12px;
+  text-align: center;
+  width: 10%;
+  color: #6667ab;
+  font-weight: 500;
+}
+.settings-study .settings-study-mystudies table tbody tr .settings-study-mystudy-title {
+  padding: 0.6rem 0 0.6rem 0.4rem;
+  font-size: 13px;
+  color: var(--textColor);
+  width: 75%;
+}
+.settings-study .settings-study-mystudies table tbody tr .settings-study-mystudy-title .mystudy-shorts {
+  font-size: 12px;
+  color: var(--textColor-dark);
+}
+.settings-study .settings-study-mystudies table tbody tr .settings-study-mystudy-status {
+  font-size: 13px;
+  width: 10%;
+  color: var(--textColor);
+}
+
+/*# sourceMappingURL=settingsStudy.css.map */

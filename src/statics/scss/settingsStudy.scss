@@ -1,0 +1,62 @@
+@import "main.scss";
+
+.settings-study {
+  padding-top: 80px;
+  width: 100%;
+  .settings-study-heading {
+    padding-left: 10px;
+    .settings-study-heading__h1 {
+      font-size: 20px;
+      color: var(--textColor);
+    }
+    .settings-study-heading__h2 {
+      font-size: 12px;
+      line-height: 14px;
+      color: var(--textColor-dark);
+      margin-bottom: 17px;
+    }
+  }
+  .settings-study-mystudies {
+    & table {
+      width: 100%;
+      border-top: 1.5px solid var(--textColor);
+      border-bottom: 1.5px solid var(--textColor);
+      & tbody {
+        & tr {
+          &.settings-study-mystudy {
+            // padding: 6rem;
+            border-bottom: 1px solid var(--textColor-darkest);
+          }
+          &.is-check {
+            background-color: var(--bgColor);
+            .settings-study-mystudy-category {
+              color: rgba(102, 103, 171, 0.7);
+            }
+          }
+          .settings-study-mystudy-category {
+            font-size: 12px;
+            text-align: center;
+            width: 10%;
+            color: $mainColor;
+            font-weight: 500;
+          }
+          .settings-study-mystudy-title {
+            padding: 0.6rem 0 0.6rem 0.4rem;
+            font-size: 13px;
+            color: var(--textColor);
+            width: 75%;
+            .mystudy-shorts {
+              font-size: 12px;
+              color: var(--textColor-dark);
+            }
+          }
+          .settings-study-mystudy-status {
+            font-size: 13px;
+            width: 10%;
+            color: var(--textColor);
+          }
+        }
+      }
+    }
+  }
+}
