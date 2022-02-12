@@ -67,11 +67,13 @@
 }
 .modal > section > header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   position: relative;
   padding: 15px 15px 0px 15px;
   background-color: var(--htmlbgColor);
-  font-weight: 700;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
 }
 .modal > section > main {
   padding: 5px 16px 30px 16px;

@@ -1,0 +1,14 @@
+@import "main.scss";
+
+.settings-notice {
+  padding-top: 80px;
+  width: 100%;
+  .settings-notice-heading {
+    font-size: 20px;
+    margin-bottom: 17px;
+  }
+  & table {
+    border-top: 2px solid var(--textColor);
+    width: 100%;
+  }
+}
