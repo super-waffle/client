@@ -10,46 +10,52 @@ function Login() {
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
-  const onSubmit = useCallback(
-    (event) => {
-      event.preventDefault();
-      axios
-        .post(process.env.REACT_APP_SERVER_URL + "/accounts/login", {
-          email: email,
-          password: password,
-        })
-        .then((res) => {
-          const STATUS = res.data.statusCode;
-          if (STATUS === 200) {
-            setErrorMsg("");
-            const accessToken = res.data.accessToken;
+  const onSubmit = useCallback(() => {
+    axios
+      .post(process.env.REACT_APP_SERVER_URL + "/accounts/login", {
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        const STATUS = res.data.statusCode;
+        if (STATUS === 200) {
+          setErrorMsg("");
+          const accessToken = res.data.accessToken;
 
-            //localStorage에 jwt저장
-            // [TODO]: refresh jwt token
-            localStorage.setItem("accessToken", accessToken);
+          //localStorage에 jwt저장
+          // [TODO]: refresh jwt token
+          localStorage.setItem("accessToken", accessToken);
 
-            // api 통신 시 header에 jwt token default값으로 전송
-            axios.defaults.headers.common[
-              "Authorization"
-            ] = `Bearer ${accessToken}`;
+          // api 통신 시 header에 jwt token default값으로 전송
+          axios.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer ${accessToken}`;
 
-            const currentToken = localStorage.getItem("accessToken");
-            if (currentToken !== null) {
+          const currentToken = localStorage.getItem("accessToken");
+          if (currentToken !== null) {
+            setTimeout(() => {
               navigate("/home/tab=todays");
               window.location.reload();
-            }
-          } else if (STATUS === 404) {
-            setErrorMsg("가입되지 않은 사용자입니다");
-          } else if (STATUS === 401) {
-            setErrorMsg("비밀번호가 일치하지 않습니다");
+            }, 2000);
+            // window.location.reload();
+            // navigate("/home/tab=todays");
+            // window.location.reload();
           }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    [email, password, navigate]
-  );
+        } else if (STATUS === 404) {
+          setErrorMsg("가입되지 않은 사용자입니다");
+        } else if (STATUS === 401) {
+          setErrorMsg("비밀번호가 일치하지 않습니다");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [email, password, navigate]);
+  const onKeyEnter = (event) => {
+    if (event.key === "Enter") {
+      onSubmit();
+    }
+  };
 
   return (
     <div className="login">
@@ -82,6 +88,7 @@ function Login() {
                 type="password"
                 placeholder="비밀번호를 입력하세요"
                 onChange={(e) => setPassword(e.target.value)}
+                onKeyPress={onKeyEnter}
               />
             </div>
             <div className="submit-btn">
