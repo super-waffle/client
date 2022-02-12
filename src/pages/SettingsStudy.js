@@ -31,7 +31,7 @@ export default function SettingsStudy() {
         },
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         const USER = res.data.user;
         setNickname(USER.userNickname);
         setProfileImg(USER.userImg);
@@ -84,7 +84,7 @@ export default function SettingsStudy() {
       setSelectedStudy(() => selected[0]);
     }
   }, [studySeq]);
-
+  console.log();
   return (
     <div className="settings-study">
       <div className="settings-study-heading">
@@ -265,6 +265,16 @@ export default function SettingsStudy() {
               </div>
             )}
           </div>
+          {selectedStudy.isRecruiting && (
+            <div className="settings-study-details__btns">
+              <button className="settings-study-details__btn end-study">
+                모집 마감
+              </button>
+              <button className="settings-study-details__btn start-study">
+                스터디 시작하기
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>

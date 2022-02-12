@@ -220,5 +220,28 @@
   color: var(--textColor);
   white-space: pre-wrap;
 }
+.settings-study .settings-study-details .settings-study-details__btns {
+  margin: 50px 10px 10px 0;
+  text-align: right;
+}
+.settings-study .settings-study-details .settings-study-details__btns .settings-study-details__btn {
+  border: none;
+  border-radius: 5px;
+  background-color: #6667ab;
+  color: #eeeeee;
+  font-size: 13px;
+  margin-right: 5px;
+  padding: 8px 14px;
+}
+.settings-study .settings-study-details .settings-study-details__btns .settings-study-details__btn.start-study {
+  border: 1px solid #6667ab;
+  background-color: var(--bgColor);
+  color: var(--textColor);
+}
+.settings-study .settings-study-details .settings-study-details__btns .settings-study-details__btn.end-study {
+  border: 1.5px solid #6667ab;
+  background-color: var(--bgColor);
+  color: var(--textColor);
+}
 
 /*# sourceMappingURL=settingsStudy.css.map */
