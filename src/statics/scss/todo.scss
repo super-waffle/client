@@ -1,6 +1,6 @@
 @import 'main.scss';
 
-:checked {
+#daily_todo_check:checked {
   background-color: #6667ab;
   cursor: pointer;
   appearance: auto;

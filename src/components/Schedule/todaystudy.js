@@ -4,11 +4,10 @@ import { useSelector } from 'react-redux';
 const indexList = [1, 2, 3, 4, 5, 6, 7];
 export default function Todaystudy({ weekly }) {
   const selectedDay = useSelector((state) => state.schedule.selectedDay);
-  // const studies = weekly
-  //   ? indexList.filter((day) => weekly.day.date === selectedDay)
-  //   : null;
-  // console.log(studies);
-  const studies = [];
+  console.log(weekly);
+  const studies = weekly
+    ? weekly.filter((day) => weekly.date === selectedDay)
+    : null;
 
   return (
     <Container>

@@ -7,7 +7,6 @@ import axios from 'axios';
 export default function TodoList() {
   const selectedDay = useSelector((state) => state.schedule.selectedDay);
   const [dailyList, setDailyList] = useState([]);
-  console.log(dailyList);
   async function getTodos() {
     try {
       const response = await axios.get(

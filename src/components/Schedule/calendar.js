@@ -14,8 +14,8 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import isLogin from '../../utils/isLogin';
 
-const StudyCard = (event) => {
-  const studies = event.arr;
+const StudyCard = ({ arr }) => {
+  const studies = arr;
   return (
     <>
       <p
@@ -91,7 +91,7 @@ export default function Calendar() {
             }
           )
           .then((res) => {
-            setWeekly(res.data.map);
+            setWeekly(res.data.list);
           });
       } catch (err) {
         console.log('Error:', err);
@@ -148,7 +148,7 @@ export default function Calendar() {
                 onClick={() => {
                   dispatch(
                     selectDay(
-                      JSON.stringify(weekly ? weekly[index + 1]['date'] : null)
+                      JSON.stringify(weekly ? weekly[index]['date'] : null)
                     )
                   );
                 }}
@@ -169,13 +169,13 @@ export default function Calendar() {
                     marginBottom: '2rem',
                   }}
                 >
-                  {weekly && <StudyCard arr={weekly[index + 1]} />}
+                  {weekly && <StudyCard arr={weekly[index]} />}
                 </div>
               </Col>
             ))}
           </Row>
         </Row>
-        <Dailydetails />
+        {weekly && <Dailydetails weerkly={weekly} />}
       </Container>
     </>
   );

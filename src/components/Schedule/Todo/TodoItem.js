@@ -29,7 +29,6 @@ export default function TodoItem({ todo, dailyList, setDailyList }) {
             : daily
         )
       );
-      console.log('edit todo');
     } catch (err) {
       console.log(err);
     }
@@ -60,9 +59,8 @@ export default function TodoItem({ todo, dailyList, setDailyList }) {
     <div>
       <TodoItemBlock>
         <input
-          className="daily_todo_check"
+          id="daily_todo_check"
           type="checkbox"
-          style={{ marginLeft: '1rem', marginRight: '1rem' }}
           checked={thisDone}
           onChange={() => setThisDone(!thisDone)}
         />
