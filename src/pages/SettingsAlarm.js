@@ -43,7 +43,6 @@ export default function SettingsAlarm() {
       });
   }, []);
 
-  const [categoryColor, setCategoryColor] = useState("");
   const categorySeqToName = useCallback((num) => {
     if (num === 101) {
       return "경고";
