@@ -1,19 +1,16 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { MdEdit, MdDelete, MdSave } from 'react-icons/md';
-import { useDispatch } from 'react-redux';
-import { todoSubmit } from '../scheduleSlice';
 import axios from 'axios';
-
 import { Remove, Text, TodoItemBlock } from './todoStyle';
+import '../../../statics/css/todo.css';
 
-export default function TodoItem({ todo }) {
+export default function TodoItem({ todo, dailyList, setDailyList }) {
   const [thisTodo, setThisTodo] = useState(todo.todoContent);
   const [thisDone, setThisDone] = useState(todo.todoCompleted);
   const [wantEdit, setWantEdit] = useState(false);
-  const dispatch = useDispatch();
-  const saveTodo = useCallback(() => {
-    axios
-      .patch(
+  async function saveTodo() {
+    try {
+      const response = await axios.patch(
         process.env.REACT_APP_SERVER_URL + `/todos/${todo.todoSeq}`,
         {
           content: thisTodo,
@@ -24,46 +21,53 @@ export default function TodoItem({ todo }) {
             Authorization: `Bearer ` + localStorage.getItem('accessToken'),
           },
         }
-      )
-      .then((res) => {})
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+      );
+      setDailyList(
+        dailyList.map((daily) =>
+          daily.todoSeq === todo.todoseq
+            ? { ...dailyList, todoContent: thisTodo }
+            : daily
+        )
+      );
+      console.log('edit todo');
+    } catch (err) {
+      console.log(err);
+    }
+  }
   useEffect(() => {
     saveTodo();
   }, [thisDone]);
   const onChange = (e) => {
     setThisTodo(e.target.value);
   };
-  const onDelete = (e) => {
-    axios
-      .delete(process.env.REACT_APP_SERVER_URL + `/todos/${todo.todoSeq}`, {
-        headers: {
-          Authorization: `Bearer ` + localStorage.getItem('accessToken'),
-        },
-      })
-      .then((res) => {})
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  async function onDelete() {
+    try {
+      const response = await axios.delete(
+        process.env.REACT_APP_SERVER_URL + `/todos/${todo.todoSeq}`,
+        {
+          headers: {
+            Authorization: `Bearer ` + localStorage.getItem('accessToken'),
+          },
+        }
+      );
+      setDailyList(dailyList.filter((daily) => daily.todoSeq !== todo.todoSeq));
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <div>
       <TodoItemBlock>
         <input
+          className="daily_todo_check"
           type="checkbox"
-          style={{ marginLeft: '1rem', marginRight: '1rem', color: '#565656' }}
+          style={{ marginLeft: '1rem', marginRight: '1rem' }}
           checked={thisDone}
           onChange={() => setThisDone(!thisDone)}
         />
         {wantEdit ? (
-          <input
-            value={thisTodo}
-            onChange={onChange}
-            onKeyUp={saveTodo}
-          ></input>
+          <input value={thisTodo} onChange={onChange}></input>
         ) : (
           <Text>{thisTodo}</Text>
         )}
@@ -93,14 +97,12 @@ export default function TodoItem({ todo }) {
         <Remove
           onClick={() => {
             onDelete();
-            dispatch(todoSubmit());
           }}
         >
           <MdDelete
-            onClick={() => {
-              onDelete();
-              dispatch(todoSubmit());
-            }}
+          // onClick={() => {
+          //   onDelete();
+          // }}
           />
         </Remove>
       </TodoItemBlock>

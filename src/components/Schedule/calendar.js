@@ -13,7 +13,6 @@ import { toPrevWeek, toNextWeek, selectDay } from './scheduleSlice';
 import axios from 'axios';
 import { useEffect } from 'react';
 import isLogin from '../../utils/isLogin';
-import { useCallback } from 'react';
 
 const StudyCard = (event) => {
   const studies = event.arr;
@@ -51,7 +50,7 @@ const StudyCard = (event) => {
       ) : (
         <Card>
           <Card.Title style={{ fontWeight: 'bold' }}>
-            오늘 일정이 없어요!
+            스터디 일정이 없어요
           </Card.Title>
         </Card>
       )}
@@ -76,11 +75,8 @@ export default function Calendar() {
   ];
   const days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
   const dispatch = useDispatch();
-  const todoAdd = useSelector((state) => state.schedule.todoAdd);
   const startDay = useSelector((state) => state.schedule.startDay);
-  const selectedDay = useSelector((state) => state.schedule.selectedDay);
   const [weekly, setWeekly] = useState([]);
-  const [dailyList, setDailyList] = useState([]);
   const getSchedule = () => {
     if (isLogin()) {
       try {
@@ -106,28 +102,7 @@ export default function Calendar() {
   };
   useEffect(() => getSchedule(), [startDay]);
 
-  const getTodos = () => {
-    try {
-      axios
-        .get(
-          process.env.REACT_APP_SERVER_URL +
-            `/todos?date=${JSON.parse(selectedDay)}`,
-          {
-            headers: {
-              Authorization: `Bearer ` + localStorage.getItem('accessToken'),
-            },
-          }
-        )
-        .then((res) => {
-          setDailyList(() => []);
-          setDailyList(() => res.data.todoList);
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  useEffect(() => getTodos(), [selectedDay, todoAdd]);
-  useCallback(() => getTodos(), [selectedDay, todoAdd]);
+  // useCallback(() => getTodos(), [selectedDay, todoAdd]);
   return (
     <>
       <Container
@@ -200,7 +175,7 @@ export default function Calendar() {
             ))}
           </Row>
         </Row>
-        <Dailydetails dailyList={dailyList} weekly={weekly} />
+        <Dailydetails />
       </Container>
     </>
   );

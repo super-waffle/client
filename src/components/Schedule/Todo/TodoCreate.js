@@ -1,16 +1,14 @@
 import { MdAddBox } from 'react-icons/md';
-import { useSelector, useDispatch } from 'react-redux';
-import { useState, useCallback } from 'react';
-import { todoSubmit } from '../scheduleSlice';
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import axios from 'axios';
 
-export default function CreateTodo() {
+export default function CreateTodo({ dailyList, setDailyList }) {
   const selectedDay = useSelector((state) => state.schedule.selectedDay);
-  const dispatch = useDispatch();
   const [newTodo, setNewTodo] = useState('');
-  const addTodo = useCallback(() => {
-    axios
-      .post(
+  async function addTodo() {
+    try {
+      const response = await axios.post(
         process.env.REACT_APP_SERVER_URL + '/todos',
         {
           date: selectedDay.slice(1, 11),
@@ -21,14 +19,20 @@ export default function CreateTodo() {
             Authorization: `Bearer ` + localStorage.getItem('accessToken'),
           },
         }
-      )
-      .then((res) => {
-        setNewTodo('');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [newTodo, selectedDay]);
+      );
+      setDailyList(
+        dailyList.concat({
+          todoCompleted: false,
+          todoContent: newTodo,
+          todoDate: selectedDay,
+          todoSeq: Math.floor(Math.random()),
+          userSeq: null,
+        })
+      );
+      setNewTodo('');
+    } catch (err) {}
+  }
+
   return (
     <div style={{ padding: '1rem' }}>
       <input
@@ -44,7 +48,6 @@ export default function CreateTodo() {
         }}
         onClick={() => {
           addTodo();
-          dispatch(todoSubmit());
         }}
       />
     </div>

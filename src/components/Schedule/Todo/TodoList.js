@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import TodoItem from './todoItem';
 import CreateTodo from './todoCreate';
+import axios from 'axios';
 
-export default function TodoList({ dailyList }) {
+export default function TodoList() {
   const selectedDay = useSelector((state) => state.schedule.selectedDay);
+  const [dailyList, setDailyList] = useState([]);
+  console.log(dailyList);
+  async function getTodos() {
+    try {
+      const response = await axios.get(
+        process.env.REACT_APP_SERVER_URL +
+          `/todos?date=${JSON.parse(selectedDay)}`,
+        {
+          headers: {
+            Authorization: `Bearer ` + localStorage.getItem('accessToken'),
+          },
+        }
+      );
+      let updatedTodos = await response.data.todoList;
+      setDailyList(() => []);
+      setTimeout(() => {
+        setDailyList(() => updatedTodos);
+      }, 100);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  useEffect(() => getTodos(), [selectedDay]);
   return (
     <div>
       <h5 style={{ fontFamily: 'pretandard', fontWeight: 'bold' }}>
@@ -20,8 +44,15 @@ export default function TodoList({ dailyList }) {
         }}
       >
         {dailyList &&
-          dailyList.map((todo, index) => <TodoItem key={index} todo={todo} />)}
-        <CreateTodo />
+          dailyList.map((todo, index) => (
+            <TodoItem
+              key={index}
+              todo={todo}
+              dailyList={dailyList}
+              setDailyList={setDailyList}
+            />
+          ))}
+        <CreateTodo dailyList={dailyList} setDailyList={setDailyList} />
       </div>
     </div>
   );
