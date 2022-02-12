@@ -24,14 +24,11 @@
       & tbody {
         & tr {
           &.settings-study-mystudy {
-            // padding: 6rem;
             border-bottom: 1px solid var(--textColor-darkest);
           }
           &.is-check {
             background-color: var(--bgColor);
-            .settings-study-mystudy-category {
-              color: rgba(102, 103, 171, 0.7);
-            }
+            opacity: 65%;
           }
           .settings-study-mystudy-category {
             font-size: 12px;
@@ -41,6 +38,7 @@
             font-weight: 500;
           }
           .settings-study-mystudy-title {
+            cursor: pointer;
             padding: 0.6rem 0 0.6rem 0.4rem;
             font-size: 13px;
             color: var(--textColor);
@@ -55,7 +53,142 @@
             width: 10%;
             color: var(--textColor);
           }
+          .settings-study-mystudy-members {
+            font-size: 13px;
+            width: 5%;
+            color: var(--textColor);
+          }
         }
+      }
+    }
+  }
+  .settings-study-details {
+    margin-top: 3rem;
+    border: 1px solid var(--borderColor);
+    border-radius: 10px;
+    background-color: var(--bgColor);
+    padding: 20px;
+
+    .settings-study-details-box-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .settings-study-details-box-heading__first-host-btn {
+        border: none;
+        text-decoration: none;
+        background-color: var(--bgColor);
+        font-size: 12px;
+        color: var(--textColor-dark);
+        padding-right: 5px;
+        &.update {
+          margin-right: 10px;
+        }
+      }
+    }
+    .settings-study-details-box-heading__first {
+      display: flex;
+      padding: 5px 0 10px 6px;
+      .settings-study-details-box-heading__title {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        color: var(--textColor);
+        padding-right: 0.6rem;
+      }
+      .settings-study-details-box-heading__category {
+        color: #eeeeee;
+        background-color: rgba(102, 103, 171, 0.7);
+        font-size: 12px;
+        width: 3rem;
+        text-align: center;
+        border-radius: 30px;
+      }
+    }
+
+    .settings-study-details-box-heading__second {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      line-height: 14px;
+      color: var(--textColor-darker);
+      padding-left: 6px;
+      .settings-study-details-img-wrapper {
+        position: relative;
+        width: 24px;
+        height: 24px;
+        border-radius: 100%;
+        margin-right: 5px;
+        & img {
+          position: relative;
+          top: -24px;
+          left: 0;
+          transform: translate(50, 50);
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          margin: auto;
+          border-radius: 100%;
+          // padding-right: 10px;
+        }
+        & svg {
+          position: relative;
+          top: 0;
+          left: 0;
+          transform: translate(50, 50);
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          margin: auto;
+          border-radius: 100%;
+        }
+      }
+    }
+    .settings-study-details-box-body {
+      .settings-study-details-box-body__row {
+        height: 24px;
+        // padding: 1rem 0 1rem 0;
+      }
+      .settings-study-details-box-body__title {
+        font-size: 13px;
+        line-height: 14px;
+        font-weight: 500;
+        color: var(--textColor);
+        width: 4.5rem;
+      }
+      .settings-study-details-box-body__days {
+        display: flex;
+      }
+      .settings-study-details-box-body__day {
+        font-size: 12px;
+        line-height: 14px;
+        color: var(--textColor);
+        padding-right: 5px;
+        &.name {
+          color: $mainColor;
+          font-weight: 500;
+        }
+        &.timeend {
+          margin-right: 10px;
+        }
+      }
+      .settings-study-details-box-body__enddate {
+        font-size: 12px;
+        line-height: 14px;
+        color: var(--textColor);
+      }
+      .settings-study-details-box-body__shortdesc {
+        padding-top: 40px;
+        font-size: 12px;
+        font-weight: 450;
+        color: var(--textColor);
+
+        // line-height: 14px;
+      }
+      .settings-study-details-box-body__desc {
+        padding-top: 25px;
+        font-size: 12px;
+        color: var(--textColor);
+        white-space: pre-wrap;
       }
     }
   }
