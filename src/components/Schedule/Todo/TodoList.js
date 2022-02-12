@@ -1,12 +1,10 @@
-import { useState, useCallback } from 'react';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import TodoItem from './todoItem';
-import axios from 'axios';
+import CreateTodo from './todoCreate';
 
 export default function TodoList({ dailyList }) {
   const selectedDay = useSelector((state) => state.schedule.selectedDay);
-  console.log('투두리스트 렌더링');
   return (
     <div>
       <h5 style={{ fontFamily: 'pretandard', fontWeight: 'bold' }}>
@@ -23,7 +21,7 @@ export default function TodoList({ dailyList }) {
       >
         {dailyList &&
           dailyList.map((todo, index) => <TodoItem key={index} todo={todo} />)}
-        <h4>+ todo create</h4>
+        <CreateTodo />
       </div>
     </div>
   );

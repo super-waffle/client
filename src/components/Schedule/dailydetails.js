@@ -4,7 +4,7 @@ import Diary from './diary';
 import { useSelector } from 'react-redux';
 import TodoList from './Todo/todoList';
 
-export default function Dailydetails({ dailyList }) {
+export default function Dailydetails({ dailyList, weekly }) {
   const selectDay = useSelector((state) => state.schedule.selectedDay);
   return (
     <Container
@@ -43,7 +43,7 @@ export default function Dailydetails({ dailyList }) {
         </Col>
         <Col sm={8} md={8} lg={8}>
           <Row>
-            <Todaystudy />
+            <Todaystudy weekly={weekly} />
           </Row>
           <Row>
             <Diary />

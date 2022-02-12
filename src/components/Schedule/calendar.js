@@ -6,13 +6,14 @@ import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import { useSelector, useDispatch } from 'react-redux';
 import { toPrevWeek, toNextWeek, selectDay } from './scheduleSlice';
 import axios from 'axios';
 import { useEffect } from 'react';
 import isLogin from '../../utils/isLogin';
+import { useCallback } from 'react';
 
 const StudyCard = (event) => {
   const studies = event.arr;
@@ -75,7 +76,7 @@ export default function Calendar() {
   ];
   const days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
   const dispatch = useDispatch();
-  const today = useSelector((state) => state.schedule.today);
+  const todoAdd = useSelector((state) => state.schedule.todoAdd);
   const startDay = useSelector((state) => state.schedule.startDay);
   const selectedDay = useSelector((state) => state.schedule.selectedDay);
   const [weekly, setWeekly] = useState([]);
@@ -104,9 +105,10 @@ export default function Calendar() {
     }
   };
   useEffect(() => getSchedule(), [startDay]);
-  async function getTodos() {
+
+  const getTodos = () => {
     try {
-      const response = await axios
+      axios
         .get(
           process.env.REACT_APP_SERVER_URL +
             `/todos?date=${JSON.parse(selectedDay)}`,
@@ -116,14 +118,16 @@ export default function Calendar() {
             },
           }
         )
-        .then((response) => {
-          setDailyList(response.data.todoList);
-          console.log('투두리스트 업데이트', selectedDay, response.data);
+        .then((res) => {
+          setDailyList(() => []);
+          setDailyList(() => res.data.todoList);
         });
     } catch (err) {
       console.log(err);
     }
-  }
+  };
+  useEffect(() => getTodos(), [selectedDay, todoAdd]);
+  useCallback(() => getTodos(), [selectedDay, todoAdd]);
   return (
     <>
       <Container
@@ -172,7 +176,6 @@ export default function Calendar() {
                       JSON.stringify(weekly ? weekly[index + 1]['date'] : null)
                     )
                   );
-                  getTodos();
                 }}
               >
                 <p style={{ marginTop: '1rem' }}>{day}</p>
@@ -197,7 +200,7 @@ export default function Calendar() {
             ))}
           </Row>
         </Row>
-        <Dailydetails dailyList={dailyList} />
+        <Dailydetails dailyList={dailyList} weekly={weekly} />
       </Container>
     </>
   );

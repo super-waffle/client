@@ -1,6 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { get } from 'jquery';
+import { createSlice } from '@reduxjs/toolkit';
 
 //월요일 날짜 찾기
 function getMonday(d) {
@@ -43,6 +41,7 @@ export const scheduleSlice = createSlice({
     today: today,
     startDay: startDay, // "2022-02-07" -> javascript date연산 -> "2022-01-31"
     selectedDay: today,
+    todoAdd: 0,
   },
   reducers: {
     toPrevWeek: (state) => {
@@ -68,8 +67,12 @@ export const scheduleSlice = createSlice({
     selectDay: (state, action) => {
       state.selectedDay = action.payload;
     },
+    todoSubmit: (state) => {
+      state.todoAdd += 1;
+    },
   },
 });
 
-export const { toPrevWeek, toNextWeek, selectDay } = scheduleSlice.actions;
+export const { toPrevWeek, toNextWeek, selectDay, todoSubmit } =
+  scheduleSlice.actions;
 export default scheduleSlice.reducer;
