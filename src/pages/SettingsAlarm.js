@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import Modal from "../components/modal";
-import ModalLarge from "../components/modalLarge";
 import "../statics/css/settingsAlarm.css";
 
 export default function SettingsAlarm() {
@@ -16,7 +15,6 @@ export default function SettingsAlarm() {
         },
       })
       .then((res) => {
-        // window.location.reload();
         if (res.data.statusCode === 200) {
           const noticeData = res.data.noticeList;
           setNotice((prevState) => ({
@@ -26,7 +24,6 @@ export default function SettingsAlarm() {
         }
       });
   }, []);
-  console.log(notice);
 
   useEffect(() => {
     axios
@@ -36,7 +33,6 @@ export default function SettingsAlarm() {
         },
       })
       .then((res) => {
-        // console.log(res.data.list);
         if (res.data.statusCode === 200) {
           const categories = res.data.list;
           setNoticeCategories((prevState) => ({
@@ -46,20 +42,16 @@ export default function SettingsAlarm() {
         }
       });
   }, []);
-  // console.log(noticeCategories);
 
   const [categoryColor, setCategoryColor] = useState("");
   const categorySeqToName = useCallback((num) => {
     if (num === 101) {
-      // setCategoryColor("alert");
       return "경고";
     }
     if (num === 102) {
-      // setCategoryColor("normal");
       return "스터디 알림";
     }
     if (num === 103) {
-      // setCategoryColor("normal");
       return "자유열람실 알림";
     }
   }, []);
@@ -83,7 +75,6 @@ export default function SettingsAlarm() {
   const modalNoticeContent = useCallback((seq) => {
     for (let i = 0; i < notice.noticeData.length; i++) {
       let short = notice.noticeData[i];
-      console.log(short.noticeSeq, seq);
       if (short.noticeSeq === seq) {
         setNoticeModal(short.noticeContent);
         setNoticeModalTime(short.noticeDate);
@@ -108,7 +99,6 @@ export default function SettingsAlarm() {
         }
       )
       .then((res) => {
-        console.log(res);
         window.location.reload();
       });
   });
