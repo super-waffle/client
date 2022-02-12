@@ -26,7 +26,7 @@ export default function SettingsAlarm() {
         }
       });
   }, []);
-  // console.log(notice);
+  console.log(notice);
 
   useEffect(() => {
     axios
@@ -62,7 +62,7 @@ export default function SettingsAlarm() {
       // setCategoryColor("normal");
       return "자유열람실 알림";
     }
-  });
+  }, []);
 
   // modal
   const [modalOpen, setModalOpen] = useState(false);
@@ -76,12 +76,20 @@ export default function SettingsAlarm() {
   // 모달로 띄워주는 알림창 내용
   const [noticeSeq, setNoticeSeq] = useState("");
   const [noticeModal, setNoticeModal] = useState("");
+  const [noticeModalTime, setNoticeModalTime] = useState("");
+  const [noticeModalCategory, setNoticeModalCategory] = useState("");
+  const [noticeModalCategorySeq, setNoticeModalCategorySeq] = useState("");
+  const [noticeIsChecked, setNoticeIsChecked] = useState(false);
   const modalNoticeContent = useCallback((seq) => {
     for (let i = 0; i < notice.noticeData.length; i++) {
       let short = notice.noticeData[i];
       console.log(short.noticeSeq, seq);
       if (short.noticeSeq === seq) {
         setNoticeModal(short.noticeContent);
+        setNoticeModalTime(short.noticeDate);
+        setNoticeModalCategorySeq(short.categorySeq);
+        setNoticeModalCategory(categorySeqToName(short.categorySeq));
+        setNoticeIsChecked(short.isChecked);
         return;
       }
     }
@@ -101,6 +109,7 @@ export default function SettingsAlarm() {
       )
       .then((res) => {
         console.log(res);
+        window.location.reload();
       });
   });
 
@@ -112,10 +121,21 @@ export default function SettingsAlarm() {
           <tbody>
             {notice.noticeData &&
               notice.noticeData.map((alarm) => (
-                <tr key={alarm.noticeSeq}>
-                  <td>{categorySeqToName(alarm.categorySeq)}</td>
+                <tr
+                  key={alarm.noticeSeq}
+                  className={`"settings-notice-board-row" + ${
+                    alarm.isChecked ? "is-checked" : "not-checked"
+                  }`}
+                >
                   <td
-                    className={alarm.noticeSeq}
+                    className={`settings-notice-board-category + ${
+                      alarm.categorySeq === 101 ? "alert" : "normal"
+                    }`}
+                  >
+                    {categorySeqToName(alarm.categorySeq)}
+                  </td>
+                  <td
+                    className="settings-notice-board-content"
                     onClick={() => {
                       openModal();
                       setNoticeSeq(alarm.noticeSeq);
@@ -124,7 +144,7 @@ export default function SettingsAlarm() {
                   >
                     {alarm.noticeContent}
                   </td>
-                  <td>
+                  <td className="settings-notice-board-is-checked">
                     {alarm.isChecked ? (
                       <svg
                         width="13"
@@ -148,20 +168,42 @@ export default function SettingsAlarm() {
                       >
                         <path
                           d="M11.25 10H1.25C0.918479 10 0.600537 9.8683 0.366116 9.63388C0.131696 9.39946 0 9.08152 0 8.75V1.19563C0.0140204 0.873619 0.151881 0.569474 0.384799 0.346688C0.617717 0.123902 0.927689 -0.000304524 1.25 5.607e-07H11.25C11.5815 5.607e-07 11.8995 0.131697 12.1339 0.366117C12.3683 0.600537 12.5 0.91848 12.5 1.25V8.75C12.5 9.08152 12.3683 9.39946 12.1339 9.63388C11.8995 9.8683 11.5815 10 11.25 10ZM1.25 2.4175V8.75H11.25V2.4175L6.25 5.75L1.25 2.4175ZM1.75 1.25L6.25 4.25L10.75 1.25H1.75Z"
-                          fill="#9C9C9C"
+                          fill="var(--textColor)"
                         />
                       </svg>
                     )}
                   </td>
-                  <td>{alarm.noticeDate}</td>
+                  <td className="settings-notice-board-date">
+                    {alarm.noticeDate}
+                  </td>
                 </tr>
               ))}
           </tbody>
         </table>
       </div>
-      <Modal open={modalOpen} close={closeModal} header="알림">
+      <Modal open={modalOpen} close={closeModal} header="">
+        <div className="modal-notice-heading">
+          <div
+            className={`modal-notice-category ${
+              noticeModalCategorySeq === 101 ? "alert" : ""
+            }`}
+          >
+            [{noticeModalCategory}]
+          </div>
+          <div className="modal-notice-time">{noticeModalTime}</div>
+        </div>
         <div className="modal-notice-msg">{noticeModal}</div>
-        <button onClick={onClickIsChecked}>확인</button>
+        {!noticeIsChecked && (
+          <button
+            className="modal-notice-btn"
+            onClick={() => {
+              onClickIsChecked();
+              closeModal();
+            }}
+          >
+            확인
+          </button>
+        )}
       </Modal>
     </div>
   );

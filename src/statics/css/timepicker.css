@@ -67,7 +67,7 @@
 }
 .modal > section > header {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   position: relative;
   padding: 15px 15px 0px 15px;
   background-color: var(--htmlbgColor);

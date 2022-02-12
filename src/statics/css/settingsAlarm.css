@@ -48,10 +48,98 @@
 .settings-notice .settings-notice-heading {
   font-size: 20px;
   margin-bottom: 17px;
+  color: var(--textColor);
 }
 .settings-notice table {
-  border-top: 2px solid var(--textColor);
+  border-top: 1.5px solid var(--textColor);
+  border-bottom: 1.5px solid var(--textColor);
   width: 100%;
+}
+.settings-notice table tbody tr {
+  border-bottom: 1px solid var(--textColor-darker);
+}
+.settings-notice table tbody tr.is-checked {
+  background-color: var(--bgColor);
+}
+.settings-notice table tbody tr.is-checked td.settings-notice-board-category.alert {
+  color: rgba(205, 88, 88, 0.5);
+}
+.settings-notice table tbody tr.is-checked td.settings-notice-board-category.normal {
+  color: #6667ab;
+}
+.settings-notice table tbody tr.is-checked td.settings-notice-board-content {
+  color: var(--textColor-darker);
+}
+.settings-notice table tbody tr.is-checked td.settings-notice-board-date {
+  color: var(--textColor-darker);
+}
+.settings-notice table tbody .settings-notice-board-category {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+  border-bottom: 1px solid var(--textColor-darker);
+}
+.settings-notice table tbody .settings-notice-board-category.alert {
+  color: #cd5858;
+}
+.settings-notice table tbody .settings-notice-board-category.normal {
+  color: #6667ab;
+}
+.settings-notice table tbody .settings-notice-board-content {
+  cursor: pointer;
+  padding-left: 18px;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--textColor);
+}
+.settings-notice table tbody .settings-notice-board-is-checked {
+  text-align: right;
+}
+.settings-notice table tbody .settings-notice-board-date {
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  color: var(--textColor);
+}
+.settings-notice .modal-notice-heading {
+  display: flex;
+  justify-content: space-between;
+}
+.settings-notice .modal-notice-category {
+  color: #6667ab;
+  font-size: 12px;
+  text-align: left;
+  font-weight: 500;
+  padding-left: 10px;
+}
+.settings-notice .modal-notice-time {
+  font-size: 12px;
+  text-align: left;
+  padding-right: 10px;
+}
+.settings-notice .modal-notice-msg {
+  border: 1px solid var(--borderColor);
+  border-radius: 5px;
+  background-color: var(--bgColor);
+  padding: 12px;
+  margin-top: 26px;
+  color: var(--textColor);
+  font-size: 13px;
+  text-align: left;
+}
+.settings-notice .modal-notice-btn {
+  cursor: pointer;
+  margin-top: 24px;
+  border: none;
+  background-color: #6667ab;
+  color: #eeeeee;
+  font-size: 12px;
+  width: 3rem;
+  height: 1.6rem;
+  border-radius: 5px;
 }
 
 /*# sourceMappingURL=settingsAlarm.css.map */
