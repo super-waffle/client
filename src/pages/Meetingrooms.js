@@ -1,19 +1,30 @@
 import { Container, Col, Row, Card } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+import ApplicationModal from '../components/applicationModal';
 import CategorySelect from '../components/categorySelect';
 import Paginator from '../components/paginator';
 import '../statics/css/studyRecruit.css';
 import isLogin from '../utils/isLogin';
 
-const MeetingroomCard = ({ meeting }) => {
+const MeetingroomCard = ({ meeting, openModal, setMeetingSeq }) => {
   const meetingroomImg =
     'https://i6a301.p.ssafy.io:8080/images/' + meeting.meetingImg;
   const defaultImg = 'images/meetingroom.png';
+  const sendMeetingSeq = () => {
+    setMeetingSeq(meeting.meetingSeq);
+  };
   return (
-    <Col lg={3} style={{ marginBottom: '0.5rem' }}>
+    <Col
+      lg={3}
+      style={{ marginBottom: '0.5rem', cursor: 'pointer' }}
+      onClick={() => {
+        openModal();
+        sendMeetingSeq();
+      }}
+    >
       <Card style={{ marginBottom: '0.5rem' }}>
         <Card.Img
           style={{ maxHeight: '10rem' }}
@@ -22,10 +33,7 @@ const MeetingroomCard = ({ meeting }) => {
       </Card>
       <div
         style={{
-          fontFamily: 'pretandard',
-          textOverflow: 'ellipsis',
-          overflow: 'hidden',
-          whiteSpace: 'nowrap',
+          fontFamily: 'pretendard',
         }}
       >
         {meeting.meetingTitle}
@@ -41,6 +49,20 @@ export default function Meetingrooms() {
   const [searchInput, setSearchInput] = useState('');
   const [postData, setPostData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [meetingSeq, setMeetingSeq] = useState('');
+  const [selectedMeeting, setSelectedMeeting] = useState('');
+
+  useEffect(() => {
+    getMeetingDetails();
+  }, [meetingSeq]);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   const onChangeSearch = (event) => {
     setSearchInput(event.target.value);
@@ -95,6 +117,30 @@ export default function Meetingrooms() {
         });
     }
   }, [currentPage, category, searchInput]);
+  async function getMeetingDetails() {
+    const response = await axios.get(
+      process.env.REACT_APP_SERVER_URL + `/meetings/${meetingSeq}`,
+      {
+        headers: {
+          Authorization: `Bearer ` + localStorage.getItem('accessToken'),
+        },
+      }
+    );
+    let data = response.data;
+    setSelectedMeeting(() => data);
+  }
+  function enterMeeting() {
+    axios
+      .post(process.env.REACT_APP_SERVER_URL + `/meetings/${meetingSeq}/room`, {
+        headers: {
+          Authorization: `Bearer ` + localStorage.getItem('accessToken'),
+        },
+      })
+      .then()
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   return (
     <main style={{ padding: '1rem 0' }}>
       <div className="studyrecruit">
@@ -140,10 +186,14 @@ export default function Meetingrooms() {
         </div>
         <Container style={{ marginTop: '0.5rem', padding: '0rem' }}>
           <Row className="studyrecruit-board">
-            {console.log(postData)}
             {postData.data &&
               postData.data.map((meeting) => (
-                <MeetingroomCard key={meeting.meetingSeq} meeting={meeting} />
+                <MeetingroomCard
+                  setMeetingSeq={setMeetingSeq}
+                  openModal={openModal}
+                  key={meeting.meetingSeq}
+                  meeting={meeting}
+                />
               ))}
           </Row>
         </Container>
@@ -152,6 +202,38 @@ export default function Meetingrooms() {
       <div className="studyrecruit-pagination">
         <Paginator currentpage={setCurrentPage} />
       </div>
+
+      <ApplicationModal open={modalOpen} close={closeModal}>
+        <div style={{ textAlign: 'left', padding: '0 20%' }}>
+          카테고리: {selectedMeeting.categoryName}
+        </div>
+        <div style={{ textAlign: 'left', padding: '0 20%' }}>
+          호스트 이름: {selectedMeeting.hostName}
+        </div>
+        <div style={{ textAlign: 'left', padding: '0 20%' }}>
+          카메라 규칙: {selectedMeeting.meetingCamType}
+        </div>
+        <div style={{ textAlign: 'left', padding: '0 20%' }}>
+          현재 인원: {selectedMeeting.meetingHeadcount} / 12
+        </div>
+        <div style={{ textAlign: 'left', padding: '0 20%' }}>
+          미팅룸 이름: {selectedMeeting.meetingTitle}
+        </div>
+        <div style={{ textAlign: 'left', padding: '0 20%' }}>
+          미팅룸 설명: {selectedMeeting.meetingDesc}
+        </div>
+        <button
+          style={{
+            border: 'none',
+            margin: '2rem',
+            backgroundColor: '#6667ab',
+            color: '#eeeeee',
+          }}
+          onClick={enterMeeting}
+        >
+          입실하기
+        </button>
+      </ApplicationModal>
     </main>
   );
 }

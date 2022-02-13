@@ -17,13 +17,13 @@ export const Remove = styled.div`
 export const Text = styled.div`
   flex: 1;
   display: contents;
-  font-family: pretandard;
+  font-family: pretendard;
   ${(props) =>
     props.done &&
     css`
       color: #ced4da;
       font-weight: bold;
-      font-family: pretandard;
+      font-family: pretendard;
     `}
 `;
 
