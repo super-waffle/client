@@ -1,32 +1,32 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
-import NavbarSettings from "../components/navbarSettings";
-import isLogin from "../utils/isLogin";
-import "../statics/css/settings.css";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import NavbarSettings from '../components/navbarSettings';
+import isLogin from '../utils/isLogin';
+import '../statics/css/settings.css';
 
 export default function Settings() {
-  const [nickname, setNickname] = useState("");
-  const [profileImg, setProfileImg] = useState("");
-  const [email, setEmail] = useState("");
-  const imageURL = "https://i6a301.p.ssafy.io:8080/images/" + profileImg;
-  const TOKEN = localStorage.getItem("accessToken");
+  const [nickname, setNickname] = useState('');
+  const [profileImg, setProfileImg] = useState('');
+  const [email, setEmail] = useState('');
+  const imageURL = 'https://i6a301.p.ssafy.io:8080/images/' + profileImg;
+  const TOKEN = localStorage.getItem('accessToken');
+  async function getUserInfo() {
+    const response = await axios.get('/users', {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    });
+    const USER = response.data.user;
+    setProfileImg(USER.userImg);
+    setNickname(USER.userNickname);
+    setEmail(USER.userEmail);
+  }
   useEffect(() => {
     if (isLogin()) {
-      axios
-        .get("/users", {
-          headers: {
-            Authorization: `Bearer ${TOKEN}`,
-          },
-        })
-        .then((res) => {
-          const USER = res.data.user;
-          // console.log(USER);
-          setProfileImg(USER.userImg);
-          setNickname(USER.userNickname);
-          setEmail(USER.userEmail);
-        });
+      getUserInfo();
     }
+    return () => {};
   }, []);
   return (
     <div className="settings">
@@ -60,7 +60,7 @@ export default function Settings() {
                 </clipPath>
               </defs>
             </svg>
-            {profileImg !== null && (
+            {profileImg && (
               <img className="settings-myprofilee-img" src={imageURL} alt="" />
             )}
           </div>
