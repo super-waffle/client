@@ -49,7 +49,9 @@ export default function TodoItem({ todo, dailyList, setDailyList }) {
           },
         }
       );
-      setDailyList(dailyList.filter((daily) => daily.todoSeq !== todo.todoSeq));
+      setDailyList(() =>
+        dailyList.filter((daily) => daily.todoSeq !== todo.todoSeq)
+      );
     } catch (err) {
       console.log(err);
     }

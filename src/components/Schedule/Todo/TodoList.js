@@ -28,6 +28,7 @@ export default function TodoList() {
     }
   }
   useEffect(() => getTodos(), [selectedDay]);
+  useEffect(() => {}, [dailyList]);
   return (
     <div>
       <h5 style={{ fontFamily: 'pretandard', fontWeight: 'bold' }}>
@@ -43,9 +44,9 @@ export default function TodoList() {
         }}
       >
         {dailyList &&
-          dailyList.map((todo, index) => (
+          dailyList.map((todo) => (
             <TodoItem
-              key={index}
+              key={todo.todoSeq}
               todo={todo}
               dailyList={dailyList}
               setDailyList={setDailyList}

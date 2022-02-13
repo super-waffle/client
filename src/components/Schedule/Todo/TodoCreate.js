@@ -1,9 +1,12 @@
 import { MdAddBox } from 'react-icons/md';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function CreateTodo({ dailyList, setDailyList }) {
+  function rand(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
   const selectedDay = useSelector((state) => state.schedule.selectedDay);
   const [newTodo, setNewTodo] = useState('');
   async function addTodo() {
@@ -20,19 +23,42 @@ export default function CreateTodo({ dailyList, setDailyList }) {
           },
         }
       );
-      setDailyList(
-        dailyList.concat({
-          todoCompleted: false,
-          todoContent: newTodo,
-          todoDate: selectedDay,
-          todoSeq: Math.floor(Math.random()),
-          userSeq: null,
-        })
+      const userStatus = await axios.get(
+        process.env.REACT_APP_SERVER_URL + '/users',
+        {
+          headers: {
+            Authorization: `Bearer ` + localStorage.getItem('accessToken'),
+          },
+        }
       );
-      setNewTodo('');
+      if (dailyList) {
+        await setDailyList(
+          dailyList.concat({
+            todoCompleted: false,
+            todoContent: newTodo,
+            todoDate: selectedDay,
+            todoSeq: rand(5000, 5000000),
+            userSeq: userStatus.data.user.userSeq,
+          })
+        );
+        setNewTodo('');
+      } else {
+        await setDailyList(() => [
+          {
+            todoCompleted: false,
+            todoContent: newTodo,
+            todoDate: selectedDay,
+            todoSeq: rand(5000, 5000000),
+            userSeq: userStatus.data.user.userSeq,
+          },
+        ]);
+        setNewTodo('');
+      }
     } catch (err) {}
   }
-
+  useEffect(() => {
+    setNewTodo('');
+  }, [selectedDay]);
   return (
     <div style={{ padding: '1rem' }}>
       <input
@@ -46,9 +72,7 @@ export default function CreateTodo({ dailyList, setDailyList }) {
           fontSize: '2rem',
           cursor: 'pointer',
         }}
-        onClick={() => {
-          addTodo();
-        }}
+        onClick={addTodo}
       />
     </div>
   );
