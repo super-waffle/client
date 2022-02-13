@@ -24,6 +24,8 @@ import SettingsAlarm from "./pages/SettingsAlarm";
 import SettingsStudy from "./pages/SettingsStudy";
 import SettingsMeeting from "./pages/SettingsMeeting";
 import SettingsMeetingFavorite from "./pages/SettingsMeetingFavorite";
+import VideoRoomComponentCopy from "./components/meetingroom/VideoRoomComponent copy";
+import VideoRoomComponent from "./components/meetingroom/VideoRoomComponent";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -37,10 +39,7 @@ ReactDOM.render(
               <Route path="tab=statistics" element={<HomeStatistics />} />
             </Route>
 
-            <Route
-              path="studyrecruit"
-              element={isLogin() ? <StudyRecruit /> : <Login />}
-            />
+            <Route path="studyrecruit" element={isLogin() ? <StudyRecruit /> : <Login />} />
             <Route
               path="studyrecruit/create"
               element={isLogin() ? <StudyRecruitCreate /> : <Login />}
@@ -49,22 +48,18 @@ ReactDOM.render(
               path="studyrecruit/:studyseq"
               element={isLogin() ? <StudyRecruitDetail /> : <Login />}
             />
+            <Route path="meetingrooms" element={isLogin() ? <Meetingrooms /> : <Login />} />
+            <Route path="schedules" element={isLogin() ? <Schedule /> : <Login />} />
+            <Route path="profile" element={isLogin() ? <Profile /> : <Login />} />
             <Route
-              path="meetingrooms"
-              element={isLogin() ? <Meetingrooms /> : <Login />}
+              path="videoRoomComponent"
+              element={isLogin() ? <VideoRoomComponent /> : <Login />}
             />
             <Route
-              path="schedules"
-              element={isLogin() ? <Schedule /> : <Login />}
+              path="videoRoomComponentCopy"
+              element={isLogin() ? <VideoRoomComponentCopy /> : <Login />}
             />
-            <Route
-              path="profile"
-              element={isLogin() ? <Profile /> : <Login />}
-            />
-            <Route
-              path="settings"
-              element={isLogin() ? <Settings /> : <Login />}
-            >
+            <Route path="settings" element={isLogin() ? <Settings /> : <Login />}>
               <Route path="profile" element={<SettingsProfile />} />
               <Route path="admin" element={<SettingsAdmin />} />
               <Route path="alarm" element={<SettingsAlarm />} />

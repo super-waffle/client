@@ -1,0 +1,15 @@
+.Control-Buttons {
+  margin: 3rem 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10%;
+}
+
+.buttonColor {
+  color: #6667ab;
+}
+.buttonDisable {
+  color: gray;
+}
