@@ -31,7 +31,7 @@ export default function TodoList() {
   useEffect(() => {}, [dailyList]);
   return (
     <div>
-      <h5 style={{ fontFamily: 'pretandard', fontWeight: 'bold' }}>
+      <h5 style={{ fontFamily: 'pretendard', fontWeight: 'bold' }}>
         {parseInt(selectedDay.split('-')[2].slice(0, 2))}일의 할일
       </h5>
       <div

@@ -20,7 +20,7 @@ const StudyCard = ({ studies }) => {
       <p
         style={{
           margin: '2rem 0rem',
-          fontFamily: 'pretandard',
+          fontFamily: 'pretendard',
           fontSize: '26px',
           paddingLeft: '0.5rem',
         }}
@@ -38,17 +38,19 @@ const StudyCard = ({ studies }) => {
               padding: '0.5rem',
             }}
           >
-            <Card.Title style={{ fontWeight: 'bold' }}>
+            <Card.Title
+              style={{ fontWeight: 'bold', fontFamily: 'pretendard' }}
+            >
               {study.title}
             </Card.Title>
-            <Card.Subtitle>
-              {study.startTime}~{study.endTime}
+            <Card.Subtitle style={{ fontFamily: 'pretendard' }}>
+              {study.startTime.slice(0, 5)}~{study.endTime.slice(0, 5)}
             </Card.Subtitle>
           </Card>
         ))
       ) : (
         <Card>
-          <Card.Title style={{ fontWeight: 'bold' }}>
+          <Card.Title style={{ fontWeight: 'bold', fontFamily: 'pretendard' }}>
             스터디 일정이 없어요
           </Card.Title>
         </Card>
@@ -108,13 +110,17 @@ export default function Calendar() {
         }}
       >
         <Row>
-          <p className={classNames('month-nav')}>
+          <p
+            className={classNames('month-nav')}
+            style={{ fontFamily: 'pretendard' }}
+          >
             {monthNames[parseInt(startDay.split('-')[1]) - 1]}{' '}
             <FontAwesomeIcon
               icon={faChevronLeft}
               size="xs"
               style={{
                 opacity: 0.5,
+                cursor: 'pointer',
               }}
               onClick={() => dispatch(toPrevWeek())}
             />{' '}
@@ -123,6 +129,7 @@ export default function Calendar() {
               size="xs"
               style={{
                 opacity: 0.5,
+                cursor: 'pointer',
               }}
               onClick={() => dispatch(toNextWeek())}
             />
@@ -140,7 +147,7 @@ export default function Calendar() {
             {days.map((day, index) => (
               <Col
                 key={index}
-                style={{ margin: '0.3rem' }}
+                style={{ margin: '0.3rem', cursor: 'pointer' }}
                 onClick={() => {
                   dispatch(
                     selectDay(
