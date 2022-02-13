@@ -128,6 +128,41 @@
   padding: 8px 0;
   color: var(--textColor);
 }
+.settings-study .apply-modal-member .settings-study-details-img-wrapper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  margin-right: 5px;
+}
+.settings-study .apply-modal-member .settings-study-details-img-wrapper img {
+  position: relative;
+  top: -200px;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 100%;
+}
+.settings-study .apply-modal-member .settings-study-details-img-wrapper svg {
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 100%;
+}
+.settings-study .apply-modal-member .settings-study-details-img-wrapper svg.host-crown {
+  top: -34px;
+  left: 2px;
+  width: 80%;
+  height: 80%;
+}
 .settings-study .settings-study-mystudies table {
   width: 100%;
   border-top: 1.5px solid var(--textColor);
