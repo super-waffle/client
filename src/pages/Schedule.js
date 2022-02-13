@@ -1,9 +1,9 @@
-import Calendar from '../components/Schedule/calendar';
-import '../statics/scss/Schedule.scss';
+import Calendar from "../components/Schedule/calendar";
+import "../statics/css/Schedule.css";
 
 export default function Schedule() {
   return (
-    <main className="justify-content-center" style={{ padding: '1rem' }}>
+    <main className="schedule">
       <Calendar />
     </main>
   );

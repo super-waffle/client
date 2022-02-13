@@ -1,5 +1,9 @@
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 
+.schedule {
+  background-color: var(--htmlbgColor);
+  padding: 4rem 8%;
+}
 .month-nav {
   font-family: Pretendard;
   font-style: normal;
