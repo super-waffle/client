@@ -1,80 +1,109 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
-import { MdDone, MdDelete } from 'react-icons/md';
-import { useTodoDispatch } from './TodoContext';
+import { useState, useEffect } from 'react';
+import { MdEdit, MdDelete, MdSave } from 'react-icons/md';
+import axios from 'axios';
+import { Remove, Text, TodoItemBlock } from './todoStyle';
+import '../../../statics/css/todo.css';
 
-const Remove = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #dee2e6;
-  font-size: 1.3rem;
-  cursor: pointer;
-  &:hover {
-    color: #ff6b6b;
-  }
-  display: none;
-`;
-
-const TodoItemBlock = styled.div`
-  display: flex;
-  align-items: center;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  &:hover {
-    ${Remove} {
-      display: initial;
+export default function TodoItem({ todo, dailyList, setDailyList }) {
+  const [thisTodo, setThisTodo] = useState(todo.todoContent);
+  const [thisDone, setThisDone] = useState(todo.todoCompleted);
+  const [wantEdit, setWantEdit] = useState(false);
+  async function saveTodo() {
+    try {
+      const response = await axios.patch(
+        process.env.REACT_APP_SERVER_URL + `/todos/${todo.todoSeq}`,
+        {
+          content: thisTodo,
+          completed: thisDone,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ` + localStorage.getItem('accessToken'),
+          },
+        }
+      );
+      setDailyList(
+        dailyList.map((daily) =>
+          daily.todoSeq === todo.todoseq
+            ? { ...dailyList, todoContent: thisTodo }
+            : daily
+        )
+      );
+    } catch (err) {
+      console.log(err);
     }
   }
-`;
+  useEffect(() => {
+    saveTodo();
+  }, [thisDone]);
+  const onChange = (e) => {
+    setThisTodo(e.target.value);
+  };
+  async function onDelete() {
+    try {
+      const response = await axios.delete(
+        process.env.REACT_APP_SERVER_URL + `/todos/${todo.todoSeq}`,
+        {
+          headers: {
+            Authorization: `Bearer ` + localStorage.getItem('accessToken'),
+          },
+        }
+      );
+      setDailyList(dailyList.filter((daily) => daily.todoSeq !== todo.todoSeq));
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
-const CheckCircle = styled.div`
-  width: 1rem;
-  height: 1rem;
-  border-radius: 5px;
-  border: 1px solid #6c757d;
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 20px;
-  cursor: pointer;
-  ${(props) =>
-    props.done &&
-    css`
-      border: 1px solid #6c757d;
-      background-color: #6667ab;
-      color: #ced4da;
-    `}
-`;
-
-const Text = styled.div`
-  flex: 1;
-  font-size: 21px;
-  color: #495057;
-  ${(props) =>
-    props.done &&
-    css`
-      color: #6667ab;
-      font-weight: 600;
-    `}
-`;
-
-function TodoItem({ id, done, text }) {
-  const dispatch = useTodoDispatch();
-  const onToggle = () => dispatch({ type: 'TOGGLE', id });
-  const onRemove = () => dispatch({ type: 'REMOVE', id });
   return (
-    <TodoItemBlock>
-      <CheckCircle done={done} onClick={onToggle}>
-        {done && <MdDone />}
-      </CheckCircle>
-      <Text done={done}>{text}</Text>
-      <Remove onClick={onRemove}>
-        <MdDelete />
-      </Remove>
-    </TodoItemBlock>
+    <div>
+      <TodoItemBlock>
+        <input
+          id="daily_todo_check"
+          type="checkbox"
+          checked={thisDone}
+          onChange={() => setThisDone(!thisDone)}
+        />
+        {wantEdit ? (
+          <input value={thisTodo} onChange={onChange}></input>
+        ) : (
+          <Text>{thisTodo}</Text>
+        )}
+        {wantEdit ? (
+          <Remove
+            onClick={() => {
+              setWantEdit(!wantEdit);
+              saveTodo();
+            }}
+          >
+            <MdSave
+              onClick={() => {
+                setWantEdit(!wantEdit);
+                saveTodo();
+              }}
+            />
+          </Remove>
+        ) : (
+          <Remove>
+            <MdEdit
+              onClick={() => {
+                setWantEdit(!wantEdit);
+              }}
+            />
+          </Remove>
+        )}
+        <Remove
+          onClick={() => {
+            onDelete();
+          }}
+        >
+          <MdDelete
+          // onClick={() => {
+          //   onDelete();
+          // }}
+          />
+        </Remove>
+      </TodoItemBlock>
+    </div>
   );
 }
-
-export default React.memo(TodoItem);
