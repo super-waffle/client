@@ -43,8 +43,38 @@ const StudyCard = ({ studies }) => {
             >
               {study.title}
             </Card.Title>
-            <Card.Subtitle style={{ fontFamily: 'pretendard' }}>
-              {study.startTime.slice(0, 5)}~{study.endTime.slice(0, 5)}
+            <Card.Subtitle
+              style={{ fontFamily: 'pretendard', color: '#575757' }}
+            >
+              {study.startTime.slice(0, 5)}~{study.endTime.slice(0, 5)}{' '}
+              {study.isAttend === 0 ? (
+                <img
+                  src="icons/calendar/_study_attend.svg"
+                  alt=""
+                  style={{ color: '#6667ab' }}
+                />
+              ) : null}
+              {study.isAttend === 1 ? (
+                <img
+                  src="icons/calendar/_study_late.svg"
+                  alt=""
+                  style={{ color: '#6667ab' }}
+                />
+              ) : null}
+              {study.isAttend === 2 ? (
+                <img
+                  src="icons/calendar/_study_absent.svg"
+                  alt=""
+                  style={{ color: '#6667ab' }}
+                />
+              ) : null}
+              {study.isAttend === 3 ? (
+                <img
+                  src="icons/calendar/_study_kicked.svg"
+                  alt=""
+                  style={{ color: '#6667ab' }}
+                />
+              ) : null}
             </Card.Subtitle>
           </Card>
         ))
@@ -110,14 +140,20 @@ export default function Calendar() {
         }}
       >
         <Row>
-          <p
-            className={classNames('month-nav')}
-            style={{ fontFamily: 'pretendard' }}
-          >
-            {monthNames[parseInt(startDay.split('-')[1]) - 1]}{' '}
+          <p>
+            <span
+              className={classNames('month-nav')}
+              style={{
+                fontFamily: 'pretendard',
+                color: '#6667ab',
+                fontWeight: 'bold',
+              }}
+            >
+              {monthNames[parseInt(startDay.split('-')[1]) - 1]}{' '}
+            </span>
             <FontAwesomeIcon
               icon={faChevronLeft}
-              size="xs"
+              size="lg"
               style={{
                 opacity: 0.5,
                 cursor: 'pointer',
@@ -126,7 +162,7 @@ export default function Calendar() {
             />{' '}
             <FontAwesomeIcon
               icon={faChevronRight}
-              size="xs"
+              size="lg"
               style={{
                 opacity: 0.5,
                 cursor: 'pointer',
