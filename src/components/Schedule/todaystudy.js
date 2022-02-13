@@ -16,7 +16,6 @@ export default function Todaystudy({ weekly }) {
       setDailyStudies([]);
     }
   }, [selectedDay]);
-  console.log(dailyStudies);
 
   return (
     <Container>

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import TodoItem from "./TodoItem";
-import CreateTodo from "./TodoCreate";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import TodoItem from './TodoItem';
+import CreateTodo from './TodoCreate';
+import axios from 'axios';
 
 export default function TodoList() {
   const selectedDay = useSelector((state) => state.schedule.selectedDay);
@@ -10,10 +10,11 @@ export default function TodoList() {
   async function getTodos() {
     try {
       const response = await axios.get(
-        process.env.REACT_APP_SERVER_URL + `/todos?date=${JSON.parse(selectedDay)}`,
+        process.env.REACT_APP_SERVER_URL +
+          `/todos?date=${JSON.parse(selectedDay)}`,
         {
           headers: {
-            Authorization: `Bearer ` + localStorage.getItem("accessToken"),
+            Authorization: `Bearer ` + localStorage.getItem('accessToken'),
           },
         }
       );
@@ -27,23 +28,29 @@ export default function TodoList() {
     }
   }
   useEffect(() => getTodos(), [selectedDay]);
+  useEffect(() => {}, [dailyList]);
   return (
     <div>
-      <h5 style={{ fontFamily: "pretandard", fontWeight: "bold" }}>
-        {parseInt(selectedDay.split("-")[2].slice(0, 2))}일의 할일
+      <h5 style={{ fontFamily: 'pretandard', fontWeight: 'bold' }}>
+        {parseInt(selectedDay.split('-')[2].slice(0, 2))}일의 할일
       </h5>
       <div
         style={{
-          background: "#fcfcfc",
-          border: "1px solid #ededed",
-          boxSizing: "border-box",
-          borderRadius: "5px",
-          margin: "1.5rem 0rem",
+          background: '#fcfcfc',
+          border: '1px solid #ededed',
+          boxSizing: 'border-box',
+          borderRadius: '5px',
+          margin: '1.5rem 0rem',
         }}
       >
         {dailyList &&
-          dailyList.map((todo, index) => (
-            <TodoItem key={index} todo={todo} dailyList={dailyList} setDailyList={setDailyList} />
+          dailyList.map((todo) => (
+            <TodoItem
+              key={todo.todoSeq}
+              todo={todo}
+              dailyList={dailyList}
+              setDailyList={setDailyList}
+            />
           ))}
         <CreateTodo dailyList={dailyList} setDailyList={setDailyList} />
       </div>
