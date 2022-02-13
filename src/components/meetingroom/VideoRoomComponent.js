@@ -10,7 +10,7 @@ import OpenViduLayout from "../../layout/openvidu-layout";
 import UserModel from "../../models/user-model";
 import ToolbarComponent from "./toolbar/ToolbarComponent";
 import TimeComponent from "./time/TimeComponent";
-import UserComponent from "./user/userComponent";
+// import UserComponent from "./user/userComponent";
 
 import "../../statics/css/meetingroom.css";
 
