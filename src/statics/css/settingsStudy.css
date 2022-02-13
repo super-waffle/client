@@ -134,14 +134,14 @@
 }
 .settings-study .apply-modal-member .settings-study-details-img-wrapper {
   position: relative;
-  width: 180px;
-  height: 180px;
+  width: 250px;
+  height: 250px;
   border-radius: 100%;
-  margin: 12px 30px 10px 60px;
+  margin: 12px 30px 10px 30px;
 }
 .settings-study .apply-modal-member .settings-study-details-img-wrapper img {
   position: relative;
-  top: -180px;
+  top: -250px;
   left: 0;
   transform: translate(50, 50);
   width: 100%;
@@ -168,14 +168,14 @@
   height: 80%;
 }
 .settings-study .apply-modal-member .setting-study-details-profile-content {
-  margin-top: 30px;
+  margin-top: 50px;
 }
 .settings-study .apply-modal-member .setting-study-details-profile-content .setting-study-details-profile-header {
   display: flex;
   align-items: flex-end;
 }
 .settings-study .apply-modal-member .setting-study-details-profile-content .setting-study-details-profile-body {
-  margin-top: 10px;
+  margin: 10px 0;
   display: flex;
 }
 .settings-study .apply-modal-member .setting-study-details-profile-content .setting-study-details-profile-content__nickname {
@@ -192,7 +192,7 @@
 .settings-study .apply-modal-member .setting-study-details-profile-content .setting-study-details-profile-content__time {
   font-size: 16px;
   color: var(--textColor);
-  margin-right: 28px;
+  margin-right: 40px;
 }
 .settings-study .apply-modal-member .setting-study-details-profile-content .setting-study-details-profile-content__time .content-title {
   color: var(--textColor-darker);
@@ -201,11 +201,45 @@
 .settings-study .apply-modal-member .setting-study-details-profile-content .setting-study-details-profile-content__warning {
   font-size: 16px;
   color: var(--textColor);
-  margin-right: 18px;
+  margin-right: 40px;
 }
 .settings-study .apply-modal-member .setting-study-details-profile-content .setting-study-details-profile-content__warning .content-title {
   color: var(--textColor-darker);
   font-size: 12px;
+}
+.settings-study .apply-modal-member .setting-study-details-profile-content .setting-study-details-profile-content__message {
+  font-size: 16px;
+  color: var(--textColor);
+  margin-right: 18px;
+}
+.settings-study .apply-modal-member .setting-study-details-profile-content .setting-study-details-profile-content__message .content-title {
+  color: var(--textColor-darker);
+  font-size: 12px;
+}
+.settings-study .apply-modal-member .setting-study-details-profile-content .setting-study-details-profile-content__message .content-body {
+  color: var(--textColor-dark);
+  font-size: 13px;
+  width: 300px;
+  white-space: pre-wrap;
+}
+.settings-study .btn-accept {
+  border: none;
+  border-radius: 5px;
+  width: 4rem;
+  height: 2rem;
+  font-size: 14px;
+  background-color: #6667ab;
+  color: #eeeeee;
+}
+.settings-study .btn-reject {
+  border-radius: 5px;
+  width: 4rem;
+  height: 2rem;
+  font-size: 14px;
+  border: 1px solid #6667ab;
+  color: var(--textColor);
+  background-color: var(--bgColor);
+  margin: 12px 16px 20px 0;
 }
 .settings-study .settings-study-mystudies table {
   width: 100%;
