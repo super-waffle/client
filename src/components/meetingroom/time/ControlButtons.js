@@ -1,7 +1,4 @@
 import React from "react";
-import PlayArrow from "@material-ui/icons/PlayArrow";
-import Pause from "@material-ui/icons/Pause";
-import IconButton from "@material-ui/core/IconButton";
 import { BsTriangleFill } from "react-icons/bs";
 import { BsFillPauseFill } from "react-icons/bs";
 
