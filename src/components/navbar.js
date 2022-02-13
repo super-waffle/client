@@ -248,7 +248,7 @@ function Navbar() {
                 </clipPath>
               </defs>
             </svg>
-            {profileImg !== null && (
+            {profileImg && (
               <img
                 className="navbar-profile-img"
                 src={imageURL}
