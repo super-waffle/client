@@ -11,6 +11,7 @@ export default function SettingsStudy() {
   const [showStudyDetail, setShowStudyDetail] = useState(false);
   const [showStartedStudyDetail, setShowStartedStudyDetail] = useState(false);
   const [studySeq, setStudySeq] = useState("");
+  const [memberSeq, setMemberSeq] = useState("");
   const [startedStudySeq, setStartedStudySeq] = useState("");
   const [profileImg, setProfileImg] = useState("");
   const imageURL = "https://i6a301.p.ssafy.io:8080/images/" + profileImg;
@@ -152,7 +153,7 @@ export default function SettingsStudy() {
 
   // 스터디 신청한 회원들 좌우 배열하기
   const [appliedLeft, setAppliedLeft] = useState("");
-  const [applied, setApplied] = useState("");
+
   const [appliedRight, setAppliedRight] = useState("");
   const [acceptedLeft, setAcceptedLeft] = useState("");
   const [acceptedRight, setAcceptedRight] = useState("");
@@ -162,12 +163,11 @@ export default function SettingsStudy() {
         return idx % 2 === 0;
       });
       setAppliedLeft(() => selectedleft);
-      setApplied((prev) => [...prev, selectedleft]);
+
       const selectedright = memberApplied.filter((member, idx, array) => {
         return idx % 2 !== 0;
       });
       setAppliedRight(() => selectedright);
-      setApplied((prev) => [...prev, selectedright]);
     }
     if (selectedStudy) {
       const memberleft = selectedStudy.memberList.filter(
@@ -185,7 +185,50 @@ export default function SettingsStudy() {
     }
   }, [memberApplied, selectedStudy]);
   // console.log(applied);
-  // console.log(appliedLeft, appliedRight, acceptedLeft, acceptedRight);
+  console.log(appliedLeft, appliedRight, acceptedLeft, acceptedRight);
+
+  // 신청한 회원 프로필 모달창으로 띄우기 위한 정보 저장
+  const [selectApplyMemberLeft, setSelectApplyMemberLeft] = useState("");
+  const [selectApplyMemberRight, setSelectApplyMemberRight] = useState("");
+  const [selectAcceptedMemberLeft, setSelectAcceptedMemberLeft] = useState("");
+  const [selectAcceptedMemberRight, setSelectAcceptedMemberRight] =
+    useState("");
+
+  useEffect(() => {
+    if (memberSeq) {
+      // console.log(member.userSeq, memberSeq);
+      const data = appliedLeft.filter((member) => member.userSeq === memberSeq);
+      setSelectApplyMemberLeft(() => data[0]);
+    }
+    if (memberSeq) {
+      // console.log(member.userSeq, memberSeq);
+      const data = appliedRight.filter(
+        (member) => member.userSeq === memberSeq
+      );
+      setSelectApplyMemberRight(() => data[0]);
+    }
+    if (memberSeq) {
+      // console.log(member.userSeq, memberSeq);
+      const data = acceptedLeft.filter(
+        (member) => member.userSeq === memberSeq
+      );
+      setSelectAcceptedMemberLeft(() => data[0]);
+    }
+    if (memberSeq) {
+      // console.log(member.userSeq, memberSeq);
+      const data = acceptedRight.filter(
+        (member) => member.userSeq === memberSeq
+      );
+      setSelectAcceptedMemberRight(() => data[0]);
+    }
+  }, [memberSeq]);
+
+  console.log(
+    selectApplyMemberLeft,
+    selectApplyMemberRight,
+    selectAcceptedMemberLeft,
+    selectAcceptedMemberRight
+  );
 
   // 모달창 띄우기
   const [modalOpen, setModalOpen] = useState(false);
@@ -244,6 +287,7 @@ export default function SettingsStudy() {
     }
   });
   // console.log(showStudyDetail);
+
   return (
     <div className="settings-study">
       <div className="settings-study-heading">
@@ -351,7 +395,13 @@ export default function SettingsStudy() {
                               )}
                             </div>
                           </td>
-                          <td className="queue-username" onClick={openModal}>
+                          <td
+                            className="queue-username"
+                            onClick={() => {
+                              openModal();
+                              setMemberSeq(member.userSeq);
+                            }}
+                          >
                             {member.userNickname}
                           </td>
                         </tr>
@@ -407,7 +457,13 @@ export default function SettingsStudy() {
                               )}
                             </div>
                           </td>
-                          <td className="queue-username" onClick={openModal}>
+                          <td
+                            className="queue-username"
+                            onClick={() => {
+                              openModal();
+                              setMemberSeq(member.userSeq);
+                            }}
+                          >
                             {member.userNickname}
                           </td>
                         </tr>
@@ -484,7 +540,15 @@ export default function SettingsStudy() {
                               )} */}
                             </div>
                           </td>
-                          <td className="queue-username" onClick={openModal}>
+                          <td
+                            className="queue-username"
+                            onClick={() => {
+                              setMemberSeq(member.userSeq);
+                              if (nickname !== member.userNickname) {
+                                openModal();
+                              }
+                            }}
+                          >
                             {member.userNickname}
                           </td>
                         </tr>
@@ -553,7 +617,13 @@ export default function SettingsStudy() {
                               )} */}
                             </div>
                           </td>
-                          <td className="queue-username" onClick={openModal}>
+                          <td
+                            className="queue-username"
+                            onClick={() => {
+                              openModal();
+                              setMemberSeq(member.userSeq);
+                            }}
+                          >
                             {member.userNickname}
                           </td>
                         </tr>
@@ -567,7 +637,9 @@ export default function SettingsStudy() {
       )}
 
       <ApplicationModal open={modalOpen} close={closeModal} header="">
-        {selectedStudy.studySeq}
+        {selectApplyMemberLeft && (
+          <div>{selectApplyMemberLeft.userNickname}</div>
+        )}
       </ApplicationModal>
 
       {showStudyDetail && (
