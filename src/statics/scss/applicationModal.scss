@@ -1,0 +1,89 @@
+@import "main.scss";
+
+.applyModal {
+  font-family: $font-family;
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.6);
+  & svg {
+    cursor: pointer;
+    height: 15px;
+  }
+  > section {
+    width: 80%;
+    max-width: 650px;
+    margin: 0 auto;
+    border-radius: 0.3rem;
+    background-color: var(--htmlbgColor);
+    animation: modal-show 0.3s;
+    overflow: hidden;
+    > header {
+      display: flex;
+      justify-content: end;
+      position: relative;
+      padding: 15px 15px 0px 15px;
+      background-color: var(--htmlbgColor);
+      align-items: center;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    > main {
+      padding: 5px 16px 30px 16px;
+      text-align: center;
+      & .main-heading {
+        font-size: 14px;
+        color: var(--textColor);
+        padding-bottom: 20px;
+        font-weight: 500;
+      }
+      & .main-body-select {
+        font-size: 12px;
+        columns: var(--textColor);
+        padding-bottom: 10px;
+        & .main-body-title {
+          padding-right: 18px;
+        }
+        & .main-body-time {
+          padding-left: 3px;
+          padding-right: 8px;
+        }
+      }
+      & .main-footer-cancel {
+        border: 1.5px solid $mainColor;
+        border-radius: 5px;
+        width: 75px;
+        height: 24px;
+        font-size: 10px;
+        line-height: 12px;
+        color: var(--textColor);
+        background-color: var(--bgColor);
+        margin-right: 6px;
+      }
+      & .main-footer-submit {
+        border: none;
+        width: 75px;
+        height: 24px;
+        font-size: 10px;
+        line-height: 12px;
+        border-radius: 5px;
+        color: #eeeeee;
+        background-color: $mainColor;
+        margin-top: 16px;
+      }
+    }
+    > footer {
+      padding: 12px 16px;
+      text-align: right;
+    }
+  }
+}
+.applyModal.openApplyModal {
+  display: flex;
+  align-items: center;
+  animation: modal-bg-show 0.3s;
+}
