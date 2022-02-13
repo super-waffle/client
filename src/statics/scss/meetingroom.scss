@@ -41,11 +41,11 @@
         height: 100%;
         color: #ffffff;
         margin: 0;
-        padding: 0 10px 10px 10px !important;
+        padding: 10px 10px 10px 10px !important;
         border-radius: 30px;
         border: 0;
         font-size: 100%;
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: $font-family;
       }
 
       .video-username {
@@ -56,20 +56,42 @@
         color: $textColor;
         font-family: $font-family;
         width: fit-content;
-        min-width: 200px;
+        min-width: 180px;
         text-align: center;
         height: fit-content;
-        padding: 1% 3% 1% 3%;
+        padding: 0.5% 3% 0.5% 3%;
         // margin-bottom: 1%;
         position: absolute;
         color: var(--textWhite);
         border: 1px solid var(--board-textColor);
         border-radius: 8px;
-        font-size: 19px;
+        // font-size: 19px;
+      }
+
+      .video-camoff {
+        -o-object-fit: cover;
+        object-fit: cover;
+        text-align: center;
+        width: 100%;
+        height: fit-content;
+        color: var(--textWhite);
+        margin: 0;
+        padding: 10px 10px 10px 10px !important;
+        border-radius: 30px;
+        border: 0;
+        font-size: 55px;
+        font-family: $font-family;
+        position: absolute;
+        // bottom: 50%;
+        top: 50%;
+        // line-height: 100%;
+        // right: 0;
+        transform: translate(0, -50%);
+        // background-color: var(--textColor-dark);
       }
 
       .video-time {
-        top: 2%;
+        top: 3%;
         right: 3%;
         // transform: translate(-50%, -50%);
         background: var(--bgColor);
@@ -86,6 +108,18 @@
         color: var(--textColor);
         border: 1px solid var(--board-textColor);
         border-radius: 8px;
+      }
+
+      #status-icons {
+        bottom: 0;
+        // background: #c71100;
+        width: fit-content;
+        height: fit-content;
+        position: absolute;
+        margin: 0 0 20px 20px;
+        // border: 1px solid var(--bgColor);
+        // border-radius: 80px;
+        // color: #ffffff;
       }
     }
 
