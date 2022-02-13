@@ -1,35 +1,37 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
-import NavbarHome from "../components/navbarHome";
-import isLogin from "../utils/isLogin";
-import "../statics/css/home.css";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import NavbarHome from '../components/navbarHome';
+import isLogin from '../utils/isLogin';
+import '../statics/css/home.css';
 
 export default function Home() {
-  const TOKEN = localStorage.getItem("accessToken");
+  const TOKEN = localStorage.getItem('accessToken');
 
-  const [nickname, setNickname] = useState("");
-  const [email, setEmail] = useState("");
-  const [profileImg, setProfileImg] = useState("");
-  const [profileMsg, setProfileMsg] = useState("");
-  const imageURL = "https://i6a301.p.ssafy.io:8080/images/" + profileImg;
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+  const [profileImg, setProfileImg] = useState(null);
+  const [profileMsg, setProfileMsg] = useState('');
+  const imageURL = 'https://i6a301.p.ssafy.io:8080/images/' + profileImg;
 
+  async function getUserInfo() {
+    const response = await axios.get(
+      process.env.REACT_APP_SERVER_URL + '/users',
+      {
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+        },
+      }
+    );
+    const USER = response.data.user;
+    setProfileImg(USER.userImg);
+    setNickname(USER.userNickname);
+    setEmail(USER.userEmail);
+    setProfileMsg(USER.userProfileMsg);
+  }
   useEffect(() => {
     if (isLogin()) {
-      axios
-        .get(process.env.REACT_APP_SERVER_URL + "/users", {
-          headers: {
-            Authorization: `Bearer ${TOKEN}`,
-          },
-        })
-        .then((res) => {
-          // console.log(res.data);
-          const USER = res.data.user;
-          setNickname(USER.userNickname);
-          setEmail(USER.userEmail);
-          setProfileImg(USER.userImg);
-          setProfileMsg(USER.userProfileMsg);
-        });
+      getUserInfo();
     }
   }, []);
 
@@ -66,7 +68,7 @@ export default function Home() {
                 </clipPath>
               </defs>
             </svg>
-            {profileImg !== null && (
+            {profileImg && (
               <img className="home-profile-img" src={imageURL} alt="" />
             )}
           </div>

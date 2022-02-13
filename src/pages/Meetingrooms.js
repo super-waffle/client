@@ -15,7 +15,10 @@ const MeetingroomCard = ({ meeting }) => {
   return (
     <Col lg={3} style={{ marginBottom: '0.5rem' }}>
       <Card style={{ marginBottom: '0.5rem' }}>
-        <Card.Img src={meeting.meetingImg ? meetingroomImg : defaultImg} />
+        <Card.Img
+          style={{ maxHeight: '10rem' }}
+          src={meeting.meetingImg ? meetingroomImg : defaultImg}
+        />
       </Card>
       <div
         style={{
@@ -131,21 +134,22 @@ export default function Meetingrooms() {
           </div>
           <button
             className="studyrecruit-create"
-            onClick={() => navigate('create')}
+            onClick={() => navigate('/settings/meeting')}
           >
-            모집글 작성하기
+            내 열람실 바로가기
           </button>
         </div>
+        <Container style={{ marginTop: '0.5rem', padding: '0rem' }}>
+          <Row className="studyrecruit-board">
+            {console.log(postData)}
+            {postData.data &&
+              postData.data.map((meeting) => (
+                <MeetingroomCard key={meeting.meetingSeq} meeting={meeting} />
+              ))}
+          </Row>
+        </Container>
       </div>
-      <Container style={{ marginTop: '0.5rem' }}>
-        <Row>
-          {console.log(postData)}
-          {postData.data &&
-            postData.data.map((meeting) => (
-              <MeetingroomCard key={meeting.meetingSeq} meeting={meeting} />
-            ))}
-        </Row>
-      </Container>
+
       <div className="studyrecruit-pagination">
         <Paginator currentpage={setCurrentPage} />
       </div>
