@@ -126,6 +126,7 @@
 .settings-study .settings-study-members .settings-study-members__queue .queue-username {
   cursor: pointer;
   padding: 8px 0;
+  color: var(--textColor);
 }
 .settings-study .settings-study-mystudies table {
   width: 100%;

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ApplicationModal from "../components/applicationModal";
 import "../statics/css/settingsStudy.css";
 
 export default function SettingsStudy() {
@@ -183,8 +184,17 @@ export default function SettingsStudy() {
       setAcceptedRight(() => memberright);
     }
   }, [memberApplied, selectedStudy]);
-  console.log(applied);
-  console.log(appliedLeft, appliedRight, acceptedLeft, acceptedRight);
+  // console.log(applied);
+  // console.log(appliedLeft, appliedRight, acceptedLeft, acceptedRight);
+
+  // 모달창 띄우기
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   //모집 마감
   const onClickEndRecruit = useCallback(() => {
@@ -341,7 +351,7 @@ export default function SettingsStudy() {
                               )}
                             </div>
                           </td>
-                          <td className="queue-username">
+                          <td className="queue-username" onClick={openModal}>
                             {member.userNickname}
                           </td>
                         </tr>
@@ -397,7 +407,7 @@ export default function SettingsStudy() {
                               )}
                             </div>
                           </td>
-                          <td className="queue-username">
+                          <td className="queue-username" onClick={openModal}>
                             {member.userNickname}
                           </td>
                         </tr>
@@ -408,7 +418,7 @@ export default function SettingsStudy() {
             </div>
           </div>
           <div className="settings-study-members-right">
-            <div className="settings-study-members__heading">참여스터디원</div>
+            <div className="settings-study-members__heading">참여 스터디원</div>
             <div className="settings-study-members__queue">
               <div className="queue-left">
                 <table>
@@ -474,7 +484,7 @@ export default function SettingsStudy() {
                               )} */}
                             </div>
                           </td>
-                          <td className="queue-username">
+                          <td className="queue-username" onClick={openModal}>
                             {member.userNickname}
                           </td>
                         </tr>
@@ -543,7 +553,7 @@ export default function SettingsStudy() {
                               )} */}
                             </div>
                           </td>
-                          <td className="queue-username">
+                          <td className="queue-username" onClick={openModal}>
                             {member.userNickname}
                           </td>
                         </tr>
@@ -555,6 +565,10 @@ export default function SettingsStudy() {
           </div>
         </div>
       )}
+
+      <ApplicationModal open={modalOpen} close={closeModal} header="">
+        {selectedStudy.studySeq}
+      </ApplicationModal>
 
       {showStudyDetail && (
         <div className="settings-study-details">
