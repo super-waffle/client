@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import TodoItem from './todoItem';
-import CreateTodo from './todoCreate';
+import TodoItem from './TodoItem';
+import CreateTodo from './TodoCreate';
 import axios from 'axios';
 
 export default function TodoList() {
