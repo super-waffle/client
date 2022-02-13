@@ -59,42 +59,12 @@ export default class StreamComponent extends Component {
   render() {
     return (
       <div className="OT_widget-container">
-        {/* <div className="pointer nickname">
-                    {this.state.showForm ? (
-                        <FormControl id="nicknameForm">
-                            <IconButton color="inherit" id="closeButton" onClick={this.toggleNicknameForm}>
-                                <HighlightOff />
-                            </IconButton>
-                            <InputLabel htmlFor="name-simple" id="label">
-                                Nickname
-                            </InputLabel>
-                            <Input
-                                color="inherit"
-                                id="input"
-                                value={this.state.nickname}
-                                onChange={this.handleChange}
-                                onKeyPress={this.handlePressKey}
-                                required
-                            />
-                            {!this.state.isFormValid && this.state.nickname.length <= 3 && (
-                                <FormHelperText id="name-error-text">Nickname is too short!</FormHelperText>
-                            )}
-                            {!this.state.isFormValid && this.state.nickname.length >= 20 && (
-                                <FormHelperText id="name-error-text">Nickname is too long!</FormHelperText>
-                            )}
-                        </FormControl>
-                    ) : (
-                        <div onClick={this.toggleNicknameForm}>
-                            <span id="nickname">{this.props.user.getNickname()}</span>
-                            {this.props.user.isLocal() && <span id=""> (edit)</span>}
-                        </div>
-                    )}
-                </div> */}
-
         {this.props.user !== undefined && this.props.user.getStreamManager() !== undefined ? (
           <div className="streamComponent">
             <OvVideoComponent user={this.props.user} mutedSound={this.state.mutedSound} />
-            <div className="">userNickname자리</div>
+            <div className="video-username">nickname자리</div>
+            <div className="video-time">02:48</div>
+
             <div id="statusIcons">
               {!this.props.user.isVideoActive() ? (
                 <div id="camIcon">
