@@ -1,0 +1,210 @@
+@import "main.scss";
+
+.meeting-room {
+  height: 100%;
+  width: 100%;
+
+  .meeting-room-content {
+    /* background-color: #fcfcfc; */
+    overflow: hidden;
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 3%;
+    /* bottom: 0; */
+    /* height: inherit; */
+    min-width: 400px !important;
+    /* max-width: 75% !important; */
+    width: 80%;
+    height: 83%;
+    /* display: flex !important; */
+    /* background-color: #f1111c; */
+
+    .meeting-room-video {
+      /* background-color: #fcfcfc; */
+      overflow: hidden;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 7%;
+      bottom: 0;
+      height: auto;
+      min-width: 400px !important;
+      max-width: 75% !important;
+      width: 75%;
+      border-radius: 15px;
+
+      video {
+        -o-object-fit: cover;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        color: #ffffff;
+        margin: 0;
+        padding: 0 10px 10px 10px !important;
+        border-radius: 30px;
+        border: 0;
+        font-size: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .video-username {
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: $mainColor;
+        color: $textColor;
+        font-family: $font-family;
+        width: fit-content;
+        min-width: 200px;
+        text-align: center;
+        height: fit-content;
+        padding: 1% 3% 1% 3%;
+        // margin-bottom: 1%;
+        position: absolute;
+        color: var(--textWhite);
+        border: 1px solid var(--board-textColor);
+        border-radius: 8px;
+        font-size: 19px;
+      }
+
+      .video-time {
+        top: 2%;
+        right: 3%;
+        // transform: translate(-50%, -50%);
+        background: var(--bgColor);
+        opacity: 0.6;
+        color: $textColor;
+        font-family: $font-family;
+        width: fit-content;
+        min-width: 80px;
+        text-align: center;
+        height: fit-content;
+        padding: 1% 1% 1% 1%;
+        // margin-bottom: 1%;
+        position: absolute;
+        color: var(--textColor);
+        border: 1px solid var(--board-textColor);
+        border-radius: 8px;
+      }
+    }
+
+    .meeting-room-sidebar {
+      /* background-color: #fcfcfc; */
+      overflow: hidden;
+      position: absolute;
+      /* left: 0; */
+      right: 0;
+      top: 7%;
+      bottom: 0;
+      height: auto;
+      /* min-width: 400px !important; */
+      max-width: 100% !important;
+      width: 25%;
+
+      .meeting-room-timer {
+        height: 30%;
+      }
+
+      .meeting-room-chat {
+        height: 70%;
+      }
+    }
+  }
+
+  .meeting-room-buttons {
+    /* background-color: #fcfcfc; */
+    overflow: hidden;
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    /* top: 40px; */
+    bottom: 2%;
+    /* height: inherit; */
+    min-width: 400px !important;
+    /* max-width: 75% !important; */
+    width: 80%;
+    color: #ffffff;
+    /* background-color: #333333; */
+    /* padding: 0 14px 0 0; */
+    /* position: absolute; */
+    /* bottom: 0; */
+    /* left: 0; */
+    /* z-index: 999999; */
+    min-width: 400px !important;
+    height: 12%;
+
+    .button-toolbar {
+      // min-height: 60px !important;
+      // left: 2% !important;
+      // right: 0 !important;
+      // bottom: 2% !important;
+      // position: fixed !important;
+      width: 100%;
+      height: 100%;
+      /* background-color: #fcfcfc; */
+    }
+
+    .buttons-content {
+      width: 100%;
+      height: 100%;
+      // height: 60px !important;
+      // position: absolute !important;
+      text-align: center;
+      // left: 10%;
+      // right: 5%;
+      // bottom: 2%;
+      // margin: auto;
+      // width: 100%;
+      // padding-bottom: 70px;
+      min-width: 400px;
+      color: #000;
+
+      .buttons-video {
+        width: 75%;
+        position: absolute;
+        left: 0;
+        top: 20%;
+        height: 100%;
+
+        .button-audio {
+          position: absolute;
+          left: 40%;
+          height: 100%;
+        }
+
+        .button-video {
+          position: absolute;
+          left: 50%;
+          height: 100%;
+        }
+
+        .button-exit {
+          position: absolute;
+          left: 60%;
+          height: 100%;
+        }
+      }
+
+      .buttons-util {
+        width: 25%;
+        position: absolute;
+        right: 0;
+        top: 20%;
+        height: 100%;
+
+        .button-users {
+          position: absolute;
+          right: 23%;
+          height: 100%;
+        }
+
+        .button-chat {
+          position: absolute;
+          right: 7%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}

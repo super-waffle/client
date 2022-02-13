@@ -1,0 +1,24 @@
+.stop-watch {
+  background-color: #fcfcfc;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: space-between; */
+  /* margin-top: 5%; */
+  margin-left: 15%;
+  position: absolute;
+  /* border: 1px solid #EDEDED; */
+  /* padding:10px; */
+  box-sizing: border-box;
+  border-radius: 8px;
+  height: 26%;
+  width: 80%;
+}
+
+.stop-watch-title {
+  background: #ededed;
+  border: 1px solid #ededed;
+  box-sizing: border-box;
+  border-radius: 8px 8px 0px 0px;
+  height: 50px;
+}
