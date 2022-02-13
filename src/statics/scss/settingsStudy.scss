@@ -8,12 +8,90 @@
     .settings-study-heading__h1 {
       font-size: 20px;
       color: var(--textColor);
+      &.second-box {
+        margin-top: 4.5rem;
+      }
     }
     .settings-study-heading__h2 {
       font-size: 12px;
       line-height: 14px;
       color: var(--textColor-dark);
       margin-bottom: 17px;
+    }
+  }
+  .settings-study-details-img-wrapper {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    margin-right: 5px;
+    & img {
+      position: relative;
+      top: -20px;
+      left: 0;
+      transform: translate(50, 50);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      margin: auto;
+      border-radius: 100%;
+      // padding-right: 10px;
+    }
+    & svg {
+      position: relative;
+      top: 0;
+      left: 0;
+      transform: translate(50, 50);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      margin: auto;
+      border-radius: 100%;
+      &.host-crown {
+        top: -34px;
+        left: 2px;
+        width: 80%;
+        height: 80%;
+      }
+    }
+  }
+  .settings-study-members {
+    padding: 20px;
+    display: flex;
+    .settings-study-members-left {
+      width: 48%;
+      margin-right: 4%;
+    }
+    .settings-study-members-right {
+      width: 48%;
+    }
+    .settings-study-members__heading {
+      font-size: 15px;
+      // margin: 0 20px;
+      padding: 20px 0 5px 5px;
+      border-bottom: 1px solid var(--textColor-darker);
+      color: var(--textColor);
+      // width: 40;
+    }
+    .settings-study-members__queue {
+      display: flex;
+      // width: 100%;
+      // border: 1px solid var(--borderColor);
+      // border-radius: 10px;
+      // background-color: var(--bgColor);
+      // padding: 15px 20px;
+
+      height: 5rem;
+      overflow: auto;
+      margin: 8px 10px 0 10px;
+      font-size: 13px;
+      .queue-left {
+        width: 50%;
+      }
+      .queue-username {
+        cursor: pointer;
+        padding: 8px 0;
+      }
     }
   }
   .settings-study-mystudies {
@@ -30,6 +108,10 @@
             background-color: var(--bgColor);
             opacity: 65%;
           }
+          &.study-selected {
+            background-color: var(--bgColor);
+            opacity: 65%;
+          }
           .settings-study-mystudy-category {
             font-size: 12px;
             text-align: center;
@@ -42,7 +124,7 @@
             padding: 0.6rem 0 0.6rem 0.4rem;
             font-size: 13px;
             color: var(--textColor);
-            width: 75%;
+            width: 70%;
             .mystudy-shorts {
               font-size: 12px;
               color: var(--textColor-dark);
@@ -50,8 +132,9 @@
           }
           .settings-study-mystudy-status {
             font-size: 13px;
-            width: 10%;
+            width: 15%;
             color: var(--textColor);
+            text-align: center;
           }
           .settings-study-mystudy-members {
             font-size: 13px;
@@ -63,7 +146,8 @@
     }
   }
   .settings-study-details {
-    margin-top: 3rem;
+    // margin-top: 3rem;
+    margin: 1.5rem 10px;
     border: 1px solid var(--borderColor);
     border-radius: 10px;
     background-color: var(--bgColor);
@@ -198,16 +282,20 @@
         background-color: $mainColor;
         color: #eeeeee;
         font-size: 13px;
-        margin-right: 5px;
+        margin-right: 10px;
         padding: 8px 14px;
 
-        &.start-study {
-          border: 1px solid $mainColor;
-          background-color: var(--bgColor);
-          color: var(--textColor);
-        }
         &.end-study {
-          border: 1.5px solid $mainColor;
+          background-color: rgb(208, 58, 58);
+        }
+
+        // &.start-study {
+        //   border: 1px solid $mainColor;
+        //   background-color: var(--bgColor);
+        //   color: var(--textColor);
+        // }
+        &.end-recruit {
+          border: 1.2px solid $mainColor;
           background-color: var(--bgColor);
           color: var(--textColor);
         }
