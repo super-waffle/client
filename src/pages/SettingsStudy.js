@@ -66,7 +66,7 @@ export default function SettingsStudy() {
   }, [myStudyDataAll]);
 
   // 스터디 모집중인지 진행중인지 모집마감인지 스터디 종료인지 판단
-  const checkStudyStatus = useCallback((study) => {
+  const checkStudyStatus = (study) => {
     if (nickname === study.hostName) {
       if (study.isRecruiting && study.startDate === null) {
         return "모집중";
@@ -78,7 +78,7 @@ export default function SettingsStudy() {
         return "스터디 진행중";
       }
     }
-  });
+  };
 
   const numberToDay = (num) => {
     if (num === 1) {
@@ -125,9 +125,9 @@ export default function SettingsStudy() {
   }, [startedStudySeq]);
   // console.log(selectStarted);
 
-  const onClickShowDetail = useCallback(() => {
+  const onClickShowDetail = () => {
     setShowStudyDetail(!showStudyDetail);
-  });
+  };
   // console.log(selectedStudy);
 
   // 스터디 신청한 회원들 목록 불러오기
@@ -149,11 +149,10 @@ export default function SettingsStudy() {
         });
     }
   }, [selectedStudy.studySeq]);
-  console.log(memberApplied);
+  // console.log(memberApplied);
 
   // 스터디 신청한 회원들 좌우 배열하기
   const [appliedLeft, setAppliedLeft] = useState("");
-
   const [appliedRight, setAppliedRight] = useState("");
   const [acceptedLeft, setAcceptedLeft] = useState("");
   const [acceptedRight, setAcceptedRight] = useState("");
@@ -185,7 +184,7 @@ export default function SettingsStudy() {
     }
   }, [memberApplied, selectedStudy]);
   // console.log(applied);
-  console.log(appliedLeft, appliedRight, acceptedLeft, acceptedRight);
+  // console.log(appliedLeft, appliedRight, acceptedLeft, acceptedRight);
 
   // 신청한 회원 프로필 모달창으로 띄우기 위한 정보 저장
   const [selectApplyMemberLeft, setSelectApplyMemberLeft] = useState("");
@@ -221,14 +220,14 @@ export default function SettingsStudy() {
       );
       setSelectAcceptedMemberRight(() => data[0]);
     }
-  }, [memberSeq, appliedLeft]);
+  }, [memberSeq, selectApplyMemberLeft]);
 
-  console.log(
-    selectApplyMemberLeft,
-    selectApplyMemberRight,
-    selectAcceptedMemberLeft,
-    selectAcceptedMemberRight
-  );
+  // console.log(
+  //   selectApplyMemberLeft,
+  //   selectApplyMemberRight,
+  //   selectAcceptedMemberLeft,
+  //   selectAcceptedMemberRight
+  // );
 
   // 모달창 띄우기
   const [modalOpen, setModalOpen] = useState(false);
@@ -240,7 +239,7 @@ export default function SettingsStudy() {
   };
 
   //모집 마감
-  const onClickEndRecruit = useCallback(() => {
+  const onClickEndRecruit = () => {
     axios
       .patch(
         process.env.REACT_APP_SERVER_URL +
@@ -259,10 +258,10 @@ export default function SettingsStudy() {
         window.location.reload();
         console.log(res);
       });
-  });
+  };
 
   // 스터디 시작하기
-  const onClickStartStudy = useCallback(() => {
+  const onClickStartStudy = () => {
     if (selectedStudy.memberList.length > 1) {
       axios
         .patch(
@@ -285,11 +284,11 @@ export default function SettingsStudy() {
     } else {
       alert("스터디를 시작하기 위해서는 2명 이상의 스터디원이 필요합니다.");
     }
-  });
+  };
   // console.log(showStudyDetail);
 
   // 신청 수락
-  const onClickAccept = useCallback(() => {
+  const onClickAccept = () => {
     axios
       .post(
         "/users/studies/" + selectedStudy.studySeq + "/applicants/" + memberSeq,
@@ -304,10 +303,10 @@ export default function SettingsStudy() {
         console.log(res);
         closeModal();
       });
-  });
+  };
 
   //신청 거절
-  const onClickReject = useCallback(() => {
+  const onClickReject = () => {
     axios
       .delete(
         "/users/studies/" + selectedStudy.studySeq + "/applicants/" + memberSeq,
@@ -323,7 +322,7 @@ export default function SettingsStudy() {
         onClickShowDetail();
         // window.location.reload();
       });
-  });
+  };
 
   return (
     <div className="settings-study">
@@ -385,7 +384,7 @@ export default function SettingsStudy() {
                   <tbody>
                     {appliedLeft &&
                       appliedLeft.map((member) => (
-                        <tr>
+                        <tr key={member.memberSeq}>
                           <td>
                             {member.userImg}
                             <div className="settings-study-details-img-wrapper">
@@ -447,7 +446,7 @@ export default function SettingsStudy() {
                   <tbody>
                     {appliedRight &&
                       appliedRight.map((member) => (
-                        <tr>
+                        <tr key={member.memberSeq}>
                           <td>
                             {member.userImg}
                             <div className="settings-study-details-img-wrapper">
@@ -514,7 +513,7 @@ export default function SettingsStudy() {
                   <tbody>
                     {acceptedLeft &&
                       acceptedLeft.map((member) => (
-                        <tr>
+                        <tr key={member.memberSeq}>
                           <td>
                             {member.userImg}
                             <div className="settings-study-details-img-wrapper">
@@ -594,7 +593,7 @@ export default function SettingsStudy() {
                   <tbody>
                     {acceptedRight &&
                       acceptedRight.map((member) => (
-                        <tr>
+                        <tr key={member.memberSeq}>
                           <td>
                             {member.userImg}
                             <div className="settings-study-details-img-wrapper">
@@ -988,7 +987,7 @@ export default function SettingsStudy() {
                               {numberToDay(day.dayNumber)}
                             </div>
                             <div className="settings-study-details-box-body__day timestart">
-                              {day.startTime.slice(0, 5)} ~{" "}
+                              {day.startTime.slice(0, 5)} ~
                             </div>
                             <div className="settings-study-details-box-body__day timeend">
                               {day.endTime.slice(0, 5)}
@@ -1208,7 +1207,7 @@ export default function SettingsStudy() {
                               {numberToDay(day.dayNumber)}
                             </div>
                             <div className="settings-study-details-box-body__day timestart">
-                              {day.startTime.slice(0, 5)} ~{" "}
+                              {day.startTime.slice(0, 5)} ~
                             </div>
                             <div className="settings-study-details-box-body__day timeend">
                               {day.endTime.slice(0, 5)}
