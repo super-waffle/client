@@ -155,15 +155,111 @@
   top: 7%;
   bottom: 0;
   height: auto;
+  padding-top: 10px;
   /* min-width: 400px !important; */
   max-width: 100% !important;
   width: 25%;
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer {
+  height: 26%;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch {
+  background-color: var(--bgColor);
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: space-between; */
+  /* margin-top: 5%; */
+  margin-left: 15%;
+  position: absolute;
+  border: 1px solid var(--borderColor);
+  /* padding:10px; */
+  border-radius: 8px;
+  height: 26%;
+  width: 80%;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .stop-watch-title {
+  background: var(--bgColor-light);
+  border: 1px solid var(--borderColor);
+  border-radius: 8px 8px 0px 0px;
+  height: fit-content;
+  font-family: "Pretendard";
+  padding: 10px 10px 10px 10px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .stop-watch-title .stop-watch-menu {
+  width: 24px;
+  height: 24px;
+  color: var(--textColor);
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .stop-watch-title .stop-watch-name {
+  padding-left: 10px;
+  font-size: 17px;
+  font-weight: bold;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .enter {
+  display: inline;
+  padding-top: 5px;
+  padding-left: 10px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .enter .enter-title {
+  font-size: 13px;
+  font-family: "Pretendard";
+  font-weight: bold;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .enter .enter-time {
+  font-size: 13px;
+  font-family: "Pretendard";
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .timer {
+  width: 100%;
+  display: flex;
+  height: 27%;
+  justify-content: center;
+  align-items: center;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .timer .digits {
+  padding-top: 17px;
+  font-family: "Pretendard";
+  font-size: 2rem;
+  color: #6667ab;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .control-buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 30%;
 }
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .control-buttons .start-button {
+  transform: rotate(90deg);
+  color: #6667ab;
+  width: 30px;
+  height: 30px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .control-buttons .start-button-disable {
+  transform: rotate(90deg);
+  color: #6c757d;
+  width: 30px;
+  height: 30px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .control-buttons .pause-button {
+  color: #6667ab;
+  width: 50px;
+  height: 50px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .control-buttons .pause-button-disable {
+  color: #6c757d;
+  width: 50px;
+  height: 50px;
+}
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat {
-  height: 70%;
+  height: 74%;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 74%;
 }
 .meeting-room .meeting-room-buttons {
   /* background-color: #fcfcfc; */

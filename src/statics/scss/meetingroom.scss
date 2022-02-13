@@ -132,16 +132,137 @@
       top: 7%;
       bottom: 0;
       height: auto;
+      padding-top: 10px;
       /* min-width: 400px !important; */
       max-width: 100% !important;
       width: 25%;
 
       .meeting-room-timer {
-        height: 30%;
+        height: 26%;
+
+        .meeting-room-stop-watch {
+          background-color: var(--bgColor);
+          display: flex;
+          flex-direction: column;
+          /* align-items: center; */
+          /* justify-content: space-between; */
+          /* margin-top: 5%; */
+          margin-left: 15%;
+          position: absolute;
+          border: 1px solid var(--borderColor);
+          /* padding:10px; */
+          // box-sizing: border-box;
+          border-radius: 8px;
+          height: 26%;
+          width: 80%;
+
+          .stop-watch-title {
+            background: var(--bgColor-light);
+            border: 1px solid var(--borderColor);
+            // box-sizing: border-box;
+            border-radius: 8px 8px 0px 0px;
+            height: fit-content;
+            // line-height: 100px;
+            font-family: $font-family;
+            padding: 10px 10px 10px 10px;
+
+            .stop-watch-menu {
+              // size: 24px;
+              width: 24px;
+              height: 24px;
+              color: var(--textColor);
+              // padding-right: 1px;
+            }
+
+            .stop-watch-name {
+              padding-left: 10px;
+              font-size: 17px;
+              font-weight: bold;
+            }
+          }
+          .enter {
+            display: inline;
+            padding-top: 5px;
+            padding-left: 10px;
+
+            .enter-title {
+              // padding: 15px 0 0 15px;
+              font-size: 13px;
+              font-family: $font-family;
+              font-weight: bold;
+            }
+            .enter-time {
+              // padding-left: 10px;
+              font-size: 13px;
+              font-family: $font-family;
+            }
+          }
+
+          .timer {
+            // margin: 3rem 0;
+            width: 100%;
+            display: flex;
+            // padding-top: 20px;
+            height: 27%;
+            justify-content: center;
+            align-items: center;
+
+            .digits {
+              padding-top: 17px;
+              font-family: $font-family;
+              font-size: 2rem;
+              color: $mainColor;
+            }
+          }
+
+          .control-buttons {
+            // margin: 3rem 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30%;
+
+            .start-button {
+              transform: rotate(90deg);
+              color: $mainColor;
+              width: 30px;
+              height: 30px;
+            }
+
+            .start-button-disable {
+              transform: rotate(90deg);
+              color: $textColor;
+              width: 30px;
+              height: 30px;
+            }
+
+            .pause-button {
+              color: $mainColor;
+              width: 50px;
+              height: 50px;
+            }
+
+            .pause-button-disable {
+              color: $textColor;
+              width: 50px;
+              height: 50px;
+            }
+          }
+        }
       }
 
       .meeting-room-chat {
-        height: 70%;
+        // position: absolute;
+        // bottom: 0;
+        height: 74%;
+
+        .meeting-chat-container {
+          position: absolute;
+          z-index: 0;
+          width: 100%;
+          height: 74%;
+        }
       }
     }
   }
