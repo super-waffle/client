@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./TimeComponent.css";
 import Timer from "./Timer";
 import ControlButtons from "./ControlButtons";
-  
+
 function StopWatch(props) {
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(true);
@@ -12,7 +12,7 @@ function StopWatch(props) {
 
   useEffect(() => {
     let interval = null;
-  
+
     if (isActive && isPaused === false) {
       interval = setInterval(() => {
         setTime((time) => time + 1);
@@ -24,18 +24,19 @@ function StopWatch(props) {
       clearInterval(interval);
     };
   }, [isActive, isPaused]);
-  
+
   const handleStart = () => {
     setIsActive(true);
     setIsPaused(false);
   };
-  
+
   const handlePauseResume = () => {
     setIsPaused(true);
   };
-  
+
   return (
     <div className="stop-watch">
+      <div className="stop-watch-title">공부시간측정</div>
       <Timer time={time} />
       <ControlButtons
         active={isActive}
@@ -44,11 +45,7 @@ function StopWatch(props) {
         handlePauseResume={handlePauseResume}
       />
     </div>
-    
   );
-  
 }
-  
+
 export default StopWatch;
-
-

@@ -12,6 +12,8 @@ import ToolbarComponent from "./toolbar/ToolbarComponent";
 import TimeComponent from "./time/TimeComponent";
 import UserComponent from "./user/userComponent";
 
+import "../../statics/css/meetingroom.css";
+
 var localUser = new UserModel();
 
 var sessionToken;
@@ -605,45 +607,46 @@ class VideoRoomComponent extends Component {
     var chatDisplay = { display: this.state.chatDisplay };
 
     return (
-      <div className="videoRoomContaier" id="video-room-contaier">
-        <div className="videoContent" id="video-content">
-          <div className="container" id="container">
-              <DialogExtensionComponent
-                showDialog={this.state.showExtensionDialog}
-                cancelClicked={this.closeDialogExtension}
-              />
-
-              <div id="sideBar" className="meeting-side-bar">
-                {localUser !== undefined && localUser.getStreamManager() !== undefined && (
-                  <div className="OT_root OT_publisher custom-class" style={chatDisplay}>
-                    <ChatComponent
-                      user={localUser}
-                      chatDisplay={this.state.chatDisplay}
-                      close={this.toggleChat}
-                      messageReceived={this.checkNotification}
-                    />
-                  </div>
-                )}
+      <div className="meeting-room">
+        <div className="meeting-room-content">
+          <DialogExtensionComponent
+            showDialog={this.state.showExtensionDialog}
+            cancelClicked={this.closeDialogExtension}
+          />
+          <div id="layout" className="meeting-room-video">
+            {/* publisher */}
+            {localUser !== undefined && localUser.getStreamManager() !== undefined && (
+              <div className="OT_root OT_publisher custom-class" id="localUser">
+                <StreamComponent user={localUser} handleNickname={this.nicknameChanged} />
               </div>
+            )}
+            {/* !host */}
+            {this.state.subscribers.map((sub, i) => (
+              <div key={i} className="OT_root OT_publisher custom-class" id="remoteUsers">
+                <StreamComponent user={sub} streamId={sub.streamManager.stream.streamId} />
+              </div>
+            ))}
+          </div>
 
-              <div id="layout" className="bounds">
-                {/* publisher */}
-                {localUser !== undefined && localUser.getStreamManager() !== undefined && (
-                  <div className="OT_root OT_publisher custom-class" id="localUser">
-                    <StreamComponent user={localUser} handleNickname={this.nicknameChanged} />
-                  </div>
-                )}
-                {/* !host */}
-                {this.state.subscribers.map((sub, i) => (
-                  <div key={i} className="OT_root OT_publisher custom-class" id="remoteUsers">
-                    <StreamComponent user={sub} streamId={sub.streamManager.stream.streamId} />
-                  </div>
-                ))}
+          <div className="meeting-room-sidebar">
+            <div className="meeting-room-timer">
+              <TimeComponent onCreate={this.setTime} />
             </div>
+            {localUser !== undefined && localUser.getStreamManager() !== undefined && (
+              <div className="OT_root OT_publisher custom-class" style={chatDisplay}>
+                <div className="meeting-room-chat">
+                  <ChatComponent
+                    user={localUser}
+                    chatDisplay={this.state.chatDisplay}
+                    close={this.toggleChat}
+                    messageReceived={this.checkNotification}
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
-
-        <div className="videoButtonFooter" id="video-button-footer">
+        <div className="meeting-room-buttons" id="video-button-footer">
           <ToolbarComponent
             sessionId={mySessionId}
             user={localUser}

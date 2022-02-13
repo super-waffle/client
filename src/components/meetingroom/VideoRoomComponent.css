@@ -9,23 +9,21 @@
   min-width: 400px !important;
 }
 
-.video-room-container {
-  background-color: #1ca3dc;
-}
-
-.button-footer {
-  color: #ffffff;
-  background-color: #333333;
-  /* padding: 0 14px 0 0; */
-  /* position: absolute; */
+.video-header {
+  /* background-color: #fcfcfc; */
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
   /* bottom: 0; */
-  /* left: 0; */
-  /* z-index: 999999; */
+  /* height: inherit; */
   min-width: 400px !important;
-}
-
-.video-content {
-  background-color: #f1111c;
+  /* max-width: 75% !important; */
+  width: 100%;
+  height: 10%;
+  /* display: flex !important; */
+  /* background-color: #f1111c; */
 }
 
 /* #footer {
@@ -40,15 +38,6 @@
   min-width: 400px !important;
 } */
 
-.toolbar {
-  min-height: 100px !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  position: fixed !important;
-  background-color: #fcfcfc;
-}
-
 #titleContent {
   max-width: 100px;
   background-color: #494949;
@@ -59,17 +48,10 @@
   text-overflow: ellipsis;
 }
 
-.buttonsContent {
-  height: 40px !important;
-  text-align: center;
-  margin: auto;
-  min-width: 400px;
-  color: #000;
-  font-size: 2rem !important;
-}
 .navButton {
   height: 40px !important;
   width: 40px !important;
+  /* font-size: large !important; */
 }
 
 #navChatButton {
@@ -78,34 +60,6 @@
 }
 .stream-container {
   padding: 0;
-}
-
-.bounds {
-  background-color: #fcfcfc;
-  overflow: hidden;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 40px;
-  bottom: 0;
-  height: inherit;
-  min-width: 400px !important;
-  max-width: 75% !important;
-  width: inherit;
-}
-
-.meeting-side-bar {
-  background-color: #fcfcfc;
-  overflow: hidden;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 40px;
-  bottom: 0;
-  height: inherit;
-  /* min-width: 400px !important; */
-  max-width: 100% !important;
-  width: inherit;
 }
 
 /*!
