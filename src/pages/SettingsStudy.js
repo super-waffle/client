@@ -221,7 +221,7 @@ export default function SettingsStudy() {
       );
       setSelectAcceptedMemberRight(() => data[0]);
     }
-  }, [memberSeq]);
+  }, [memberSeq, appliedLeft]);
 
   console.log(
     selectApplyMemberLeft,
@@ -302,6 +302,7 @@ export default function SettingsStudy() {
       )
       .then((res) => {
         console.log(res);
+        closeModal();
       });
   });
 
@@ -318,6 +319,9 @@ export default function SettingsStudy() {
       )
       .then((res) => {
         console.log(res);
+        closeModal();
+        onClickShowDetail();
+        // window.location.reload();
       });
   });
 
@@ -338,9 +342,6 @@ export default function SettingsStudy() {
                 <tr
                   key={study.studySeq}
                   className={`settings-study-mystudy ${
-                    // checkStudyStatus(study) === "모집중"
-                    //   ? "not-check"
-                    //   : "is-check"
                     selectedStudy.studySeq === study.studySeq && showStudyDetail
                       ? "study-selected"
                       : ""
@@ -352,7 +353,6 @@ export default function SettingsStudy() {
                   <td
                     className="settings-study-mystudy-title"
                     onClick={() => {
-                      // setShowStudyDetail(!showStudyDetail);
                       setStudySeq(study.studySeq);
                       onClickShowDetail();
                     }}
@@ -734,6 +734,13 @@ export default function SettingsStudy() {
                   {selectApplyMemberLeft.userWarning}회
                 </div>
               </div>
+              <div className="setting-study-details-profile-content__message">
+                <div className="content-title">신청 메세지</div>
+                <div className="content-body">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -869,8 +876,12 @@ export default function SettingsStudy() {
             <div>{selectAcceptedMemberRight.userNickname}</div>
           </div>
         )}
-        <button onClick={onClickAccept}>수락</button>
-        <button onClick={onClickReject}>거절</button>
+        <button onClick={onClickReject} className="btn-reject">
+          거절
+        </button>
+        <button onClick={onClickAccept} className="btn-accept">
+          수락
+        </button>
       </ApplicationModal>
 
       {showStudyDetail && (

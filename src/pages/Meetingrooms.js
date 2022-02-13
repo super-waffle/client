@@ -1,31 +1,31 @@
-import { Container, Col, Row, Card } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { Container, Col, Row, Card } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
-import CategorySelect from '../components/categorySelect';
-import Paginator from '../components/paginator';
-import '../statics/css/studyRecruit.css';
-import isLogin from '../utils/isLogin';
+import CategorySelect from "../components/categorySelect";
+import Paginator from "../components/paginator";
+import "../statics/css/studyRecruit.css";
+import isLogin from "../utils/isLogin";
 
 const MeetingroomCard = ({ meeting }) => {
   const meetingroomImg =
-    'https://i6a301.p.ssafy.io:8080/images/' + meeting.meetingImg;
-  const defaultImg = 'images/meetingroom.png';
+    "https://i6a301.p.ssafy.io:8080/images/" + meeting.meetingImg;
+  const defaultImg = "images/meetingroom.png";
   return (
-    <Col lg={3} style={{ marginBottom: '0.5rem' }}>
-      <Card style={{ marginBottom: '0.5rem' }}>
+    <Col lg={3} style={{ marginBottom: "0.5rem" }}>
+      <Card style={{ marginBottom: "0.5rem" }}>
         <Card.Img
-          style={{ maxHeight: '10rem' }}
+          style={{ maxHeight: "10rem" }}
           src={meeting.meetingImg ? meetingroomImg : defaultImg}
         />
       </Card>
       <div
         style={{
-          fontFamily: 'pretandard',
-          textOverflow: 'ellipsis',
-          overflow: 'hidden',
-          whiteSpace: 'nowrap',
+          fontFamily: "pretendard",
+          textOverflow: "ellipsis",
+          overflow: "hidden",
+          whiteSpace: "nowrap",
         }}
       >
         {meeting.meetingTitle}
@@ -35,10 +35,10 @@ const MeetingroomCard = ({ meeting }) => {
 };
 
 export default function Meetingrooms() {
-  const TOKEN = localStorage.getItem('accessToken');
+  const TOKEN = localStorage.getItem("accessToken");
   const navigate = useNavigate();
   const [category, setCategory] = useState(0);
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState("");
   const [postData, setPostData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -48,7 +48,7 @@ export default function Meetingrooms() {
   const onClickSearch = () => {
     if (isLogin) {
       axios
-        .get('/studies?page=1&type=' + category + '&key=' + searchInput, {
+        .get("/studies?page=1&type=" + category + "&key=" + searchInput, {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
@@ -63,7 +63,7 @@ export default function Meetingrooms() {
     }
   };
   const onKeyEnter = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       onClickSearch();
     }
   };
@@ -74,11 +74,11 @@ export default function Meetingrooms() {
       }
       axios
         .get(
-          '/meetings?page=' +
+          "/meetings?page=" +
             currentPage +
-            '&type=' +
+            "&type=" +
             category +
-            '&key=' +
+            "&key=" +
             searchInput,
           {
             headers: {
@@ -97,7 +97,7 @@ export default function Meetingrooms() {
     }
   }, [currentPage, category, searchInput]);
   return (
-    <main style={{ padding: '1rem 0' }}>
+    <main style={{ padding: "1rem 0" }}>
       <div className="studyrecruit">
         <div className="studyrecruit-heading">
           <span className="studyrecruit-h1">자유열람실</span>
@@ -134,12 +134,12 @@ export default function Meetingrooms() {
           </div>
           <button
             className="studyrecruit-create"
-            onClick={() => navigate('/settings/meeting')}
+            onClick={() => navigate("/settings/meeting")}
           >
             내 열람실 바로가기
           </button>
         </div>
-        <Container style={{ marginTop: '0.5rem', padding: '0rem' }}>
+        <Container style={{ marginTop: "0.5rem", padding: "0rem" }}>
           <Row className="studyrecruit-board">
             {console.log(postData)}
             {postData.data &&
