@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { MdEdit, MdDelete, MdSave } from 'react-icons/md';
-import axios from 'axios';
 import { Remove, Text, TodoItemBlock } from './todoStyle';
+import axios from 'axios';
 import '../../../statics/css/todo.css';
 
 export default function TodoItem({ todo, dailyList, setDailyList }) {

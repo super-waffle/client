@@ -1,13 +1,22 @@
 import Card from 'react-bootstrap/Card';
+import { useState, useEffect } from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-const indexList = [1, 2, 3, 4, 5, 6, 7];
+
 export default function Todaystudy({ weekly }) {
   const selectedDay = useSelector((state) => state.schedule.selectedDay);
-  console.log(weekly);
-  const studies = weekly
-    ? weekly.filter((day) => weekly.date === selectedDay)
-    : null;
+  const [dailyStudies, setDailyStudies] = useState([]);
+  useEffect(() => {
+    try {
+      setDailyStudies(
+        weekly.filter((daily) => daily.date === JSON.parse(selectedDay))[0]
+          .studySchedules
+      );
+    } catch {
+      setDailyStudies(null);
+    }
+  }, [selectedDay]);
+  console.log(dailyStudies);
 
   return (
     <Container>
@@ -15,7 +24,33 @@ export default function Todaystudy({ weekly }) {
         {selectedDay.slice(9, 11)}일의 스터디 일정
       </h5>
       <Row>
-        {studies ? (
+        {dailyStudies.length !== 0 ? (
+          dailyStudies.map((study) => (
+            <Col key={study.studySeq} style={{ margin: '0.5rem' }}>
+              <Card
+                style={{
+                  margin: '0.5rem',
+                  padding: '0.5rem',
+                }}
+              >
+                <Card.Title
+                  style={{
+                    margin: '0.5rem',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  {study.title} {study.startTime}~{study.endTime}
+                </Card.Title>
+                <Card.Subtitle style={{ margin: '0rem 0.5rem' }}>
+                  <p>{study.study_desc}</p>
+                  <p>
+                    현원{study.isAttend} #{study.categoryName}
+                  </p>
+                </Card.Subtitle>
+              </Card>
+            </Col>
+          ))
+        ) : (
           <Col style={{ margin: '0.5rem' }}>
             <Card>
               <Card.Title
@@ -29,32 +64,6 @@ export default function Todaystudy({ weekly }) {
               </Card.Title>
             </Card>
           </Col>
-        ) : (
-          studies.map((study, index) => (
-            <Col key={index} style={{ margin: '0.5rem' }}>
-              <Card
-                style={{
-                  margin: '0.5rem',
-                  padding: '0.5rem',
-                }}
-              >
-                <Card.Title
-                  style={{
-                    margin: '0.5rem',
-                    fontWeight: 'bold',
-                  }}
-                >
-                  {study.study_title} {study.time_start}~{study.tiem_end}
-                </Card.Title>
-                <Card.Subtitle style={{ margin: '0rem 0.5rem' }}>
-                  <p>{study.study_desc}</p>
-                  <p>
-                    현원{study.study_capacity} #{study.category}
-                  </p>
-                </Card.Subtitle>
-              </Card>
-            </Col>
-          ))
         )}
       </Row>
     </Container>

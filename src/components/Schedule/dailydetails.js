@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Todaystudy from './todaystudy';
 import Diary from './diary';
 import { useSelector } from 'react-redux';
-import TodoList from './Todo/todoList';
+import TodoList from './Todo/TodoList';
 
 export default function Dailydetails({ weekly }) {
   const selectedDay = useSelector((state) => state.schedule.selectedDay);
