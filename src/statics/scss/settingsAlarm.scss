@@ -1,0 +1,110 @@
+@import "main.scss";
+
+.settings-notice {
+  padding-top: 80px;
+  width: 100%;
+  .settings-notice-heading {
+    font-size: 20px;
+    margin-bottom: 17px;
+    color: var(--textColor);
+  }
+  & table {
+    border-top: 1.5px solid var(--textColor);
+    border-bottom: 1.5px solid var(--textColor);
+    width: 100%;
+    & tbody {
+      // padding: 10px;
+      & tr {
+        border-bottom: 1px solid var(--textColor-darker);
+        &.is-checked {
+          background-color: var(--bgColor);
+          & td {
+            &.settings-notice-board-category {
+              &.alert {
+                color: rgba(205, 88, 88, 0.5);
+              }
+              &.normal {
+                color: $mainColor;
+              }
+            }
+            &.settings-notice-board-content {
+              color: var(--textColor-darker);
+            }
+            &.settings-notice-board-date {
+              color: var(--textColor-darker);
+            }
+          }
+          // padding: 4rem;
+        }
+      }
+      .settings-notice-board-category {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        text-align: center;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 14px;
+        border-bottom: 1px solid var(--textColor-darker);
+        &.alert {
+          color: #cd5858;
+        }
+        &.normal {
+          color: $mainColor;
+        }
+      }
+      .settings-notice-board-content {
+        cursor: pointer;
+        padding-left: 18px;
+        font-size: 12px;
+        line-height: 14px;
+        color: var(--textColor);
+      }
+      .settings-notice-board-is-checked {
+        text-align: right;
+      }
+      .settings-notice-board-date {
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+        color: var(--textColor);
+      }
+    }
+  }
+  .modal-notice-heading {
+    display: flex;
+    justify-content: space-between;
+  }
+  .modal-notice-category {
+    color: $mainColor;
+    font-size: 12px;
+    text-align: left;
+    font-weight: 500;
+    padding-left: 10px;
+  }
+  .modal-notice-time {
+    font-size: 12px;
+    text-align: left;
+    padding-right: 10px;
+  }
+  .modal-notice-msg {
+    border: 1px solid var(--borderColor);
+    border-radius: 5px;
+    background-color: var(--bgColor);
+    padding: 12px;
+    margin-top: 26px;
+    color: var(--textColor);
+    font-size: 13px;
+    text-align: left;
+  }
+  .modal-notice-btn {
+    cursor: pointer;
+    margin-top: 24px;
+    border: none;
+    background-color: $mainColor;
+    color: #eeeeee;
+    font-size: 12px;
+    width: 3rem;
+    height: 1.6rem;
+    border-radius: 5px;
+  }
+}

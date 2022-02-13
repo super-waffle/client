@@ -50,7 +50,7 @@ function SignUp() {
       setSignupSuccess(false);
       axios
         .post(
-          "accounts",
+          process.env.REACT_APP_SERVER_URL + "/accounts",
           {
             email: email,
             nickname: nickname,
@@ -95,7 +95,7 @@ function SignUp() {
       // event.preventDefault();
       console.log(email);
       axios
-        .post("/emails", {
+        .post(process.env.REACT_APP_SERVER_URL + "/emails", {
           email: email,
         })
         .then((res) => {
@@ -122,7 +122,7 @@ function SignUp() {
     (event) => {
       console.log(emailAuth);
       axios
-        .post("/emails/auth", {
+        .post(process.env.REACT_APP_SERVER_URL + "/emails/auth", {
           email: email,
           authCode: emailAuth,
         })
@@ -155,7 +155,7 @@ function SignUp() {
     } else {
       event.preventDefault();
       axios
-        .post("/accounts/nickname", {
+        .post(process.env.REACT_APP_SERVER_URL + "/accounts/nickname", {
           nickname: nicknameCurrent,
         })
         .then((res) => {
@@ -395,14 +395,17 @@ function SignUp() {
                     isNickname &&
                     isEmail &&
                     isPassword &&
-                    // isEmailAuth &&
+                    isEmailAuth &&
                     isPasswordConfirm
                       ? "btn-xl"
                       : "disabled"
                   }`}
                   disabled={
-                    // isEmailAuth &&
-                    isNickname && isEmail && isPassword && isPasswordConfirm
+                    isEmailAuth &&
+                    isNickname &&
+                    isEmail &&
+                    isPassword &&
+                    isPasswordConfirm
                       ? false
                       : true
                   }

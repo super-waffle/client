@@ -1,0 +1,177 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+:root {
+  --htmlbgColor: #ffffff;
+  --bgColor: #fcfcfc;
+  --bgColor-light: #eaeaea;
+  --borderColor: #ededed;
+  --borderColor2: #d6d6d6;
+  --borderColor3: #e1e1e1;
+  --textWhite: #eeeeee;
+  --textColor: #252525;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #a1a1a1;
+  --textColor-darkest: #c2c2c2;
+  --github-01: #e8eaee;
+  --github-02: #d5d6f5;
+  --github-03: #9fa2e3;
+  --board-textColor: #646464;
+}
+
+.ui-dark {
+  background-color: var(--htmlbgColor);
+  --htmlbgColor: #292929;
+  --bgColor: #373737;
+  --bgColor-light: #4a4a4a;
+  --bgColor-lighter: #565656;
+  --bgColor-dark: #1b1b1b;
+  --borderColor: #444444;
+  --borderColor2: #444444;
+  --borderColor3: #444444;
+  --textColor: #ededed;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #6f6f6f;
+  --textColor-darkest: #838383;
+  --github-01: rgba(102, 103, 171, 0.2);
+  --github-02: rgba(102, 103, 171, 0.4);
+  --github-03: rgba(102, 103, 171, 0.7);
+  --board-textColor: #ededed;
+}
+
+.hidden {
+  display: none;
+}
+
+.settings-admin {
+  font-family: "Pretendard";
+  width: 100%;
+  padding-top: 80px;
+}
+.settings-admin .settings-admin__header {
+  border-bottom: 1px solid var(--textColor-darkest);
+  color: var(--textColor);
+  padding-left: 6px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  line-height: 24px;
+}
+.settings-admin .settings-admin__body-text {
+  padding-top: 15px;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--textColor-darker);
+  margin-bottom: 13px;
+}
+.settings-admin .settings-admin__body-text .settings-admin__body-text-head {
+  font-weight: 500;
+  color: var(--textColor-dark);
+  margin-bottom: 3px;
+}
+.settings-admin .settings-admin__body-text .settings-admin__body-text-body {
+  margin-bottom: 10px;
+}
+.settings-admin .settings-admin__body-btn {
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--textColor-dark);
+  width: 126px;
+  height: 30px;
+  border: 1px solid var(--borderColor);
+  background-color: var(--bgColor);
+  margin-bottom: 66px;
+}
+.settings-admin .settings-admin-input-nickname .modal > section {
+  max-width: 450px;
+}
+.settings-admin .settings-admin-input-nickname .settings-admin-input-nickname-header {
+  font-size: 14px;
+  margin-bottom: 30px;
+  color: var(--textColor);
+}
+.settings-admin .settings-admin-input-nickname input {
+  color: var(--textColor);
+  font-size: 12px;
+  background-color: var(--bgColor);
+  border: 1px solid var(--borderColor);
+}
+.settings-admin .settings-admin-input-nickname :focus {
+  outline: 1px solid #6667ab;
+}
+.settings-admin .settings-admin-input-nickname .message {
+  font-size: 12px;
+  position: relative;
+  top: 20px;
+}
+.settings-admin .settings-admin-input-nickname .message.success {
+  color: #6667ab;
+}
+.settings-admin .settings-admin-input-nickname .message.error {
+  color: red;
+}
+.settings-admin .settings-admin-input-nickname button {
+  cursor: pointer;
+  border: none;
+  background-color: #6667ab;
+  color: #eeeeee;
+  font-size: 13px;
+  width: 3rem;
+  height: 30px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+.settings-admin .settings-admin-input-nickname button:disabled {
+  cursor: default;
+  background-color: #808080;
+}
+.settings-admin .settings-admin-input-pwd .settings-admin-input-heading {
+  font-size: 14px;
+  text-align: left;
+  color: var(--textColor);
+  padding: 20px 0 10px 60px;
+}
+.settings-admin .settings-admin-input-pwd input {
+  background-color: var(--bgColor);
+  border: 1px solid var(--borderColor);
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: var(--textColor);
+  width: 16rem;
+  border-radius: 5px;
+  height: 30px;
+}
+.settings-admin .settings-admin-input-pwd ::placeholder {
+  color: var(--textColor-darker);
+}
+.settings-admin .settings-admin-input-pwd :focus {
+  outline: 1px solid #6667ab;
+}
+.settings-admin .settings-admin-input-pwd .message {
+  font-size: 12px;
+  position: relative;
+  top: -5px;
+}
+.settings-admin .settings-admin-input-pwd .message.confirm {
+  left: -40px;
+}
+.settings-admin .settings-admin-input-pwd .message.success {
+  color: #6667ab;
+}
+.settings-admin .settings-admin-input-pwd .message.error {
+  color: red;
+}
+.settings-admin .settings-admin-input-pwd button {
+  cursor: pointer;
+  border: none;
+  background-color: #6667ab;
+  color: #eeeeee;
+  font-size: 12px;
+  width: 8rem;
+  height: 28px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.settings-admin .settings-admin-input-pwd button:disabled {
+  cursor: default;
+  background-color: #808080;
+}
+
+/*# sourceMappingURL=settingsAdmin.css.map */

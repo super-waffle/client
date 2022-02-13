@@ -13,15 +13,38 @@
       font-family: $font-family;
       display: flex;
       flex-direction: column;
+      width: 16rem;
       // position: absolute;
       // left: 8%;
       // margin-left: 8%;
-      .home-profile-userimg {
-        // z-index: 4;
-        svg {
-          &.home-profile-img {
-            height: 256px;
-          }
+      .home-profile-img-wrapper {
+        position: relative;
+        width: 256px;
+        height: 256px;
+        border-radius: 100%;
+        margin-bottom: 20px;
+        & img {
+          position: relative;
+          top: -256px;
+          left: 0;
+          transform: translate(50, 50);
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          margin: auto;
+          border-radius: 100%;
+          // padding-right: 10px;
+        }
+        & svg {
+          position: relative;
+          top: 0;
+          left: 0;
+          transform: translate(50, 50);
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          margin: auto;
+          border-radius: 100%;
         }
       }
       .home-profile-nickname {
@@ -33,6 +56,12 @@
         font-size: 15px;
         line-height: 18px;
         color: var(--textColor-darkest);
+      }
+      .home-profile-msg {
+        font-size: 12px;
+        color: var(--textColor-dark);
+        padding-top: 12px;
+        white-space: pre-wrap;
       }
     }
 

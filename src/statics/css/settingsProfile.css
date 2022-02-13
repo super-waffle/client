@@ -1,0 +1,223 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+:root {
+  --htmlbgColor: #ffffff;
+  --bgColor: #fcfcfc;
+  --bgColor-light: #eaeaea;
+  --borderColor: #ededed;
+  --borderColor2: #d6d6d6;
+  --borderColor3: #e1e1e1;
+  --textWhite: #eeeeee;
+  --textColor: #252525;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #a1a1a1;
+  --textColor-darkest: #c2c2c2;
+  --github-01: #e8eaee;
+  --github-02: #d5d6f5;
+  --github-03: #9fa2e3;
+  --board-textColor: #646464;
+}
+
+.ui-dark {
+  background-color: var(--htmlbgColor);
+  --htmlbgColor: #292929;
+  --bgColor: #373737;
+  --bgColor-light: #4a4a4a;
+  --bgColor-lighter: #565656;
+  --bgColor-dark: #1b1b1b;
+  --borderColor: #444444;
+  --borderColor2: #444444;
+  --borderColor3: #444444;
+  --textColor: #ededed;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #6f6f6f;
+  --textColor-darkest: #838383;
+  --github-01: rgba(102, 103, 171, 0.2);
+  --github-02: rgba(102, 103, 171, 0.4);
+  --github-03: rgba(102, 103, 171, 0.7);
+  --board-textColor: #ededed;
+}
+
+.hidden {
+  display: none;
+}
+
+.settings-profile {
+  width: 100%;
+}
+.settings-profile .settings-profile__box {
+  padding: 80px 10px 0 15px;
+}
+.settings-profile .settings-profile__box .settings-profile__box-heading {
+  border-bottom: 1px solid var(--textColor-darkest);
+  color: var(--textColor);
+  padding-left: 6px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  line-height: 24px;
+}
+.settings-profile .settings-profile__box .settings-profile__box-body {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 10px 0 5px;
+}
+.settings-profile .settings-profile__box .settings-profile__box-text {
+  color: var(--textColor);
+  width: 46%;
+  margin-right: 4rem;
+}
+.settings-profile .settings-profile__box .settings-profile__box-text .settings-profile__box-text__title {
+  font-size: 14px;
+  line-height: 17px;
+  margin-top: 20px;
+  margin-bottom: 6px;
+}
+.settings-profile .settings-profile__box .settings-profile__box-text .settings-profile__box-text__disabled {
+  background-color: var(--bgColor-light);
+  border-radius: 5px;
+  border: 1px solid var(--borderColor);
+  padding: 5px;
+  font-style: italic;
+  color: var(--textColor-dark);
+  font-size: 12px;
+}
+.settings-profile .settings-profile__box .settings-profile__box-text .settings-profile__box-text__timegoal {
+  background-color: var(--bgColor);
+  border-radius: 5px;
+  border: 1px solid var(--borderColor);
+  padding: 5px;
+  color: var(--textColor);
+  font-size: 12px;
+  height: 30px;
+  width: 100%;
+}
+.settings-profile .settings-profile__box .settings-profile__box-text :focus {
+  outline: 1px solid #6667ab;
+}
+.settings-profile .settings-profile__box .settings-profile__box-text .settings-profile__box-text__msg {
+  background-color: var(--bgColor);
+  border-radius: 5px;
+  border: 1px solid var(--borderColor);
+  padding: 5px;
+  color: var(--textColor);
+  font-size: 12px;
+  height: 120px;
+  width: 100%;
+  white-space: pre-wrap;
+}
+.settings-profile .settings-profile__box .settings-profile__box-text .settings-profile__box-btn {
+  cursor: pointer;
+  border: none;
+  font-size: 13px;
+  background-color: #6667ab;
+  color: #eeeeee;
+  width: 7rem;
+  height: 28px;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+.settings-profile .settings-profile__box .settings-profile__box-img .settings-profile__box-text__title {
+  font-size: 14px;
+  line-height: 17px;
+  margin-top: 20px;
+  margin-bottom: 6px;
+}
+.settings-profile .settings-profile__box .settings-profile__box-img .settings-profile__box-img-file-wrapper {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  border-radius: 100%;
+}
+.settings-profile .settings-profile__box .settings-profile__box-img .settings-profile__box-img-file-wrapper img {
+  position: relative;
+  top: -250px;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 100%;
+}
+.settings-profile .settings-profile__box .settings-profile__box-img .settings-profile__box-img-file-wrapper svg {
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 100%;
+}
+.settings-profile .settings-profile__box .settings-profile__box-img .settings-profile-box-img-edit {
+  cursor: pointer;
+  border: 1px solid var(--borderColor);
+  background-color: var(--bgColor);
+  border-radius: 5px;
+  color: var(--textColor-dark);
+  position: relative;
+  left: 180px;
+  top: -65px;
+}
+.settings-profile .settings-profile__box .settings-profile__box-img .settings-profile-box-img-edit svg {
+  margin-right: 5px;
+  margin-bottom: 2px;
+}
+.settings-profile .settings-profile__box .settings-profile__box-img .profileImageEdit-dropdown {
+  font-family: "Pretendard";
+  position: relative;
+  top: -60px;
+  right: -160px;
+  width: 180px;
+  background: var(--bgColor);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  border: var(--borderColor);
+  border-radius: 4px;
+  color: #4b4b4b;
+  z-index: 6;
+}
+.settings-profile .settings-profile__box .settings-profile__box-img .profileImageEdit-dropdown button {
+  cursor: pointer;
+  border: none;
+  background-color: var(--bgColor);
+  padding-top: 8px;
+  padding-bottom: 4px;
+  text-align: start;
+  padding-left: 12px;
+  color: var(--textColor);
+  font-size: 14px;
+}
+.settings-profile .settings-profile__box .settings-profile__box-img .profileImageEdit-dropdown button:hover {
+  background-color: var(--borderColor);
+}
+.settings-profile .settings-profile__box .settings-profile__box-img .profileImageEdit-dropdown .profileImageEdit-dropdown-list {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.5px solid var(--borderColor3);
+}
+.settings-profile .settings-profile__box .settings-profile__box-img .profileImageEdit-dropdown .profileImageEdit-dropdown-list .filebox input[type=file] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+}
+.settings-profile .settings-profile__box .settings-profile__box-img .profileImageEdit-dropdown .profileImageEdit-dropdown-list .filebox label {
+  cursor: pointer;
+  background-color: var(--bgColor);
+  padding-top: 8px;
+  padding-bottom: 4px;
+  text-align: start;
+  padding-left: 12px;
+  color: var(--textColor);
+  font-size: 14px;
+  width: 100%;
+}
+.settings-profile .settings-profile__box .settings-profile__box-img .profileImageEdit-dropdown .profileImageEdit-dropdown-list .filebox label:hover {
+  background-color: var(--borderColor);
+}
+
+/*# sourceMappingURL=settingsProfile.css.map */

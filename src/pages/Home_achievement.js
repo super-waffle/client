@@ -16,7 +16,7 @@ export default function HomeAchievement() {
 
   if (isLogin()) {
     axios
-      .get('/users', {
+      .get(process.env.REACT_APP_SERVER_URL + '/users', {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },

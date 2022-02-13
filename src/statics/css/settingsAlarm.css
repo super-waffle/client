@@ -1,0 +1,145 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+:root {
+  --htmlbgColor: #ffffff;
+  --bgColor: #fcfcfc;
+  --bgColor-light: #eaeaea;
+  --borderColor: #ededed;
+  --borderColor2: #d6d6d6;
+  --borderColor3: #e1e1e1;
+  --textWhite: #eeeeee;
+  --textColor: #252525;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #a1a1a1;
+  --textColor-darkest: #c2c2c2;
+  --github-01: #e8eaee;
+  --github-02: #d5d6f5;
+  --github-03: #9fa2e3;
+  --board-textColor: #646464;
+}
+
+.ui-dark {
+  background-color: var(--htmlbgColor);
+  --htmlbgColor: #292929;
+  --bgColor: #373737;
+  --bgColor-light: #4a4a4a;
+  --bgColor-lighter: #565656;
+  --bgColor-dark: #1b1b1b;
+  --borderColor: #444444;
+  --borderColor2: #444444;
+  --borderColor3: #444444;
+  --textColor: #ededed;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #6f6f6f;
+  --textColor-darkest: #838383;
+  --github-01: rgba(102, 103, 171, 0.2);
+  --github-02: rgba(102, 103, 171, 0.4);
+  --github-03: rgba(102, 103, 171, 0.7);
+  --board-textColor: #ededed;
+}
+
+.hidden {
+  display: none;
+}
+
+.settings-notice {
+  padding-top: 80px;
+  width: 100%;
+}
+.settings-notice .settings-notice-heading {
+  font-size: 20px;
+  margin-bottom: 17px;
+  color: var(--textColor);
+}
+.settings-notice table {
+  border-top: 1.5px solid var(--textColor);
+  border-bottom: 1.5px solid var(--textColor);
+  width: 100%;
+}
+.settings-notice table tbody tr {
+  border-bottom: 1px solid var(--textColor-darker);
+}
+.settings-notice table tbody tr.is-checked {
+  background-color: var(--bgColor);
+}
+.settings-notice table tbody tr.is-checked td.settings-notice-board-category.alert {
+  color: rgba(205, 88, 88, 0.5);
+}
+.settings-notice table tbody tr.is-checked td.settings-notice-board-category.normal {
+  color: #6667ab;
+}
+.settings-notice table tbody tr.is-checked td.settings-notice-board-content {
+  color: var(--textColor-darker);
+}
+.settings-notice table tbody tr.is-checked td.settings-notice-board-date {
+  color: var(--textColor-darker);
+}
+.settings-notice table tbody .settings-notice-board-category {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+  border-bottom: 1px solid var(--textColor-darker);
+}
+.settings-notice table tbody .settings-notice-board-category.alert {
+  color: #cd5858;
+}
+.settings-notice table tbody .settings-notice-board-category.normal {
+  color: #6667ab;
+}
+.settings-notice table tbody .settings-notice-board-content {
+  cursor: pointer;
+  padding-left: 18px;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--textColor);
+}
+.settings-notice table tbody .settings-notice-board-is-checked {
+  text-align: right;
+}
+.settings-notice table tbody .settings-notice-board-date {
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  color: var(--textColor);
+}
+.settings-notice .modal-notice-heading {
+  display: flex;
+  justify-content: space-between;
+}
+.settings-notice .modal-notice-category {
+  color: #6667ab;
+  font-size: 12px;
+  text-align: left;
+  font-weight: 500;
+  padding-left: 10px;
+}
+.settings-notice .modal-notice-time {
+  font-size: 12px;
+  text-align: left;
+  padding-right: 10px;
+}
+.settings-notice .modal-notice-msg {
+  border: 1px solid var(--borderColor);
+  border-radius: 5px;
+  background-color: var(--bgColor);
+  padding: 12px;
+  margin-top: 26px;
+  color: var(--textColor);
+  font-size: 13px;
+  text-align: left;
+}
+.settings-notice .modal-notice-btn {
+  cursor: pointer;
+  margin-top: 24px;
+  border: none;
+  background-color: #6667ab;
+  color: #eeeeee;
+  font-size: 12px;
+  width: 3rem;
+  height: 1.6rem;
+  border-radius: 5px;
+}
+
+/*# sourceMappingURL=settingsAlarm.css.map */

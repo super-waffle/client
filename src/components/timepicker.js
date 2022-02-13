@@ -28,7 +28,6 @@ const TimePicker = (props) => {
     { value: "21", name: "21" },
     { value: "22", name: "22" },
     { value: "23", name: "23" },
-    { value: "24", name: "24" },
   ];
   const MINUTES = [
     { value: "00", name: "00" },
@@ -64,7 +63,7 @@ const TimePicker = (props) => {
     return (
       <select value={props.value} onChange={props.onChange}>
         {props.options.map((option) => (
-          <option key={option.value} value={option.value}>
+          <option key={option.name} value={option.value}>
             {option.name}
           </option>
         ))}

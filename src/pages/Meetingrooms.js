@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 // import VideoRoomComponent from '../components/meetingroom/VideoRoomComponent'
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import isLogin from "../utils/isLogin";
 
+=======
+>>>>>>> origin
 export default function Meetingrooms() {
   const TOKEN = localStorage.getItem("accessToken");
   // const [category, setCategory] = useState("");
@@ -30,6 +33,7 @@ export default function Meetingrooms() {
   return (
     <main style={{ padding: '1rem 0' }}>
       <h2>Meetingrooms</h2>
+<<<<<<< HEAD
 
       <Link className="menu" to={"/videoRoomComponent"}>
       {/* onClick={"window.location.reload();"} */}
@@ -66,6 +70,8 @@ export default function Meetingrooms() {
 
 
       {/* <VideoRoomComponent/> */}
+=======
+>>>>>>> origin
     </main>
   );
 }

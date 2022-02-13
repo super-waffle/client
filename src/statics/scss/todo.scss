@@ -1,0 +1,11 @@
+@import 'main.scss';
+
+#daily_todo_check:checked {
+  background-color: #6667ab;
+  cursor: pointer;
+  appearance: auto;
+  box-sizing: border-box;
+  margin: 2px 2px 2px 3px;
+  padding: 0.5rem;
+  border: none;
+}
