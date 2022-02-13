@@ -14,8 +14,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import isLogin from '../../utils/isLogin';
 
-const StudyCard = ({ arr }) => {
-  const studies = arr;
+const StudyCard = ({ studies }) => {
   return (
     <>
       <p
@@ -77,29 +76,26 @@ export default function Calendar() {
   const dispatch = useDispatch();
   const startDay = useSelector((state) => state.schedule.startDay);
   const [weekly, setWeekly] = useState([]);
-  const getSchedule = () => {
+  async function getSchedule() {
     if (isLogin()) {
       try {
-        axios
-          .get(
-            process.env.REACT_APP_SERVER_URL +
-              `/schedules?date=${JSON.parse(startDay)}`,
-            {
-              headers: {
-                Authorization: `Bearer ` + localStorage.getItem('accessToken'),
-              },
-            }
-          )
-          .then((res) => {
-            setWeekly(res.data.list);
-          });
+        const response = await axios.get(
+          process.env.REACT_APP_SERVER_URL +
+            `/schedules?date=${JSON.parse(startDay)}`,
+          {
+            headers: {
+              Authorization: `Bearer ` + localStorage.getItem('accessToken'),
+            },
+          }
+        );
+        setWeekly(response.data.list);
       } catch (err) {
         console.log('Error:', err);
       }
     } else {
       console.log('Need Login');
     }
-  };
+  }
   useEffect(() => getSchedule(), [startDay]);
 
   // useCallback(() => getTodos(), [selectedDay, todoAdd]);
@@ -169,13 +165,13 @@ export default function Calendar() {
                     marginBottom: '2rem',
                   }}
                 >
-                  {weekly && <StudyCard arr={weekly[index]} />}
+                  {weekly && <StudyCard studies={weekly[index]} />}
                 </div>
               </Col>
             ))}
           </Row>
         </Row>
-        {weekly && <Dailydetails weerkly={weekly} />}
+        {weekly && <Dailydetails weekly={weekly} />}
       </Container>
     </>
   );
