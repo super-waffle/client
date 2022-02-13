@@ -10,14 +10,19 @@ import OpenViduLayout from '../../layout/openvidu-layout';
 import UserModel from '../../models/user-model';
 import ToolbarComponent from './toolbar/ToolbarComponent';
 
+import UserComponent from './user/UserComponent';
+
 var localUser = new UserModel();
 const token = localStorage.getItem('accessToken');
-var postData;
+var postData=[];
 var Nickname;
+var isHost;
+// var Nickname=location.state.nickname;
 class VideoRoomComponent extends Component {
     constructor(props) {
         super(props);
-        this.OPENVIDU_SERVER_URL = 'https://i6a301.p.ssafy.io:8080';
+        // this.OPENVIDU_SERVER_URL = this.props.openviduServerUrl? this.props.openviduServerUrl: process.env.REACT_APP_SERVER_URL;
+        this.OPENVIDU_SERVER_URL = process.env.REACT_APP_SERVER_URL;
         // this.OPENVIDU_SERVER_SECRET = this.props.openviduSecret ? this.props.openviduSecret : 'MY_SECRET';
         this.hasBeenUpdated = false;
         this.layout = new OpenViduLayout();
@@ -50,8 +55,16 @@ class VideoRoomComponent extends Component {
         this.toggleChat = this.toggleChat.bind(this);
         this.checkNotification = this.checkNotification.bind(this);
         this.checkSize = this.checkSize.bind(this);
+        this.isHostfun = this.isHostfun.bind(this);
     }
-
+        
+    isHostfun() {
+        isHost = postData.isHost;
+        console.log(isHost,"호스트닝?");
+        if(isHost===true){
+            localUser.setHost(localUser.isHost());
+        }
+    }
     componentDidMount() {
         const openViduLayoutOptions = {
             maxRatio: 3 / 2, // The narrowest ratio that will be used (default 2x3)
@@ -71,8 +84,9 @@ class VideoRoomComponent extends Component {
         window.addEventListener('resize', this.updateLayout);
         window.addEventListener('resize', this.checkSize);
         this.joinSession();
+        console.log("url"+this.props.openviduServerUrl);
+        
     }
-
     componentWillUnmount() {
         window.removeEventListener('beforeunload', this.onbeforeunload);
         window.removeEventListener('resize', this.updateLayout);
@@ -86,7 +100,7 @@ class VideoRoomComponent extends Component {
 
     joinSession() {
         this.OV = new OpenVidu();
-
+        console.log(this.OV);
         this.setState(
             {
                 session: this.OV.initSession(),
@@ -160,12 +174,13 @@ class VideoRoomComponent extends Component {
             });
 
         }
-        localUser.setNickname(this.state.myUserName);
+        localUser.setNickname(Nickname);
         localUser.setConnectionId(this.state.session.connection.connectionId);
         localUser.setScreenShareActive(false);
         localUser.setStreamManager(publisher);
         this.subscribeToUserChanged();
         this.subscribeToStreamDestroyed();
+        this.isHostfun();
         this.sendSignalUserChanged({ isScreenShareActive: localUser.isScreenShareActive() });
 
         this.setState({ currentVideoDevice: videoDevices[0], localUser: localUser }, () => {
@@ -221,6 +236,11 @@ class VideoRoomComponent extends Component {
         localUser.getStreamManager().publishVideo(localUser.isVideoActive());
         this.sendSignalUserChanged({ isVideoActive: localUser.isVideoActive() });
         this.setState({ localUser: localUser });
+        // console.log(this.remotes,"사용자?");
+        // console.log(localUser,"로컬");
+        // console.log(allUser,"제발...");
+        // console.log(Object.prototype.toString.call(localUser).slice(8,-1),"타입 local...");
+        // console.log(Object.prototype.toString.call(this.remotes).slice(8,-1),"타입 remote...");
     }
 
     micStatusChanged() {
@@ -506,6 +526,11 @@ class VideoRoomComponent extends Component {
                 />
   
                 <div id="sideBar" className="meeting-side-bar">
+                    <UserComponent 
+                        local={localUser}
+                        remote={this.remotes}
+                        session = {this.state.session}
+                        />
                   {localUser !== undefined && localUser.getStreamManager() !== undefined && (
                     <div className="OT_root OT_publisher custom-class" style={chatDisplay}>
                       <ChatComponent
@@ -616,7 +641,7 @@ class VideoRoomComponent extends Component {
         var data = JSON.stringify({});
         axios
             .all([
-            axios.post(this.OPENVIDU_SERVER_URL+'/meetings/1/room', data, {
+            axios.post(this.OPENVIDU_SERVER_URL+'/meetings/2/room', data, {
                 // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
                 headers: {
                 Authorization: 'Bearer ' + token,
@@ -637,9 +662,10 @@ class VideoRoomComponent extends Component {
                     Nickname = resGet.data.user.userNickname;
                   
                     resolve(resPost.data.sessionToken);
-                  
-                    console.log('Nickname : ' + Nickname);
-                    console.log('meetingSeq : ' + postData);
+                    
+                    console.log('data: ', resPost.data);
+                    console.log('res1: ', postData);
+                    console.log('res2: ', Nickname);
                 })
               )
             .catch((error) => reject(error));
