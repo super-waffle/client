@@ -51,7 +51,6 @@ export const scheduleSlice = createSlice({
           )
         )
       );
-      console.log('일주일 뒤로!');
     },
     toNextWeek: (state) => {
       state.startDay = JSON.stringify(
@@ -61,7 +60,6 @@ export const scheduleSlice = createSlice({
           )
         )
       );
-      console.log('일주일 앞으로!');
     },
     selectDay: (state, action) => {
       state.selectedDay = action.payload;

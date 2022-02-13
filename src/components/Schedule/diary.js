@@ -22,7 +22,15 @@ export default function Diary() {
 
   return (
     <div style={{ margin: '1rem 0rem' }}>
-      <h4 style={{ margin: '1rem 0rem' }}>하루 기록</h4>
+      <h4
+        style={{
+          margin: '1rem 0rem',
+          fontFamily: 'pretendard',
+          fontWeight: 'bold',
+        }}
+      >
+        하루 기록
+      </h4>
       <Row
         style={{
           backgroundColor: '#FCFCFC',
@@ -44,7 +52,7 @@ export default function Diary() {
         </Col>
         <Col
           style={{
-            fontFamily: 'pretandard',
+            fontFamily: 'pretendard',
             margin: 'auto 0rem',
             textAlign: 'center',
           }}

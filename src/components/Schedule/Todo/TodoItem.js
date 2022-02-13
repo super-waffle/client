@@ -49,7 +49,9 @@ export default function TodoItem({ todo, dailyList, setDailyList }) {
           },
         }
       );
-      setDailyList(dailyList.filter((daily) => daily.todoSeq !== todo.todoSeq));
+      setDailyList(() =>
+        dailyList.filter((daily) => daily.todoSeq !== todo.todoSeq)
+      );
     } catch (err) {
       console.log(err);
     }
@@ -62,12 +64,17 @@ export default function TodoItem({ todo, dailyList, setDailyList }) {
           id="daily_todo_check"
           type="checkbox"
           checked={thisDone}
+          style={{ fontFamily: 'pretendard', margin: '0 1rem' }}
           onChange={() => setThisDone(!thisDone)}
         />
         {wantEdit ? (
-          <input value={thisTodo} onChange={onChange}></input>
+          <input
+            value={thisTodo}
+            onChange={onChange}
+            style={{ fontFamily: 'pretendard' }}
+          ></input>
         ) : (
-          <Text>{thisTodo}</Text>
+          <Text style={{ fontFamily: 'pretendard' }}>{thisTodo}</Text>
         )}
         {wantEdit ? (
           <Remove

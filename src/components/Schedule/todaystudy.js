@@ -16,17 +16,19 @@ export default function Todaystudy({ weekly }) {
       setDailyStudies([]);
     }
   }, [selectedDay]);
-  console.log(dailyStudies);
 
   return (
-    <Container>
-      <h5 style={{ fontFamily: 'pretandard', fontWeight: 'bold' }}>
-        {selectedDay.slice(9, 11)}일의 스터디 일정
+    <Container style={{ fontFamily: 'pretendard' }}>
+      <h5 style={{ fontFamily: 'pretendard', fontWeight: 'bold' }}>
+        {parseInt(JSON.parse(selectedDay).split('-')[2])}일의 스터디 일정
       </h5>
       <Row>
         {dailyStudies.length !== 0 ? (
           dailyStudies.map((study) => (
-            <Col key={study.studySeq} style={{ margin: '0.5rem' }}>
+            <Col
+              key={study.studySeq}
+              style={{ margin: '0.5rem', maxWidth: '20rem' }}
+            >
               <Card
                 style={{
                   margin: '0.5rem',
@@ -39,9 +41,15 @@ export default function Todaystudy({ weekly }) {
                     fontWeight: 'bold',
                   }}
                 >
-                  {study.title} {study.startTime}~{study.endTime}
+                  {study.title}
                 </Card.Title>
-                <Card.Subtitle style={{ margin: '0rem 0.5rem' }}>
+
+                <Card.Subtitle
+                  style={{ margin: '0rem 0rem', padding: '0.5rem' }}
+                >
+                  <p>
+                    {study.startTime.slice(0, 5)}~{study.endTime.slice(0, 5)}
+                  </p>
                   <p>{study.study_desc}</p>
                   <p>
                     현원{study.isAttend} #{study.categoryName}
@@ -52,12 +60,17 @@ export default function Todaystudy({ weekly }) {
           ))
         ) : (
           <Col style={{ margin: '0.5rem' }}>
-            <Card>
+            <Card
+              style={{
+                margin: '0.5rem',
+                padding: '0.5rem',
+              }}
+            >
               <Card.Title
                 style={{
                   textAlign: 'center',
                   padding: '2rem',
-                  fontFamily: 'pretandard',
+                  fontFamily: 'pretendard',
                 }}
               >
                 스터디 일정이 존재하지 않습니다.
