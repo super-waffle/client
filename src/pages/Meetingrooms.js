@@ -88,7 +88,6 @@ export default function Meetingrooms() {
         )
         .then((res) => {
           let data = res.data.data;
-          console.log(data);
           setPostData((prevState) => ({
             ...prevState,
             data,
