@@ -13,7 +13,7 @@ export default function Todaystudy({ weekly }) {
           .studySchedules
       );
     } catch {
-      setDailyStudies(null);
+      setDailyStudies([]);
     }
   }, [selectedDay]);
   console.log(dailyStudies);
