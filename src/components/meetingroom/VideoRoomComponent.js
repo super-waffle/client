@@ -432,6 +432,7 @@ class VideoRoomComponent extends Component {
   subscribeToUserChanged() {
     console.log(9);
     this.state.session.on("signal:userChanged", (event) => {
+      console.log("여긴가?");
       let remoteUsers = this.state.subscribers;
       remoteUsers.forEach((user) => {
         if (user.getConnectionId() === event.from.connectionId) {
