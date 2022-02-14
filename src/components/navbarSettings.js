@@ -20,7 +20,11 @@ const thirdSection = [
 
 const settingsNav = (props) => {
   return (
-    <NavLink className="navbar-settings-box__menus-menu" to={props.toNavigate}>
+    <NavLink
+      key={props.name}
+      className="navbar-settings-box__menus-menu"
+      to={props.toNavigate}
+    >
       <div className="navbar-settings-box__menus-menu-box">
         <div className="navbar-settings-box__menus-menu-box active-box"></div>
         <div className="navbar-settings-box__menus-menu-box-content">
@@ -31,7 +35,7 @@ const settingsNav = (props) => {
   );
 };
 
-function NavbarSettings() {
+export default function NavbarSettings() {
   return (
     <div className="navbar-settings">
       <div className="navbar-settings-box">
@@ -42,6 +46,7 @@ function NavbarSettings() {
         <div className="navbar-settings-box__menus">
           {secondSection.map((info) => settingsNav(info))}
         </div>
+
         <div className="navbar-settings-box__menus">
           {thirdSection.map((info) => settingsNav(info))}
         </div>
@@ -49,4 +54,3 @@ function NavbarSettings() {
     </div>
   );
 }
-export default NavbarSettings;
