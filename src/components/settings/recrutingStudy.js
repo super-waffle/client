@@ -17,12 +17,13 @@ export default function RecruitingStudy({
   nickname,
   setSelectedSeq,
   selectedStudySeq,
-  showStudyDetail,
   setShowStudyDetail,
 }) {
   const onClick = () => {
     setSelectedSeq(study.studySeq);
-    setShowStudyDetail((current) => !current);
+    if (study.StudySeq === selectedStudySeq) {
+    }
+    setShowStudyDetail(() => true);
   };
   return (
     <tr

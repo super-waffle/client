@@ -197,7 +197,6 @@ export default function SettingsStudy() {
                     selectedStudy ? selectedStudy.studySeq : null
                   }
                   setSelectedSeq={setSelectedSeq}
-                  showStudyDetail={showStudyDetail}
                   setShowStudyDetail={setShowStudyDetail}
                 />
               ))}
