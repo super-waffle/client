@@ -765,50 +765,6 @@ class VideoRoomComponent extends Component {
     return getToken;
   }
 
-  // createSession(sessionId) {
-  //     return new Promise((resolve, reject) => {
-  //         var data = JSON.stringify({ customSessionId: sessionId });
-  //         const token = localStorage.getItem("accessToken");
-  //         axios
-  //             .post('/meetings', data, {
-  //                 // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions', data, {
-  //                 headers: {
-  //                     Authorization:'Bearer ' + token,
-  //                     'Content-Type': 'application/json',
-  //                 },
-  //             })
-  //             .then((response) => {
-  //                 console.log('CREATE SESION', response);
-  //                 resolve(response.data.id);
-
-  //                 // console.log('URL' + )
-  //             })
-  //             .catch((response) => {
-  //                 var error = Object.assign({}, response);
-  //                 if (error.response && error.response.status === 409) {
-  //                     resolve(sessionId);
-  //                 } else {
-  //                     console.log(error);
-  //                     console.warn(
-  //                         'No connection to OpenVidu Server. This may be a certificate error at ' + this.OPENVIDU_SERVER_URL,
-  //                     );
-  //                     if (
-  //                         window.confirm(
-  //                             'No connection to OpenVidu Server. This may be a certificate error at "' +
-  //                                 this.OPENVIDU_SERVER_URL +
-  //                                 '"\n\nClick OK to navigate and accept it. ' +
-  //                                 'If no certificate warning is shown, then check that your OpenVidu Server is up and running at "' +
-  //                                 this.OPENVIDU_SERVER_URL +
-  //                                 '"',
-  //                         )
-  //                     ) {
-  //                         window.location.assign(this.OPENVIDU_SERVER_URL + '/accept-certificate');
-  //                     }
-  //                 }
-  //             });
-  //     });
-  // }
-
   createToken(sessionId) {
     return new Promise((resolve, reject) => {
       var data = JSON.stringify({});
