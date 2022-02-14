@@ -74,7 +74,7 @@
         text-align: center;
         width: 100%;
         height: fit-content;
-        color: var(--textWhite);
+        color: var(--board-textColor);
         margin: 0;
         padding: 10px 10px 10px 10px !important;
         border-radius: 30px;
@@ -99,10 +99,10 @@
         color: $textColor;
         font-family: $font-family;
         width: fit-content;
-        min-width: 80px;
+        min-width: 100px;
         text-align: center;
         height: fit-content;
-        padding: 2px 5px 2px 5px;
+        padding: 2px 15px 2px 15px;
         // margin-bottom: 1%;
         position: absolute;
         color: var(--textColor);
@@ -509,6 +509,112 @@
           }
         }
       }
+
+      .meeting-room-userlist {
+        // position: absolute;
+        // bottom: 0;
+        height: 74%;
+
+        .meeting-userlist-container {
+          position: absolute;
+          z-index: 0;
+          width: 100%;
+          height: 74%;
+
+          .userlist-component {
+            background-color: var(--bgColor);
+            position: absolute;
+            // z-index: 99999;
+            top: 5%;
+            left: 0;
+            right: 0;
+            /* bottom: 0; */
+            margin: auto;
+            margin-left: 15%;
+            margin-right: 5%;
+            /* height: calc(100% - 30px); */
+            /* width: calc(100% - 80px); */
+            border-radius: 8px;
+            height: 93%;
+            border: 1px solid var(--borderColor);
+
+            .userlist-toolbar {
+              // box-sizing: border-box;
+              color: var(--textWhite);
+              background: var(--bgColor-light);
+              height: fit-content;
+              padding: 5px 10px 5px 10px;
+              border-radius: 8px 8px 0px 0px;
+              font-family: $font-family;
+              color: $textColor;
+              display: table;
+              width: 100%;
+
+              .userlist-toolbar-menu {
+                // size: 24px;
+                width: 24px;
+                height: 24px;
+                color: $textColor;
+                display: table-cell;
+                vertical-align: middle;
+                padding-top: 10px;
+                // padding-right: 1px;
+              }
+
+              .userlist-toolbar-name {
+                padding-left: 10px;
+                font-size: 17px;
+                font-weight: bold;
+                display: table-cell;
+                vertical-align: middle;
+                font-family: $font-family;
+                text-align: left;
+              }
+            }
+
+            .list-wrap {
+              // padding: 0 15px;
+              height: calc(100% - 100px);
+              overflow: auto;
+              font-family: $font-family;
+              padding: 15px;
+
+              .user {
+                position: relative;
+                padding: 0 0 8px 0;
+                align-items: "center";
+                display: "flex";
+
+                .user-name {
+                  color: $textColor;
+                  font-family: $font-family;
+                  left: 0;
+                  font-weight: 450;
+                  font-size: 16px;
+                }
+                .user-name-local {
+                  color: $mainColor;
+                  font-family: $font-family;
+                  left: 0;
+                  font-weight: bold;
+                  font-size: 16px;
+                }
+                .user-video {
+                  position: absolute;
+                  right: 26px;
+                  top: 3px;
+                }
+
+                .user-audio {
+                  position: absolute;
+                  right: 0;
+                  top: 3px;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 
@@ -569,20 +675,23 @@
 
         .button-audio {
           position: absolute;
-          left: 40%;
+          left: 43%;
           height: 100%;
+          color: $mainColor;
         }
 
         .button-video {
           position: absolute;
           left: 50%;
           height: 100%;
+          color: $mainColor;
         }
 
         .button-exit {
           position: absolute;
-          left: 60%;
+          left: 57%;
           height: 100%;
+          color: $mainColor;
         }
       }
 

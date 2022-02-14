@@ -10,7 +10,7 @@ import OpenViduLayout from "../../layout/openvidu-layout";
 import UserModel from "../../models/user-model";
 import ToolbarComponent from "./toolbar/ToolbarComponent";
 import TimeComponent from "./time/TimeComponent";
-// import UserComponent from "./user/userComponent";
+import UserComponent from "./user/UserComponent";
 
 import "../../statics/css/meetingroom.css";
 
@@ -49,6 +49,7 @@ class VideoRoomComponent extends Component {
       localUser: undefined,
       subscribers: [],
       chatDisplay: "block",
+      userlistDisplay: "block",
       currentVideoDevice: undefined,
       time: undefined,
       isPaused: undefined,
@@ -59,6 +60,7 @@ class VideoRoomComponent extends Component {
       minute: 0,
       second: 0,
       timeString: "00:00:00",
+      mutedSound: false,
     };
     this.joinSession = this.joinSession.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
@@ -83,6 +85,7 @@ class VideoRoomComponent extends Component {
     this.setTimeString = this.setTimeString.bind(this);
   }
   isHostfun() {
+    console.log(1);
     if (isHost === 0) {
       return false;
     } else if (isHost === 1) {
@@ -191,6 +194,7 @@ class VideoRoomComponent extends Component {
   }
 
   async connectWebCam() {
+    console.log(2);
     var devices = await this.OV.getDevices();
     var videoDevices = devices.filter((device) => device.kind === "videoinput");
 
@@ -240,6 +244,7 @@ class VideoRoomComponent extends Component {
   }
 
   updateSubscribers() {
+    console.log(3);
     var subscribers = this.remotes;
     this.setState(
       {
@@ -344,6 +349,7 @@ class VideoRoomComponent extends Component {
     });
   }
   camStatusChanged() {
+    console.log(4);
     localUser.setVideoActive(!localUser.isVideoActive());
     localUser.getStreamManager().publishVideo(localUser.isVideoActive());
     this.sendSignalUserChanged({
@@ -353,6 +359,7 @@ class VideoRoomComponent extends Component {
   }
 
   micStatusChanged() {
+    console.log(5);
     localUser.setAudioActive(!localUser.isAudioActive());
     localUser.getStreamManager().publishAudio(localUser.isAudioActive());
     this.sendSignalUserChanged({
@@ -360,6 +367,8 @@ class VideoRoomComponent extends Component {
     });
     this.setState({ localUser: localUser });
   }
+
+  soundStatusChanged() {}
 
   nicknameChanged(nickname) {
     let localUser = this.state.localUser;
@@ -371,6 +380,7 @@ class VideoRoomComponent extends Component {
   }
 
   deleteSubscriber(stream) {
+    console.log(6);
     const remoteUsers = this.state.subscribers;
     const userStream = remoteUsers.filter((user) => user.getStreamManager().stream === stream)[0];
     let index = remoteUsers.indexOf(userStream, 0);
@@ -383,6 +393,8 @@ class VideoRoomComponent extends Component {
   }
 
   subscribeToStreamCreated() {
+    console.log(7);
+    console.log("subscribeToStreamCreated");
     this.state.session.on("streamCreated", (event) => {
       const subscriber = this.state.session.subscribe(event.stream, undefined);
       // var subscribers = this.state.subscribers;
@@ -404,6 +416,7 @@ class VideoRoomComponent extends Component {
   }
 
   subscribeToStreamDestroyed() {
+    console.log(8);
     // On every Stream destroyed...
     this.state.session.on("streamDestroyed", (event) => {
       // Remove the stream from 'subscribers' array
@@ -417,6 +430,7 @@ class VideoRoomComponent extends Component {
   }
 
   subscribeToUserChanged() {
+    console.log(9);
     this.state.session.on("signal:userChanged", (event) => {
       let remoteUsers = this.state.subscribers;
       remoteUsers.forEach((user) => {
@@ -447,12 +461,14 @@ class VideoRoomComponent extends Component {
   }
 
   updateLayout() {
+    console.log(10);
     setTimeout(() => {
       this.layout.updateLayout();
     }, 20);
   }
 
   sendSignalUserChanged(data) {
+    console.log(11);
     const signalOptions = {
       data: JSON.stringify(data),
       type: "userChanged",
@@ -639,6 +655,7 @@ class VideoRoomComponent extends Component {
     // console.log("로컬유저 들어오나?");
     // console.log(localUser);
     var chatDisplay = { display: this.state.chatDisplay };
+    var userlistDisplay = { display: this.state.userlistDisplay };
 
     return (
       <div className="meeting-room">
@@ -693,6 +710,20 @@ class VideoRoomComponent extends Component {
                     chatDisplay={this.state.chatDisplay}
                     close={this.toggleChat}
                     messageReceived={this.checkNotification}
+                  />
+                </div>
+              </div>
+            )}
+
+            {localUser !== undefined && localUser.getStreamManager() !== undefined && (
+              <div className="OT_root OT_publisher custom-class" style={userlistDisplay}>
+                <div className="meeting-room-userlist">
+                  <UserComponent
+                    local={localUser}
+                    isHost={this.state.isHost}
+                    remote={this.remotes}
+                    camStatusChanged={this.camStatusChanged}
+                    micStatusChanged={this.micStatusChanged}
                   />
                 </div>
               </div>
