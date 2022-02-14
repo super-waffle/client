@@ -18,7 +18,11 @@
     outline: 1px solid $mainColor;
   }
   .todo-item-block__checkbox {
+    cursor: pointer;
     margin-right: 0.5rem;
+    &.disable {
+      cursor: default;
+    }
   }
   .todo-item-block__todo {
     display: flex;

@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { MdEdit, MdDelete, MdSave } from "react-icons/md";
 import axios from "axios";
 import "../../../statics/css/Todo/todoItem.css";
+import { useSelector } from "react-redux";
 
-export default function TodoItem({ todo, dailyList, setDailyList }) {
+export default function TodoItem({ todo, dailyList, setDailyList, day }) {
   const [thisTodo, setThisTodo] = useState(todo.todoContent);
   const [thisDone, setThisDone] = useState(todo.todoCompleted);
   const [wantEdit, setWantEdit] = useState(false);
+  const today = useSelector((state) => state.schedule.today);
   async function saveTodo() {
     try {
       const response = await axios.patch(
@@ -55,24 +57,38 @@ export default function TodoItem({ todo, dailyList, setDailyList }) {
       console.log(err);
     }
   }
-  console.log(thisDone);
+  // console.log(thisDone);
+  // console.log(today, day);
+  const onClickDone = () => {
+    if (today === day) {
+      setThisDone(!thisDone);
+    }
+  };
   return (
     <div className="todo-item">
       <div className="todo-item-block">
         <div className="todo-item-block__todo">
           {thisDone ? (
             <img
-              className="todo-item-block__checkbox"
+              className={`todo-item-block__checkbox ${
+                today === day ? "checkable" : "disable"
+              }`}
               src="icons/todo/_todo-checked.svg"
               alt=""
-              onClick={() => setThisDone(() => !thisDone)}
+              onClick={() => {
+                onClickDone();
+              }}
             />
           ) : (
             <img
-              className="todo-item-block__checkbox"
+              className={`todo-item-block__checkbox ${
+                today === day ? "checkable" : "disable"
+              }`}
               src="icons/todo/_todo-not-checked.svg"
               alt=""
-              onClick={() => setThisDone(() => !thisDone)}
+              onClick={() => {
+                onClickDone();
+              }}
             />
           )}
 

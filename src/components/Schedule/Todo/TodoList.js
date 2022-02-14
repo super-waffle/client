@@ -32,7 +32,7 @@ export default function TodoList() {
   useEffect(() => getTodos(), [selectedDay]);
   useEffect(() => {}, [dailyList]);
 
-  console.log(selectedDay, today);
+  // console.log(selectedDay, today);
   return (
     <div className="todo-list">
       <div className="todo-list__header">
@@ -47,6 +47,7 @@ export default function TodoList() {
               todo={todo}
               dailyList={dailyList}
               setDailyList={setDailyList}
+              day={selectedDay}
             />
           ))}
         {today === selectedDay && (

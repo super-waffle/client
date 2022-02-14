@@ -115,7 +115,7 @@ export default function Calendar() {
   }
 
   useEffect(() => getSchedule(), [startDay]);
-  console.log(days, weekly);
+  // console.log(days, weekly);
   // useCallback(() => getTodos(), [selectedDay, todoAdd]);
   return (
     <>
