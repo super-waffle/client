@@ -24,16 +24,7 @@ const StudyCard = ({ studies }) => {
       </p>
       {studies ? (
         studies.studySchedules.map((study, index) => (
-          <Card
-            className="calendar-box-studies"
-            key={index}
-            // style={{
-            //   margin: "1rem 0rem",
-            //   border: "0px",
-            //   backgroundColor: "transparent",
-            //   padding: "0.5rem",
-            // }}
-          >
+          <Card className="calendar-box-studies" key={index}>
             <Card.Title>
               {study.isAttend === 0 ? (
                 <img
@@ -58,11 +49,16 @@ const StudyCard = ({ studies }) => {
               ) : null}
               {study.isAttend === 3 ? (
                 <img
-                  src="icons/calendar/_study_kicked.svg"
+                  src="icons/calendar/_study_absent.svg"
                   alt=""
                   style={{ color: "#6667ab" }}
                 />
-              ) : null}
+              ) : // <img
+              //   src="icons/calendar/_study_kicked.svg"
+              //   alt=""
+              //   style={{ color: "#6667ab" }}
+              // />
+              null}
               {study.title}
             </Card.Title>
             <Card.Subtitle>
