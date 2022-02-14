@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import TodoItem from "./TodoItem";
 import CreateTodo from "./TodoCreate";
 import axios from "axios";
-import "../../../statics/css/todoList.css";
+import "../../../statics/css/Todo/todoList.css";
 
 export default function TodoList() {
   const selectedDay = useSelector((state) => state.schedule.selectedDay);

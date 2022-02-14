@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { MdEdit, MdDelete, MdSave } from 'react-icons/md';
-import { Remove, Text, TodoItemBlock } from './todoStyle';
-import axios from 'axios';
-import '../../../statics/css/todo.css';
+import { useState, useEffect } from "react";
+import { MdEdit, MdDelete, MdSave } from "react-icons/md";
+import { Remove, Text, TodoItemBlock } from "./todoStyle";
+import axios from "axios";
+import "../../../statics/css/Todo/todo.css";
 
 export default function TodoItem({ todo, dailyList, setDailyList }) {
   const [thisTodo, setThisTodo] = useState(todo.todoContent);
@@ -18,7 +18,7 @@ export default function TodoItem({ todo, dailyList, setDailyList }) {
         },
         {
           headers: {
-            Authorization: `Bearer ` + localStorage.getItem('accessToken'),
+            Authorization: `Bearer ` + localStorage.getItem("accessToken"),
           },
         }
       );
@@ -45,7 +45,7 @@ export default function TodoItem({ todo, dailyList, setDailyList }) {
         process.env.REACT_APP_SERVER_URL + `/todos/${todo.todoSeq}`,
         {
           headers: {
-            Authorization: `Bearer ` + localStorage.getItem('accessToken'),
+            Authorization: `Bearer ` + localStorage.getItem("accessToken"),
           },
         }
       );
@@ -64,17 +64,17 @@ export default function TodoItem({ todo, dailyList, setDailyList }) {
           id="daily_todo_check"
           type="checkbox"
           checked={thisDone}
-          style={{ fontFamily: 'pretendard', margin: '0 1rem' }}
+          style={{ fontFamily: "pretendard", margin: "0 1rem" }}
           onChange={() => setThisDone(!thisDone)}
         />
         {wantEdit ? (
           <input
             value={thisTodo}
             onChange={onChange}
-            style={{ fontFamily: 'pretendard' }}
+            style={{ fontFamily: "pretendard" }}
           ></input>
         ) : (
-          <Text style={{ fontFamily: 'pretendard' }}>{thisTodo}</Text>
+          <Text style={{ fontFamily: "pretendard" }}>{thisTodo}</Text>
         )}
         {wantEdit ? (
           <Remove

@@ -1,4 +1,4 @@
-@import "main.scss";
+@import "../main.scss";
 
 .todo-list {
   font-family: $font-family;
@@ -7,6 +7,7 @@
   font-size: 16px;
   padding-bottom: 8px;
   padding-left: 5px;
+  color: var(--textColor);
 }
 .todo-list__body {
   background-color: var(--bgColor);
