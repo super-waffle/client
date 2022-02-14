@@ -34,6 +34,7 @@ class VideoRoomComponent extends Component {
     // this.OPENVIDU_SERVER_URL = this.props.openviduServerUrl
     //     ? this.props.openviduServerUrl
     //     : 'https://' + window.location.hostname + ':4443';
+    // this.meetingSeq = this.props.meetingSeq;
     this.OPENVIDU_SERVER_URL = "http://localhost:8080";
     this.hasBeenUpdated = false;
     this.layout = new OpenViduLayout();
@@ -771,7 +772,7 @@ class VideoRoomComponent extends Component {
       const token = localStorage.getItem("accessToken");
       axios
         .all([
-          axios.post(process.env.REACT_APP_SERVER_URL + "/meetings/1/room", data, {
+          axios.post(process.env.REACT_APP_SERVER_URL + `/meetings/1/room`, data, {
             // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
             headers: {
               Authorization: "Bearer " + token,
