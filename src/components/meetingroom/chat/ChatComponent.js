@@ -94,7 +94,7 @@ export default class ChatComponent extends Component {
         <div className="chat-component" style={styleChat}>
           <div className="chat-toolbar">
             <span className="chat-toolbar-menu">
-              <HiMenu size={"24px"} marginTop={"2px"} />
+              <HiMenu size={"24px"} margintop={"2px"} />
             </span>
             <span className="chat-toolbar-name">채팅</span>
             <CgClose className="chat-toolbar-exit" onClick={this.close}></CgClose>
