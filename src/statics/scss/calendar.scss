@@ -50,18 +50,19 @@
   border: none;
   background-color: transparent;
   padding-left: 6px;
+  margin-bottom: 14px;
   .card-title {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     color: var(--textColor);
-    & img {
-      margin-bottom: 3px;
-      margin-right: 5px;
-      width: 15px;
-    }
   }
   .card-subtitle {
     font-size: 12px;
     color: var(--textColor-darker);
+    & img {
+      margin-bottom: 2px;
+      margin-right: 5px;
+      width: 11px;
+    }
   }
 }

@@ -95,20 +95,21 @@
   border: none;
   background-color: transparent;
   padding-left: 6px;
+  margin-bottom: 14px;
 }
 .calendar-box-studies .card-title {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--textColor);
-}
-.calendar-box-studies .card-title img {
-  margin-bottom: 3px;
-  margin-right: 5px;
-  width: 15px;
 }
 .calendar-box-studies .card-subtitle {
   font-size: 12px;
   color: var(--textColor-darker);
+}
+.calendar-box-studies .card-subtitle img {
+  margin-bottom: 2px;
+  margin-right: 5px;
+  width: 11px;
 }
 
 /*# sourceMappingURL=calendar.css.map */

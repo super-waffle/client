@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import TodoItem from './TodoItem';
-import CreateTodo from './TodoCreate';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import TodoItem from "./TodoItem";
+import CreateTodo from "./TodoCreate";
+import axios from "axios";
+import "../../../statics/css/todoList.css";
 
 export default function TodoList() {
   const selectedDay = useSelector((state) => state.schedule.selectedDay);
@@ -14,7 +15,7 @@ export default function TodoList() {
           `/todos?date=${JSON.parse(selectedDay)}`,
         {
           headers: {
-            Authorization: `Bearer ` + localStorage.getItem('accessToken'),
+            Authorization: `Bearer ` + localStorage.getItem("accessToken"),
           },
         }
       );
@@ -30,19 +31,12 @@ export default function TodoList() {
   useEffect(() => getTodos(), [selectedDay]);
   useEffect(() => {}, [dailyList]);
   return (
-    <div>
-      <h5 style={{ fontFamily: 'pretendard', fontWeight: 'bold' }}>
-        {parseInt(selectedDay.split('-')[2].slice(0, 2))}일의 할일
-      </h5>
-      <div
-        style={{
-          background: '#fcfcfc',
-          border: '1px solid #ededed',
-          boxSizing: 'border-box',
-          borderRadius: '5px',
-          margin: '1.5rem 0rem',
-        }}
-      >
+    <div className="todo-list">
+      <div className="todo-list__header">
+        {/* {parseInt(selectedDay.split("-")[2].slice(0, 2))}일의 할일 */}
+        오늘의 할 일
+      </div>
+      <div className="todo-list__body">
         {dailyList &&
           dailyList.map((todo) => (
             <TodoItem

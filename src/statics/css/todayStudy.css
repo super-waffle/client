@@ -1,0 +1,106 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+:root {
+  --htmlbgColor: #ffffff;
+  --bgColor: #fcfcfc;
+  --bgColor-light: #eaeaea;
+  --borderColor: #ededed;
+  --borderColor2: #d6d6d6;
+  --borderColor3: #e1e1e1;
+  --textWhite: #eeeeee;
+  --textColor: #252525;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #a1a1a1;
+  --textColor-darkest: #c2c2c2;
+  --github-01: #e8eaee;
+  --github-02: #d5d6f5;
+  --github-03: #9fa2e3;
+  --board-textColor: #646464;
+}
+
+.ui-dark {
+  background-color: var(--htmlbgColor);
+  --htmlbgColor: #292929;
+  --bgColor: #373737;
+  --bgColor-light: #4a4a4a;
+  --bgColor-lighter: #565656;
+  --bgColor-dark: #1b1b1b;
+  --borderColor: #444444;
+  --borderColor2: #444444;
+  --borderColor3: #444444;
+  --textColor: #ededed;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #6f6f6f;
+  --textColor-darkest: #838383;
+  --github-01: rgba(102, 103, 171, 0.2);
+  --github-02: rgba(102, 103, 171, 0.4);
+  --github-03: rgba(102, 103, 171, 0.7);
+  --board-textColor: #ededed;
+}
+
+.hidden {
+  display: none;
+}
+
+.schedule-today-study {
+  font-family: "Pretendard";
+}
+
+.schedule-today-study-header {
+  font-size: 16px;
+  color: var(--textColor);
+  padding-left: 16px;
+}
+
+.schedule-today-study-box {
+  margin: 0.5rem 0 0 0.5rem;
+}
+
+.schedule-today-study-contents {
+  padding: 1.2rem 1.4rem;
+  background-color: var(--bgColor);
+  border: 1px solid var(--borderColor);
+  border-radius: 10px;
+}
+.schedule-today-study-contents .schedule-today-study-contents-header {
+  margin-bottom: 3px;
+}
+.schedule-today-study-contents .schedule-today-study-contents-foot {
+  display: flex;
+}
+.schedule-today-study-contents .schedule-today-study-contents__category {
+  font-size: 12px;
+  color: #6667ab;
+}
+.schedule-today-study-contents .schedule-today-study-contents__title {
+  padding: 0.6rem 0.8rem;
+  font-size: 14px;
+  color: var(--textColor);
+}
+.schedule-today-study-contents .schedule-today-study-contents__desc {
+  font-size: 12px;
+  color: var(--textColor-dark);
+  margin-bottom: 5px;
+}
+.schedule-today-study-contents .schedule-today-study-contents__time {
+  font-size: 13px;
+  color: var(--textColor-dark);
+}
+.schedule-today-study-contents .schedule-today-study-contents__time svg {
+  margin-right: 3px;
+  margin-bottom: 2px;
+}
+.schedule-today-study-contents .schedule-today-study-contents__members {
+  font-size: 13px;
+  color: var(--textColor-dark);
+  margin-right: 10px;
+}
+.schedule-today-study-contents .schedule-today-study-contents__members svg {
+  margin-right: 3px;
+  margin-bottom: 2px;
+}
+.schedule-today-study-contents .no-contents {
+  font-size: 12px;
+  color: var(--textColor-dark);
+}
+
+/*# sourceMappingURL=todayStudy.css.map */
