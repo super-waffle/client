@@ -58,7 +58,7 @@ export default function TodoItem({ todo, dailyList, setDailyList, day }) {
     }
   }
   // console.log(thisDone);
-  console.log(today, day);
+  // console.log(today, day);
   const onClickDone = () => {
     if (today === day) {
       setThisDone(!thisDone);

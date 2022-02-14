@@ -8,7 +8,7 @@ import "../../statics/css/dailyDetails.css";
 
 export default function Dailydetails({ weekly }) {
   const selectedDay = useSelector((state) => state.schedule.selectedDay);
-  console.log(parseInt(selectedDay.split("-")[2].slice(0, 2)));
+  // console.log(parseInt(selectedDay.split("-")[2].slice(0, 2)));
   return (
     <Container fluid className="daily-details">
       <Row>
@@ -43,7 +43,7 @@ export default function Dailydetails({ weekly }) {
             )}
           </Row>
           <Row>
-            <Diary />
+            <Diary day={selectedDay} />
           </Row>
         </Col>
       </Row>
