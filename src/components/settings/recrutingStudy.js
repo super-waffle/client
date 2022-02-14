@@ -10,6 +10,7 @@ const checkStudyStatus = ({ study, nickname }) => {
       return '스터디 진행중';
     }
   }
+  return '스터디 참여중';
 };
 
 export default function RecruitingStudy({

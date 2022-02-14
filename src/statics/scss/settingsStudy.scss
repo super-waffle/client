@@ -1,4 +1,4 @@
-@import "main.scss";
+@import 'main.scss';
 
 .settings-study {
   padding-top: 80px;
@@ -269,6 +269,7 @@
   }
   .settings-study-details {
     // margin-top: 3rem;
+    font-family: $font-family;
     margin: 1.5rem 10px;
     border: 1px solid var(--borderColor);
     border-radius: 10px;
