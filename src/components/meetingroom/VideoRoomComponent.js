@@ -35,16 +35,16 @@ class VideoRoomComponent extends Component {
     //     ? this.props.openviduServerUrl
     //     : 'https://' + window.location.hostname + ':4443';
     // this.meetingSeq = this.props.meetingSeq;
-    this.OPENVIDU_SERVER_URL = "http://localhost:8080";
+    this.OPENVIDU_SERVER_URL = process.env.REACT_APP_SERVER_URL;
     this.hasBeenUpdated = false;
     this.layout = new OpenViduLayout();
     // let sessionName = this.props.sessionName ? this.props.sessionName : 'SessionA';
-    let sessionName = meetingSeq;
+    // let sessionName = meetingSeq;
     this.remotes = [];
     this.localUserAccessAllowed = false;
     this.state = {
-      mySessionId: sessionName,
-      myUserName: userName,
+      mySessionId: 1,
+      myUserName: "이름",
       session: undefined,
       localUser: undefined,
       subscribers: [],
@@ -52,6 +52,9 @@ class VideoRoomComponent extends Component {
       currentVideoDevice: undefined,
       time: undefined,
       isPaused: undefined,
+      mySessionToken: undefined,
+      isHost: false,
+      myStartTime: "",
     };
     this.joinSession = this.joinSession.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
@@ -243,6 +246,7 @@ class VideoRoomComponent extends Component {
             isVideoActive: this.state.localUser.isVideoActive(),
             nickname: userName,
             isScreenShareActive: this.state.localUser.isScreenShareActive(),
+            // time:
           });
         }
         this.updateLayout();
@@ -274,7 +278,7 @@ class VideoRoomComponent extends Component {
     this.setState({
       session: undefined,
       subscribers: [],
-      mySessionId: "SessionA",
+      mySessionId: undefined,
       myUserName: "OpenVidu_User" + Math.floor(Math.random() * 100),
       localUser: undefined,
     });
@@ -288,10 +292,10 @@ class VideoRoomComponent extends Component {
       //     logMeeting: '40',
       //     logStartTime: '06:58:40'
       // });
-      console.log("sessiontoken  : ", sessionToken);
+      console.log("leave session! sessiontoken  : ", sessionToken);
       const token = localStorage.getItem("accessToken");
       axios
-        .delete(process.env.REACT_APP_SERVER_URL + "/meetings/1/room", {
+        .delete(process.env.REACT_APP_SERVER_URL + `/meetings/1/room`, {
           data: {
             sessionToken: sessionToken,
             logMeeting: this.state.time / 60, //총공부한시간
@@ -586,6 +590,7 @@ class VideoRoomComponent extends Component {
       this.setState({ chatDisplay: display });
     }
     this.updateLayout();
+    console.log(localUser.getNickname());
   }
 
   checkNotification(event) {
@@ -771,44 +776,95 @@ class VideoRoomComponent extends Component {
       var data = JSON.stringify({});
       const token = localStorage.getItem("accessToken");
       axios
-        .all([
-          axios.post(process.env.REACT_APP_SERVER_URL + `/meetings/1/room`, data, {
-            // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
-            headers: {
-              Authorization: "Bearer " + token,
-              "Content-Type": "application/json",
-            },
-          }),
-          axios.get(process.env.REACT_APP_SERVER_URL + "/users", {
-            // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
-            headers: {
-              Authorization: "Bearer " + token,
-              "Content-Type": "application/json",
-            },
-          }),
-        ])
+        .post(process.env.REACT_APP_SERVER_URL + `/meetings/1/room`, data, {
+          // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          console.log("응답", res);
+          switch (res.data.statusCode) {
+            case 404:
+              //미팅룸 시퀀스가 유효하지 않음 (존재하지 않는 미팅룸)
+              break;
+            case 405:
+              //미팅룸 정원초과
+              break;
+            case 407:
+              //블랙리스트
+              break;
+            case 409:
+              //서버에러
+              window.location.reload();
+              break;
+          }
+          resolve(res.data.sessionToken);
+          this.sessionToken = res.data.sessionToken;
+          this.meetingSeq = res.data.meetingSeq;
+          this.isHost = res.data.isHost;
+          this.meetingTitle = res.data.meetingTitle;
+          this.meetingDesc = res.data.meetingDesc;
+          this.meetingCapacity = res.data.meetingCapacity;
+          this.meetingHeadcount = res.data.meetingHeadcount;
+          this.meetingDate = res.data.meetingDate;
+          this.meetingStartTime = res.data.meetingStartTime; //미팅스타트타임
 
-        .then(
-          axios.spread((response1, response2) => {
-            console.log("TOKEN", response1);
-            resolve(response1.data.sessionToken);
-            sessionToken = response1.data.sessionToken;
-            meetingSeq = response1.data.meetingSeq;
-            isHost = response1.data.isHost;
-            meetingTitle = response1.data.meetingTitle;
-            meetingDesc = response1.data.meetingDesc;
-            meetingCapacity = response1.data.meetingCapacity;
-            meetingHeadcount = response1.data.meetingHeadcount;
-            meetingDate = response1.data.meetingDate;
-            meetingStartTime = response1.data.meetingStartTime; //미팅스타트타임
+          this.userName = res.data.userNickname;
+          console.log("Nickname : " + this.userName);
+          console.log("meetingSeq : " + this.meetingSeq);
+          console.log("sessionToken: " + this.sessionToken);
+          this.setState({
+            mySessionId: res.data.meetingUrl,
+            myUserName: res.data.userNickname,
+            time: 0,
+            mySessionToken: res.data.sessionToken,
+            isHost: res.data.isHost,
+            myStartTime: res.data.meetingStartTime,
+          });
+          console.log("스테이트변수" + this.state);
+        });
+      // axios
+      //   .all([
+      //     axios.post(process.env.REACT_APP_SERVER_URL + `/meetings/1/room`, data, {
+      //       // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
+      //       headers: {
+      //         Authorization: "Bearer " + token,
+      //         "Content-Type": "application/json",
+      //       },
+      //     }),
+      //     axios.get(process.env.REACT_APP_SERVER_URL + "/users", {
+      //       // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
+      //       headers: {
+      //         Authorization: "Bearer " + token,
+      //         "Content-Type": "application/json",
+      //       },
+      //     }),
+      //   ])
 
-            this.userName = response2.data.user.userNickname;
-            console.log("Nickname : " + this.userName);
-            console.log("meetingSeq : " + this.meetingSeq);
-            console.log("sessionToken: " + sessionToken);
-          })
-        )
-        .catch((error) => reject(error));
+      //   .then(
+      //     axios.spread((response1, response2) => {
+      //       console.log("TOKEN", response1);
+      //       resolve(response1.data.sessionToken);
+      //       sessionToken = response1.data.sessionToken;
+      //       meetingSeq = response1.data.meetingSeq;
+      //       isHost = response1.data.isHost;
+
+      //       meetingTitle = response1.data.meetingTitle;
+      //       meetingDesc = response1.data.meetingDesc;
+      //       meetingCapacity = response1.data.meetingCapacity;
+      //       meetingHeadcount = response1.data.meetingHeadcount;
+      //       meetingDate = response1.data.meetingDate;
+      //       meetingStartTime = response1.data.meetingStartTime; //미팅스타트타임
+
+      //       this.userName = response2.data.user.userNickname;
+      //       console.log("Nickname : " + this.userName);
+      //       console.log("meetingSeq : " + this.meetingSeq);
+      //       console.log("sessionToken: " + sessionToken);
+      //     })
+      //   )
+      //   .catch((error) => reject(error));
     });
   }
 }

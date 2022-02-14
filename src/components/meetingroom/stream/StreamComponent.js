@@ -64,9 +64,9 @@ export default class StreamComponent extends Component {
             {/* {this.props.user.isAudioActive()?():()} */}
             <OvVideoComponent user={this.props.user} mutedSound={this.state.mutedSound} />
             {this.props.user.isVideoActive() ? (
-              <div className="video-username">nickname자리</div>
+              <div className="video-username">{this.state.nickname}</div>
             ) : (
-              <div className="video-camoff"> nickname자리 </div>
+              <div className="video-camoff">{this.state.nickname}</div>
             )}
             <div className="video-time">02:48</div>
 
