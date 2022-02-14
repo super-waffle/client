@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./TimeComponent.css";
 import Timer from "./Timer";
 import ControlButtons from "./ControlButtons";
+import { HiMenu } from "react-icons/hi";
 
 function StopWatch(props) {
   const [isActive, setIsActive] = useState(false);
@@ -35,8 +35,15 @@ function StopWatch(props) {
   };
 
   return (
-    <div className="stop-watch">
-      <div className="stop-watch-title">공부시간측정</div>
+    <div className="meeting-room-stop-watch">
+      <div className="stop-watch-title">
+        <HiMenu className="stop-watch-menu" />
+        <span className="stop-watch-name">공부시간측정</span>
+      </div>
+      <div className="enter">
+        <span className="enter-title">열람실 착석 </span>
+        <span className="enter-time">00:00:00</span>
+      </div>
       <Timer time={time} />
       <ControlButtons
         active={isActive}
