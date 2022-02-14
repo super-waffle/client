@@ -1,5 +1,4 @@
 import Dailydetails from "./dailydetails";
-import classNames from "classnames";
 import { Container, Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -25,45 +24,7 @@ const StudyCard = ({ studies }) => {
       {studies ? (
         studies.studySchedules.map((study, index) => (
           <Card className="calendar-box-studies" key={index}>
-            <Card.Title>
-              {/* {study.isAttend === 0 ? (
-                <img
-                  // src="icons/calendar/_study_attend.svg"
-                  src="icons/calendar/_circle-fill.svg"
-                  alt=""
-                  style={{ color: "#6667ab" }}
-                />
-              ) : null}
-              {study.isAttend === 1 ? (
-                <img
-                  // src="icons/calendar/_study_late.svg"
-                  src="icons/calendar/_circle-half.svg"
-                  alt=""
-                  style={{ color: "#6667ab" }}
-                />
-              ) : null}
-              {study.isAttend === 2 ? (
-                <img
-                  // src="icons/calendar/_study_absent.svg"
-                  src="icons/calendar/_circle.svg"
-                  alt=""
-                  style={{ color: "#6667ab" }}
-                />
-              ) : null}
-              {study.isAttend === 3 ? (
-                <img
-                  src="icons/calendar/_study_absent.svg"
-                  alt=""
-                  style={{ color: "#6667ab" }}
-                />
-              ) : // <img
-              //   src="icons/calendar/_study_kicked.svg"
-              //   alt=""
-              //   style={{ color: "#6667ab" }}
-              // />
-              null} */}
-              {study.title}
-            </Card.Title>
+            <Card.Title>{study.title}</Card.Title>
             <Card.Subtitle>
               {study.isAttend === 0 ? (
                 <img
@@ -95,12 +56,7 @@ const StudyCard = ({ studies }) => {
                   alt=""
                   style={{ color: "#6667ab" }}
                 />
-              ) : // <img
-              //   src="icons/calendar/_study_kicked.svg"
-              //   alt=""
-              //   style={{ color: "#6667ab" }}
-              // />
-              null}
+              ) : null}
               {study.startTime.slice(0, 5)} - {study.endTime.slice(0, 5)}
             </Card.Subtitle>
           </Card>

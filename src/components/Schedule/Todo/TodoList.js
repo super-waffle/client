@@ -8,6 +8,7 @@ import "../../../statics/css/Todo/todoList.css";
 export default function TodoList() {
   const selectedDay = useSelector((state) => state.schedule.selectedDay);
   const [dailyList, setDailyList] = useState([]);
+  const today = useSelector((state) => state.schedule.today);
   async function getTodos() {
     try {
       const response = await axios.get(
@@ -30,6 +31,8 @@ export default function TodoList() {
   }
   useEffect(() => getTodos(), [selectedDay]);
   useEffect(() => {}, [dailyList]);
+
+  console.log(selectedDay, today);
   return (
     <div className="todo-list">
       <div className="todo-list__header">
@@ -46,7 +49,9 @@ export default function TodoList() {
               setDailyList={setDailyList}
             />
           ))}
-        <CreateTodo dailyList={dailyList} setDailyList={setDailyList} />
+        {today === selectedDay && (
+          <CreateTodo dailyList={dailyList} setDailyList={setDailyList} />
+        )}
       </div>
     </div>
   );
