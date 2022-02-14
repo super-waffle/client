@@ -1,0 +1,65 @@
+@import "main.scss";
+
+.month-nav {
+  color: $mainColor;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 48px;
+  padding-left: 12px;
+  padding-right: 8px;
+}
+.pointer-icon {
+  cursor: pointer;
+  color: var(--textColor-darker);
+  margin: 5px 3px;
+}
+.calendar-box {
+  background-color: var(--bgColor);
+  border: 1px solid var(--borderColor);
+  border-radius: 5px;
+  // padding: 0 20px;
+  padding: 0 1.2rem;
+  height: 25rem;
+  // height: 395px;
+}
+.calendar-box-day {
+  padding: 0 5px;
+  cursor: pointer;
+  // margin:
+}
+.calendar-box-dayname {
+  font-size: 14px;
+  padding: 1rem 8px 0.6rem 8px;
+  color: var(--textColor-dark);
+  border-bottom: 2px solid #6c757d;
+}
+.calendar-box-daycontents {
+  // background-color: blue;
+  height: 19.5rem;
+}
+.calendar-box-date {
+  // font-family: "Roboto";
+  font-size: 25px;
+  padding-top: 5px;
+  padding-left: 5px;
+  color: var(--textColor);
+}
+.calendar-box-studies {
+  border: none;
+  background-color: transparent;
+  padding-left: 6px;
+  .card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--textColor);
+    & img {
+      margin-bottom: 3px;
+      margin-right: 5px;
+      width: 15px;
+    }
+  }
+  .card-subtitle {
+    font-size: 12px;
+    color: var(--textColor-darker);
+  }
+}
