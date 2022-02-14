@@ -13,7 +13,7 @@ import IconButton from "@material-ui/core/IconButton";
 import HighlightOff from "@material-ui/icons/HighlightOff";
 import FormHelperText from "@material-ui/core/FormHelperText";
 
-let timeString = "00:00:00";
+// let timeString = "00:00:00";
 
 export default class StreamComponent extends Component {
   constructor(props) {
@@ -24,6 +24,7 @@ export default class StreamComponent extends Component {
       showForm: false,
       mutedSound: false,
       isFormValid: true,
+      timeString: this.props.timeString,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handlePressKey = this.handlePressKey.bind(this);
@@ -74,11 +75,12 @@ export default class StreamComponent extends Component {
   //   this.interval = setInterval(() => {
   //     let hour = ("0" + Math.floor((this.props.cumTime / 3600) % 60)).slice(-2);
   //     let minute = ("0" + Math.floor((this.props.cumTime / 60) % 60)).slice(-2);
-  //     let second = ("0" + (this.props.time % 60)).slice(-2);
+  //     let second = ("0" + (this.props.cumTime % 60)).slice(-2);
 
-  //     timeString = hour + ":" + minute + ":" + second;
-  //     console.log("시간" + this.props.cumTime);
-  //     console.log(hour + " " + minute + " " + second);
+  //     this.state.timeString = hour + ":" + minute + ":" + second;
+  //     // console.log("state시간 " + this.state.time);
+  //     console.log("props시간 " + this.props.cumTime);
+  //     console.log(this.state.timeString);
   //   }, 1000);
   //   console.log(this.timeString);
   // }
@@ -86,9 +88,22 @@ export default class StreamComponent extends Component {
   // componentWillUnmount() {
   //   clearInterval(this.interval);
   // }
+  // componentDidUpdate = (prevProps, prevState) => {
+  //   //componentDidUpdate가 props의 변과를 감지한다
+  //   console.log("********************************");
+  //   console.log("비교" + this.props.timeString + " " + prevProps.timeString);
+  //   if (this.props.timeString !== prevProps.timeString) {
+  //     //하위컴포넌트가 받은 props값 적어주기(둘다)
+  //     console.log("~~~~~~~~~~~~~~~~~~~~~~~~~");
+  //     this.setState({
+  //       ...this.state,
+  //       // selectTagNum: -1,
+  //       // contentOn: "none",  // 난 여기서 contntOn을 none으로 바꿔서 사라지게 햇다
+  //     });
+  //   }
+  // };
 
   render() {
-    console.log(this.props.time);
     return (
       <div className="OT_widget-container">
         {this.props.user !== undefined && this.props.user.getStreamManager() !== undefined ? (
@@ -100,7 +115,7 @@ export default class StreamComponent extends Component {
             ) : (
               <div className="video-camoff">{this.state.nickname}</div>
             )}
-            <div className="video-time">{this.props.cumTime}</div>
+            <div className="video-time">{this.props.timeString}</div>
 
             <div id="status-icons">
               {/* {!this.props.user.isVideoActive() ? (

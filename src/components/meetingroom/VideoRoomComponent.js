@@ -55,8 +55,10 @@ class VideoRoomComponent extends Component {
       mySessionToken: undefined,
       isHost: false,
       myStartTime: "",
-      minute: undefined,
-      timeString: "",
+      hour: 0,
+      minute: 0,
+      second: 0,
+      timeString: "00:00:00",
     };
     this.joinSession = this.joinSession.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
@@ -115,6 +117,7 @@ class VideoRoomComponent extends Component {
     window.addEventListener("resize", this.checkSize);
     this.joinSession();
     this.loginToken();
+    // this.setTime(0);
   }
 
   componentWillUnmount() {
@@ -258,9 +261,21 @@ class VideoRoomComponent extends Component {
   }
 
   setTime(timeCom) {
-    // this.setState({ time: timeCom });
-    this.state.time = timeCom;
-    console.log("시간누적: " + this.state.time);
+    if (timeCom !== this.state.time) {
+      // this.setState({ time: timeCom });W
+      this.state.time = timeCom;
+      // this.props.setTime(() => timeCom);
+      // console.log("시간누적: " + this.state.time);
+      if (this.state.time > 0) {
+        let hour = ("0" + Math.floor((this.state.time / 3600) % 60)).slice(-2);
+        let minute = ("0" + Math.floor((this.state.time / 60) % 60)).slice(-2);
+        let second = ("0" + (this.state.time % 60)).slice(-2);
+        // this.state.timeString = hour + ":" + minute + ":" + second;
+        let string = hour + ":" + minute + ":" + second;
+        this.setState({ timeString: string });
+        // console.log(this.state.timeString);
+      }
+    }
   }
   setPause(isPausedCom) {
     // this.setState({ isPaused: isPausedCom });
@@ -637,6 +652,7 @@ class VideoRoomComponent extends Component {
             {localUser !== undefined && localUser.getStreamManager() !== undefined && (
               <div className="OT_root OT_publisher custom-class" id="localUser">
                 <StreamComponent
+                  timeString={this.state.timeString}
                   cumTime={this.state.time}
                   user={localUser}
                   handleNickname={this.nicknameChanged}
@@ -646,7 +662,12 @@ class VideoRoomComponent extends Component {
             {/* !host */}
             {this.state.subscribers.map((sub, i) => (
               <div key={i} className="OT_root OT_publisher custom-class" id="remoteUsers">
-                <StreamComponent user={sub} streamId={sub.streamManager.stream.streamId} />
+                <StreamComponent
+                  timeString={this.state.timeString}
+                  cumTime={this.state.time}
+                  user={sub}
+                  streamId={sub.streamManager.stream.streamId}
+                />
               </div>
             ))}
           </div>
@@ -656,6 +677,7 @@ class VideoRoomComponent extends Component {
               <TimeComponent
                 // cumTime={this.state.time}
                 startTime={this.state.myStartTime}
+                // sendTime={this.setTime}
                 onCreate={this.setTime}
                 // onClick={() => {
                 //   this.setTime();
