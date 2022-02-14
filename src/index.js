@@ -1,31 +1,31 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Provider } from "react-redux";
-import store from "./store";
-import App from "./App";
-import Home from "./pages/Home";
-import StudyRecruit from "./pages/StudyRecruit";
-import Meetingrooms from "./pages/Meetingrooms";
-import Profile from "./pages/Profile";
-import Settings from "./pages/Settings";
-import Schedule from "./pages/Schedule";
-import Login from "./components/login";
-import Signup from "./components/signup";
-import isLogin from "./utils/isLogin";
-import HomeAchievement from "./pages/Home_achievement";
-import HomeStatistics from "./pages/Home_statistics";
-import HomeTodays from "./pages/Home_todays";
-import StudyRecruitCreate from "./pages/studyRecruitCreate";
-import StudyRecruitDetail from "./pages/studyRecruitDetail";
-import SettingsProfile from "./pages/SettingsProfile";
-import SettingsAdmin from "./pages/SettingsAdmin";
-import SettingsAlarm from "./pages/SettingsAlarm";
-import SettingsStudy from "./pages/SettingsStudy";
-import SettingsMeeting from "./pages/SettingsMeeting";
-import SettingsMeetingFavorite from "./pages/SettingsMeetingFavorite";
-import VideoRoomComponentCopy from "./components/meetingroom/VideoRoomComponent copy";
-import VideoRoomComponent from "./components/meetingroom/VideoRoomComponent";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
+import App from './App';
+import Home from './pages/Home';
+import StudyRecruit from './pages/StudyRecruit';
+import Meetingrooms from './pages/Meetingrooms';
+import Profile from './pages/Profile';
+import Settings from './pages/Settings';
+import Schedule from './pages/Schedule';
+import Login from './components/login';
+import Signup from './components/signup';
+import isLogin from './utils/isLogin';
+import HomeAchievement from './pages/Home_achievement';
+import HomeStatistics from './pages/Home_statistics';
+import HomeTodays from './pages/Home_todays';
+import StudyRecruitCreate from './pages/studyRecruitCreate';
+import StudyRecruitDetail from './pages/studyRecruitDetail';
+import SettingsProfile from './pages/SettingsProfile';
+import SettingsAdmin from './pages/SettingsAdmin';
+import SettingsAlarm from './pages/SettingsAlarm';
+import SettingsStudy from './pages/SettingsStudy_refac';
+import SettingsMeeting from './pages/SettingsMeeting';
+import SettingsMeetingFavorite from './pages/SettingsMeetingFavorite';
+import VideoRoomComponentCopy from './components/meetingroom/VideoRoomComponent copy';
+import VideoRoomComponent from './components/meetingroom/VideoRoomComponent';
 import SettingsStudyApplied from "./pages/SettingsStudyApplied";
 
 ReactDOM.render(
@@ -91,5 +91,5 @@ ReactDOM.render(
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );

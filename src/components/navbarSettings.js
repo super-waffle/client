@@ -21,9 +21,9 @@ const thirdSection = [
 const settingsNav = (props) => {
   return (
     <NavLink
-      key={props.name}
       className="navbar-settings-box__menus-menu"
       to={props.toNavigate}
+      key={props.name}
     >
       <div className="navbar-settings-box__menus-menu-box">
         <div className="navbar-settings-box__menus-menu-box active-box"></div>
@@ -40,7 +40,7 @@ export default function NavbarSettings() {
     <div className="navbar-settings">
       <div className="navbar-settings-box">
         <div className="navbar-settings-box__menus top">
-          {firstSection.map((info) => settingsNav(info))}
+          {firstSection.map((info, index) => settingsNav(info))}
         </div>
 
         <div className="navbar-settings-box__menus">

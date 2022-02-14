@@ -1,25 +1,25 @@
-import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import ApplicationModal from "../components/applicationModal";
-import "../statics/css/settingsStudy.css";
+import axios from 'axios';
+import { useCallback, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import ApplicationModal from '../components/applicationModal';
+import '../statics/css/settingsStudy.css';
 
 export default function SettingsStudy() {
-  const TOKEN = localStorage.getItem("accessToken");
-  const [nickname, setNickname] = useState("");
-  const [myStudyDataAll, setMyStudyDataAll] = useState("");
+  const TOKEN = localStorage.getItem('accessToken');
+  const [nickname, setNickname] = useState('');
+  const [myStudyDataAll, setMyStudyDataAll] = useState('');
   const [showStudyDetail, setShowStudyDetail] = useState(false);
   const [showStartedStudyDetail, setShowStartedStudyDetail] = useState(false);
-  const [studySeq, setStudySeq] = useState("");
-  const [memberSeq, setMemberSeq] = useState("");
-  const [startedStudySeq, setStartedStudySeq] = useState("");
-  const [profileImg, setProfileImg] = useState("");
-  const imageURL = "https://i6a301.p.ssafy.io:8080/images/" + profileImg;
+  const [studySeq, setStudySeq] = useState('');
+  const [memberSeq, setMemberSeq] = useState('');
+  const [startedStudySeq, setStartedStudySeq] = useState('');
+  const [profileImg, setProfileImg] = useState('');
+  const imageURL = 'https://i6a301.p.ssafy.io:8080/images/' + profileImg;
 
   // 스터디 정보 불러오기
   useEffect(() => {
     axios
-      .get("/users/studies", {
+      .get('/users/studies', {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },
@@ -30,7 +30,7 @@ export default function SettingsStudy() {
       });
     // 내 정보 불러오기
     axios
-      .get(process.env.REACT_APP_SERVER_URL + "/users", {
+      .get(process.env.REACT_APP_SERVER_URL + '/users', {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },
@@ -44,7 +44,7 @@ export default function SettingsStudy() {
   }, []);
 
   // 모집중인 스터디 정보만 저장
-  const [myStudyData, setMyStudyData] = useState("");
+  const [myStudyData, setMyStudyData] = useState('');
   useEffect(() => {
     if (myStudyDataAll) {
       const studyRecruiting = myStudyDataAll.filter(
@@ -55,7 +55,7 @@ export default function SettingsStudy() {
   }, [myStudyDataAll]);
 
   // 진행중인 스터디 정보만 저장
-  const [studyStarted, setStudyStarted] = useState("");
+  const [studyStarted, setStudyStarted] = useState('');
   useEffect(() => {
     if (myStudyDataAll) {
       const started = myStudyDataAll.filter(
@@ -69,43 +69,43 @@ export default function SettingsStudy() {
   const checkStudyStatus = (study) => {
     if (nickname === study.hostName) {
       if (study.isRecruiting && study.startDate === null) {
-        return "모집중";
+        return '모집중';
       }
       if (!study.isRecruiting) {
-        return "모집마감";
+        return '모집마감';
       }
       if (study.startDate !== null) {
-        return "스터디 진행중";
+        return '스터디 진행중';
       }
     }
   };
 
   const numberToDay = (num) => {
     if (num === 1) {
-      return "월";
+      return '월';
     }
     if (num === 2) {
-      return "화";
+      return '화';
     }
     if (num === 3) {
-      return "수";
+      return '수';
     }
     if (num === 4) {
-      return "목";
+      return '목';
     }
     if (num === 5) {
-      return "금";
+      return '금';
     }
     if (num === 6) {
-      return "토";
+      return '토';
     }
     if (num === 7) {
-      return "일";
+      return '일';
     }
   };
 
   // 모집중인 스터디에서 선택
-  const [selectedStudy, setSelectedStudy] = useState("");
+  const [selectedStudy, setSelectedStudy] = useState('');
   useEffect(() => {
     if (myStudyData) {
       const selected = myStudyData.filter((seq) => seq.studySeq === studySeq);
@@ -114,7 +114,7 @@ export default function SettingsStudy() {
   }, [studySeq]);
 
   // 진행중인 스터디에서 선택
-  const [selectStarted, setSelectStarted] = useState("");
+  const [selectStarted, setSelectStarted] = useState('');
   useEffect(() => {
     if (studyStarted) {
       const selected = studyStarted.filter(
@@ -131,11 +131,11 @@ export default function SettingsStudy() {
   // console.log(selectedStudy);
 
   // 스터디 신청한 회원들 목록 불러오기
-  const [memberApplied, setMemberApplied] = useState("");
+  const [memberApplied, setMemberApplied] = useState('');
   useEffect(() => {
     if (selectedStudy) {
       axios
-        .get("/users/studies/" + selectedStudy.studySeq + "/applicants", {
+        .get('/users/studies/' + selectedStudy.studySeq + '/applicants', {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
@@ -152,10 +152,10 @@ export default function SettingsStudy() {
   // console.log(memberApplied);
 
   // 스터디 신청한 회원들 좌우 배열하기
-  const [appliedLeft, setAppliedLeft] = useState("");
-  const [appliedRight, setAppliedRight] = useState("");
-  const [acceptedLeft, setAcceptedLeft] = useState("");
-  const [acceptedRight, setAcceptedRight] = useState("");
+  const [appliedLeft, setAppliedLeft] = useState('');
+  const [appliedRight, setAppliedRight] = useState('');
+  const [acceptedLeft, setAcceptedLeft] = useState('');
+  const [acceptedRight, setAcceptedRight] = useState('');
   useEffect(() => {
     if (memberApplied) {
       const selectedleft = memberApplied.filter((member, idx, array) => {
@@ -187,11 +187,11 @@ export default function SettingsStudy() {
   // console.log(appliedLeft, appliedRight, acceptedLeft, acceptedRight);
 
   // 신청한 회원 프로필 모달창으로 띄우기 위한 정보 저장
-  const [selectApplyMemberLeft, setSelectApplyMemberLeft] = useState("");
-  const [selectApplyMemberRight, setSelectApplyMemberRight] = useState("");
-  const [selectAcceptedMemberLeft, setSelectAcceptedMemberLeft] = useState("");
+  const [selectApplyMemberLeft, setSelectApplyMemberLeft] = useState('');
+  const [selectApplyMemberRight, setSelectApplyMemberRight] = useState('');
+  const [selectAcceptedMemberLeft, setSelectAcceptedMemberLeft] = useState('');
   const [selectAcceptedMemberRight, setSelectAcceptedMemberRight] =
-    useState("");
+    useState('');
 
   useEffect(() => {
     if (memberSeq) {
@@ -243,9 +243,9 @@ export default function SettingsStudy() {
     axios
       .patch(
         process.env.REACT_APP_SERVER_URL +
-          "/users/studies/" +
+          '/users/studies/' +
           selectedStudy.studySeq +
-          "/recruit-end",
+          '/recruit-end',
         {},
 
         {
@@ -265,12 +265,8 @@ export default function SettingsStudy() {
     if (selectedStudy.memberList.length > 1) {
       axios
         .patch(
-          process.env.REACT_APP_SERVER_URL +
-            "/users/studies/" +
-            selectedStudy.studySeq +
-            "/start",
+          `/users/studies/${selectedStudy.studySeq}/start`,
           {},
-
           {
             headers: {
               Authorization: `Bearer ${TOKEN}`,
@@ -278,20 +274,18 @@ export default function SettingsStudy() {
           }
         )
         .then((res) => {
-          window.location.reload();
           console.log(res);
         });
     } else {
-      alert("스터디를 시작하기 위해서는 2명 이상의 스터디원이 필요합니다.");
+      alert('스터디를 시작하기 위해서는 2명 이상의 스터디원이 필요합니다.');
     }
   };
-  // console.log(showStudyDetail);
 
   // 신청 수락
   const onClickAccept = () => {
     axios
       .post(
-        "/users/studies/" + selectedStudy.studySeq + "/applicants/" + memberSeq,
+        '/users/studies/' + selectedStudy.studySeq + '/applicants/' + memberSeq,
         {},
         {
           headers: {
@@ -309,7 +303,7 @@ export default function SettingsStudy() {
   const onClickReject = () => {
     axios
       .delete(
-        "/users/studies/" + selectedStudy.studySeq + "/applicants/" + memberSeq,
+        '/users/studies/' + selectedStudy.studySeq + '/applicants/' + memberSeq,
         {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
@@ -326,53 +320,6 @@ export default function SettingsStudy() {
 
   return (
     <div className="settings-study">
-      <div className="settings-study-heading">
-        <div className="settings-study-heading__h1">모집중인 스터디</div>
-        <div className="settings-study-heading__h2">
-          내가 모집중인 스터디 정보를 확인하고 관리할 수 있습니다
-        </div>
-      </div>
-
-      <div className="settings-study-mystudies">
-        <table>
-          <tbody>
-            {myStudyData &&
-              myStudyData.map((study) => (
-                <tr
-                  key={study.studySeq}
-                  className={`settings-study-mystudy ${
-                    selectedStudy.studySeq === study.studySeq && showStudyDetail
-                      ? "study-selected"
-                      : ""
-                  } `}
-                >
-                  <td className="settings-study-mystudy-category">
-                    {study.categoryName}
-                  </td>
-                  <td
-                    className="settings-study-mystudy-title"
-                    onClick={() => {
-                      setStudySeq(study.studySeq);
-                      onClickShowDetail();
-                    }}
-                  >
-                    <div className="mystudy-title">{study.title}</div>
-                    <div className="mystudy-shorts">
-                      {study.shortDescription}
-                    </div>
-                  </td>
-                  <td className="settings-study-mystudy-status">
-                    {checkStudyStatus(study)}
-                  </td>
-                  <td className="settings-study-mystudy-members">
-                    {study.memberList.length}/6
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-      </div>
-
       {showStudyDetail && (
         <div className="settings-study-members">
           {/* [TODO]: 스터디 신청한 회원들 정보 불러와야함 */}
@@ -386,7 +333,6 @@ export default function SettingsStudy() {
                       appliedLeft.map((member) => (
                         <tr key={member.memberSeq}>
                           <td>
-                            {member.userImg}
                             <div className="settings-study-details-img-wrapper">
                               <svg
                                 className="settings-study-details-img"
@@ -418,10 +364,7 @@ export default function SettingsStudy() {
                               {member.userImg !== null && (
                                 <img
                                   className="settings-study-details-img"
-                                  src={
-                                    "https://i6a301.p.ssafy.io:8080/images/ " +
-                                    `${member.userImg}`
-                                  }
+                                  src={`https://i6a301.p.ssafy.io:8080/images/${member.userImg}`}
                                   alt=""
                                 />
                               )}
@@ -481,7 +424,7 @@ export default function SettingsStudy() {
                                 <img
                                   className="settings-study-details-img"
                                   src={
-                                    "https://i6a301.p.ssafy.io:8080/images/ " +
+                                    'https://i6a301.p.ssafy.io:8080/images/ ' +
                                     `${member.userImg}`
                                   }
                                   alt=""
@@ -703,7 +646,7 @@ export default function SettingsStudy() {
                 <img
                   className="settings-study-details-img"
                   src={
-                    "https://i6a301.p.ssafy.io:8080/images/ " +
+                    'https://i6a301.p.ssafy.io:8080/images/ ' +
                     `${selectApplyMemberLeft.userImg}`
                   }
                   alt=""
@@ -723,7 +666,7 @@ export default function SettingsStudy() {
               <div className="setting-study-details-profile-body">
                 <div className="setting-study-details-profile-content__time">
                   <div className="content-title">총 공부시간</div>
-                  {parseInt(selectApplyMemberLeft.userTimeTotal / 60)}시간{" "}
+                  {parseInt(selectApplyMemberLeft.userTimeTotal / 60)}시간{' '}
                   {selectApplyMemberLeft.userTimeTotal -
                     parseInt(selectApplyMemberLeft.userTimeTotal / 60) * 60}
                   분
@@ -777,7 +720,7 @@ export default function SettingsStudy() {
                 <img
                   className="settings-study-details-img"
                   src={
-                    "https://i6a301.p.ssafy.io:8080/images/ " +
+                    'https://i6a301.p.ssafy.io:8080/images/ ' +
                     `${selectApplyMemberRight.userImg}`
                   }
                   alt=""
@@ -821,7 +764,7 @@ export default function SettingsStudy() {
                 <img
                   className="settings-study-details-img"
                   src={
-                    "https://i6a301.p.ssafy.io:8080/images/ " +
+                    'https://i6a301.p.ssafy.io:8080/images/ ' +
                     `${selectAcceptedMemberLeft.userImg}`
                   }
                   alt=""
@@ -865,7 +808,7 @@ export default function SettingsStudy() {
                 <img
                   className="settings-study-details-img"
                   src={
-                    "https://i6a301.p.ssafy.io:8080/images/ " +
+                    'https://i6a301.p.ssafy.io:8080/images/ ' +
                     `${selectAcceptedMemberRight.userImg}`
                   }
                   alt=""
@@ -901,13 +844,13 @@ export default function SettingsStudy() {
             <div className="settings-study-details-box-heading__first-host">
               {/* [TODO]: update, delete 페이지로 링크 필요 */}
               <Link
-                to={"/"}
+                to={'/'}
                 className="settings-study-details-box-heading__first-host-btn update"
               >
                 수정
               </Link>
               <Link
-                to={"/"}
+                to={'/'}
                 className="settings-study-details-box-heading__first-host-btn"
               >
                 삭제
@@ -1072,8 +1015,8 @@ export default function SettingsStudy() {
                     //   : "is-check"
                     selectStarted.studySeq === study.studySeq &&
                     showStartedStudyDetail
-                      ? "study-selected"
-                      : ""
+                      ? 'study-selected'
+                      : ''
                   } `}
                 >
                   <td className="settings-study-mystudy-category">
@@ -1121,13 +1064,13 @@ export default function SettingsStudy() {
             <div className="settings-study-details-box-heading__first-host">
               {/* [TODO]: update, delete 페이지로 링크 필요 */}
               <Link
-                to={"/"}
+                to={'/'}
                 className="settings-study-details-box-heading__first-host-btn update"
               >
                 수정
               </Link>
               <Link
-                to={"/"}
+                to={'/'}
                 className="settings-study-details-box-heading__first-host-btn"
               >
                 삭제

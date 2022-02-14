@@ -11,7 +11,6 @@ import isLogin from '../utils/isLogin';
 
 const MeetingroomCard = ({ meeting, openModal, setMeetingSeq }) => {
   const meetingroomImg =
-
     'https://i6a301.p.ssafy.io:8080/images/' + meeting.meetingImg;
   const defaultImg = 'images/meetingroom.png';
   const sendMeetingSeq = () => {
@@ -27,17 +26,14 @@ const MeetingroomCard = ({ meeting, openModal, setMeetingSeq }) => {
       }}
     >
       <Card style={{ marginBottom: '0.5rem' }}>
-
         <Card.Img
-          style={{ maxHeight: "10rem" }}
+          style={{ maxHeight: '10rem' }}
           src={meeting.meetingImg ? meetingroomImg : defaultImg}
         />
       </Card>
       <div
         style={{
-
           fontFamily: 'pretendard',
-
         }}
       >
         {meeting.meetingTitle}
@@ -47,10 +43,10 @@ const MeetingroomCard = ({ meeting, openModal, setMeetingSeq }) => {
 };
 
 export default function Meetingrooms() {
-  const TOKEN = localStorage.getItem("accessToken");
+  const TOKEN = localStorage.getItem('accessToken');
   const navigate = useNavigate();
   const [category, setCategory] = useState(0);
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState('');
   const [postData, setPostData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
@@ -74,7 +70,7 @@ export default function Meetingrooms() {
   const onClickSearch = () => {
     if (isLogin) {
       axios
-        .get("/studies?page=1&type=" + category + "&key=" + searchInput, {
+        .get('/studies?page=1&type=' + category + '&key=' + searchInput, {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
@@ -89,7 +85,7 @@ export default function Meetingrooms() {
     }
   };
   const onKeyEnter = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       onClickSearch();
     }
   };
@@ -100,11 +96,11 @@ export default function Meetingrooms() {
       }
       axios
         .get(
-          "/meetings?page=" +
+          '/meetings?page=' +
             currentPage +
-            "&type=" +
+            '&type=' +
             category +
-            "&key=" +
+            '&key=' +
             searchInput,
           {
             headers: {
@@ -146,7 +142,7 @@ export default function Meetingrooms() {
       });
   }
   return (
-    <main style={{ padding: "1rem 0" }}>
+    <main style={{ padding: '1rem 0' }}>
       <div className="studyrecruit">
         <div className="studyrecruit-heading">
           <span className="studyrecruit-h1">자유열람실</span>
@@ -183,12 +179,12 @@ export default function Meetingrooms() {
           </div>
           <button
             className="studyrecruit-create"
-            onClick={() => navigate("/settings/meeting")}
+            onClick={() => navigate('/settings/meeting')}
           >
             내 열람실 바로가기
           </button>
         </div>
-        <Container style={{ marginTop: "0.5rem", padding: "0rem" }}>
+        <Container style={{ marginTop: '0.5rem', padding: '0rem' }}>
           <Row className="studyrecruit-board">
             {postData.data &&
               postData.data.map((meeting) => (
