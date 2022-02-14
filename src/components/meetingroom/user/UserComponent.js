@@ -17,8 +17,8 @@ class UserComponent extends Component {
   consoleUser() {
     this.local = this.props.local;
     this.remotes = this.props.remote;
-    console.log(this.local);
-    console.log(this.remotes);
+    // console.log(this.local);
+    // console.log(this.remotes);
   }
   render() {
     return (

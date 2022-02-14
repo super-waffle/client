@@ -17,8 +17,8 @@ class UserStatus extends Component {
   consoleUser() {
     this.User = this.props.user;
     this.host = this.props.isHost;
-    console.log(this.User);
-    console.log(this.host, '호스트냐');
+    // console.log(this.User);
+    // console.log(this.host, '호스트냐');
   }
   changeVideo(){
     this.User.setVideoActive(!this.User.isVideoActive());

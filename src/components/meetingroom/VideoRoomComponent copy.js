@@ -65,7 +65,7 @@ class VideoRoomComponent extends Component {
 
   isHostfun() {
     isHost = postData.isHost;
-    console.log(isHost, '호스트닝?');
+    // console.log(isHost, '호스트닝?');
     if (isHost === true) {
       localUser.setHost(localUser.isHost());
     }
@@ -92,7 +92,7 @@ class VideoRoomComponent extends Component {
     window.addEventListener('resize', this.updateLayout);
     window.addEventListener('resize', this.checkSize);
     this.joinSession();
-    console.log('url' + this.props.openviduServerUrl);
+    // console.log('url' + this.props.openviduServerUrl);
   }
   componentWillUnmount() {
     window.removeEventListener('beforeunload', this.onbeforeunload);
@@ -107,7 +107,7 @@ class VideoRoomComponent extends Component {
 
   joinSession() {
     this.OV = new OpenVidu();
-    console.log(this.OV);
+    // console.log(this.OV);
     this.setState(
       {
         session: this.OV.initSession(),
@@ -121,12 +121,12 @@ class VideoRoomComponent extends Component {
 
   connectToSession() {
     if (this.props.token !== undefined) {
-      console.log('token received: ', this.props.token);
+    //   console.log('token received: ', this.props.token);
       this.connect(this.props.token);
     } else {
       this.getToken()
         .then((token) => {
-          console.log(token);
+        //   console.log(token);
           this.connect(token);
         })
         .catch((error) => {
@@ -280,32 +280,61 @@ class VideoRoomComponent extends Component {
     localUser.getStreamManager().publishAudio(localUser.isAudioActive());
     this.sendSignalUserChanged({ isAudioActive: localUser.isAudioActive() });
     this.setState({ localUser: localUser });
+
     this.remoteCamChange();
+    this.subscribeToUserChanged();
   }
 
   remoteCamChange(){
+    
+    this.state.subscribers[0].setVideoActive(true);
+    this.state.subscribers[0].getStreamManager().subscribeToVideo(true);
+    this.sendSignalUserChanged({ isVideoActive: true });
 
-    const user = this.state.subscribers.filter(
-      (userName) => userName.nickname === "jy"
-    )[0];
-    console.log(user,"filter")
-    for (let i = 0; i < this.state.subscribers.length; i++) {
-      let user = this.state.subscribers[i];
-      if (user.nickname === "jy") {
-        console.log(user,"user");
-        user.setVideoActive(!user.isVideoActive());
-        user.getStreamManager().subscribeToVideo(user.isVideoActive());
-        this.sendSignalUserChanged({ isVideoActive: user.isVideoActive() });
-        console.log(user.videoActive)
-        this.state.subscribers[i]=user;
-      }
-    }
-      // console.log(Object.prototype.toString.call(localUser).slice(8,-1),"타입 local...");
-      // console.log(Object.prototype.toString.call(user).slice(8,-1),"타입 remote...");
-      // console.log(Object.prototype.toString.call(this.remotes[0]).slice(8,-1),"타입 remote[0]...");
-      // Object.assign({},user,localUser);
-      // console.log(user,"안나와?")
-      // console.log(Object.prototype.toString.call(user).slice(8,-1),"타입 remote...");
+    this.setState({ localUser: localUser });
+    // this.state.subscribers.subscribeToVideo(true);
+    // const user = this.state.subscribers.filter(
+    //   (userName) => userName.nickname === "jy"
+    // )[0];
+    // console.log(user,"filter")
+    // // console.log(Object.prototype.toString.call(user).slice(8,-1),"타입 user...");
+    // user.setVideoActive(!user.isVideoActive());
+    // console.log(user.videoActive,"비디오활성화");
+    
+    // user.getStreamManager().subscribeToVideo(user.isVideoActive());
+    // console.log(user.getStreamManager().subscribeToVideo,"subscribeToVideo");
+    
+    // this.sendSignalUserChanged({ isVideoActive: user.isVideoActive()});
+    // console.log(this.state.session,"session");
+    
+    // // const temp = this.state.subscribers.filter(
+    // //     (userName) => userName.nickname === "jy"
+    // //   )[0];
+    // // console.log(temp, user);
+    // // this.setState({subscribers: this.state.subscribers.map(
+    // //     modify=> user.nickname === modify.nickname ? {modify,user}   : modify 
+    // // )})
+
+    // console.log(user.videoActive);
+
+
+    // // for (let i = 0; i < this.state.subscribers.length; i++) {
+    // //   let user = this.state.subscribers[i];
+    // //   if (user.nickname === "jy") {
+    // //     console.log(user,"user");
+    // //     user.setVideoActive(!user.isVideoActive());
+    // //     user.getStreamManager().subscribeToVideo(user.isVideoActive());
+    // //     this.sendSignalUserChanged({ isVideoActive: user.isVideoActive() });
+    // //     console.log(user.videoActive);
+    // //     this.state.subscribers[i]=user;
+    // //   }
+    // // }
+    //   // console.log(Object.prototype.toString.call(localUser).slice(8,-1),"타입 local...");
+    //   // console.log(Object.prototype.toString.call(user).slice(8,-1),"타입 remote...");
+    //   // console.log(Object.prototype.toString.call(this.remotes[0]).slice(8,-1),"타입 remote[0]...");
+    //   // Object.assign({},user,localUser);
+    //   // console.log(user,"안나와?")
+    //   // console.log(Object.prototype.toString.call(user).slice(8,-1),"타입 remote...");
   }
 
 
@@ -565,7 +594,7 @@ class VideoRoomComponent extends Component {
     if (display === 'block') {
       this.setState({ chatDisplay: display, messageReceived: false });
     } else {
-      console.log('chat', display);
+    //   console.log('chat', display);
       this.setState({ chatDisplay: display });
     }
     this.updateLayout();
@@ -618,7 +647,7 @@ class VideoRoomComponent extends Component {
                   />
                 </div>
               )}
-            {/* !host */}
+            {/* !local */}
             {this.state.subscribers.map((sub, i) => (
               <div
                 key={i}
@@ -763,9 +792,9 @@ class VideoRoomComponent extends Component {
 
             resolve(resPost.data.sessionToken);
 
-            console.log('data: ', resPost.data);
-            console.log('res1: ', postData);
-            console.log('res2: ', Nickname);
+            // console.log('data: ', resPost.data);
+            // console.log('res1: ', postData);
+            // console.log('res2: ', Nickname);
           })
         )
         .catch((error) => reject(error));
