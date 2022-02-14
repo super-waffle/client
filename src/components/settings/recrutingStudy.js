@@ -12,12 +12,25 @@ const checkStudyStatus = ({ study, nickname }) => {
   }
 };
 
-export default function RecruitingStudy({ study, nickname, setSelectedSeq }) {
+export default function RecruitingStudy({
+  study,
+  nickname,
+  setSelectedSeq,
+  selectedStudySeq,
+  showStudyDetail,
+  setShowStudyDetail,
+}) {
   const onClick = () => {
     setSelectedSeq(study.studySeq);
+    setShowStudyDetail((current) => !current);
   };
   return (
-    <tr className={`settings-study-mystudy`} onClick={onClick}>
+    <tr
+      className={`settings-study-mystudy ${
+        study.studySeq === selectedStudySeq ? 'study-selected' : ''
+      }`}
+      onClick={onClick}
+    >
       <td className="settings-study-mystudy-category">{study.categoryName}</td>
       <td className="settings-study-mystudy-title">
         <div className="mystudy-title">{study.title}</div>

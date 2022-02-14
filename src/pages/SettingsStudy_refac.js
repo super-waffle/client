@@ -14,6 +14,7 @@ import '../statics/css/settingsStudy.css';
 import RecruitingStudy from '../components/settings/recrutingStudy';
 import StudyInfo from '../components/settings/studyInfo';
 import StudyPersonnel from '../components/settings/studyPersonnel';
+import UserDetail from '../components/settings/userDetail';
 
 export default function SettingsStudy() {
   const TOKEN = localStorage.getItem('accessToken');
@@ -39,6 +40,10 @@ export default function SettingsStudy() {
   );
   const [applicants, setApplicants] = useState('');
   const [members, setMembers] = useState('');
+  const [selectedApplicant, setSelectedApplicant] = useState('');
+  const [showStudyDetail, setShowStudyDetail] = useState(false);
+  const [modalStatus, setModalStatus] = useState(false);
+
   async function getUser() {
     const response = await axios.get(
       process.env.REACT_APP_SERVER_URL + '/users',
@@ -60,12 +65,12 @@ export default function SettingsStudy() {
         Authorization: `Bearer ${TOKEN}`,
       },
     });
-    setStudyList(response.data.studyList);
+    setStudyList(() => response.data.studyList);
   }
   useEffect(() => {
     getUser();
     getStudies();
-  }, []);
+  }, [modalStatus]);
 
   async function getApplicant() {
     const response = await axios
@@ -77,7 +82,6 @@ export default function SettingsStudy() {
       .then((response) => {
         if (response.data.statusCode === 200) {
           const data = response.data.applicants;
-          console.log(data, 'get applicant');
           setApplicants(() => data);
         } else {
           setApplicants(() => []);
@@ -93,9 +97,84 @@ export default function SettingsStudy() {
       setMembers(() => selectedStudy.memberList);
     }
   }, [selectedSeq]);
-  // console.log(selectedStudy);
+
+  const onClickReject = () => {
+    console.log(selectedApplicant);
+    const response = axios.delete(
+      `/users/studies/${selectedStudy.studySeq}/applicants/${selectedApplicant.userSeq}`,
+      {
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+        },
+      }
+    );
+    setApplicants((current) =>
+      current.filter(
+        (applicant) => applicant.userSeq !== selectedApplicant.userSeq
+      )
+    );
+    setModalStatus(() => false);
+  };
+  const onClickAccept = () => {
+    axios.post(
+      `/users/studies/${selectedStudy.studySeq}/applicants/${selectedApplicant.userSeq}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+        },
+      }
+    );
+    setApplicants((current) =>
+      current.filter(
+        (applicant) => applicant.userSeq !== selectedApplicant.userSeq
+      )
+    );
+    setMembers((members) => members.concat(selectedApplicant));
+    setModalStatus(() => false);
+  };
+  const onClickEndRecruit = () => {
+    axios
+      .patch(
+        process.env.REACT_APP_SERVER_URL +
+          `/users/studies/${selectedStudy.studySeq}/recruit-end`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+          },
+        }
+      )
+      .then((res) => {
+        window.location.reload();
+      });
+  };
+  const onClickStartStudy = () => {
+    if (members.length > 1) {
+      axios
+        .patch(
+          process.env.REACT_APP_SERVER_URL +
+            `/users/studies/${selectedStudy.studySeq}/start`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${TOKEN}`,
+            },
+          }
+        )
+        .then((res) => {
+          window.location.reload();
+          console.log(res);
+        });
+    } else {
+      alert('스터디를 시작하기 위해서는 2명 이상의 스터디원이 필요합니다.');
+    }
+  };
+  console.log(selectedStudy);
   // console.log(applicants);
+  // console.log(members);
   // console.log(applicants.length);
+  console.log(selectedApplicant, 'selected Applicant');
   return (
     <div className="settings-study">
       <div className="settings-study-heading">
@@ -114,17 +193,40 @@ export default function SettingsStudy() {
                   key={study.studySeq}
                   study={study}
                   nickname={nickname}
+                  selectedStudySeq={
+                    selectedStudy ? selectedStudy.studySeq : null
+                  }
                   setSelectedSeq={setSelectedSeq}
+                  showStudyDetail={showStudyDetail}
+                  setShowStudyDetail={setShowStudyDetail}
                 />
               ))}
           </tbody>
         </table>
       </div>
-      {applicants && members && (
-        <StudyPersonnel applicants={applicants} members={members} />
+      {applicants && members && showStudyDetail && (
+        <StudyPersonnel
+          applicants={applicants}
+          members={members}
+          setSelectedApplicant={setSelectedApplicant}
+          setModalStatus={setModalStatus}
+        />
       )}
-      {selectedStudy && (
-        <StudyInfo selectedStudy={selectedStudy} imageURL={imageURL} />
+      {selectedApplicant && modalStatus && (
+        <UserDetail
+          setModalStatus={setModalStatus}
+          selectedApplicant={selectedApplicant}
+          onClickAccept={onClickAccept}
+          onClickReject={onClickReject}
+        />
+      )}
+      {selectedStudy && showStudyDetail && (
+        <StudyInfo
+          selectedStudy={selectedStudy}
+          imageURL={imageURL}
+          onClickEndRecruit={onClickEndRecruit}
+          onClickStartStudy={onClickStartStudy}
+        />
       )}
       <hr></hr>
       <div className="settings-study-heading">

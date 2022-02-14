@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom';
 
-export default function StudyInfo({ selectedStudy, imageURL }) {
+export default function StudyInfo({
+  selectedStudy,
+  imageURL,
+  onClickEndRecruit,
+  onClickStartStudy,
+}) {
   const weekend = ['월', '화', '수', '목', '금', '토', '일'];
   return (
     <div className="settings-study-details">
@@ -118,14 +123,14 @@ export default function StudyInfo({ selectedStudy, imageURL }) {
         <div className="settings-study-details__btns">
           <button
             className="settings-study-details__btn end-recruit"
-            // onClick={onClickEndRecruit}
+            onClick={onClickEndRecruit}
           >
             모집 마감
           </button>
           {selectedStudy.startDate === null ? (
             <button
               className="settings-study-details__btn start-study"
-              // onClick={onClickStartStudy}
+              onClick={onClickStartStudy}
             >
               스터디 시작하기
             </button>

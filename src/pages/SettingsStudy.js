@@ -265,12 +265,8 @@ export default function SettingsStudy() {
     if (selectedStudy.memberList.length > 1) {
       axios
         .patch(
-          process.env.REACT_APP_SERVER_URL +
-            '/users/studies/' +
-            selectedStudy.studySeq +
-            '/start',
+          `/users/studies/${selectedStudy.studySeq}/start`,
           {},
-
           {
             headers: {
               Authorization: `Bearer ${TOKEN}`,
@@ -278,14 +274,12 @@ export default function SettingsStudy() {
           }
         )
         .then((res) => {
-          window.location.reload();
           console.log(res);
         });
     } else {
       alert('스터디를 시작하기 위해서는 2명 이상의 스터디원이 필요합니다.');
     }
   };
-  // console.log(showStudyDetail);
 
   // 신청 수락
   const onClickAccept = () => {
@@ -339,7 +333,6 @@ export default function SettingsStudy() {
                       appliedLeft.map((member) => (
                         <tr key={member.memberSeq}>
                           <td>
-                            {member.userImg}
                             <div className="settings-study-details-img-wrapper">
                               <svg
                                 className="settings-study-details-img"
@@ -371,10 +364,7 @@ export default function SettingsStudy() {
                               {member.userImg !== null && (
                                 <img
                                   className="settings-study-details-img"
-                                  src={
-                                    'https://i6a301.p.ssafy.io:8080/images/ ' +
-                                    `${member.userImg}`
-                                  }
+                                  src={`https://i6a301.p.ssafy.io:8080/images/${member.userImg}`}
                                   alt=""
                                 />
                               )}
