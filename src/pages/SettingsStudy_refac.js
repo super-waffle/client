@@ -170,11 +170,6 @@ export default function SettingsStudy() {
       alert('스터디를 시작하기 위해서는 2명 이상의 스터디원이 필요합니다.');
     }
   };
-  console.log(selectedStudy);
-  // console.log(applicants);
-  // console.log(members);
-  // console.log(applicants.length);
-  console.log(selectedApplicant, 'selected Applicant');
   return (
     <div className="settings-study">
       <div className="settings-study-heading">
@@ -227,15 +222,6 @@ export default function SettingsStudy() {
           onClickStartStudy={onClickStartStudy}
         />
       )}
-      <hr></hr>
-      <div className="settings-study-heading">
-        <div className="settings-study-heading__h1 second-box">
-          진행중인 스터디
-        </div>
-        <div className="settings-study-heading__h2">
-          시작된 스터디 정보를 확인하고 관리할 수 있습니다
-        </div>
-      </div>
     </div>
   );
 }
