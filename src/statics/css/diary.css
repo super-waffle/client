@@ -1,0 +1,108 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+:root {
+  --htmlbgColor: #ffffff;
+  --bgColor: #fcfcfc;
+  --bgColor-light: #eaeaea;
+  --borderColor: #ededed;
+  --borderColor2: #d6d6d6;
+  --borderColor3: #e1e1e1;
+  --textWhite: #eeeeee;
+  --textColor: #252525;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #a1a1a1;
+  --textColor-darkest: #c2c2c2;
+  --textColor-todo: #6c757d;
+  --github-01: #e8eaee;
+  --github-02: #d5d6f5;
+  --github-03: #9fa2e3;
+  --board-textColor: #646464;
+}
+
+.ui-dark {
+  background-color: var(--htmlbgColor);
+  --htmlbgColor: #292929;
+  --bgColor: #373737;
+  --bgColor-light: #4a4a4a;
+  --bgColor-lighter: #565656;
+  --bgColor-dark: #1b1b1b;
+  --borderColor: #444444;
+  --borderColor2: #444444;
+  --borderColor3: #444444;
+  --textColor: #ededed;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #6f6f6f;
+  --textColor-darkest: #838383;
+  --textColor-todo: #cdcdcd;
+  --github-01: rgba(102, 103, 171, 0.2);
+  --github-02: rgba(102, 103, 171, 0.4);
+  --github-03: rgba(102, 103, 171, 0.7);
+  --board-textColor: #ededed;
+}
+
+.hidden {
+  display: none;
+}
+
+.diary {
+  font-family: "Pretendard";
+  margin-top: 2rem;
+}
+.diary .diary-header {
+  padding-left: 16px;
+  font-size: 16px;
+  color: var(--textColor);
+}
+.diary .diary-box {
+  background-color: var(--bgColor);
+  border: 1px solid var(--borderColor);
+  border-radius: 10px;
+  margin: 0.5rem 0 0 0.5rem;
+  padding: 1.2rem 0.8rem;
+}
+.diary .diary-box img {
+  width: 15vw;
+  border-radius: 5px;
+}
+.diary .diary-box__contents textarea {
+  width: 100%;
+  height: 80%;
+  background-color: var(--htmlbgColor);
+  border: 1px solid var(--borderColor);
+  border-radius: 7px;
+  font-size: 12px;
+  padding: 0.5rem;
+  color: var(--textColor-todo);
+}
+.diary .diary-box__contents-btn {
+  border: none;
+  background-color: #6667ab;
+  color: #eeeeee;
+  font-size: 13px;
+  width: 3.6rem;
+  height: 1.6rem;
+  border-radius: 5px;
+}
+.diary .diary-box__edit-img input[type=file] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+}
+.diary .diary-box__edit-img label {
+  cursor: pointer;
+  background-color: var(--bgColor);
+  padding-top: 8px;
+  padding-bottom: 4px;
+  text-align: start;
+  padding-left: 12px;
+  color: var(--textColor);
+  font-size: 14px;
+  width: 100%;
+}
+.diary .diary-box__edit-img label:hover {
+  background-color: var(--borderColor);
+}
+
+/*# sourceMappingURL=diary.css.map */
