@@ -82,11 +82,11 @@
   height: 100%;
   color: #ffffff;
   margin: 0;
-  padding: 0 10px 10px 10px !important;
+  padding: 10px 10px 10px 10px !important;
   border-radius: 30px;
   border: 0;
   font-size: 100%;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Pretendard";
 }
 .meeting-room .meeting-room-content .meeting-room-video .video-username {
   bottom: 0;
@@ -96,18 +96,34 @@
   color: #6c757d;
   font-family: "Pretendard";
   width: fit-content;
-  min-width: 200px;
+  min-width: 180px;
   text-align: center;
   height: fit-content;
-  padding: 1% 3% 1% 3%;
+  padding: 0.5% 3% 0.5% 3%;
   position: absolute;
   color: var(--textWhite);
   border: 1px solid var(--board-textColor);
   border-radius: 8px;
-  font-size: 19px;
+}
+.meeting-room .meeting-room-content .meeting-room-video .video-camoff {
+  -o-object-fit: cover;
+  object-fit: cover;
+  text-align: center;
+  width: 100%;
+  height: fit-content;
+  color: var(--textWhite);
+  margin: 0;
+  padding: 10px 10px 10px 10px !important;
+  border-radius: 30px;
+  border: 0;
+  font-size: 55px;
+  font-family: "Pretendard";
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 .meeting-room .meeting-room-content .meeting-room-video .video-time {
-  top: 2%;
+  top: 3%;
   right: 3%;
   background: var(--bgColor);
   opacity: 0.6;
@@ -123,6 +139,13 @@
   border: 1px solid var(--board-textColor);
   border-radius: 8px;
 }
+.meeting-room .meeting-room-content .meeting-room-video #status-icons {
+  bottom: 0;
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  margin: 0 0 20px 20px;
+}
 .meeting-room .meeting-room-content .meeting-room-sidebar {
   /* background-color: #fcfcfc; */
   overflow: hidden;
@@ -132,15 +155,269 @@
   top: 7%;
   bottom: 0;
   height: auto;
+  padding-top: 10px;
   /* min-width: 400px !important; */
   max-width: 100% !important;
   width: 25%;
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer {
+  height: 26%;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch {
+  background-color: var(--bgColor);
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: space-between; */
+  /* margin-top: 5%; */
+  margin-left: 15%;
+  position: absolute;
+  border: 1px solid var(--borderColor);
+  /* padding:10px; */
+  border-radius: 8px;
+  height: 26%;
+  width: 80%;
+  color: #6c757d;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .stop-watch-title {
+  background: var(--bgColor-light);
+  border: 1px solid var(--borderColor);
+  border-radius: 8px 8px 0px 0px;
+  height: fit-content;
+  font-family: "Pretendard";
+  padding: 10px 10px 10px 10px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .stop-watch-title .stop-watch-menu {
+  width: 24px;
+  height: 24px;
+  color: #6c757d;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .stop-watch-title .stop-watch-name {
+  padding-left: 10px;
+  font-size: 17px;
+  font-weight: bold;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .enter {
+  display: inline;
+  padding-top: 5px;
+  padding-left: 10px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .enter .enter-title {
+  font-size: 13px;
+  font-family: "Pretendard";
+  font-weight: bold;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .enter .enter-time {
+  font-size: 13px;
+  font-family: "Pretendard";
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .timer {
+  width: 100%;
+  display: flex;
+  height: 27%;
+  justify-content: center;
+  align-items: center;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .timer .digits {
+  padding-top: 17px;
+  font-family: "Pretendard";
+  font-size: 2rem;
+  color: #6667ab;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .control-buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 30%;
 }
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .control-buttons .start-button {
+  transform: rotate(90deg);
+  color: #6667ab;
+  width: 30px;
+  height: 30px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .control-buttons .start-button-disable {
+  transform: rotate(90deg);
+  color: #6c757d;
+  width: 30px;
+  height: 30px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .control-buttons .pause-button {
+  color: #6667ab;
+  width: 50px;
+  height: 50px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .control-buttons .pause-button-disable {
+  color: #6c757d;
+  width: 50px;
+  height: 50px;
+}
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat {
-  height: 70%;
+  height: 74%;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 74%;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component {
+  background-color: var(--bgColor);
+  position: absolute;
+  top: 5%;
+  left: 0;
+  right: 0;
+  /* bottom: 0; */
+  margin: auto;
+  margin-left: 15%;
+  margin-right: 5%;
+  /* height: calc(100% - 30px); */
+  /* width: calc(100% - 80px); */
+  border-radius: 8px;
+  height: 93%;
+  border: 1px solid var(--borderColor);
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .chat-toolbar {
+  color: var(--textWhite);
+  background: var(--bgColor-light);
+  height: fit-content;
+  padding: 5px 10px 5px 10px;
+  border-radius: 8px 8px 0px 0px;
+  font-family: "Pretendard";
+  color: #6c757d;
+  display: table;
+  width: 100%;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .chat-toolbar .chat-toolbar-menu {
+  width: 24px;
+  height: 24px;
+  color: #6c757d;
+  display: table-cell;
+  vertical-align: middle;
+  padding-top: 10px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .chat-toolbar .chat-toolbar-name {
+  padding-left: 10px;
+  font-size: 17px;
+  font-weight: bold;
+  display: table-cell;
+  vertical-align: middle;
+  font-family: "Pretendard";
+  text-align: left;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .chat-toolbar .chat-toolbar-exit {
+  width: 24px;
+  height: 24px;
+  margin-top: 10px;
+  position: absolute;
+  right: 5%;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap {
+  height: calc(100% - 80px);
+  overflow: auto;
+  font-family: "Pretendard";
+  padding-top: 10px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .message {
+  position: relative;
+  padding: 0 3px 0 0;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .user-img {
+  position: absolute;
+  border-radius: 45px;
+  width: 30px;
+  height: 30px;
+  top: 14px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .msg-detail {
+  width: calc(100% - 5px);
+  display: inline-block;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .msg-detail p {
+  margin: 0;
+  font-family: "Pretendard";
+  font-size: 14px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .msg-info p {
+  font-size: 0.8em;
+  color: #000000;
+  font-style: italic;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .msg-content {
+  position: relative;
+  margin-top: 3px;
+  border-radius: 5px;
+  padding: 4px 10px 4px 10px;
+  color: #000000;
+  width: auto;
+  max-width: 80%;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .text {
+  word-break: break-all;
+  font-family: "Pretendard";
+  color: var(--textWhite);
+  font-size: 10px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .message > .left .msg-detail .msg-info {
+  text-align: left;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .message.left .msg-detail {
+  padding-left: 5px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .message.left .msg-detail p {
+  margin: 0;
+  font-family: "Pretendard";
+  font-size: 14px;
+  color: #6c757d;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .message.left .user-img {
+  left: -5px;
+  border: 1px solid var(--textColor-dark);
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .message.left .msg-detail .msg-content {
+  background-color: var(--bgColor-light);
+  color: #6c757d;
+  float: left;
+  border-radius: 5px;
+  font-family: "Pretendard";
+  font-size: 10px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .message.right .msg-detail .msg-info {
+  text-align: right;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .message.right .user-img {
+  right: -5px;
+  border: 1px solid var(--borderColor);
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .message.right .msg-detail .msg-content {
+  background-color: var(--github-03);
+  color: var(--textWhite);
+  float: right;
+  border-radius: 5px;
+  font-family: "Pretendard";
+  font-size: 10px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-input {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  background-color: var(--bgColor);
+  text-align: center;
+  padding: 10px 0px;
+  /* height: 30px; */
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-input input {
+  width: 90%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 13px;
+  font-family: "Pretendard";
+  background-color: var(--bgColor);
+  color: --textColor-darkest;
 }
 .meeting-room .meeting-room-buttons {
   /* background-color: #fcfcfc; */

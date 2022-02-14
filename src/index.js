@@ -26,6 +26,7 @@ import SettingsMeeting from './pages/SettingsMeeting';
 import SettingsMeetingFavorite from './pages/SettingsMeetingFavorite';
 import VideoRoomComponentCopy from './components/meetingroom/VideoRoomComponent copy';
 import VideoRoomComponent from './components/meetingroom/VideoRoomComponent';
+import SettingsStudyApplied from "./pages/SettingsStudyApplied";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -78,7 +79,8 @@ ReactDOM.render(
               <Route path="profile" element={<SettingsProfile />} />
               <Route path="admin" element={<SettingsAdmin />} />
               <Route path="alarm" element={<SettingsAlarm />} />
-              <Route path="study" element={<SettingsStudy />} />
+              <Route path="mystudy" element={<SettingsStudy />} />
+              <Route path="studyapplied" element={<SettingsStudyApplied />} />
               <Route path="meeting" element={<SettingsMeeting />} />
               <Route path="meeting-fav" element={<SettingsMeetingFavorite />} />
             </Route>
