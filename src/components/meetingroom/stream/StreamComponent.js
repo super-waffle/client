@@ -13,10 +13,13 @@ import IconButton from "@material-ui/core/IconButton";
 import HighlightOff from "@material-ui/icons/HighlightOff";
 import FormHelperText from "@material-ui/core/FormHelperText";
 
+let timeString = "00:00:00";
+
 export default class StreamComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      time: this.props.cumTime,
       nickname: this.props.user.getNickname(),
       showForm: false,
       mutedSound: false,
@@ -56,7 +59,36 @@ export default class StreamComponent extends Component {
     }
   }
 
+  // setTime() {
+  //   let interval = null;
+  //   interval = setInterval(() => {
+  //     let hour = ("0" + Math.floor((this.props.time / 3600) % 60)).slice(-2);
+  //     let minute = ("0" + Math.floor((this.props.time / 60) % 60)).slice(-2);
+  //     let second = ("0" + (this.props.time % 60)).slice(-2);
+
+  //     timeString = hour + ":" + minute + ":" + second;
+  //   }, 1000);
+  // }
+
+  // componentDidMount() {
+  //   this.interval = setInterval(() => {
+  //     let hour = ("0" + Math.floor((this.props.cumTime / 3600) % 60)).slice(-2);
+  //     let minute = ("0" + Math.floor((this.props.cumTime / 60) % 60)).slice(-2);
+  //     let second = ("0" + (this.props.time % 60)).slice(-2);
+
+  //     timeString = hour + ":" + minute + ":" + second;
+  //     console.log("시간" + this.props.cumTime);
+  //     console.log(hour + " " + minute + " " + second);
+  //   }, 1000);
+  //   console.log(this.timeString);
+  // }
+
+  // componentWillUnmount() {
+  //   clearInterval(this.interval);
+  // }
+
   render() {
+    console.log(this.props.time);
     return (
       <div className="OT_widget-container">
         {this.props.user !== undefined && this.props.user.getStreamManager() !== undefined ? (
@@ -68,7 +100,7 @@ export default class StreamComponent extends Component {
             ) : (
               <div className="video-camoff">{this.state.nickname}</div>
             )}
-            <div className="video-time">02:48</div>
+            <div className="video-time">{this.props.cumTime}</div>
 
             <div id="status-icons">
               {/* {!this.props.user.isVideoActive() ? (

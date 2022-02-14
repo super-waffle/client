@@ -83,7 +83,7 @@
   color: #ffffff;
   margin: 0;
   padding: 10px 10px 10px 10px !important;
-  border-radius: 30px;
+  border-radius: 25px;
   border: 0;
   font-size: 100%;
   font-family: "Pretendard";
@@ -133,11 +133,12 @@
   min-width: 80px;
   text-align: center;
   height: fit-content;
-  padding: 1% 1% 1% 1%;
+  padding: 2px 5px 2px 5px;
   position: absolute;
   color: var(--textColor);
   border: 1px solid var(--board-textColor);
-  border-radius: 8px;
+  border-radius: 5px;
+  font-weight: 450;
 }
 .meeting-room .meeting-room-content .meeting-room-video #status-icons {
   bottom: 0;
@@ -210,6 +211,7 @@
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .enter .enter-time {
   font-size: 13px;
   font-family: "Pretendard";
+  padding-left: 6px;
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .timer {
   width: 100%;

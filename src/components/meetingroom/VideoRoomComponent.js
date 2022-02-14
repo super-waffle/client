@@ -44,7 +44,7 @@ class VideoRoomComponent extends Component {
     this.localUserAccessAllowed = false;
     this.state = {
       mySessionId: 1,
-      myUserName: "이름",
+      myUserName: undefined,
       session: undefined,
       localUser: undefined,
       subscribers: [],
@@ -55,6 +55,8 @@ class VideoRoomComponent extends Component {
       mySessionToken: undefined,
       isHost: false,
       myStartTime: "",
+      minute: undefined,
+      timeString: "",
     };
     this.joinSession = this.joinSession.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
@@ -76,6 +78,7 @@ class VideoRoomComponent extends Component {
     this.setTime = this.setTime.bind(this);
     this.setPause = this.setPause.bind(this);
     this.userlist = this.userlist.bind(this);
+    this.setTimeString = this.setTimeString.bind(this);
   }
   isHostfun() {
     if (isHost === 0) {
@@ -209,7 +212,7 @@ class VideoRoomComponent extends Component {
         });
       });
     }
-    localUser.setNickname(this.state.nickname);
+    localUser.setNickname(this.state.myUserName);
     localUser.setConnectionId(this.state.session.connection.connectionId);
     localUser.setScreenShareActive(false);
     localUser.setStreamManager(publisher);
@@ -255,11 +258,18 @@ class VideoRoomComponent extends Component {
   }
 
   setTime(timeCom) {
+    // this.setState({ time: timeCom });
     this.state.time = timeCom;
+    console.log("시간누적: " + this.state.time);
   }
   setPause(isPausedCom) {
+    // this.setState({ isPaused: isPausedCom });
     this.state.isPaused = isPausedCom;
   }
+  setTimeString(timeStringCom) {
+    this.state.timeString = timeStringCom;
+  }
+
   leaveSession(sessionId) {
     const mySession = this.state.session;
 
@@ -293,6 +303,7 @@ class VideoRoomComponent extends Component {
       //     logStartTime: '06:58:40'
       // });
       console.log("leave session! sessiontoken  : ", sessionToken);
+      console.log("시간", this.state.time);
       const token = localStorage.getItem("accessToken");
       axios
         .delete(process.env.REACT_APP_SERVER_URL + `/meetings/1/room`, {
@@ -610,6 +621,8 @@ class VideoRoomComponent extends Component {
   render() {
     const mySessionId = this.state.mySessionId;
     const localUser = this.state.localUser;
+    // console.log("로컬유저 들어오나?");
+    // console.log(localUser);
     var chatDisplay = { display: this.state.chatDisplay };
 
     return (
@@ -623,7 +636,11 @@ class VideoRoomComponent extends Component {
             {/* publisher */}
             {localUser !== undefined && localUser.getStreamManager() !== undefined && (
               <div className="OT_root OT_publisher custom-class" id="localUser">
-                <StreamComponent user={localUser} handleNickname={this.nicknameChanged} />
+                <StreamComponent
+                  cumTime={this.state.time}
+                  user={localUser}
+                  handleNickname={this.nicknameChanged}
+                />
               </div>
             )}
             {/* !host */}
@@ -636,7 +653,15 @@ class VideoRoomComponent extends Component {
 
           <div className="meeting-room-sidebar">
             <div className="meeting-room-timer">
-              <TimeComponent onCreate={this.setTime} />
+              <TimeComponent
+                // cumTime={this.state.time}
+                startTime={this.state.myStartTime}
+                onCreate={this.setTime}
+                // onClick={() => {
+                //   this.setTime();
+                //   this.setTimeString();
+                // }}
+              />
             </div>
             {localUser !== undefined && localUser.getStreamManager() !== undefined && (
               <div className="OT_root OT_publisher custom-class" style={chatDisplay}>
@@ -821,9 +846,10 @@ class VideoRoomComponent extends Component {
             time: 0,
             mySessionToken: res.data.sessionToken,
             isHost: res.data.isHost,
-            myStartTime: res.data.meetingStartTime,
+            myStartTime: res.data.meetingStartTime.split(".")[0],
           });
-          console.log("스테이트변수" + this.state);
+          console.log("state 변수");
+          console.log(this.state);
         });
       // axios
       //   .all([

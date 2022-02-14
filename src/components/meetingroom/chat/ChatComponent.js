@@ -13,6 +13,7 @@ export default class ChatComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      nickname: this.props.user.getNickname(),
       messageList: [],
       message: "",
     };
@@ -115,7 +116,7 @@ export default class ChatComponent extends Component {
                 {/* <canvas id={"userImg-" + i} width="30" height="30" className="user-img" /> */}
                 <div className="msg-detail">
                   <div className="msg-info">
-                    <p>사용자 닉네임</p>
+                    <p>{data.nickname}</p>
                     {/* <p> {data.nickname}</p> */}
                   </div>
                   <div className="msg-content">
