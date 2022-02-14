@@ -11,6 +11,7 @@
   --textColor-dark: #8a8a8a;
   --textColor-darker: #a1a1a1;
   --textColor-darkest: #c2c2c2;
+  --textColor-todo: #6c757d;
   --github-01: #e8eaee;
   --github-02: #d5d6f5;
   --github-03: #9fa2e3;
@@ -31,6 +32,7 @@
   --textColor-dark: #8a8a8a;
   --textColor-darker: #6f6f6f;
   --textColor-darkest: #838383;
+  --textColor-todo: #cdcdcd;
   --github-01: rgba(102, 103, 171, 0.2);
   --github-02: rgba(102, 103, 171, 0.4);
   --github-03: rgba(102, 103, 171, 0.7);
@@ -61,6 +63,7 @@
   margin-left: 15%;
 }
 .navbar .navbar-menus .menu {
+  cursor: pointer;
   text-decoration: none;
   color: #e4e4e4;
   margin-right: 46px;

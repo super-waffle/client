@@ -18,7 +18,6 @@ export const Text = styled.div`
   flex: 1;
   display: contents;
   font-family: pretendard;
-  font-style: italic;
   ${(props) =>
     props.done &&
     css`

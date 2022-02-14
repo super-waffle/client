@@ -43,46 +43,61 @@
   display: none;
 }
 
-.heatmap text {
+.diary {
   font-family: "Pretendard";
-  font-size: 8px;
+  margin-top: 2rem;
 }
-.heatmap .react-calendar-heatmap-month-label {
-  fill: var(--textColor-darker);
+.diary .diary-header {
+  padding-left: 16px;
+  font-size: 16px;
+  color: var(--textColor);
 }
-.heatmap .react-calendar-heatmap .today {
-  stroke: var(--textColor);
+.diary .diary-box {
+  background-color: var(--bgColor);
+  border: 1px solid var(--borderColor);
+  border-radius: 10px;
+  margin: 0.5rem 0 0 0.5rem;
+  padding: 1.2rem 0.8rem;
 }
-.heatmap .react-calendar-heatmap rect {
-  cursor: pointer;
-  rx: 3px;
+.diary .diary-box img {
+  width: 15vw;
+  border-radius: 5px;
 }
-.heatmap .react-calendar-heatmap rect:hover {
-  stroke: var(--textColor-dark);
-  border: 0.5px solid var(--textColor-dark);
+.diary .diary-box__img-file-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
 }
-.heatmap .react-calendar-heatmap rect:active {
-  stroke: var(--textColor-dark);
-  border: 0.5px solid var(--textColor-dark);
+.diary .diary-box__img-file-wrapper img {
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 7px;
 }
-.heatmap .react-calendar-heatmap rect:visited {
-  stroke: var(--textColor-dark);
-  border: 0.5px solid var(--textColor-dark);
+.diary .diary-box__contents textarea {
+  width: 100%;
+  height: 90%;
+  background-color: var(--htmlbgColor);
+  border: 1px solid var(--borderColor);
+  border-radius: 7px;
+  font-size: 12px;
+  padding: 0.5rem;
+  color: var(--textColor-todo);
 }
-.heatmap .react-calendar-heatmap .color-beammp-0 {
-  fill: var(--github-01);
-}
-.heatmap .react-calendar-heatmap .color-beammp-1 {
-  fill: var(--github-02);
-}
-.heatmap .react-calendar-heatmap .color-beammp-2 {
-  fill: var(--github-03);
-}
-.heatmap .react-calendar-heatmap .color-beammp-3 {
-  fill: #6667ab;
-}
-.heatmap .react-calendar-heatmap .color-beammp-4 {
-  fill: #2e2f8b;
+.diary .diary-box__contents-btn {
+  border: none;
+  background-color: #6667ab;
+  color: #eeeeee;
+  font-size: 13px;
+  width: 3.6rem;
+  height: 1.6rem;
+  border-radius: 5px;
 }
 
-/*# sourceMappingURL=heatmap.css.map */
+/*# sourceMappingURL=diary.css.map */
