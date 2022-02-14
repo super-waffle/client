@@ -123,8 +123,8 @@
   transform: translate(0, -50%);
 }
 .meeting-room .meeting-room-content .meeting-room-video .video-time {
-  top: 3%;
-  right: 3%;
+  top: 23px;
+  right: 23px;
   background: var(--bgColor);
   opacity: 0.6;
   color: #6c757d;
@@ -314,7 +314,7 @@
   right: 5%;
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap {
-  height: calc(100% - 80px);
+  height: calc(100% - 100px);
   overflow: auto;
   font-family: "Pretendard";
   padding-top: 10px;
@@ -331,18 +331,20 @@
   top: 14px;
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .msg-detail {
-  width: calc(100% - 5px);
+  width: calc(100% - 10px);
   display: inline-block;
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .msg-detail p {
   margin: 0;
   font-family: "Pretendard";
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 500;
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .msg-info p {
-  font-size: 0.8em;
-  color: #000000;
-  font-style: italic;
+  font-size: 7px;
+  font-weight: bold;
+  color: #6c757d;
+  font-style: "Pretendard";
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .msg-content {
   position: relative;
@@ -357,19 +359,30 @@
   word-break: break-all;
   font-family: "Pretendard";
   color: var(--textWhite);
-  font-size: 10px;
+  font-size: 11px;
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .message > .left .msg-detail .msg-info {
   text-align: left;
+  font-size: 7px;
+  font-weight: bold;
+  color: #6c757d;
+  font-style: "Pretendard";
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .message.left .msg-detail .msg-info p {
+  font-size: 7px;
+  font-weight: bold;
+  color: #6c757d;
+  font-style: "Pretendard";
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .message.left .msg-detail {
-  padding-left: 5px;
+  padding-left: 10px;
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .message.left .msg-detail p {
   margin: 0;
   font-family: "Pretendard";
-  font-size: 14px;
+  font-size: 13px;
   color: #6c757d;
+  font-weight: 500;
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .message.left .user-img {
   left: -5px;
@@ -381,7 +394,7 @@
   float: left;
   border-radius: 5px;
   font-family: "Pretendard";
-  font-size: 10px;
+  font-size: 11px;
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .message.right .msg-detail .msg-info {
   text-align: right;
@@ -396,7 +409,19 @@
   float: right;
   border-radius: 5px;
   font-family: "Pretendard";
-  font-size: 10px;
+  font-size: 11px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component ::-webkit-scrollbar {
+  width: 8px;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component ::-webkit-scrollbar-thumb {
+  background-color: var(--bgColor-light);
+  opacity: 0.1;
+  border-radius: 3px !important;
+}
+.meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .chatComponentLight ::-webkit-scrollbar-thumb {
+  background-color: var(--bgColor-light) !important;
+  border-radius: 3px !important;
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-input {
   position: absolute;

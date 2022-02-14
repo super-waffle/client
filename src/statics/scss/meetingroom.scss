@@ -91,8 +91,8 @@
       }
 
       .video-time {
-        top: 3%;
-        right: 3%;
+        top: 23px;
+        right: 23px;
         // transform: translate(-50%, -50%);
         background: var(--bgColor);
         opacity: 0.6;
@@ -329,7 +329,7 @@
 
             .message-wrap {
               // padding: 0 15px;
-              height: calc(100% - 80px);
+              height: calc(100% - 100px);
               overflow: auto;
               font-family: $font-family;
               padding-top: 10px;
@@ -347,20 +347,22 @@
               }
 
               .msg-detail {
-                width: calc(100% - 5px);
+                width: calc(100% - 10px);
                 display: inline-block;
               }
 
               .msg-detail p {
                 margin: 0;
                 font-family: $font-family;
-                font-size: 14px;
+                font-size: 13px;
+                font-weight: 500;
               }
 
               .msg-info p {
-                font-size: 0.8em;
-                color: #000000;
-                font-style: italic;
+                font-size: 7px;
+                font-weight: bold;
+                color: $textColor;
+                font-style: $font-family;
               }
 
               .msg-content {
@@ -388,22 +390,34 @@
                 word-break: break-all;
                 font-family: $font-family;
                 color: var(--textWhite);
-                font-size: 10px;
+                font-size: 11px;
               }
 
               .message > .left .msg-detail .msg-info {
                 text-align: left;
+                font-size: 7px;
+                font-weight: bold;
+                color: $textColor;
+                font-style: $font-family;
+              }
+
+              .message.left .msg-detail .msg-info p {
+                font-size: 7px;
+                font-weight: bold;
+                color: $textColor;
+                font-style: $font-family;
               }
 
               .message.left .msg-detail {
-                padding-left: 5px;
+                padding-left: 10px;
               }
 
               .message.left .msg-detail p {
                 margin: 0;
                 font-family: $font-family;
-                font-size: 14px;
+                font-size: 13px;
                 color: $textColor;
+                font-weight: 500;
               }
 
               .message.left .user-img {
@@ -417,7 +431,7 @@
                 float: left;
                 border-radius: 5px;
                 font-family: $font-family;
-                font-size: 10px;
+                font-size: 11px;
               }
               // .message.left .msg-detail .msg-content span.triangle {
               //   background-color: #f0f0f0;
@@ -440,7 +454,7 @@
                 float: right;
                 border-radius: 5px;
                 font-family: $font-family;
-                font-size: 10px;
+                font-size: 11px;
               }
               // .message.right .msg-detail .msg-content span.triangle {
               //   background-color: #c8ffe8;
@@ -448,6 +462,22 @@
               //   border-left-width: 0;
               //   right: -5px;
               // }
+            }
+
+            ::-webkit-scrollbar {
+              width: 8px;
+            }
+
+            ::-webkit-scrollbar-thumb {
+              background-color: var(--bgColor-light);
+              opacity: 0.1;
+              // background-color: var(--bgColor-light) !important;
+              border-radius: 3px !important;
+            }
+
+            .chatComponentLight ::-webkit-scrollbar-thumb {
+              background-color: var(--bgColor-light) !important;
+              border-radius: 3px !important;
             }
 
             .message-input {

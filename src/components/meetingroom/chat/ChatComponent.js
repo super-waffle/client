@@ -115,7 +115,8 @@ export default class ChatComponent extends Component {
                 {/* <canvas id={"userImg-" + i} width="30" height="30" className="user-img" /> */}
                 <div className="msg-detail">
                   <div className="msg-info">
-                    <p> {data.nickname}</p>
+                    <p>사용자 닉네임</p>
+                    {/* <p> {data.nickname}</p> */}
                   </div>
                   <div className="msg-content">
                     {/* <span className="triangle" /> */}
