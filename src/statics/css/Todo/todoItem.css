@@ -61,7 +61,11 @@
   outline: 1px solid #6667ab;
 }
 .todo-item .todo-item-block__checkbox {
+  cursor: pointer;
   margin-right: 0.5rem;
+}
+.todo-item .todo-item-block__checkbox.disable {
+  cursor: default;
 }
 .todo-item .todo-item-block__todo {
   display: flex;
