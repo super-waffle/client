@@ -55,18 +55,27 @@ export default function TodoItem({ todo, dailyList, setDailyList }) {
       console.log(err);
     }
   }
-
+  console.log(thisDone);
   return (
     <div className="todo-item">
       <div className="todo-item-block">
         <div className="todo-item-block__todo">
-          <input
-            className="todo-item-block__checkbox"
-            id="daily_todo_check"
-            type="checkbox"
-            checked={thisDone}
-            onChange={() => setThisDone(!thisDone)}
-          />
+          {thisDone ? (
+            <img
+              className="todo-item-block__checkbox"
+              src="icons/todo/_todo-checked.svg"
+              alt=""
+              onClick={() => setThisDone(() => !thisDone)}
+            />
+          ) : (
+            <img
+              className="todo-item-block__checkbox"
+              src="icons/todo/_todo-not-checked.svg"
+              alt=""
+              onClick={() => setThisDone(() => !thisDone)}
+            />
+          )}
+
           {wantEdit ? (
             <input
               className="todo-item__edit"
@@ -74,7 +83,11 @@ export default function TodoItem({ todo, dailyList, setDailyList }) {
               onChange={onChange}
             ></input>
           ) : (
-            <div className="todo-item-block-text">{thisTodo}</div>
+            <div
+              className={`todo-item-block-text ${thisDone ? "todo-done" : ""}`}
+            >
+              {thisTodo}
+            </div>
           )}
         </div>
         <div className="todo-item-block__btns">

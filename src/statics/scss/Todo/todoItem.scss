@@ -38,6 +38,13 @@
   .todo-item-block-text {
     flex: 1;
     display: contents;
+    color: var(--textColor-todo);
+    &.todo-done {
+      color: $mainColor;
+      font-weight: 500;
+      // font-size: 14px;
+      // line-height: 17px;
+    }
   }
   .todo-item-blick__remove {
     margin-left: 0.3rem;
