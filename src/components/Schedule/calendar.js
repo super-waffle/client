@@ -28,7 +28,8 @@ const StudyCard = ({ studies }) => {
             <Card.Title>
               {study.isAttend === 0 ? (
                 <img
-                  src="icons/calendar/_study_attend.svg"
+                  // src="icons/calendar/_study_attend.svg"
+                  src="icons/calendar/_circle.svg"
                   alt=""
                   style={{ color: "#6667ab" }}
                 />
@@ -123,8 +124,10 @@ export default function Calendar() {
   const days = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
   const dispatch = useDispatch();
   const startDay = useSelector((state) => state.schedule.startDay);
+  const selectedDay = useSelector((state) => state.schedule.selectedDay);
+  // console.log(selectedDay);
   const [weekly, setWeekly] = useState([]);
-  const [isSelected, setIsSelected] = useState(false);
+  // const [isSelected, setIsSelected] = useState(false);
   async function getSchedule() {
     if (isLogin()) {
       try {
@@ -145,6 +148,7 @@ export default function Calendar() {
       console.log("Need Login");
     }
   }
+  // console.log(weekly[0]["date"], selectedDay);
   useEffect(() => getSchedule(), [startDay]);
 
   // useCallback(() => getTodos(), [selectedDay, todoAdd]);
@@ -179,6 +183,11 @@ export default function Calendar() {
               <Col
                 key={index}
                 className="calendar-box-day"
+                // className={`calendar-box-day ${
+                //   JSON.parse(selectedDay) === weekly[index]["date"]
+                //     ? "day-selected"
+                //     : ""
+                // }`}
                 // style={{ margin: "0.3rem", cursor: "pointer" }}
                 onClick={() => {
                   dispatch(
@@ -186,7 +195,6 @@ export default function Calendar() {
                       JSON.stringify(weekly ? weekly[index]["date"] : null)
                     )
                   );
-                  // setIsSelected(!isSelected);
                 }}
               >
                 <div
@@ -196,7 +204,12 @@ export default function Calendar() {
                   {day}
                 </div>
                 <div
-                  className="calendar-box-daycontents"
+                  // className="calendar-box-daycontents"
+                  className={`calendar-box-daycontents ${
+                    JSON.parse(selectedDay) === weekly[index]["date"]
+                      ? "day-selected"
+                      : ""
+                  }`}
                   // style={{
                   //   // backgroundColor: '#F2F1F6',
                   //   borderRadius: "5px",

@@ -25,17 +25,19 @@
 .calendar-box-day {
   padding: 0 5px;
   cursor: pointer;
-  // margin:
 }
 .calendar-box-dayname {
-  font-size: 14px;
+  font-size: 13px;
   padding: 1rem 8px 0.6rem 8px;
   color: var(--textColor-dark);
-  border-bottom: 2px solid #6c757d;
 }
 .calendar-box-daycontents {
-  // background-color: blue;
+  border-top: 2px solid rgba(108, 117, 125, 0.6);
   height: 19.5rem;
+  &.day-selected {
+    border-top: 2px solid $mainColor;
+    background-color: rgba(102, 103, 171, 0.1);
+  }
 }
 .calendar-box-date {
   // font-family: "Roboto";
