@@ -41,75 +41,31 @@
   display: none;
 }
 
-.month-nav {
-  color: #6667ab;
-  font-weight: bold;
-  font-size: 40px;
-  line-height: 48px;
-  padding-left: 12px;
-  padding-right: 8px;
+.todo-create {
+  padding: 1rem;
 }
-
-.pointer-icon {
-  cursor: pointer;
-  color: var(--textColor-darker);
-  margin: 5px 3px;
-}
-
-.calendar-box {
-  background-color: var(--bgColor);
+.todo-create input {
+  width: 85%;
+  height: 28px;
+  background-color: var(--htmlbgColor);
   border: 1px solid var(--borderColor);
   border-radius: 5px;
-  padding: 0 1.2rem;
-  height: 25rem;
-}
-
-.calendar-box-day {
-  padding: 0 5px;
-  cursor: pointer;
-}
-
-.calendar-box-dayname {
   font-size: 13px;
-  padding: 1rem 8px 0.6rem 8px;
-  color: var(--textColor-dark);
-}
-
-.calendar-box-daycontents {
-  border-top: 2px solid rgba(108, 117, 125, 0.6);
-  height: 19.5rem;
-}
-.calendar-box-daycontents.day-selected {
-  border-top: 2px solid #6667ab;
-  background-color: rgba(102, 103, 171, 0.1);
-}
-
-.calendar-box-date {
-  font-size: 25px;
-  padding-top: 5px;
-  padding-left: 5px;
-  color: var(--textColor);
-}
-
-.calendar-box-studies {
-  border: none;
-  background-color: transparent;
   padding-left: 6px;
-  margin-bottom: 14px;
 }
-.calendar-box-studies .card-title {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--textColor);
+.todo-create :focus {
+  outline: 1px solid #6667ab;
 }
-.calendar-box-studies .card-subtitle {
+.todo-create ::placeholder {
   font-size: 12px;
   color: var(--textColor-darker);
 }
-.calendar-box-studies .card-subtitle img {
-  margin-bottom: 2px;
-  margin-right: 5px;
-  width: 11px;
+.todo-create .todo-create-btn {
+  cursor: pointer;
+  color: #6667ab;
+  font-size: 28px;
+  text-align: center;
+  margin-left: 5px;
 }
 
-/*# sourceMappingURL=calendar.css.map */
+/*# sourceMappingURL=todoCreate.css.map */

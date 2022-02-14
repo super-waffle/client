@@ -1,0 +1,30 @@
+@import "../main.scss";
+
+.todo-create {
+  padding: 1rem;
+
+  & input {
+    width: 85%;
+    height: 28px;
+    background-color: var(--htmlbgColor);
+    border: 1px solid var(--borderColor);
+    border-radius: 5px;
+    font-size: 13px;
+    padding-left: 6px;
+  }
+  :focus {
+    outline: 1px solid $mainColor;
+  }
+  ::placeholder {
+    font-size: 12px;
+    color: var(--textColor-darker);
+  }
+
+  .todo-create-btn {
+    cursor: pointer;
+    color: $mainColor;
+    font-size: 28px;
+    text-align: center;
+    margin-left: 5px;
+  }
+}

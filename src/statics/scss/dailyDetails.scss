@@ -1,0 +1,20 @@
+@import "main.scss";
+
+.daily-details {
+  font-family: $font-family;
+  margin-top: 3rem;
+  // padding: 4rem;
+}
+
+.daily-details__selected-day-header {
+  font-size: 20px;
+  font-weight: 500;
+  padding: 20px 15px 15px 15px;
+  margin-bottom: 20px;
+  color: var(--textColor);
+  border-bottom: 1px solid var(--textColor-darkest);
+}
+
+.daily-details-todolist {
+  width: 20rem;
+}

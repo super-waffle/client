@@ -26,23 +26,65 @@ const StudyCard = ({ studies }) => {
         studies.studySchedules.map((study, index) => (
           <Card className="calendar-box-studies" key={index}>
             <Card.Title>
-              {study.isAttend === 0 ? (
+              {/* {study.isAttend === 0 ? (
                 <img
-                  src="icons/calendar/_study_attend.svg"
+                  // src="icons/calendar/_study_attend.svg"
+                  src="icons/calendar/_circle-fill.svg"
                   alt=""
                   style={{ color: "#6667ab" }}
                 />
               ) : null}
               {study.isAttend === 1 ? (
                 <img
-                  src="icons/calendar/_study_late.svg"
+                  // src="icons/calendar/_study_late.svg"
+                  src="icons/calendar/_circle-half.svg"
                   alt=""
                   style={{ color: "#6667ab" }}
                 />
               ) : null}
               {study.isAttend === 2 ? (
                 <img
+                  // src="icons/calendar/_study_absent.svg"
+                  src="icons/calendar/_circle.svg"
+                  alt=""
+                  style={{ color: "#6667ab" }}
+                />
+              ) : null}
+              {study.isAttend === 3 ? (
+                <img
                   src="icons/calendar/_study_absent.svg"
+                  alt=""
+                  style={{ color: "#6667ab" }}
+                />
+              ) : // <img
+              //   src="icons/calendar/_study_kicked.svg"
+              //   alt=""
+              //   style={{ color: "#6667ab" }}
+              // />
+              null} */}
+              {study.title}
+            </Card.Title>
+            <Card.Subtitle>
+              {study.isAttend === 0 ? (
+                <img
+                  // src="icons/calendar/_study_attend.svg"
+                  src="icons/calendar/_circle-fill.svg"
+                  alt=""
+                  style={{ color: "#6667ab" }}
+                />
+              ) : null}
+              {study.isAttend === 1 ? (
+                <img
+                  // src="icons/calendar/_study_late.svg"
+                  src="icons/calendar/_circle-half.svg"
+                  alt=""
+                  style={{ color: "#6667ab" }}
+                />
+              ) : null}
+              {study.isAttend === 2 ? (
+                <img
+                  // src="icons/calendar/_study_absent.svg"
+                  src="icons/calendar/_circle.svg"
                   alt=""
                   style={{ color: "#6667ab" }}
                 />
@@ -59,38 +101,7 @@ const StudyCard = ({ studies }) => {
               //   style={{ color: "#6667ab" }}
               // />
               null}
-              {study.title}
-            </Card.Title>
-            <Card.Subtitle>
-              {study.startTime.slice(0, 5)} - {study.endTime.slice(0, 5)}{" "}
-              {/* {study.isAttend === 0 ? (
-                <img
-                  src="icons/calendar/_study_attend.svg"
-                  alt=""
-                  style={{ color: "#6667ab" }}
-                />
-              ) : null}
-              {study.isAttend === 1 ? (
-                <img
-                  src="icons/calendar/_study_late.svg"
-                  alt=""
-                  style={{ color: "#6667ab" }}
-                />
-              ) : null}
-              {study.isAttend === 2 ? (
-                <img
-                  src="icons/calendar/_study_absent.svg"
-                  alt=""
-                  style={{ color: "#6667ab" }}
-                />
-              ) : null}
-              {study.isAttend === 3 ? (
-                <img
-                  src="icons/calendar/_study_kicked.svg"
-                  alt=""
-                  style={{ color: "#6667ab" }}
-                />
-              ) : null} */}
+              {study.startTime.slice(0, 5)} - {study.endTime.slice(0, 5)}
             </Card.Subtitle>
           </Card>
         ))
@@ -123,8 +134,9 @@ export default function Calendar() {
   const days = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
   const dispatch = useDispatch();
   const startDay = useSelector((state) => state.schedule.startDay);
+  const selectedDay = useSelector((state) => state.schedule.selectedDay);
   const [weekly, setWeekly] = useState([]);
-  const [isSelected, setIsSelected] = useState(false);
+
   async function getSchedule() {
     if (isLogin()) {
       try {
@@ -145,18 +157,16 @@ export default function Calendar() {
       console.log("Need Login");
     }
   }
-  useEffect(() => getSchedule(), [startDay]);
 
+  useEffect(() => getSchedule(), [startDay]);
+  console.log(days, weekly);
   // useCallback(() => getTodos(), [selectedDay, todoAdd]);
   return (
     <>
       <Container fluid>
         <Row>
           <p>
-            <span
-              // className={classNames("month-nav")}
-              className="month-nav"
-            >
+            <span className="month-nav">
               {monthNames[parseInt(startDay.split("-")[1]) - 1]}{" "}
             </span>
             <FontAwesomeIcon
@@ -179,33 +189,26 @@ export default function Calendar() {
               <Col
                 key={index}
                 className="calendar-box-day"
-                // style={{ margin: "0.3rem", cursor: "pointer" }}
                 onClick={() => {
                   dispatch(
                     selectDay(
                       JSON.stringify(weekly ? weekly[index]["date"] : null)
                     )
                   );
-                  // setIsSelected(!isSelected);
                 }}
               >
-                <div
-                  className="calendar-box-dayname"
-                  // style={{ marginTop: "1rem" }}
-                >
-                  {day}
-                </div>
-                <div
-                  className="calendar-box-daycontents"
-                  // style={{
-                  //   // backgroundColor: '#F2F1F6',
-                  //   borderRadius: "5px",
-                  //   paddingBottom: "0.5rem",
-                  //   marginBottom: "2rem",
-                  // }}
-                >
-                  {weekly && <StudyCard studies={weekly[index]} />}
-                </div>
+                <div className="calendar-box-dayname">{day}</div>
+                {weekly[index] && (
+                  <div
+                    className={`calendar-box-daycontents ${
+                      JSON.parse(selectedDay) === weekly[index]["date"]
+                        ? "day-selected"
+                        : ""
+                    }`}
+                  >
+                    {weekly && <StudyCard studies={weekly[index]} />}
+                  </div>
+                )}
               </Col>
             ))}
           </Row>

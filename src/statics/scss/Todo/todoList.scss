@@ -1,0 +1,17 @@
+@import "../main.scss";
+
+.todo-list {
+  font-family: $font-family;
+}
+.todo-list__header {
+  font-size: 16px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  color: var(--textColor);
+}
+.todo-list__body {
+  padding: 0.8rem 0;
+  background-color: var(--bgColor);
+  border: 1px solid var(--borderColor);
+  border-radius: 10px;
+}
