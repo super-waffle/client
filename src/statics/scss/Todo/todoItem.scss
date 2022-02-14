@@ -1,0 +1,58 @@
+@import "../main.scss";
+
+.todo-item {
+  font-family: $font-family;
+  font-size: 14px;
+  color: var(--textColor);
+
+  .todo-item__edit {
+    background-color: var(--htmlbgColor);
+    border: 1px solid var(--borderColor);
+    border-radius: 5px;
+    color: var(--textColor);
+    font-size: 14px;
+    height: 28px;
+    width: 85%;
+  }
+  :focus {
+    outline: 1px solid $mainColor;
+  }
+  .todo-item-block__checkbox {
+    margin-right: 0.5rem;
+  }
+  .todo-item-block__todo {
+    display: flex;
+    align-items: center;
+  }
+  .todo-item-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1.4rem 0.3rem 1.3rem;
+    &:hover {
+      .todo-item-blick__remove {
+        opacity: 1;
+      }
+    }
+  }
+  .todo-item-block-text {
+    flex: 1;
+    display: contents;
+  }
+  .todo-item-blick__remove {
+    margin-left: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #dee2e6;
+    font-size: 1.3rem;
+    cursor: pointer;
+    opacity: 0;
+    &:hover {
+      color: $mainColor;
+    }
+  }
+  .todo-item-block__btns {
+    display: flex;
+  }
+}

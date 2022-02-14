@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { MdEdit, MdDelete, MdSave } from "react-icons/md";
-import { Remove, Text, TodoItemBlock } from "./todoStyle";
 import axios from "axios";
-import "../../../statics/css/Todo/todo.css";
+import "../../../statics/css/Todo/todoItem.css";
 
 export default function TodoItem({ todo, dailyList, setDailyList }) {
   const [thisTodo, setThisTodo] = useState(todo.todoContent);
@@ -58,59 +57,62 @@ export default function TodoItem({ todo, dailyList, setDailyList }) {
   }
 
   return (
-    <div>
-      <TodoItemBlock>
-        <input
-          id="daily_todo_check"
-          type="checkbox"
-          checked={thisDone}
-          style={{ fontFamily: "pretendard", margin: "0 1rem" }}
-          onChange={() => setThisDone(!thisDone)}
-        />
-        {wantEdit ? (
+    <div className="todo-item">
+      <div className="todo-item-block">
+        <div className="todo-item-block__todo">
           <input
-            value={thisTodo}
-            onChange={onChange}
-            style={{ fontFamily: "pretendard" }}
-          ></input>
-        ) : (
-          <Text style={{ fontFamily: "pretendard" }}>{thisTodo}</Text>
-        )}
-        {wantEdit ? (
-          <Remove
-            onClick={() => {
-              setWantEdit(!wantEdit);
-              saveTodo();
-            }}
-          >
-            <MdSave
+            className="todo-item-block__checkbox"
+            id="daily_todo_check"
+            type="checkbox"
+            checked={thisDone}
+            onChange={() => setThisDone(!thisDone)}
+          />
+          {wantEdit ? (
+            <input
+              className="todo-item__edit"
+              value={thisTodo}
+              onChange={onChange}
+            ></input>
+          ) : (
+            <div className="todo-item-block-text">{thisTodo}</div>
+          )}
+        </div>
+        <div className="todo-item-block__btns">
+          {wantEdit ? (
+            <div
+              className="todo-item-blick__remove"
               onClick={() => {
                 setWantEdit(!wantEdit);
                 saveTodo();
               }}
-            />
-          </Remove>
-        ) : (
-          <Remove>
-            <MdEdit
-              onClick={() => {
-                setWantEdit(!wantEdit);
-              }}
-            />
-          </Remove>
-        )}
-        <Remove
-          onClick={() => {
-            onDelete();
-          }}
-        >
-          <MdDelete
-          // onClick={() => {
-          //   onDelete();
-          // }}
-          />
-        </Remove>
-      </TodoItemBlock>
+            >
+              <MdSave
+                onClick={() => {
+                  setWantEdit(!wantEdit);
+                  saveTodo();
+                }}
+              />
+            </div>
+          ) : (
+            <div className="todo-item-blick__remove">
+              <MdEdit
+                onClick={() => {
+                  setWantEdit(!wantEdit);
+                }}
+              />
+            </div>
+          )}
+
+          <div
+            className="todo-item-blick__remove"
+            onClick={() => {
+              onDelete();
+            }}
+          >
+            <MdDelete />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

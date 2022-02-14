@@ -18,18 +18,13 @@
   ::placeholder {
     font-size: 12px;
     color: var(--textColor-darker);
-    // padding-left: 8px;
   }
 
   .todo-create-btn {
     cursor: pointer;
     color: $mainColor;
-    // height: 30px;
     font-size: 28px;
     text-align: center;
     margin-left: 5px;
-    // background-color: blue;
-  }
-  & svg {
   }
 }

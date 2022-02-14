@@ -41,22 +41,58 @@
   display: none;
 }
 
-.todo-list {
+.todo-item {
   font-family: "Pretendard";
-}
-
-.todo-list__header {
-  font-size: 16px;
-  padding-bottom: 8px;
-  padding-left: 5px;
+  font-size: 14px;
   color: var(--textColor);
 }
-
-.todo-list__body {
-  padding: 0.8rem 0;
-  background-color: var(--bgColor);
+.todo-item .todo-item__edit {
+  background-color: var(--htmlbgColor);
   border: 1px solid var(--borderColor);
-  border-radius: 10px;
+  border-radius: 5px;
+  color: var(--textColor);
+  font-size: 14px;
+  height: 28px;
+  width: 85%;
+}
+.todo-item :focus {
+  outline: 1px solid #6667ab;
+}
+.todo-item .todo-item-block__checkbox {
+  margin-right: 0.5rem;
+}
+.todo-item .todo-item-block__todo {
+  display: flex;
+  align-items: center;
+}
+.todo-item .todo-item-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1.4rem 0.3rem 1.3rem;
+}
+.todo-item .todo-item-block:hover .todo-item-blick__remove {
+  opacity: 1;
+}
+.todo-item .todo-item-block-text {
+  flex: 1;
+  display: contents;
+}
+.todo-item .todo-item-blick__remove {
+  margin-left: 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dee2e6;
+  font-size: 1.3rem;
+  cursor: pointer;
+  opacity: 0;
+}
+.todo-item .todo-item-blick__remove:hover {
+  color: #6667ab;
+}
+.todo-item .todo-item-block__btns {
+  display: flex;
 }
 
-/*# sourceMappingURL=todoList.css.map */
+/*# sourceMappingURL=todoItem.css.map */
