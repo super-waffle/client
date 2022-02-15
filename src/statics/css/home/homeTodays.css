@@ -93,14 +93,14 @@
   margin-bottom: 8vh;
 }
 .home-todays .home-todays-studyrooms .home-todays-studyrooms-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 .home-todays .home-todays-studyrooms .home-todays-studyrooms-row .home-todays-studyrooms-box {
   background: var(--bgColor);
   border: 1px solid var(--borderColor);
   box-sizing: border-box;
   border-radius: 10px;
-  width: 50%;
   height: 117px;
   margin-bottom: 1%;
   margin-top: 9px;

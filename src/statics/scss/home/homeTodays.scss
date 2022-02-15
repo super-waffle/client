@@ -50,13 +50,14 @@
   .home-todays-studyrooms {
     margin-bottom: 8vh;
     .home-todays-studyrooms-row {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       .home-todays-studyrooms-box {
         background: var(--bgColor);
         border: 1px solid var(--borderColor);
         box-sizing: border-box;
         border-radius: 10px;
-        width: 50%;
+        // width: 100%;
         height: 117px;
         margin-bottom: 1%;
         margin-top: 9px;

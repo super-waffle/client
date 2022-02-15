@@ -13,9 +13,7 @@ export default function HomeTodos(props) {
   useEffect(() => {
     setIsAdd(props.add);
   }, [props]);
-  useEffect(() => {
-    props.todolist(() => dailyList);
-  }, [dailyList]);
+
   async function getTodos() {
     try {
       const response = await axios.get(
