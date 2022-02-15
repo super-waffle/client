@@ -13,14 +13,18 @@ import IconButton from "@material-ui/core/IconButton";
 import HighlightOff from "@material-ui/icons/HighlightOff";
 import FormHelperText from "@material-ui/core/FormHelperText";
 
+// let timeString = "00:00:00";
+
 export default class StreamComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      time: this.props.cumTime,
       nickname: this.props.user.getNickname(),
       showForm: false,
       mutedSound: false,
       isFormValid: true,
+      timeString: this.props.timeString,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handlePressKey = this.handlePressKey.bind(this);
@@ -56,6 +60,49 @@ export default class StreamComponent extends Component {
     }
   }
 
+  // setTime() {
+  //   let interval = null;
+  //   interval = setInterval(() => {
+  //     let hour = ("0" + Math.floor((this.props.time / 3600) % 60)).slice(-2);
+  //     let minute = ("0" + Math.floor((this.props.time / 60) % 60)).slice(-2);
+  //     let second = ("0" + (this.props.time % 60)).slice(-2);
+
+  //     timeString = hour + ":" + minute + ":" + second;
+  //   }, 1000);
+  // }
+
+  // componentDidMount() {
+  //   this.interval = setInterval(() => {
+  //     let hour = ("0" + Math.floor((this.props.cumTime / 3600) % 60)).slice(-2);
+  //     let minute = ("0" + Math.floor((this.props.cumTime / 60) % 60)).slice(-2);
+  //     let second = ("0" + (this.props.cumTime % 60)).slice(-2);
+
+  //     this.state.timeString = hour + ":" + minute + ":" + second;
+  //     // console.log("state시간 " + this.state.time);
+  //     console.log("props시간 " + this.props.cumTime);
+  //     console.log(this.state.timeString);
+  //   }, 1000);
+  //   console.log(this.timeString);
+  // }
+
+  // componentWillUnmount() {
+  //   clearInterval(this.interval);
+  // }
+  // componentDidUpdate = (prevProps, prevState) => {
+  //   //componentDidUpdate가 props의 변과를 감지한다
+  //   console.log("********************************");
+  //   console.log("비교" + this.props.timeString + " " + prevProps.timeString);
+  //   if (this.props.timeString !== prevProps.timeString) {
+  //     //하위컴포넌트가 받은 props값 적어주기(둘다)
+  //     console.log("~~~~~~~~~~~~~~~~~~~~~~~~~");
+  //     this.setState({
+  //       ...this.state,
+  //       // selectTagNum: -1,
+  //       // contentOn: "none",  // 난 여기서 contntOn을 none으로 바꿔서 사라지게 햇다
+  //     });
+  //   }
+  // };
+
   render() {
     return (
       <div className="OT_widget-container">
@@ -64,11 +111,11 @@ export default class StreamComponent extends Component {
             {/* {this.props.user.isAudioActive()?():()} */}
             <OvVideoComponent user={this.props.user} mutedSound={this.state.mutedSound} />
             {this.props.user.isVideoActive() ? (
-              <div className="video-username">nickname자리</div>
+              <div className="video-username">{this.state.nickname}</div>
             ) : (
-              <div className="video-camoff"> nickname자리 </div>
+              <div className="video-camoff">{this.state.nickname}</div>
             )}
-            <div className="video-time">02:48</div>
+            <div className="video-time">{this.props.timeString}</div>
 
             <div id="status-icons">
               {/* {!this.props.user.isVideoActive() ? (

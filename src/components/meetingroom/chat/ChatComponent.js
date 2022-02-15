@@ -13,6 +13,7 @@ export default class ChatComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      nickname: this.props.user.getNickname(),
       messageList: [],
       message: "",
     };
@@ -94,7 +95,7 @@ export default class ChatComponent extends Component {
         <div className="chat-component" style={styleChat}>
           <div className="chat-toolbar">
             <span className="chat-toolbar-menu">
-              <HiMenu size={"24px"} marginTop={"2px"} />
+              <HiMenu size={"24px"} margintop={"2px"} />
             </span>
             <span className="chat-toolbar-name">채팅</span>
             <CgClose className="chat-toolbar-exit" onClick={this.close}></CgClose>
@@ -115,7 +116,8 @@ export default class ChatComponent extends Component {
                 {/* <canvas id={"userImg-" + i} width="30" height="30" className="user-img" /> */}
                 <div className="msg-detail">
                   <div className="msg-info">
-                    <p> {data.nickname}</p>
+                    <p>{data.nickname}</p>
+                    {/* <p> {data.nickname}</p> */}
                   </div>
                   <div className="msg-content">
                     {/* <span className="triangle" /> */}
