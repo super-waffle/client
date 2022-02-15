@@ -157,6 +157,7 @@
           height: 26%;
           width: 80%;
           color: $textColor;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
           .stop-watch-title {
             background: var(--bgColor-light);
@@ -172,11 +173,12 @@
               // size: 24px;
               width: 24px;
               height: 24px;
-              color: $textColor;
+              color: var(--textColor);
               // padding-right: 1px;
             }
 
             .stop-watch-name {
+              color: var(--textColor);
               padding-left: 10px;
               font-size: 17px;
               font-weight: bold;
@@ -192,12 +194,14 @@
               font-size: 13px;
               font-family: $font-family;
               font-weight: bold;
+              color: var(--textColor);
             }
             .enter-time {
               // padding-left: 10px;
               font-size: 13px;
               font-family: $font-family;
               padding-left: 6px;
+              color: var(--textColor);
             }
           }
 
@@ -282,6 +286,7 @@
             border-radius: 8px;
             height: 93%;
             border: 1px solid var(--borderColor);
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
             .chat-toolbar {
               // box-sizing: border-box;
@@ -299,7 +304,7 @@
                 // size: 24px;
                 width: 24px;
                 height: 24px;
-                color: $textColor;
+                color: var(--textColor);
                 display: table-cell;
                 vertical-align: middle;
                 padding-top: 10px;
@@ -314,6 +319,7 @@
                 vertical-align: middle;
                 font-family: $font-family;
                 text-align: left;
+                color: var(--textColor);
               }
 
               .chat-toolbar-exit {
@@ -326,6 +332,7 @@
                 margin-top: 10px;
                 position: absolute;
                 right: 5%;
+                color: var(--textColor);
               }
             }
 
@@ -420,6 +427,7 @@
                 font-size: 13px;
                 color: $textColor;
                 font-weight: 500;
+                color: var(--textColor);
               }
 
               .message.left .user-img {
@@ -486,6 +494,7 @@
               position: absolute;
               bottom: 0px;
               width: 100%;
+              color: var(--textColor);
               background-color: var(--bgColor);
               text-align: center;
               padding: 10px 0px;
@@ -503,7 +512,7 @@
                 font-family: $font-family;
                 background-color: var(--bgColor);
                 // margin-left: -6%;
-                color: --textColor-darkest;
+                color: var(--textColor);
               }
             }
           }
@@ -522,6 +531,7 @@
           height: 74%;
 
           .userlist-component {
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             background-color: var(--bgColor);
             position: absolute;
             // z-index: 99999;
@@ -554,7 +564,7 @@
                 // size: 24px;
                 width: 24px;
                 height: 24px;
-                color: $textColor;
+                color: var(--textColor);
                 display: table-cell;
                 vertical-align: middle;
                 padding-top: 10px;
@@ -569,6 +579,7 @@
                 vertical-align: middle;
                 font-family: $font-family;
                 text-align: left;
+                color: var(--textColor);
               }
             }
 
@@ -714,6 +725,32 @@
           height: 100%;
         }
       }
+    }
+    .meeting-room-kick-msg {
+      font-size: 14px;
+      color: var(--textColor);
+      margin-bottom: 25px;
+    }
+
+    .meeting-room-kick-ok {
+      background-color: $mainColor;
+      color: #eeeeee;
+      border: none;
+      width: 3.8rem;
+      height: 1.8rem;
+      font-size: 12px;
+      border-radius: 5px;
+      margin-right: 8px;
+    }
+
+    .meeting-room-kick-cancel {
+      background-color: var(--bgColor);
+      color: var(--textColor);
+      border: 1px solid $mainColor;
+      width: 8rem;
+      height: 1.8rem;
+      font-size: 12px;
+      border-radius: 5px;
     }
   }
 }

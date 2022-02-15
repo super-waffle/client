@@ -181,6 +181,7 @@
   height: 26%;
   width: 80%;
   color: #6c757d;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .stop-watch-title {
   background: var(--bgColor-light);
@@ -193,9 +194,10 @@
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .stop-watch-title .stop-watch-menu {
   width: 24px;
   height: 24px;
-  color: #6c757d;
+  color: var(--textColor);
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .stop-watch-title .stop-watch-name {
+  color: var(--textColor);
   padding-left: 10px;
   font-size: 17px;
   font-weight: bold;
@@ -209,11 +211,13 @@
   font-size: 13px;
   font-family: "Pretendard";
   font-weight: bold;
+  color: var(--textColor);
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .enter .enter-time {
   font-size: 13px;
   font-family: "Pretendard";
   padding-left: 6px;
+  color: var(--textColor);
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-timer .meeting-room-stop-watch .timer {
   width: 100%;
@@ -281,6 +285,7 @@
   border-radius: 8px;
   height: 93%;
   border: 1px solid var(--borderColor);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .chat-toolbar {
   color: var(--textWhite);
@@ -296,7 +301,7 @@
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .chat-toolbar .chat-toolbar-menu {
   width: 24px;
   height: 24px;
-  color: #6c757d;
+  color: var(--textColor);
   display: table-cell;
   vertical-align: middle;
   padding-top: 10px;
@@ -309,6 +314,7 @@
   vertical-align: middle;
   font-family: "Pretendard";
   text-align: left;
+  color: var(--textColor);
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .chat-toolbar .chat-toolbar-exit {
   width: 24px;
@@ -316,6 +322,7 @@
   margin-top: 10px;
   position: absolute;
   right: 5%;
+  color: var(--textColor);
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap {
   height: calc(100% - 100px);
@@ -387,6 +394,7 @@
   font-size: 13px;
   color: #6c757d;
   font-weight: 500;
+  color: var(--textColor);
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .message.left .user-img {
   left: -5px;
@@ -431,6 +439,7 @@
   position: absolute;
   bottom: 0px;
   width: 100%;
+  color: var(--textColor);
   background-color: var(--bgColor);
   text-align: center;
   padding: 10px 0px;
@@ -446,7 +455,7 @@
   font-size: 13px;
   font-family: "Pretendard";
   background-color: var(--bgColor);
-  color: --textColor-darkest;
+  color: var(--textColor);
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-userlist {
   height: 74%;
@@ -458,6 +467,7 @@
   height: 74%;
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-userlist .meeting-userlist-container .userlist-component {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   background-color: var(--bgColor);
   position: absolute;
   top: 5%;
@@ -487,7 +497,7 @@
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-userlist .meeting-userlist-container .userlist-component .userlist-toolbar .userlist-toolbar-menu {
   width: 24px;
   height: 24px;
-  color: #6c757d;
+  color: var(--textColor);
   display: table-cell;
   vertical-align: middle;
   padding-top: 10px;
@@ -500,6 +510,7 @@
   vertical-align: middle;
   font-family: "Pretendard";
   text-align: left;
+  color: var(--textColor);
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-userlist .meeting-userlist-container .userlist-component .list-wrap {
   height: calc(100% - 100px);
@@ -612,6 +623,30 @@
   position: absolute;
   right: 7%;
   height: 100%;
+}
+.meeting-room .meeting-room-buttons .meeting-room-kick-msg {
+  font-size: 14px;
+  color: var(--textColor);
+  margin-bottom: 25px;
+}
+.meeting-room .meeting-room-buttons .meeting-room-kick-ok {
+  background-color: #6667ab;
+  color: #eeeeee;
+  border: none;
+  width: 3.8rem;
+  height: 1.8rem;
+  font-size: 12px;
+  border-radius: 5px;
+  margin-right: 8px;
+}
+.meeting-room .meeting-room-buttons .meeting-room-kick-cancel {
+  background-color: var(--bgColor);
+  color: var(--textColor);
+  border: 1px solid #6667ab;
+  width: 8rem;
+  height: 1.8rem;
+  font-size: 12px;
+  border-radius: 5px;
 }
 
 /*# sourceMappingURL=meetingroom.css.map */
