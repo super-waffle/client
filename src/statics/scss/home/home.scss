@@ -7,10 +7,11 @@
     display: flex;
     margin-left: 8%;
     // padding-top: 60px;
-    padding: 60px 10% 0 0;
+    padding: 60px 8% 0 0;
     // margin-right: 8%;
     // left: 8%;
     .home-profile {
+      // margin-right: 30px;
       position: fixed;
       top: 108px;
       font-family: $font-family;
@@ -71,7 +72,7 @@
     .home-contents {
       width: 100%;
       padding-top: 60px;
-      padding-left: 23%;
+      padding-left: 25%;
     }
   }
 }

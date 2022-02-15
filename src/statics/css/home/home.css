@@ -50,7 +50,7 @@
 .home .home-tab {
   display: flex;
   margin-left: 8%;
-  padding: 60px 10% 0 0;
+  padding: 60px 8% 0 0;
 }
 .home .home-tab .home-profile {
   position: fixed;
@@ -108,7 +108,7 @@
 .home .home-tab .home-contents {
   width: 100%;
   padding-top: 60px;
-  padding-left: 23%;
+  padding-left: 25%;
 }
 
 /*# sourceMappingURL=home.css.map */

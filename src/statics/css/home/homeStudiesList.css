@@ -57,38 +57,41 @@
   margin-bottom: 1%;
   margin-top: 9px;
   margin-right: 15px;
-  overflow: auto;
-  padding: 0.8rem 1.5rem;
+  padding: 1.1rem 1.5rem;
 }
 
 .home-study-box__top {
   display: flex;
   align-items: center;
+  margin-bottom: 3px;
 }
 .home-study-box__top .home-study-box__top-category {
+  width: 10%;
   color: #6667ab;
   font-size: 12px;
   margin-right: 8px;
 }
 .home-study-box__top .home-study-box__top-title {
+  width: 45%;
+  overflow: hidden;
   color: var(--textColor);
   font-size: 15px;
+  margin-right: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.home-study-box__date-time {
-  display: flex;
-  align-items: center;
+.home-study-box__time {
   font-size: 13px;
   margin-right: 10px;
+  width: 26%;
   color: var(--textColor-todo);
-}
-.home-study-box__date-time .home-study-box__date {
-  margin-right: 3px;
 }
 
 .home-study-box__desc {
   color: var(--textColor-todo);
   font-size: 14px;
+  padding-bottom: 7px;
 }
 
 .home-study-box__footer {
@@ -122,6 +125,9 @@
   margin-right: 10px;
 }
 
+.home-study-box__members {
+  margin-right: 8px;
+}
 .home-study-box__members span {
   font-size: 12px;
   align-items: center;

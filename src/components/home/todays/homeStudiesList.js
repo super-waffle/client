@@ -1,15 +1,13 @@
 import axios from "axios";
-import { previousDay } from "date-fns";
 import { useEffect, useState } from "react";
 import "../../../statics/css/home/homeStudiesList.css";
 
 export default function HomeStudies() {
   const TOKEN = localStorage.getItem("accessToken");
-  const [today, setToday] = useState(new Date());
   const [studies, setStudies] = useState("");
   useEffect(() => {
     axios
-      .get("/users/studies", {
+      .get("/users/studies/today", {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },
@@ -21,40 +19,6 @@ export default function HomeStudies() {
         }
       });
   }, []);
-  const date = today.getDay() + 1;
-  console.log(studies);
-  // console.log(studies.days[date]);
-  // console.log(date);
-  const [studyList, setStudyList] = useState("");
-  const [data, setData] = useState("");
-
-  // useEffect(() => {
-  //   console.log(studies);
-  //   if (studies) {
-  //     studies.map((study) => {
-  //       console.log(study.days);
-  //     });
-  //     // studies.days.map((day) => {
-  //     //   console.log(day);
-  //     // });
-  //     // setData(() => studies.days.filter((day) => day === date));
-  //     console.log(data);
-  //     setStudyList((prev) => [...prev, data]);
-  //   }
-  // }, [studies]);
-  // studies.map((study) => study.days.dayNumber);
-  // console.log(studyList);
-  // const studyList = studies.filter(
-  //   (study) => study.hostName === "winter"
-  //   // (study) => study.days.dayNumber === today.getDay() + 1
-  // );
-
-  // console.log(today);
-  // console.log(studies);
-  const numbersToDays = (num) => {
-    const days = ["월", "화", "수", "목", "금", "토", "일"];
-    return days[num - 1];
-  };
 
   return (
     <div className="home-todays-studyrooms-row">
@@ -66,20 +30,13 @@ export default function HomeStudies() {
                 {study.categoryName}
               </div>
               <div className="home-study-box__top-title">{study.title}</div>
-            </div>
-            <div className="home-study-box__desc">{study.shortDescription}</div>
-            <div className="home-study-box__date-time">
               {study.days.map((day) => (
-                <div className="home-study-box__date-time" key={day.daySeq}>
-                  <div className="home-study-box__date">
-                    {numbersToDays(day.dayNumber)}
-                  </div>
-                  <div className="home-study-box__time">
-                    {day.startTime.slice(0, 5)} - {day.endTime.slice(0, 5)}
-                  </div>
+                <div className="home-study-box__time" key={day.daySeq}>
+                  {day.startTime.slice(0, 5)} - {day.endTime.slice(0, 5)}
                 </div>
               ))}
             </div>
+            <div className="home-study-box__desc">{study.shortDescription}</div>
             <div className="home-study-box__footer">
               <div className="home-study-box__img-wrapper">
                 {study.hostImage ? (
