@@ -12,8 +12,27 @@ class UserComponent extends Component {
     this.remotes = [];
     this.isHose = false;
     this.consoleUser = this.consoleUser.bind(this);
+    this.subscribersMuteStatusChanged = this.subscribersMuteStatusChanged.bind(this);
+    this.subscribersCamStatusChanged = this.subscribersCamStatusChanged.bind(this);
     this.camStatusChanged = this.camStatusChanged.bind(this);
     this.micStatusChanged = this.micStatusChanged.bind(this);
+  }
+  subscribersMuteStatusChanged(key, status) {
+    // console.log("remotes ");
+    // console.log(this.props.remote);
+    // console.log(key, status);
+    // const result = this.remotes.map((sub, index) => index);
+    // console.log(result);
+    this.props.subscribersMuteStatusChanged(key, status);
+  }
+
+  subscribersCamStatusChanged(key, status) {
+    console.log("remotes ");
+    // console.log(this.props.remote);
+    console.log(key, status);
+    // const result = this.remotes.map((sub, index) => index);
+    // console.log(result);
+    this.props.subscribersCamStatusChanged(key, status);
   }
 
   micStatusChanged() {
@@ -89,8 +108,14 @@ class UserComponent extends Component {
             </div>
             {/* 리모트유저 목록 */}
             {this.remotes &&
-              this.remotes.map((user, index) => (
-                <UserStatus user={user} key={user} isHost={this.isHost} number={index} />
+              this.remotes.map((sub, i) => (
+                <UserStatus
+                  subscribersMuteStatusChanged={this.subscribersMuteStatusChanged}
+                  subscribersCamStatusChanged={this.subscribersCamStatusChanged}
+                  user={sub}
+                  index={i}
+                  isHost={this.isHost}
+                />
               ))}
           </div>
 

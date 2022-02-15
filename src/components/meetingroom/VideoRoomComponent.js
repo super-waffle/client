@@ -48,7 +48,7 @@ class VideoRoomComponent extends Component {
       session: undefined,
       localUser: undefined,
       subscribers: [],
-      chatDisplay: "block",
+      chatDisplay: "none",
       userlistDisplay: "block",
       currentVideoDevice: undefined,
       time: undefined,
@@ -83,6 +83,8 @@ class VideoRoomComponent extends Component {
     this.setPause = this.setPause.bind(this);
     this.userlist = this.userlist.bind(this);
     this.setTimeString = this.setTimeString.bind(this);
+    this.subscribersMuteStatusChanged = this.subscribersMuteStatusChanged.bind(this);
+    this.subscribersCamStatusChanged = this.subscribersCamStatusChanged.bind(this);
   }
   isHostfun() {
     console.log(1);
@@ -368,8 +370,6 @@ class VideoRoomComponent extends Component {
     this.setState({ localUser: localUser });
   }
 
-  soundStatusChanged() {}
-
   nicknameChanged(nickname) {
     let localUser = this.state.localUser;
     localUser.setNickname(nickname);
@@ -650,6 +650,34 @@ class VideoRoomComponent extends Component {
       this.hasBeenUpdated = false;
     }
   }
+
+  subscribersMuteStatusChanged(key, status) {
+    // console.log("subscriber 값 변경");
+    // console.log(remotes);
+    const remoteUsers = this.state.subscribers.map((sub) => sub);
+    // console.log(remoteUsers);
+    // console.log(key + " " + status);
+    remoteUsers[key].setIsMuted(status);
+    this.setState({ subscribers: remoteUsers });
+    // console.log(this.state.subscribers[key]);
+  }
+
+  subscribersCamStatusChanged(key, status) {
+    console.log("video subscriber 값 변경");
+    // console.log(remotes);
+    const remoteUsers = this.state.subscribers.map((sub) => sub);
+    console.log(remoteUsers);
+    console.log(key + " " + status);
+    remoteUsers[key].setIsBlocked(status);
+    remoteUsers[key].setVideoActive(!status);
+    this.setState({ subscribers: remoteUsers });
+    console.log("원격스트림");
+    console.log(this.state.subscribers[key]);
+    console.log(localUser);
+    // localUser.getStreamManager().publishVideo(localUser.isVideoActive());
+    remoteUsers[key].getStreamManager().subscribeToVideo(!status);
+  }
+
   render() {
     const mySessionId = this.state.mySessionId;
     const localUser = this.state.localUser;
@@ -720,9 +748,11 @@ class VideoRoomComponent extends Component {
               <div className="OT_root OT_publisher custom-class" style={userlistDisplay}>
                 <div className="meeting-room-userlist">
                   <UserComponent
+                    subscribersCamStatusChanged={this.subscribersCamStatusChanged}
+                    subscribersMuteStatusChanged={this.subscribersMuteStatusChanged}
                     local={localUser}
                     isHost={this.state.isHost}
-                    remote={this.remotes}
+                    remote={this.state.subscribers}
                     camStatusChanged={this.camStatusChanged}
                     micStatusChanged={this.micStatusChanged}
                   />

@@ -7,7 +7,8 @@ class UserModel {
   streamManager;
   type; // 'remote' | 'local'
   host;
-  //   isMuted;
+  isMuted;
+  isBlocked;
 
   constructor() {
     this.connectionId = "";
@@ -18,7 +19,7 @@ class UserModel {
     this.streamManager = null;
     this.type = "local";
     this.host = false;
-    // this.
+    this.isMuted = false;
   }
 
   isAudioActive() {
@@ -39,6 +40,14 @@ class UserModel {
 
   getNickname() {
     return this.nickname;
+  }
+
+  getIsMuted() {
+    return this.isMuted;
+  }
+
+  getIsBlocked() {
+    return this.isBlocked;
   }
 
   getStreamManager() {
@@ -79,6 +88,14 @@ class UserModel {
     if ((type === "local") | (type === "remote")) {
       this.type = type;
     }
+  }
+
+  setIsMuted(isMuted) {
+    this.isMuted = isMuted;
+  }
+
+  setIsBlocked(isBlocked) {
+    this.isBlocked = isBlocked;
   }
 }
 
