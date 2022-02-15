@@ -1,5 +1,5 @@
 import "../statics/css/home/homeStatistics.css";
-import Heatmap from "../components/heatmap";
+import Heatmap from "../components/home/statistics/heatmap";
 
 export default function HomeStatistics() {
   return (
