@@ -1,0 +1,28 @@
+@import "../main.scss";
+
+.my-goal {
+  background: var(--bgColor);
+  border: 1px solid var(--borderColor);
+  height: 24vh;
+  border-radius: 10px;
+  margin-top: 6px;
+  margin-right: 15px;
+}
+.my-goal-top {
+  border-bottom: 1px solid var(--borderColor);
+}
+.my-goal__graph {
+  width: 85%;
+}
+.my-goal__graph-back {
+  height: 10px;
+  background-color: var(--borderColor);
+  border-radius: 10px;
+}
+// .my-goal__graph-front {
+//   position: relative;
+//   top: -10px;
+//   height: 10px;
+//   background-color: $mainColor;
+//   border-radius: 10px;
+// }

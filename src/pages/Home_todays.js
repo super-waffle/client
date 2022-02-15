@@ -4,6 +4,7 @@ import HomeTodos from "../components/home/todays/homeTodos";
 import CreateTodo from "../components/home/todays/homeCreateTodos";
 import "../statics/css/home/homeTodays.css";
 import HomeStudies from "../components/home/todays/homeStudiesList";
+import MyGoal from "../components/home/todays/homeGoal";
 
 export default function HomeTodays() {
   const [isAddTodo, setIsAddTodo] = useState(false);
@@ -29,7 +30,7 @@ export default function HomeTodays() {
 
         <div className="home-todays-goal">
           <span>오늘의 공부</span>
-          <div className="home-todays-goal-box"></div>
+          <MyGoal />
         </div>
       </div>
 
