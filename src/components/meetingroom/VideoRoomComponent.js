@@ -747,7 +747,7 @@ class VideoRoomComponent extends Component {
             cancelClicked={this.closeDialogExtension}
           />
 
-          <IntervalComponent getSignalTimeString={this.getSignalTimeString} />
+          {/* <IntervalComponent getSignalTimeString={this.getSignalTimeString} /> */}
           <div id="layout" className="meeting-room-video">
             {/* publisher */}
             {localUser !== undefined && localUser.getStreamManager() !== undefined && (
@@ -800,7 +800,7 @@ class VideoRoomComponent extends Component {
             )}
 
             {localUser !== undefined && localUser.getStreamManager() !== undefined && (
-              <div className="OT_root OT_publisher custom-class" style={userlistDisplay}>
+              <div className="OT_root OT_publisher custom-class" style={!chatDisplay}>
                 <div className="meeting-room-userlist">
                   <UserComponent
                     subscribersCamStatusChanged={this.subscribersCamStatusChanged}
@@ -808,6 +808,7 @@ class VideoRoomComponent extends Component {
                     local={localUser}
                     isHost={this.state.isHost}
                     remote={this.state.subscribers}
+                    chatDisplay={this.state.chatDisplay}
                     camStatusChanged={this.camStatusChanged}
                     micStatusChanged={this.micStatusChanged}
                   />
