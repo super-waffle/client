@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './VideoRoomComponent.css';
 import { OpenVidu } from 'openvidu-browser';
-import StreamComponent from './stream/StreamComponent';
+import StreamComponent from './stream/StreamComponent copy';
 import DialogExtensionComponent from './dialog-extension/DialogExtension';
 import ChatComponent from './chat/ChatComponent';
 
@@ -241,25 +241,50 @@ class VideoRoomComponent extends Component {
     );
   }
 
-  leaveSession() {
+  leaveSession(sessionId) {
     const mySession = this.state.session;
 
     if (mySession) {
       mySession.disconnect();
     }
-
     // Empty all properties...
     this.OV = null;
     this.setState({
       session: undefined,
       subscribers: [],
-      mySessionId: 'SessionA',
-      myUserName: 'OpenVidu_User' + Math.floor(Math.random() * 100),
+      mySessionId: undefined,
+      myUserName: 'OpenVidu_User' + Math.floor(Math.random() * 100), 
       localUser: undefined,
     });
     if (this.props.leaveSession) {
       this.props.leaveSession();
     }
+
+    return new Promise((resolve, reject) => {
+      const token = localStorage.getItem("accessToken");
+      axios
+        .delete(process.env.REACT_APP_SERVER_URL + `/meetings/1/room`, {
+          data: {
+            sessionToken: postData.sessionToken,
+            // logMeeting: this.state.time / 60, //총공부한시간
+            logMeeting: 60, //총공부한시간
+            logStartTime: postData.meetingStartTime ,
+          },
+
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          console.log("Leave", response);
+          resolve(response.data.token);
+        })
+        .catch((error) => {
+          console.log("LEAVE ERROR : " + error);
+          reject(error);
+        });
+    });
   }
   camStatusChanged() {
     localUser.setVideoActive(!localUser.isVideoActive());
@@ -643,6 +668,8 @@ class VideoRoomComponent extends Component {
                 >
                   <StreamComponent
                     user={localUser}
+                    local={localUser}
+                    meetingSeq={postData.meetingSeq}
                     handleNickname={this.nicknameChanged}
                   />
                 </div>
@@ -656,6 +683,8 @@ class VideoRoomComponent extends Component {
               >
                 <StreamComponent
                   user={sub}
+                  local={localUser}
+                  meetingSeq={postData.meetingSeq}
                   streamId={sub.streamManager.stream.streamId}
                 />
               </div>
