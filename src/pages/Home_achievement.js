@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import isLogin from '../utils/isLogin';
 import '../statics/css/homeAchievement.css';
-
+import LevelComponent from '../components/home-achievement/levelComponent';
 export default function HomeAchievement() {
   const TOKEN = localStorage.getItem('accessToken');
 
@@ -36,7 +36,15 @@ export default function HomeAchievement() {
       <div className="home-achievement-top">
         <span>나의 레벨 및 업적</span>
         <div className="home-achievement-top-box">
-          <div className="home-achievement-level"></div>
+          <div className="home-achievement-level">
+            <LevelComponent 
+              level={level}
+              levelImg={levelImg}
+              levelName={levelName}
+              timeGoal={timeGoal}
+              timeTotal={timeTotal}
+            />
+          </div>
           <div className="home-achievement-achieve"></div>
         </div>
       </div>
