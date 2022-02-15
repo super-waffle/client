@@ -5,18 +5,18 @@ import isLogin from '../utils/isLogin';
 import '../statics/css/homeAchievement.css';
 import LevelComponent from '../components/home-achievement/levelComponent';
 export default function HomeAchievement() {
-  const TOKEN = localStorage.getItem('accessToken');
+  const TOKEN = localStorage.getItem("accessToken");
 
-  const [nickname, setNickname] = useState('');
-  const [level, setLevel] = useState('');
-  const [levelName, setLevelName] = useState('');
-  const [levelImg, setLevelImg] = useState('');
-  const [timeGoal, setTimeGoal] = useState('');
-  const [timeTotal, setTimeTotal] = useState('');
+  const [nickname, setNickname] = useState("");
+  const [level, setLevel] = useState("");
+  const [levelName, setLevelName] = useState("");
+  const [levelImg, setLevelImg] = useState("");
+  const [timeGoal, setTimeGoal] = useState("");
+  const [timeTotal, setTimeTotal] = useState("");
 
   if (isLogin()) {
     axios
-      .get(process.env.REACT_APP_SERVER_URL + '/users', {
+      .get(process.env.REACT_APP_SERVER_URL + "/users", {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },

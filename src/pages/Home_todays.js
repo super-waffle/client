@@ -1,29 +1,44 @@
-import "../statics/css/homeTodays.css";
+import { useEffect, useState } from "react";
+import HomeTodos from "../components/home/todays/homeTodos";
+// import CreateTodo from "../components/Schedule/Todo/TodoCreate";
+import CreateTodo from "../components/home/todays/homeCreateTodos";
+import "../statics/css/home/homeTodays.css";
+import HomeStudies from "../components/home/todays/homeStudiesList";
+import MyGoal from "../components/home/todays/homeGoal";
 
 export default function HomeTodays() {
+  const [isAddTodo, setIsAddTodo] = useState(false);
+
+  // 할일 추가하기 버튼 누르면 자동으로 인풋 박스로 포커스 (스크롤 이동)
+  useEffect(() => {
+    if (isAddTodo) {
+      let needFocus = document.getElementById("home-todays-todos-box");
+      needFocus.scrollTop = needFocus.scrollHeight;
+    }
+  }, [isAddTodo]);
+
   return (
     <div className="home-todays">
       <div className="home-todays-top">
         <div className="home-todays-todos">
           <span>오늘의 할일</span>
-          <div className="home-todays-todos-box"></div>
+          <button onClick={() => setIsAddTodo(!isAddTodo)}>+ 추가하기</button>
+          <div className="home-todays-todos-box" id="home-todays-todos-box">
+            <HomeTodos add={isAddTodo} />
+          </div>
         </div>
+
         <div className="home-todays-goal">
           <span>오늘의 공부</span>
-          <div className="home-todays-goal-box"></div>
+          <MyGoal />
         </div>
       </div>
+
       <div className="home-todays-studyrooms">
         <span>스터디 일정</span>
-        <div className="home-todays-studyrooms-row">
-          <div className="home-todays-studyrooms-box"></div>
-          <div className="home-todays-studyrooms-box"></div>
-        </div>
-        <div className="home-todays-studyrooms-row">
-          <div className="home-todays-studyrooms-box"></div>
-          <div className="home-todays-studyrooms-box"></div>
-        </div>
+        <HomeStudies />
       </div>
+
       <div className="home-todays-meetingrooms">
         <span>자유열람실</span>
         <div className="home-todays-meetingrooms-row">

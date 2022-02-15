@@ -1,4 +1,4 @@
-import "../statics/css/homeStatistics.css";
+import "../statics/css/home/homeStatistics.css";
 import Heatmap from "../components/heatmap";
 
 export default function HomeStatistics() {
