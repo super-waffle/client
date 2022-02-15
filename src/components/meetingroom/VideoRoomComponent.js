@@ -78,6 +78,8 @@ class VideoRoomComponent extends Component {
       mutedSound: false,
       isKicked: false,
       // isKick: false,
+      isError: false,
+      errorMessage: "",
     };
     this.joinSession = this.joinSession.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
@@ -918,7 +920,7 @@ class VideoRoomComponent extends Component {
 
           {this.state.isKicked && (
             <Modal open={true} header=" ">
-              <div className="meeting-room-kick-title">
+              <div className="meeting-room-kick-msg">
                 자유열람실 {this.state.myMeetingTitle}에서 강퇴당하셨습니다.
               </div>
 
@@ -929,6 +931,19 @@ class VideoRoomComponent extends Component {
               </Link>
             </Modal>
           )}
+
+          {this.state.isError && (
+            <Modal open={true} header=" ">
+              <div className="meeting-room-kick-msg">{this.state.errorMessage}</div>
+
+              <Link to="/meetingrooms">
+                <button className="meeting-room-kick-ok">
+                  {/* onClick={this.leaveSession}> 확인 */}
+                </button>
+              </Link>
+            </Modal>
+          )}
+
           <div id="layout" className="meeting-room-video">
             {/* publisher */}
             {localUser !== undefined && localUser.getStreamManager() !== undefined && (
@@ -1060,53 +1075,58 @@ class VideoRoomComponent extends Component {
         .then((res) => {
           console.log("meetingSeq: " + this.state.myMeetingSeq);
           console.log("응답", res);
-          switch (res.data.statusCode) {
-            case 404:
-              //미팅룸 시퀀스가 유효하지 않음 (존재하지 않는 미팅룸)
-              console.log("404");
-              break;
-            case 405:
-              console.log("405");
-              //미팅룸 정원초과
-              break;
-            case 407:
-              console.log("407");
-              //블랙리스트
-              break;
-            case 409:
-              console.log("409");
-              //서버에러
-              window.location.reload();
-              break;
-          }
-          resolve(res.data.sessionToken);
-          this.sessionToken = res.data.sessionToken;
-          if (sessionToken == null) sessionToken = undefined;
-          // this.meetingSeq = res.data.meetingSeq;
-          // this.isHost = res.data.isHost;
-          // this.meetingTitle = res.data.meetingTitle;
-          // this.meetingDesc = res.data.meetingDesc;
-          // this.meetingCapacity = res.data.meetingCapacity;
-          // this.meetingHeadcount = res.data.meetingHeadcount;
-          // this.meetingDate = res.data.meetingDate;
-          // this.meetingStartTime = res.data.meetingStartTime; //미팅스타트타임
 
-          this.userName = res.data.userNickname;
-          console.log("Nickname : " + this.userName);
-          console.log("meetingSeq : " + this.meetingSeq);
-          console.log("sessionToken: " + this.sessionToken);
-          this.setState({
-            myMeetingSeq: localStorage.getItem("meetingSeq"),
-            mySessionId: res.data.meetingUrl,
-            myUserName: res.data.userNickname,
-            time: 0,
-            mySessionToken: res.data.sessionToken,
-            isHost: res.data.isHost,
-            myStartTime: res.data.meetingStartTime.split(".")[0],
-            userSeq: res.data.userSeq,
-            myMeetingTitle: res.data.meetingTitle,
-            myMeetingDesc: res.data.meetingDesc,
-          });
+          if (res.data.statusCode == 404) {
+            //미팅룸 시퀀스가 유효하지 않음 (존재하지 않는 미팅룸)
+            this.setStatus({
+              isError: true,
+              errorMessage: "존재하지 않는 자유열람실입니다.",
+            });
+          } else if (res.data.statusCode == 405) {
+            //미팅룸 정원초과
+            this.setStatus({
+              isError: true,
+              errorMessage: "인원을 초과하여 입장하실 수 없습니다.",
+            });
+          } else if (res.data.statusCode == 407) {
+            //블랙리스트
+            this.setStatus({
+              isError: true,
+              errorMessage: "강퇴당하여 더 이상 입장하실 수 없습니다.",
+            });
+          } else if (res.data.statusCode == 409) {
+            //서버에러
+            window.location.reload();
+          } else if (res.data.statusCode == 200) {
+            resolve(res.data.sessionToken);
+            this.sessionToken = res.data.sessionToken;
+            if (sessionToken == null) sessionToken = undefined;
+            // this.meetingSeq = res.data.meetingSeq;
+            // this.isHost = res.data.isHost;
+            // this.meetingTitle = res.data.meetingTitle;
+            // this.meetingDesc = res.data.meetingDesc;
+            // this.meetingCapacity = res.data.meetingCapacity;
+            // this.meetingHeadcount = res.data.meetingHeadcount;
+            // this.meetingDate = res.data.meetingDate;
+            // this.meetingStartTime = res.data.meetingStartTime; //미팅스타트타임
+
+            this.userName = res.data.userNickname;
+            console.log("Nickname : " + this.userName);
+            console.log("meetingSeq : " + this.meetingSeq);
+            console.log("sessionToken: " + this.sessionToken);
+            this.setState({
+              myMeetingSeq: localStorage.getItem("meetingSeq"),
+              mySessionId: res.data.meetingUrl,
+              myUserName: res.data.userNickname,
+              time: 0,
+              mySessionToken: res.data.sessionToken,
+              isHost: res.data.isHost,
+              myStartTime: res.data.meetingStartTime.split(".")[0],
+              userSeq: res.data.userSeq,
+              myMeetingTitle: res.data.meetingTitle,
+              myMeetingDesc: res.data.meetingDesc,
+            });
+          }
           // console.log("state 변수");
           // console.log(this.state);
         });

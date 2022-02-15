@@ -217,12 +217,12 @@ export default class StreamComponent extends Component {
                 )}
 
                 <Modal open={this.state.modalOpen} close={this.closeModal} header=" ">
-                  <div className="studyapply-modal-msg">
+                  <div className="meeting-room-kick-msg">
                     {this.state.nickname} 를 강퇴하시겠습니까?
                   </div>
 
                   <button
-                    className="studyapply-modal-go-to-mystudy"
+                    className="meeting-room-kick-ok"
                     onClick={() => {
                       this.handleExitUser();
                       this.props.sendSignalUserKicked(this.props.user.getNickname());
@@ -230,7 +230,7 @@ export default class StreamComponent extends Component {
                   >
                     확인
                   </button>
-                  <button className="studyapply-modal-ok" onClick={this.closeModal}>
+                  <button className="meeting-room-kick-cancel" onClick={this.closeModal}>
                     취소
                   </button>
                 </Modal>

@@ -624,5 +624,29 @@
   right: 7%;
   height: 100%;
 }
+.meeting-room .meeting-room-buttons .meeting-room-kick-msg {
+  font-size: 14px;
+  color: var(--textColor);
+  margin-bottom: 25px;
+}
+.meeting-room .meeting-room-buttons .meeting-room-kick-ok {
+  background-color: #6667ab;
+  color: #eeeeee;
+  border: none;
+  width: 3.8rem;
+  height: 1.8rem;
+  font-size: 12px;
+  border-radius: 5px;
+  margin-right: 8px;
+}
+.meeting-room .meeting-room-buttons .meeting-room-kick-cancel {
+  background-color: var(--bgColor);
+  color: var(--textColor);
+  border: 1px solid #6667ab;
+  width: 8rem;
+  height: 1.8rem;
+  font-size: 12px;
+  border-radius: 5px;
+}
 
 /*# sourceMappingURL=meetingroom.css.map */

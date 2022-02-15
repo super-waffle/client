@@ -726,5 +726,31 @@
         }
       }
     }
+    .meeting-room-kick-msg {
+      font-size: 14px;
+      color: var(--textColor);
+      margin-bottom: 25px;
+    }
+
+    .meeting-room-kick-ok {
+      background-color: $mainColor;
+      color: #eeeeee;
+      border: none;
+      width: 3.8rem;
+      height: 1.8rem;
+      font-size: 12px;
+      border-radius: 5px;
+      margin-right: 8px;
+    }
+
+    .meeting-room-kick-cancel {
+      background-color: var(--bgColor);
+      color: var(--textColor);
+      border: 1px solid $mainColor;
+      width: 8rem;
+      height: 1.8rem;
+      font-size: 12px;
+      border-radius: 5px;
+    }
   }
 }
