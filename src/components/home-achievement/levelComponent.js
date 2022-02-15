@@ -17,7 +17,7 @@ export default function LevelComponent(props) {
 
 
   var hour=(data)=>{
-    console.log(dayTotalStudyTime);
+    // console.log(dayTotalStudyTime);
     return ("0" + Math.floor((data / 60) % 60)).slice(-2);
   }
   var minute=(data)=>{
@@ -50,7 +50,7 @@ export default function LevelComponent(props) {
         </div>
       </div>
       <span>오늘 공부시간 </span>
-      <span>{hour(dayTotalStudyTime)}시간 {minute(dayTotalStudyTime)}</span>
+      <span>{hour(dayTotalStudyTime)}시간 {minute(dayTotalStudyTime)}분</span>
 
       <span>총 공부시간</span>
       <span>{hour(props.timeTotal)}시간 {minute(props.timeTotal)}분</span>
