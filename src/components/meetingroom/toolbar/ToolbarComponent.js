@@ -80,8 +80,8 @@ export default class ToolbarComponent extends Component {
           <div className="button-audio">
             {localUser !== undefined && localUser.isAudioActive() ? (
               <svg
-                width="40"
-                height="40"
+                width="30"
+                height="30"
                 viewBox="0 0 20 20"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -99,8 +99,8 @@ export default class ToolbarComponent extends Component {
               </svg>
             ) : (
               <svg
-                width="40"
-                height="40"
+                width="30"
+                height="30"
                 viewBox="0 0 20 20"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -137,8 +137,8 @@ export default class ToolbarComponent extends Component {
           <div className="button-video">
             {localUser !== undefined && localUser.isVideoActive() ? (
               <svg
-                width="42"
-                height="40"
+                width="30"
+                height="30"
                 viewBox="0 0 21 20"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -156,8 +156,8 @@ export default class ToolbarComponent extends Component {
               </svg>
             ) : (
               <svg
-                width="44"
-                height="40"
+                width="30"
+                height="30"
                 viewBox="0 0 22 20"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -180,8 +180,8 @@ export default class ToolbarComponent extends Component {
           </div>
           <div className="button-exit">
             <svg
-              width="41"
-              height="40"
+              width="30"
+              height="30"
               viewBox="0 0 41 40"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -199,8 +199,8 @@ export default class ToolbarComponent extends Component {
         <div className="buttons-util">
           <div className="button-users">
             <svg
-              width="32"
-              height="32"
+              width="30"
+              height="30"
               viewBox="0 0 16 16"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -231,8 +231,8 @@ export default class ToolbarComponent extends Component {
             {/* {this.props.showNotification && <div id="point" className="" />} */}
 
             <svg
-              width="32"
-              height="32"
+              width="30"
+              height="30"
               viewBox="0 0 16 16"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

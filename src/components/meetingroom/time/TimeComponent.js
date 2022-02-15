@@ -7,8 +7,11 @@ function StopWatch(props) {
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(true);
   const [time, setTime] = useState(0);
+  // const [timeString, setTimeString] = useState("");
   props.onCreate(time);
+  // props.onCreate(timeString);
   // props.onPause(isPaused);
+  // props.setTime(time);
 
   useEffect(() => {
     let interval = null;
@@ -16,6 +19,9 @@ function StopWatch(props) {
     if (isActive && isPaused === false) {
       interval = setInterval(() => {
         setTime((time) => time + 1);
+        // console.log(time);
+        // props.sendTime(time);
+        // setTimeString(timeString);
       }, 1000);
     } else {
       clearInterval(interval);
@@ -42,7 +48,7 @@ function StopWatch(props) {
       </div>
       <div className="enter">
         <span className="enter-title">열람실 착석 </span>
-        <span className="enter-time">00:00:00</span>
+        <span className="enter-time">{props.startTime}</span>
       </div>
       <Timer time={time} />
       <ControlButtons
