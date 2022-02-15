@@ -1,21 +1,24 @@
-import React, { Component } from 'react';
-import './StreamComponent.css';
-import OvVideoComponent from './OvVideo';
-import Modal from '../../modal';
-import axios from 'axios';
+import React, { Component } from "react";
+import "./StreamComponent.css";
+import OvVideoComponent from "./OvVideo";
+import { MdMicOff } from "react-icons/md";
+import Modal from "../../modal";
+import axios from "axios";
 
-import MicOff from '@material-ui/icons/MicOff';
-import VideocamOff from '@material-ui/icons/VideocamOff';
-import VolumeUp from '@material-ui/icons/VolumeUp';
-import VolumeOff from '@material-ui/icons/VolumeOff';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import IconButton from '@material-ui/core/IconButton';
-import HighlightOff from '@material-ui/icons/HighlightOff';
-import FormHelperText from '@material-ui/core/FormHelperText';
+import MicOff from "@material-ui/icons/MicOff";
+import VideocamOff from "@material-ui/icons/VideocamOff";
+import VolumeUp from "@material-ui/icons/VolumeUp";
+import VolumeOff from "@material-ui/icons/VolumeOff";
+import FormControl from "@material-ui/core/FormControl";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import IconButton from "@material-ui/core/IconButton";
+import HighlightOff from "@material-ui/icons/HighlightOff";
+import FormHelperText from "@material-ui/core/FormHelperText";
 
-const token = localStorage.getItem('accessToken');
+// let timeString = "00:00:00";
+
+const token = localStorage.getItem("accessToken");
 export default class StreamComponent extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +29,7 @@ export default class StreamComponent extends Component {
       isFormValid: true,
       isHovering: false,
       modalOpen: false,
-      Msg:'',
+      Msg: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handlePressKey = this.handlePressKey.bind(this);
@@ -41,29 +44,25 @@ export default class StreamComponent extends Component {
 
   handleExitUser() {
     // `/meetings/${this.props.meetingSeq}/kick/${this.props.user_seq}`,
-    
+
     return new Promise((resolve, reject) => {
       axios
-        .post(
-          process.env.REACT_APP_SERVER_URL +
-            `/meetings/${this.props.meetingSeq}/kick/32`,
-          {
-            headers: {
-              Authorization: 'Bearer ' + token,
-              'Content-Type': 'application/json',
-            },
-          }
-        )
+        .post(process.env.REACT_APP_SERVER_URL + `/meetings/${this.props.meetingSeq}/kick/32`, {
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
+          },
+        })
         .then((res) => {
           const STATUS = res.data.statusCode;
           resolve(res.data.statusCode);
           if (STATUS === 200) {
-            this.setState({ Msg:'강퇴완료' });
+            this.setState({ Msg: "강퇴완료" });
             console.log(STATUS);
           } else if (STATUS === 201) {
-            this.setState({ Msg:'강퇴완료' });
-          } else if (STATUS === 409) { 
-            this.setState({ Msg:'host가 아닙니다' });
+            this.setState({ Msg: "강퇴완료" });
+          } else if (STATUS === 409) {
+            this.setState({ Msg: "host가 아닙니다" });
           }
         })
         .catch((err) => {
@@ -108,7 +107,7 @@ export default class StreamComponent extends Component {
   }
 
   handlePressKey(event) {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       console.log(this.state.nickname);
       if (this.state.nickname.length >= 3 && this.state.nickname.length <= 20) {
         this.props.handleNickname(this.state.nickname);
@@ -123,32 +122,24 @@ export default class StreamComponent extends Component {
   render() {
     return (
       <div className="OT_widget-container">
-        {this.props.user !== undefined &&
-        this.props.user.getStreamManager() !== undefined ? (
+        {this.props.user !== undefined && this.props.user.getStreamManager() !== undefined ? (
           <div
             className="streamComponent"
             onMouseEnter={this.handlerMouseON}
             onMouseLeave={this.handlerMouseOff}
           >
             {/* {this.props.user.isAudioActive()?():()} */}
-            <OvVideoComponent
-              user={this.props.user}
-              mutedSound={this.state.mutedSound}
-            />
+            <OvVideoComponent user={this.props.user} mutedSound={this.state.mutedSound} />
             {this.props.user.isVideoActive() ? (
               <div className="video-username">{this.state.nickname}</div>
             ) : (
               <div className="video-camoff">{this.state.nickname}</div>
             )}
             <div className="video-time">02:48</div>
-            {this.props.user.type === 'remote' && this.props.local.host && (
+            {this.props.user.type === "remote" && this.props.local.host && (
               <div id="status-exiticons">
                 {this.state.isHovering && (
-                  <div
-                    id="exitIcon"
-                    onClick={this.openModal}
-                    style={{ cursor: 'pointer' }}
-                  >
+                  <div id="exitIcon" onClick={this.openModal} style={{ cursor: "pointer" }}>
                     <svg
                       width="27"
                       height="27"
@@ -166,25 +157,15 @@ export default class StreamComponent extends Component {
                   </div>
                 )}
 
-                <Modal
-                  open={this.state.modalOpen}
-                  close={this.closeModal}
-                  header=" "
-                >
+                <Modal open={this.state.modalOpen} close={this.closeModal} header=" ">
                   <div className="studyapply-modal-msg">
                     {this.state.nickname}을 강퇴하시겠습니까?
                   </div>
 
-                  <button
-                    className="studyapply-modal-go-to-mystudy"
-                    onClick={this.handleExitUser}
-                  >
+                  <button className="studyapply-modal-go-to-mystudy" onClick={this.handleExitUser}>
                     확인
                   </button>
-                  <button
-                    className="studyapply-modal-ok"
-                    onClick={this.closeModal}
-                  >
+                  <button className="studyapply-modal-ok" onClick={this.closeModal}>
                     취소
                   </button>
                 </Modal>
@@ -225,13 +206,7 @@ export default class StreamComponent extends Component {
                         d="M7.5 9.375H12.5V11.25C12.5 12.6307 11.3807 13.75 10 13.75C8.61929 13.75 7.5 12.6307 7.5 11.25V9.375Z"
                         fill="#FF4D4D"
                       />
-                      <rect
-                        x="7.5"
-                        y="6.875"
-                        width="5"
-                        height="1.25"
-                        fill="#FF4D4D"
-                      />
+                      <rect x="7.5" y="6.875" width="5" height="1.25" fill="#FF4D4D" />
                     </g>
                     <defs>
                       <clipPath id="clip0_1140_5144">
@@ -245,11 +220,7 @@ export default class StreamComponent extends Component {
             <div>
               {!this.props.user.isLocal() && (
                 <IconButton id="volumeButton" onClick={this.toggleSound}>
-                  {this.state.mutedSound ? (
-                    <VolumeOff color="secondary" />
-                  ) : (
-                    <VolumeUp />
-                  )}
+                  {this.state.mutedSound ? <VolumeOff color="secondary" /> : <VolumeUp />}
                 </IconButton>
               )}
             </div>

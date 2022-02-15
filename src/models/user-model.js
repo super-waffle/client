@@ -6,7 +6,7 @@ class UserModel {
   nickname;
   streamManager;
   type; // 'remote' | 'local'
-  host;
+  isHost;
   isMuted;
   isBlocked;
   studyTimeString;
@@ -19,7 +19,7 @@ class UserModel {
     this.nickname = "";
     this.streamManager = null;
     this.type = "local";
-    this.host = false;
+    this.isHost = false;
     this.isMuted = false;
     this.studyTimeString = "00:00:00";
   }
@@ -59,7 +59,7 @@ class UserModel {
   getStreamManager() {
     return this.streamManager;
   }
-  isHost() {
+  getIsHost() {
     return true;
   }
   isLocal() {
@@ -87,7 +87,7 @@ class UserModel {
   setNickname(nickname) {
     this.nickname = nickname;
   }
-  setHost(isHost) {
+  setIsHost(isHost) {
     this.host = isHost;
   }
   setType(type) {

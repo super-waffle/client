@@ -225,24 +225,24 @@ export default function Meetingrooms() {
           미팅룸 설명: {selectedMeeting.meetingDesc}
         </div>
 
-        <button
-          style={{
-            border: "none",
-            margin: "2rem",
-            backgroundColor: "#6667ab",
-            color: "#eeeeee",
+        <Link
+          to={{
+            pathname: `/videoRoomComponent`,
+            state: { meetingSeq: meetingSeq },
           }}
-          // onClick={enterMeeting}
         >
-          <Link
-            to={{
-              pathname: `/videoRoomComponent`,
-              state: { meetingSeq: meetingSeq },
+          <button
+            style={{
+              border: "none",
+              margin: "2rem",
+              backgroundColor: "#6667ab",
+              color: "#eeeeee",
             }}
+            // onClick={enterMeeting}
           >
             입실하기
-          </Link>
-        </button>
+          </button>
+        </Link>
         {/* {meetingSeq && <VideoRoomComponent meetingSeq={meetingSeq} />} */}
       </ApplicationModal>
     </main>
