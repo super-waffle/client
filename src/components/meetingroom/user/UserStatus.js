@@ -66,11 +66,12 @@ class UserStatus extends Component {
     // console.log(this.isHost);
     // console.log(this.index);
     this.changeVideo(!status);
-    if (this.isHost) {
-      this.subscribersCamStatusChangedByHost(this.index, status);
-    } else {
-      this.subscribersCamStatusChanged(this.index, status);
-    }
+    this.subscribersCamStatusChanged(this.index, status);
+    // if (this.isHost) {
+    //   this.subscribersCamStatusChangedByHost(this.index, status);
+    // } else {
+    //   this.subscribersCamStatusChanged(this.index, status);
+    // }
   }
   render() {
     return (
