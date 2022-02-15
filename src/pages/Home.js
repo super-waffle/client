@@ -1,22 +1,22 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
-import NavbarHome from '../components/navbarHome';
-import isLogin from '../utils/isLogin';
-import '../statics/css/home.css';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
+import NavbarHome from "../components/navbarHome";
+import isLogin from "../utils/isLogin";
+import "../statics/css/home/home.css";
 
 export default function Home() {
-  const TOKEN = localStorage.getItem('accessToken');
+  const TOKEN = localStorage.getItem("accessToken");
 
-  const [nickname, setNickname] = useState('');
-  const [email, setEmail] = useState('');
+  const [nickname, setNickname] = useState("");
+  const [email, setEmail] = useState("");
   const [profileImg, setProfileImg] = useState(null);
-  const [profileMsg, setProfileMsg] = useState('');
-  const imageURL = 'https://i6a301.p.ssafy.io:8080/images/' + profileImg;
+  const [profileMsg, setProfileMsg] = useState("");
+  const imageURL = "https://i6a301.p.ssafy.io:8080/images/" + profileImg;
 
   async function getUserInfo() {
     const response = await axios.get(
-      process.env.REACT_APP_SERVER_URL + '/users',
+      process.env.REACT_APP_SERVER_URL + "/users",
       {
         headers: {
           Authorization: `Bearer ${TOKEN}`,

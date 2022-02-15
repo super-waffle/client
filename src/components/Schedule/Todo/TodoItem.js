@@ -69,27 +69,79 @@ export default function TodoItem({ todo, dailyList, setDailyList, day }) {
       <div className="todo-item-block">
         <div className="todo-item-block__todo">
           {thisDone ? (
-            <img
+            // <img
+            //   className={`todo-item-block__checkbox ${
+            //     today === day ? "checkable" : "disable"
+            //   }`}
+            //   src="icons/todo/_todo-checked.svg"
+            //   alt=""
+            //   onClick={() => {
+            //     onClickDone();
+            //   }}
+            // />
+            <svg
               className={`todo-item-block__checkbox ${
                 today === day ? "checkable" : "disable"
               }`}
-              src="icons/todo/_todo-checked.svg"
-              alt=""
               onClick={() => {
                 onClickDone();
               }}
-            />
+              width="18"
+              height="18"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect x="1" y="1" width="18" height="18" rx="6" fill="#6667AB" />
+              <path
+                d="M6 11L9 13L14.5 7"
+                stroke="white"
+                strokeWidth="2.01011"
+              />
+              <rect
+                x="1"
+                y="1"
+                width="18"
+                height="18"
+                rx="6"
+                stroke="#6667AB"
+                strokeWidth="2"
+              />
+            </svg>
           ) : (
-            <img
+            // <img
+            //   className={`todo-item-block__checkbox ${
+            //     today === day ? "checkable" : "disable"
+            //   }`}
+            //   src="icons/todo/_todo-not-checked.svg"
+            //   alt=""
+            //   onClick={() => {
+            //     onClickDone();
+            //   }}
+            //   />
+            <svg
               className={`todo-item-block__checkbox ${
                 today === day ? "checkable" : "disable"
               }`}
-              src="icons/todo/_todo-not-checked.svg"
-              alt=""
               onClick={() => {
                 onClickDone();
               }}
-            />
+              width="18"
+              height="18"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="1"
+                y="1"
+                width="18"
+                height="18"
+                rx="6"
+                stroke="#CED4DA"
+                strokeWidth="2"
+              />
+            </svg>
           )}
 
           {wantEdit ? (

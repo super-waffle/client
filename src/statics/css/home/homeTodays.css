@@ -45,6 +45,7 @@
 
 .home-todays {
   font-family: "Pretendard";
+  padding-right: 7%;
 }
 .home-todays span {
   font-size: 16px;
@@ -53,26 +54,35 @@
   margin-left: 5px;
 }
 .home-todays .home-todays-top {
-  display: flex;
+  display: grid;
+  grid-template-columns: 4fr 5fr;
   margin-bottom: 8vh;
-  margin-right: 8%;
 }
 .home-todays .home-todays-top .home-todays-todos {
   padding-right: 20px;
+}
+.home-todays .home-todays-top .home-todays-todos button {
+  border: none;
+  background-color: var(--bgColor);
+  font-size: 12px;
+  color: var(--textColor-todo);
+  float: right;
+  padding-right: 15px;
+  padding-top: 6px;
 }
 .home-todays .home-todays-top .home-todays-todos .home-todays-todos-box {
   background: var(--bgColor);
   border: 1px solid var(--borderColor);
   box-sizing: border-box;
-  width: 24vw;
   height: 24vh;
   border-radius: 10px;
   margin-top: 6px;
+  padding: 10px 0;
+  overflow: auto;
 }
 .home-todays .home-todays-top .home-todays-goal-box {
   background: var(--bgColor);
   border: 1px solid var(--borderColor);
-  width: 32vw;
   height: 24vh;
   border-radius: 10px;
   margin-top: 6px;
@@ -80,20 +90,6 @@
 }
 .home-todays .home-todays-studyrooms {
   margin-bottom: 8vh;
-}
-.home-todays .home-todays-studyrooms .home-todays-studyrooms-row {
-  display: flex;
-}
-.home-todays .home-todays-studyrooms .home-todays-studyrooms-row .home-todays-studyrooms-box {
-  background: var(--bgColor);
-  border: 1px solid var(--borderColor);
-  box-sizing: border-box;
-  border-radius: 10px;
-  width: 50%;
-  height: 117px;
-  margin-bottom: 1%;
-  margin-top: 9px;
-  margin-right: 15px;
 }
 .home-todays .home-todays-meetingrooms .home-todays-meetingrooms-row {
   display: flex;

@@ -1,19 +1,20 @@
-import axios from 'axios';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import isLogin from '../utils/isLogin';
-import '../statics/css/settingsProfile.css';
+import axios from "axios";
+import { useCallback, useEffect, useRef, useState } from "react";
+import isLogin from "../utils/isLogin";
+import "../statics/css/settingsProfile.css";
 
 export default function SettingsProfile() {
-  const [nickname, setNickname] = useState('');
-  const [profileImg, setProfileImg] = useState('');
-  const [email, setEmail] = useState('');
-  const [profileMsg, setProfileMsg] = useState('');
-  const [timeGoal, setTimeGoal] = useState('');
-  const TOKEN = localStorage.getItem('accessToken');
+  const [nickname, setNickname] = useState("");
+  const [profileImg, setProfileImg] = useState("");
+  const [email, setEmail] = useState("");
+  const [profileMsg, setProfileMsg] = useState("");
+  const [timeGoal, setTimeGoal] = useState("");
+  const [prevTimeGoal, setPrevTimeGoal] = useState("");
+  const TOKEN = localStorage.getItem("accessToken");
 
   // 유저 정보 불러오기
   async function getUserInfo() {
-    const response = await axios.get('/users', {
+    const response = await axios.get("/users", {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
       },
@@ -23,7 +24,7 @@ export default function SettingsProfile() {
     setNickname(USER.userNickname);
     setEmail(USER.userEmail);
     setProfileMsg(USER.userProfileMsg);
-    setTimeGoal(USER.userTimeGoal);
+    setPrevTimeGoal(USER.userTimeGoal / 60);
   }
   useEffect(() => {
     if (isLogin()) {
@@ -33,8 +34,8 @@ export default function SettingsProfile() {
   }, []);
 
   // 업로드한 이미지 바로 보여주기
-  const [fileImage, setFileImage] = useState('');
-  const imageURL = 'https://i6a301.p.ssafy.io:8080/images/' + profileImg;
+  const [fileImage, setFileImage] = useState("");
+  const imageURL = "https://i6a301.p.ssafy.io:8080/images/" + profileImg;
   // console.log(fileImage);
 
   const saveFileImage = (e) => {
@@ -58,33 +59,33 @@ export default function SettingsProfile() {
       }
     };
     if (isActive) {
-      window.addEventListener('click', pageClickEvent);
+      window.addEventListener("click", pageClickEvent);
     }
     return () => {
-      window.removeEventListener('click', pageClickEvent);
+      window.removeEventListener("click", pageClickEvent);
     };
   }, [isActive]);
 
   // form data 형식으로 바꿔서 서버에 전달하기
   let data = new FormData();
 
-  data.append('timeGoal', timeGoal);
-  data.append('profileMessage', profileMsg);
-  data.append('profileImage', profileImg);
+  data.append("timeGoal", timeGoal * 60);
+  data.append("profileMessage", profileMsg);
+  data.append("profileImage", profileImg);
 
   let dataWithoutImg = new FormData();
-  dataWithoutImg.append('timeGoal', timeGoal);
-  dataWithoutImg.append('profileMessage', profileMsg);
+  dataWithoutImg.append("timeGoal", timeGoal * 60);
+  dataWithoutImg.append("profileMessage", profileMsg);
 
   // 이미지 삭제할 경우 서버에 전달
   const deleteFileImage = () => {
     URL.revokeObjectURL(fileImage);
-    setFileImage('');
+    setFileImage("");
     setProfileImg(null);
     setIsActive(!isActive);
     axios
       .patch(
-        process.env.REACT_APP_SERVER_URL + '/users/profile/image',
+        process.env.REACT_APP_SERVER_URL + "/users/profile/image",
         dataWithoutImg,
         {
           headers: {
@@ -101,9 +102,9 @@ export default function SettingsProfile() {
   const onClickUpdate = useCallback(() => {
     if (fileImage) {
       axios
-        .patch(process.env.REACT_APP_SERVER_URL + '/users', data, {
+        .patch(process.env.REACT_APP_SERVER_URL + "/users", data, {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${TOKEN}`,
           },
         })
@@ -113,9 +114,9 @@ export default function SettingsProfile() {
         });
     } else if (!fileImage) {
       axios
-        .patch(process.env.REACT_APP_SERVER_URL + '/users', dataWithoutImg, {
+        .patch(process.env.REACT_APP_SERVER_URL + "/users", dataWithoutImg, {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${TOKEN}`,
           },
         })
@@ -125,6 +126,7 @@ export default function SettingsProfile() {
         });
     }
   });
+  // console.log(timeGoal, prevTimeGoal);
   // console.log(nickname, email, profileImg, profileMsg, timeGoal);
   // console.log(fileImage);
   return (
@@ -144,10 +146,10 @@ export default function SettingsProfile() {
             </div>
             <input
               className="settings-profile__box-text__timegoal"
-              value={timeGoal}
-              onChange={useCallback((event) => {
+              defaultValue={prevTimeGoal}
+              onChange={(event) => {
                 setTimeGoal(event.target.value);
-              })}
+              }}
             />
             <div className="settings-profile__box-text__title">상태 메세지</div>
             <textarea
@@ -230,7 +232,7 @@ export default function SettingsProfile() {
             <div
               ref={dropdownRef}
               className={`profileImageEdit-dropdown ${
-                isActive ? 'active' : 'hidden'
+                isActive ? "active" : "hidden"
               }`}
             >
               <div className="profileImageEdit-dropdown-list">
