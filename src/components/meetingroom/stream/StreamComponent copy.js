@@ -44,9 +44,9 @@ export default class StreamComponent extends Component {
     
     return new Promise((resolve, reject) => {
       axios
-        .get(
+        .post(
           process.env.REACT_APP_SERVER_URL +
-            `/meetings/${this.props.meetingSeq}/kick/28`,
+            `/meetings/${this.props.meetingSeq}/kick/32`,
           {
             headers: {
               Authorization: 'Bearer ' + token,
@@ -71,7 +71,7 @@ export default class StreamComponent extends Component {
           reject(err);
         });
 
-      console.log('강퇴');
+      // console.log('강퇴');
       this.closeModal();
     });
   }

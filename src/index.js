@@ -25,6 +25,7 @@ import SettingsStudy from './pages/SettingsStudy_refac';
 import SettingsMeeting from './pages/SettingsMeeting';
 import SettingsMeetingFavorite from './pages/SettingsMeetingFavorite';
 import VideoRoomComponentCopy from './components/meetingroom/VideoRoomComponent copy';
+import VideoRoomComponentChange from './components/meetingroom/VideoRoomComponent change'
 import VideoRoomComponent from './components/meetingroom/VideoRoomComponent';
 import SettingsStudyApplied from "./pages/SettingsStudyApplied";
 
@@ -71,6 +72,10 @@ ReactDOM.render(
             <Route
               path="videoRoomComponentCopy"
               element={isLogin() ? <VideoRoomComponentCopy /> : <Login />}
+            />
+            <Route
+              path="VideoRoomComponentChange"
+              element={isLogin() ? <VideoRoomComponentChange /> : <Login />}
             />
             <Route
               path="settings"

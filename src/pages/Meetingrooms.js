@@ -143,9 +143,17 @@ export default function Meetingrooms() {
           <Link
             className="menu"
             to={{ pathname: "/videoRoomComponentCopy" }}
-            onClick={"window.location.reload();"}
+            // onClick={"window.location.reload();"}
           >
             copyfile
+          </Link>
+          <br />
+          <Link
+            className="menu"
+            to={{ pathname: "/VideoRoomComponentChange" }}
+            onClick={"window.location.reload();"}
+          >
+            change link
           </Link>
         </div>
         <div className="studyrecuit-middle">
