@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { Row, Col, Container } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import "../../statics/css/todayStudy.css";
+import { useState, useEffect } from 'react';
+import { Row, Col, Container } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import '../../statics/css/todayStudy.css';
 
 export default function Todaystudy({ weekly }) {
   const selectedDay = useSelector((state) => state.schedule.selectedDay);
@@ -15,21 +15,19 @@ export default function Todaystudy({ weekly }) {
     } catch {
       setDailyStudies([]);
     }
-  }, [selectedDay]);
-  // console.log(dailyStudies);
+  }, [selectedDay, weekly]);
   return (
     <Container className="schedule-today-study">
-      <div className="schedule-today-study-header">
-        {/* {parseInt(JSON.parse(selectedDay).split("-")[2])}일의 */}
-        스터디 일정
-      </div>
+      <div className="schedule-today-study-header">스터디 일정</div>
       <Row>
         {dailyStudies.length !== 0 ? (
           dailyStudies.map((study) => (
             <Col
               key={study.studySeq}
               className="schedule-today-study-box"
-              // style={{ margin: "0.5rem", maxWidth: "20rem" }}
+              sm={6}
+              md={6}
+              lg={6}
             >
               <div className="schedule-today-study-contents">
                 <div className="schedule-today-study-contents-header">
@@ -76,59 +74,13 @@ export default function Todaystudy({ weekly }) {
                   </div>
                 </div>
               </div>
-              {/* <Card
-                className="schedule-today-study-contents"
-                // style={{
-                  //   margin: "0.5rem",
-                  //   padding: "0.5rem",
-                  // }}
-              >
-                <Card.Title
-                  className="schedule-today-study-contents__title"
-                  // style={{
-                  //   margin: "0.5rem",
-                  //   fontWeight: "bold",
-                  // }}
-                >
-                  {study.title}
-                </Card.Title>
-
-                <Card.Subtitle
-                  style={{ margin: "0rem 0rem", padding: "0.5rem" }}
-                >
-                  <p>
-                    {study.startTime.slice(0, 5)}~{study.endTime.slice(0, 5)}
-                  </p>
-                  <p>{study.shortDescription}</p>
-                  <p>
-                    현원{study.isAttend} #{study.categoryName}
-                  </p>
-                </Card.Subtitle> */}
-              {/* </Card> */}
             </Col>
           ))
         ) : (
-          // <Col style={{ margin: "0.5rem" }}>
-          <Col className="schedule-today-study-box">
+          <Col className="schedule-today-study-box" sm={6} md={6} lg={6}>
             <div className="schedule-today-study-contents">
               <div className="no-contents">스터디 일정이 존재하지 않습니다</div>
             </div>
-            {/* <Card
-              style={{
-                margin: "0.5rem",
-                padding: "0.5rem",
-              }}
-            >
-              <Card.Title
-                style={{
-                  textAlign: "center",
-                  padding: "2rem",
-                  fontFamily: "pretendard",
-                }}
-              >
-                스터디 일정이 존재하지 않습니다.
-              </Card.Title>
-            </Card> */}
           </Col>
         )}
       </Row>

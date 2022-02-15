@@ -3,18 +3,10 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../statics/css/diary.css';
 import { useSelector } from 'react-redux';
-import { set } from 'date-fns/esm';
-
-// 1. 이미지 선택 안했을 때 분기처리
-// 2. 수정 시 텍스트 에러 기존 데이터 안들어감 => done
-// 3. 수정 화면에서 날짜변경 시 텍스트 변경 안됨 => donne
-// ---------------
-// [TODO]: 4. 미리보기 화면
 
 export default function Diary(props) {
   const URL = 'https://api.thecatapi.com/v1/images/search';
   const token = localStorage.getItem('accessToken');
-
   const selectedDay = useSelector((state) => state.schedule.selectedDay);
   const today = useSelector((state) => state.schedule.today);
   const [catURL, setCatURL] = useState('');
@@ -22,14 +14,23 @@ export default function Diary(props) {
   const [toEdit, setToEdit] = useState(false);
   const [diaryData, setDiaryData] = useState('');
   const [todayDiary, setTodayDiary] = useState('');
+  const [preview, setPreview] = useState(''); // 미리보기 이미지
+  const [diaryImg, setDiaryImg] = useState(''); // 이미지 파일 이름
+  //diaryData.diaryImg : 이미지 불러올때 사용
 
-  //이미지 업로드 및 미리보기를 위한 consts
-  const [preview, setPreview] = useState('');
-  // const [fileImage, setFileImage] = useState('');
-  const [diaryImage, setDiaryImg] = useState('');
-  const [diaryImgURL, setDiaryImgURL] = useState('');
-  // const diaryImgURL =
-  //   "https://i6a301.p.ssafy.io:8080/images/" + diaryData.diaryImg;
+  let data = new FormData();
+  if (diaryImg) {
+    data.append('image', diaryImg);
+  }
+  data.append('dateInfo.date', JSON.parse(selectedDay));
+  data.append('contentInfo.content', todayDiary ? todayDiary : null);
+
+  let updateData = new FormData();
+  if (preview) {
+    updateData.append('image', diaryImg ? diaryImg : null);
+  }
+  updateData.append('contentInfo.content', todayDiary ? todayDiary : null);
+
   const getCatImg = async () => {
     axios.get(URL).then((response) => setCatURL(response.data[0]['url']));
   };
@@ -68,43 +69,14 @@ export default function Diary(props) {
   }, [selectedDay]);
   useEffect(() => {
     getDiaryData();
+    window.URL.revokeObjectURL(preview);
+    setPreview(() => null);
   }, [selectedDay]);
-  useEffect(() => {
-    if (diaryData) {
-      setDiaryImgURL(
-        () => `https://i6a301.p.ssafy.io:8080/images/${diaryData.diaryImg}`
-      );
-    }
-  }, [diaryData, selectedDay]);
-  const previewImgEncoder = (fileBlob) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(fileBlob);
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        setPreview(() => reader.result);
-        resolve();
-      };
-    });
-  };
   const saveFileImage = (e) => {
-    if (toEdit) {
-      setDiaryImg(() => e.target.files[0]);
-    }
-    setPreview(() => previewImgEncoder(e.target.files[0]));
+    setDiaryImg(() => e.target.files[0]);
+    setPreview(() => window.URL.createObjectURL(e.target.files[0]));
   };
 
-  let data = new FormData();
-  // 삼항연산자로 null값처리
-  if (diaryImage) {
-    data.append('image', diaryImage);
-  } else {
-    data.append('image', null);
-  }
-  data.append('dateInfo.date', JSON.parse(selectedDay));
-  data.append('contentInfo.content', todayDiary);
-
-  let updateData = new FormData();
-  updateData.append('image', diaryImage);
   const createDiary = () => {
     axios
       .post(process.env.REACT_APP_SERVER_URL + '/diaries', data, {
@@ -114,10 +86,11 @@ export default function Diary(props) {
         },
       })
       .then((res) => {
-        console.log(res);
-        console.log(data);
         setToEdit(() => false);
+        window.URL.revokeObjectURL(preview);
         setPreview(() => null);
+        setDiaryImg(() => '');
+        setDiaryData(() => null);
       });
   };
 
@@ -125,7 +98,7 @@ export default function Diary(props) {
     axios
       .patch(
         process.env.REACT_APP_SERVER_URL + `/diaries/${diaryData.diarySeq}`,
-        data,
+        updateData,
         {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -135,18 +108,20 @@ export default function Diary(props) {
       )
       .then((res) => {
         setToEdit(() => false);
-        setPreview(() => null);
+        window.URL.revokeObjectURL(preview);
+        // setDiaryImg(() => '');
+        // setDiaryData(() => null);
       });
   };
 
   const changeDay = () => {
     setToEdit(() => false);
+    window.URL.revokeObjectURL(preview);
     setPreview(() => null);
+    setDiaryImg(() => '');
+    setDiaryData(() => null);
   };
   useEffect(() => changeDay(), [selectedDay]);
-  // console.log(toEdit);
-  // console.log(diaryData);
-  console.log(data);
   return (
     <div className="diary">
       <div className="diary-header">하루 기록</div>
@@ -156,7 +131,13 @@ export default function Diary(props) {
           <Col className="diary-box__img" sm={4} md={4} lg={4}>
             {!toEdit ? (
               <div className="diary-box__img-file-wrapper ">
-                <img src={diaryImgURL} alt="" />
+                <img
+                  src={
+                    process.env.REACT_APP_SERVER_URL +
+                    `/images/${diaryData.diaryImg}`
+                  }
+                  alt=""
+                />
               </div>
             ) : (
               <>
@@ -164,7 +145,13 @@ export default function Diary(props) {
                   {preview ? (
                     <img src={preview} alt="" />
                   ) : (
-                    <img src={diaryImgURL} alt="" />
+                    <img
+                      src={
+                        process.env.REACT_APP_SERVER_URL +
+                        `/images/${diaryData.diaryImg}`
+                      }
+                      alt=""
+                    />
                   )}
                 </div>
                 <input
@@ -181,7 +168,8 @@ export default function Diary(props) {
           <Col className="diary-box__img" sm={4} md={4} lg={4}>
             {!toEdit ? (
               <div className="diary-box__img-file-wrapper ">
-                <img src={catURL} alt="" />
+                {preview && <img src={preview} alt="" />}
+                {!preview && <img src={catURL} alt="" />}
               </div>
             ) : (
               <>

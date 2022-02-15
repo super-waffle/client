@@ -1,39 +1,40 @@
-import { Container, Col, Row, Card } from "react-bootstrap";
-import { useEffect, useState, useCallback } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { Container, Col, Row, Card } from 'react-bootstrap';
+import { useEffect, useState, useCallback } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-import ApplicationModal from "../components/applicationModal";
-import CategorySelect from "../components/categorySelect";
-import Paginator from "../components/paginator";
-import "../statics/css/studyRecruit.css";
-import isLogin from "../utils/isLogin";
-import VideoRoomComponent from "../components/meetingroom/VideoRoomComponent";
+import ApplicationModal from '../components/applicationModal';
+import CategorySelect from '../components/categorySelect';
+import Paginator from '../components/paginator';
+import '../statics/css/studyRecruit.css';
+import isLogin from '../utils/isLogin';
+import VideoRoomComponent from '../components/meetingroom/VideoRoomComponent';
 
 const MeetingroomCard = ({ meeting, openModal, setMeetingSeq }) => {
-  const meetingroomImg = "https://i6a301.p.ssafy.io:8080/images/" + meeting.meetingImg;
-  const defaultImg = "images/meetingroom.png";
+  const meetingroomImg =
+    'https://i6a301.p.ssafy.io:8080/images/' + meeting.meetingImg;
+  const defaultImg = 'images/meetingroom.png';
   const sendMeetingSeq = () => {
     setMeetingSeq(meeting.meetingSeq);
   };
   return (
     <Col
       lg={3}
-      style={{ marginBottom: "0.5rem", cursor: "pointer" }}
+      style={{ marginBottom: '0.5rem', cursor: 'pointer' }}
       onClick={() => {
         openModal();
         sendMeetingSeq();
       }}
     >
-      <Card style={{ marginBottom: "0.5rem" }}>
+      <Card style={{ marginBottom: '0.5rem' }}>
         <Card.Img
-          style={{ maxHeight: "10rem" }}
+          style={{ maxHeight: '10rem' }}
           src={meeting.meetingImg ? meetingroomImg : defaultImg}
         />
       </Card>
       <div
         style={{
-          fontFamily: "pretendard",
+          fontFamily: 'pretendard',
         }}
       >
         {meeting.meetingTitle}
@@ -43,15 +44,15 @@ const MeetingroomCard = ({ meeting, openModal, setMeetingSeq }) => {
 };
 
 export default function Meetingrooms() {
-  const TOKEN = localStorage.getItem("accessToken");
+  const TOKEN = localStorage.getItem('accessToken');
   const navigate = useNavigate();
   const [category, setCategory] = useState(0);
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState('');
   const [postData, setPostData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
-  const [meetingSeq, setMeetingSeq] = useState("");
-  const [selectedMeeting, setSelectedMeeting] = useState("");
+  const [meetingSeq, setMeetingSeq] = useState('');
+  const [selectedMeeting, setSelectedMeeting] = useState('');
 
   useEffect(() => {
     getMeetingDetails();
@@ -70,7 +71,7 @@ export default function Meetingrooms() {
   const onClickSearch = () => {
     if (isLogin) {
       axios
-        .get("/studies?page=1&type=" + category + "&key=" + searchInput, {
+        .get('/studies?page=1&type=' + category + '&key=' + searchInput, {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
@@ -85,7 +86,7 @@ export default function Meetingrooms() {
     }
   };
   const onKeyEnter = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       onClickSearch();
     }
   };
@@ -95,11 +96,19 @@ export default function Meetingrooms() {
         setCategory(0);
       }
       axios
-        .get("/meetings?page=" + currentPage + "&type=" + category + "&key=" + searchInput, {
-          headers: {
-            Authorization: `Bearer ${TOKEN}`,
-          },
-        })
+        .get(
+          '/meetings?page=' +
+            currentPage +
+            '&type=' +
+            category +
+            '&key=' +
+            searchInput,
+          {
+            headers: {
+              Authorization: `Bearer ${TOKEN}`,
+            },
+          }
+        )
         .then((res) => {
           let data = res.data.data;
           setPostData((prevState) => ({
@@ -110,11 +119,14 @@ export default function Meetingrooms() {
     }
   }, [currentPage, category, searchInput]);
   async function getMeetingDetails() {
-    const response = await axios.get(process.env.REACT_APP_SERVER_URL + `/meetings/${meetingSeq}`, {
-      headers: {
-        Authorization: `Bearer ` + localStorage.getItem("accessToken"),
-      },
-    });
+    const response = await axios.get(
+      process.env.REACT_APP_SERVER_URL + `/meetings/${meetingSeq}`,
+      {
+        headers: {
+          Authorization: `Bearer ` + localStorage.getItem('accessToken'),
+        },
+      }
+    );
     let data = response.data;
     setSelectedMeeting(() => data);
   }
@@ -122,7 +134,7 @@ export default function Meetingrooms() {
     axios
       .post(process.env.REACT_APP_SERVER_URL + `/meetings/${meetingSeq}/room`, {
         headers: {
-          Authorization: `Bearer ` + localStorage.getItem("accessToken"),
+          Authorization: `Bearer ` + localStorage.getItem('accessToken'),
         },
       })
       .then()
@@ -131,19 +143,21 @@ export default function Meetingrooms() {
       });
   }
   return (
-    <main style={{ padding: "1rem 0" }}>
+    <main style={{ padding: '1rem 0' }}>
       <div className="studyrecruit">
         <div className="studyrecruit-heading">
           <span className="studyrecruit-h1">자유열람실</span>
-          <span className="studyrecruit-h2">나와 맞는 자유열람실을 찾아보세요</span>
-          <Link className="menu" to={{ pathname: "/videoRoomComponent" }}>
+          <span className="studyrecruit-h2">
+            나와 맞는 자유열람실을 찾아보세요
+          </span>
+          <Link className="menu" to={{ pathname: '/videoRoomComponent' }}>
             {/* onClick={"window.location.reload();"} */} openvidu
           </Link>
           <br />
           <Link
             className="menu"
-            to={{ pathname: "/videoRoomComponentCopy" }}
-            onClick={"window.location.reload();"}
+            to={{ pathname: '/videoRoomComponentCopy' }}
+            onClick={'window.location.reload();'}
           >
             copyfile
           </Link>
@@ -175,11 +189,14 @@ export default function Meetingrooms() {
               </svg>
             </div>
           </div>
-          <button className="studyrecruit-create" onClick={() => navigate("/settings/meeting")}>
+          <button
+            className="studyrecruit-create"
+            onClick={() => navigate('/settings/meeting')}
+          >
             내 열람실 바로가기
           </button>
         </div>
-        <Container style={{ marginTop: "0.5rem", padding: "0rem" }}>
+        <Container style={{ marginTop: '0.5rem', padding: '0rem' }}>
           <Row className="studyrecruit-board">
             {postData.data &&
               postData.data.map((meeting) => (
@@ -199,30 +216,30 @@ export default function Meetingrooms() {
       </div>
 
       <ApplicationModal open={modalOpen} close={closeModal}>
-        <div style={{ textAlign: "left", padding: "0 20%" }}>
+        <div style={{ textAlign: 'left', padding: '0 20%' }}>
           카테고리: {selectedMeeting.categoryName}
         </div>
-        <div style={{ textAlign: "left", padding: "0 20%" }}>
+        <div style={{ textAlign: 'left', padding: '0 20%' }}>
           호스트 이름: {selectedMeeting.hostName}
         </div>
-        <div style={{ textAlign: "left", padding: "0 20%" }}>
+        <div style={{ textAlign: 'left', padding: '0 20%' }}>
           카메라 규칙: {selectedMeeting.meetingCamType}
         </div>
-        <div style={{ textAlign: "left", padding: "0 20%" }}>
+        <div style={{ textAlign: 'left', padding: '0 20%' }}>
           현재 인원: {selectedMeeting.meetingHeadcount} / 12
         </div>
-        <div style={{ textAlign: "left", padding: "0 20%" }}>
+        <div style={{ textAlign: 'left', padding: '0 20%' }}>
           미팅룸 이름: {selectedMeeting.meetingTitle}
         </div>
-        <div style={{ textAlign: "left", padding: "0 20%" }}>
+        <div style={{ textAlign: 'left', padding: '0 20%' }}>
           미팅룸 설명: {selectedMeeting.meetingDesc}
         </div>
         <button
           style={{
-            border: "none",
-            margin: "2rem",
-            backgroundColor: "#6667ab",
-            color: "#eeeeee",
+            border: 'none',
+            margin: '2rem',
+            backgroundColor: '#6667ab',
+            color: '#eeeeee',
           }}
           onClick={enterMeeting}
         >
