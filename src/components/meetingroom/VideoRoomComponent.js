@@ -11,6 +11,7 @@ import UserModel from "../../models/user-model";
 import ToolbarComponent from "./toolbar/ToolbarComponent";
 import TimeComponent from "./time/TimeComponent";
 import UserComponent from "./user/UserComponent";
+import IntervalComponent from "./interval/IntervalComponent";
 
 import "../../statics/css/meetingroom.css";
 
@@ -85,6 +86,8 @@ class VideoRoomComponent extends Component {
     this.setTimeString = this.setTimeString.bind(this);
     this.subscribersMuteStatusChanged = this.subscribersMuteStatusChanged.bind(this);
     this.subscribersCamStatusChanged = this.subscribersCamStatusChanged.bind(this);
+    this.sendStudyTimeString = this.sendStudyTimeString.bind(this);
+    this.getSignalTimeString = this.getSignalTimeString.bind(this);
   }
   isHostfun() {
     console.log(1);
@@ -230,6 +233,7 @@ class VideoRoomComponent extends Component {
     this.sendSignalUserChanged({
       isScreenShareActive: localUser.isScreenShareActive(),
     });
+    this.getSignalTimeString();
 
     this.setState(
       {
@@ -238,6 +242,7 @@ class VideoRoomComponent extends Component {
       },
       () => {
         this.state.localUser.getStreamManager().on("streamPlaying", (e) => {
+          //다른사용자들한테 듣는거같음
           this.updateLayout();
           publisher.videos[0].video.parentElement.classList.remove("custom-class");
         });
@@ -282,8 +287,31 @@ class VideoRoomComponent extends Component {
         this.setState({ timeString: string });
         // console.log(this.state.timeString);
       }
+
+      this.sendStudyTimeString();
     }
   }
+
+  sendStudyTimeString() {
+    this.setState({ message: "" });
+    if (localUser && this.state.timeString) {
+      let studyTimeString = this.state.timeString;
+      // let message = this.state.message.replace(/ +(?= )/g, "");
+      if (studyTimeString != "00:00:00") {
+        const data = {
+          studyTimeString: studyTimeString,
+          nickname: this.state.localUser.getNickname(),
+          streamId: this.state.localUser.getStreamManager().stream.streamId,
+        };
+        this.state.session.signal({
+          data: JSON.stringify(data),
+          type: "timeString",
+        });
+        console.log("시간보내기 " + this.state.timeString);
+      }
+    }
+  }
+
   setPause(isPausedCom) {
     // this.setState({ isPaused: isPausedCom });
     this.state.isPaused = isPausedCom;
@@ -666,17 +694,42 @@ class VideoRoomComponent extends Component {
     console.log("video subscriber 값 변경");
     // console.log(remotes);
     const remoteUsers = this.state.subscribers.map((sub) => sub);
-    console.log(remoteUsers);
-    console.log(key + " " + status);
+    // console.log(remoteUsers);
+    // console.log(key + " " + status);
     remoteUsers[key].setIsBlocked(status);
     remoteUsers[key].setVideoActive(!status);
     this.setState({ subscribers: remoteUsers });
-    console.log("원격스트림");
-    console.log(this.state.subscribers[key]);
-    console.log(localUser);
+    // console.log("원격스트림");
+    // console.log(this.state.subscribers[key]);
+    // console.log(localUser);
     // localUser.getStreamManager().publishVideo(localUser.isVideoActive());
     remoteUsers[key].getStreamManager().subscribeToVideo(!status);
   }
+
+  getSignalTimeString() {
+    console.log("들어오는지..");
+    localUser.getStreamManager().stream.session.on("signal:timeString", (event) => {
+      console.log("ㅠㅠ");
+      const data = JSON.parse(event.data);
+      const remoteUsers = this.state.subscribers;
+      remoteUsers.forEach((remote) => {
+        if (remote.getNickname() == data.nickname) {
+          remote.setStudyTimeString(data.studyTimeString);
+        }
+      });
+      this.setState({ subscribers: remoteUsers });
+    });
+  }
+
+  // componentDidUpdate = (prevProps, prevState) => {
+  //   //componentDidUpdate가 props의 변과를 감지한다
+  //   console.log("********************************");
+  //   // console.log("비교" + this.props.timeString + " " + prevProps.timeString);
+  //   if (this.props.timeString !== prevProps.timeString) {
+  //     //하위컴포넌트가 받은 props값 적어주기(둘다)
+  //     console.log("~~~~~~~~~~~~~~~~~~~~~~~~~");
+  //   }
+  // };
 
   render() {
     const mySessionId = this.state.mySessionId;
@@ -693,6 +746,8 @@ class VideoRoomComponent extends Component {
             showDialog={this.state.showExtensionDialog}
             cancelClicked={this.closeDialogExtension}
           />
+
+          <IntervalComponent getSignalTimeString={this.getSignalTimeString} />
           <div id="layout" className="meeting-room-video">
             {/* publisher */}
             {localUser !== undefined && localUser.getStreamManager() !== undefined && (
@@ -709,7 +764,7 @@ class VideoRoomComponent extends Component {
             {this.state.subscribers.map((sub, i) => (
               <div key={i} className="OT_root OT_publisher custom-class" id="remoteUsers">
                 <StreamComponent
-                  timeString={this.state.timeString}
+                  timeString={sub.getStudyTimeString()}
                   cumTime={this.state.time}
                   user={sub}
                   streamId={sub.streamManager.stream.streamId}

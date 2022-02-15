@@ -27,9 +27,9 @@ class UserComponent extends Component {
   }
 
   subscribersCamStatusChanged(key, status) {
-    console.log("remotes ");
+    // console.log("remotes ");
     // console.log(this.props.remote);
-    console.log(key, status);
+    // console.log(key, status);
     // const result = this.remotes.map((sub, index) => index);
     // console.log(result);
     this.props.subscribersCamStatusChanged(key, status);

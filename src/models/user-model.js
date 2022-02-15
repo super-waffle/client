@@ -9,6 +9,7 @@ class UserModel {
   host;
   isMuted;
   isBlocked;
+  studyTimeString;
 
   constructor() {
     this.connectionId = "";
@@ -20,6 +21,7 @@ class UserModel {
     this.type = "local";
     this.host = false;
     this.isMuted = false;
+    this.studyTimeString = "00:00:00";
   }
 
   isAudioActive() {
@@ -48,6 +50,10 @@ class UserModel {
 
   getIsBlocked() {
     return this.isBlocked;
+  }
+
+  getStudyTimeString() {
+    return this.studyTimeString;
   }
 
   getStreamManager() {
@@ -96,6 +102,10 @@ class UserModel {
 
   setIsBlocked(isBlocked) {
     this.isBlocked = isBlocked;
+  }
+
+  setStudyTimeString(timeString) {
+    this.studyTimeString = timeString;
   }
 }
 
