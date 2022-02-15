@@ -17,22 +17,12 @@ class UserComponent extends Component {
     this.camStatusChanged = this.camStatusChanged.bind(this);
     this.micStatusChanged = this.micStatusChanged.bind(this);
   }
-  subscribersMuteStatusChanged(key, status) {
-    // console.log("remotes ");
-    // console.log(this.props.remote);
-    // console.log(key, status);
-    // const result = this.remotes.map((sub, index) => index);
-    // console.log(result);
-    this.props.subscribersMuteStatusChanged(key, status);
+  subscribersMuteStatusChanged(key, status, nickname) {
+    this.props.subscribersMuteStatusChanged(key, status, nickname);
   }
 
-  subscribersCamStatusChanged(key, status) {
-    // console.log("remotes ");
-    // console.log(this.props.remote);
-    // console.log(key, status);
-    // const result = this.remotes.map((sub, index) => index);
-    // console.log(result);
-    this.props.subscribersCamStatusChanged(key, status);
+  subscribersCamStatusChanged(key, status, nickname) {
+    this.props.subscribersCamStatusChanged(key, status, nickname);
   }
 
   micStatusChanged() {

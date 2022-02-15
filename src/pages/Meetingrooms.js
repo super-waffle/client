@@ -135,25 +135,6 @@ export default function Meetingrooms() {
         <div className="studyrecruit-heading">
           <span className="studyrecruit-h1">자유열람실</span>
           <span className="studyrecruit-h2">나와 맞는 자유열람실을 찾아보세요</span>
-          <Link className="menu" to={{ pathname: "/videoRoomComponent" }}>
-            {/* onClick={"window.location.reload();"} */} openvidu
-          </Link>
-          <br />
-          <Link
-            className="menu"
-            to={{ pathname: "/videoRoomComponentCopy" }}
-            // onClick={"window.location.reload();"}
-          >
-            copyfile
-          </Link>
-          <br />
-          <Link
-            className="menu"
-            to={{ pathname: "/VideoRoomComponentChange" }}
-            onClick={"window.location.reload();"}
-          >
-            change link
-          </Link>
         </div>
         <div className="studyrecuit-middle">
           <div className="studyrecruit-search">

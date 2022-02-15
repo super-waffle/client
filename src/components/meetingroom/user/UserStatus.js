@@ -39,7 +39,7 @@ class UserStatus extends Component {
   subscribersMuteStatusChanged(key, status) {
     // console.log(this.user.audioActive);
     // console.log(this.user.audioActive);
-    this.props.subscribersMuteStatusChanged(key, status);
+    this.props.subscribersMuteStatusChanged(key, status, this.user.nickname);
   }
   subscribersMuteStatusChangedByHost(key, status) {}
   subscribersMute(key, status) {
@@ -48,16 +48,12 @@ class UserStatus extends Component {
     // console.log(this.isHost);
     // console.log(this.index);
     this.changeAudio(!status);
-    if (this.isHost) {
-      this.subscribersMuteStatusChangedByHost(this.index, status);
-    } else {
-      this.subscribersMuteStatusChanged(this.index, status);
-    }
+    this.subscribersMuteStatusChanged(this.index, status);
   }
   subscribersCamStatusChanged(key, status) {
     // console.log(this.user.audioActive);
     // console.log(this.user.audioActive);
-    this.props.subscribersCamStatusChanged(key, status);
+    this.props.subscribersCamStatusChanged(key, status, this.user.nickname);
   }
   subscribersCamStatusChangedByHost(key, status) {}
   subscribersCam(key, status) {

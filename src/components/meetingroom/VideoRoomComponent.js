@@ -107,6 +107,10 @@ class VideoRoomComponent extends Component {
     this.sendSignalUserKicked = this.sendSignalUserKicked.bind(this);
     this.getSignalUserKicked = this.getSignalUserKicked.bind(this);
     // this.changeKickStatus = this.changeKickStatus.bind(this);
+    this.sendSignalAudioBlocked = this.sendSignalAudioBlocked.bind(this);
+    this.getSignalAudioBlocked = this.getSignalAudioBlocked.bind(this);
+    this.sendSignalVideoBlocked = this.sendSignalVideoBlocked.bind(this);
+    this.getSignalVideoBlocked = this.getSignalVideoBlocked.bind(this);
   }
   // isHostfun() {
   //   console.log(1);
@@ -262,6 +266,8 @@ class VideoRoomComponent extends Component {
     });
     this.getSignalTimeString();
     this.getSignalUserKicked();
+    this.getSignalAudioBlocked();
+    this.getSignalVideoBlocked();
 
     this.setState(
       {
@@ -697,31 +703,39 @@ class VideoRoomComponent extends Component {
     }
   }
 
-  subscribersMuteStatusChanged(key, status) {
-    // console.log("subscriber 값 변경");
-    // console.log(remotes);
-    const remoteUsers = this.state.subscribers.map((sub) => sub);
-    // console.log(remoteUsers);
-    // console.log(key + " " + status);
-    remoteUsers[key].setIsMuted(status);
-    this.setState({ subscribers: remoteUsers });
-    // console.log(this.state.subscribers[key]);
+  subscribersMuteStatusChanged(key, status, nickname) {
+    if (this.state.isHost) {
+      this.sendSignalAudioBlocked(nickname);
+    } else {
+      // console.log("subscriber 값 변경");
+      // console.log(remotes);
+      const remoteUsers = this.state.subscribers.map((sub) => sub);
+      // console.log(remoteUsers);
+      // console.log(key + " " + status);
+      remoteUsers[key].setIsMuted(status);
+      this.setState({ subscribers: remoteUsers });
+      // console.log(this.state.subscribers[key]);
+    }
   }
 
-  subscribersCamStatusChanged(key, status) {
-    console.log("video subscriber 값 변경");
-    // console.log(remotes);
-    const remoteUsers = this.state.subscribers.map((sub) => sub);
-    // console.log(remoteUsers);
-    // console.log(key + " " + status);
-    remoteUsers[key].setIsBlocked(status);
-    remoteUsers[key].setVideoActive(!status);
-    this.setState({ subscribers: remoteUsers });
-    // console.log("원격스트림");
-    // console.log(this.state.subscribers[key]);
-    // console.log(localUser);
-    // localUser.getStreamManager().publishVideo(localUser.isVideoActive());
-    remoteUsers[key].getStreamManager().subscribeToVideo(!status);
+  subscribersCamStatusChanged(key, status, nickname) {
+    if (this.state.isHost) {
+      this.sendSignalVideoBlocked(nickname);
+    } else {
+      console.log("video subscriber 값 변경");
+      // console.log(remotes);
+      const remoteUsers = this.state.subscribers.map((sub) => sub);
+      // console.log(remoteUsers);
+      // console.log(key + " " + status);
+      remoteUsers[key].setIsBlocked(status);
+      remoteUsers[key].setVideoActive(!status);
+      this.setState({ subscribers: remoteUsers });
+      // console.log("원격스트림");
+      // console.log(this.state.subscribers[key]);
+      // console.log(localUser);
+      // localUser.getStreamManager().publishVideo(localUser.isVideoActive());
+      remoteUsers[key].getStreamManager().subscribeToVideo(!status);
+    }
   }
 
   sendStudyTimeString() {
@@ -782,6 +796,51 @@ class VideoRoomComponent extends Component {
         this.setState({
           isKicked: true,
         });
+      }
+    });
+  }
+
+  sendSignalAudioBlocked(nickname) {
+    if (localUser) {
+      const data = {
+        nickname: nickname,
+        streamId: this.state.localUser.getStreamManager().stream.streamId,
+      };
+      this.state.session.signal({
+        data: JSON.stringify(data),
+        type: "audioBlock",
+      });
+    }
+  }
+
+  getSignalAudioBlocked() {
+    localUser.getStreamManager().stream.session.on("signal:audioBlock", (event) => {
+      const data = JSON.parse(event.data);
+      if (localUser.getNickname() == data.nickname) {
+        this.micStatusChanged();
+        // console.log("여기는옴 겟");
+      }
+    });
+  }
+
+  sendSignalVideoBlocked(nickname) {
+    if (localUser) {
+      const data = {
+        nickname: nickname,
+        streamId: this.state.localUser.getStreamManager().stream.streamId,
+      };
+      this.state.session.signal({
+        data: JSON.stringify(data),
+        type: "videoBlock",
+      });
+    }
+  }
+
+  getSignalVideoBlocked() {
+    localUser.getStreamManager().stream.session.on("signal:videoBlock", (event) => {
+      const data = JSON.parse(event.data);
+      if (localUser.getNickname() == data.nickname) {
+        this.camStatusChanged();
       }
     });
   }
