@@ -1,41 +1,47 @@
-import { Row, Col } from "react-bootstrap";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import "../../statics/css/diary.css";
-import { useSelector } from "react-redux";
+import { Row, Col } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import '../../statics/css/diary.css';
+import { useSelector } from 'react-redux';
+
+// 1. 이미지 선택 안했을 때 분기처리
+// 2. 수정 시 텍스트 에러 기존 데이터 안들어감
+// 3. 수정 화면에서 날짜변경 시 텍스트 변경 안됨
+// ---------------
+// [TODO]: 4. 미리보기 화면
 
 export default function Diary(props) {
-  const URL = "https://api.thecatapi.com/v1/images/search";
-  const token = localStorage.getItem("accessToken");
+  const URL = 'https://api.thecatapi.com/v1/images/search';
+  const token = localStorage.getItem('accessToken');
 
   const selectedDay = useSelector((state) => state.schedule.selectedDay);
   const today = useSelector((state) => state.schedule.today);
-  const [catURL, setCatURL] = useState("");
-  const [maxim, setMaxim] = useState("");
+  const [catURL, setCatURL] = useState('');
+  const [maxim, setMaxim] = useState('');
   const [toEdit, setToEdit] = useState(false);
-  const [diaryData, setDiaryData] = useState("");
-  const [todayDiary, setTodayDiary] = useState("");
+  const [diaryData, setDiaryData] = useState('');
+  const [todayDiary, setTodayDiary] = useState('');
 
   //이미지 업로드 및 미리보기를 위한 consts
-  const [fileImage, setFileImage] = useState("");
-  const [diaryImage, setDiaryImg] = useState("");
-  const [diaryImgURL, setDiaryImgURL] = useState("");
+  const [fileImage, setFileImage] = useState('');
+  const [diaryImage, setDiaryImg] = useState('');
+  const [diaryImgURL, setDiaryImgURL] = useState('');
   // const diaryImgURL =
   //   "https://i6a301.p.ssafy.io:8080/images/" + diaryData.diaryImg;
   const getCatImg = async () => {
-    axios.get(URL).then((response) => setCatURL(response.data[0]["url"]));
+    axios.get(URL).then((response) => setCatURL(response.data[0]['url']));
   };
   const getMaxim = async () => {
     axios
-      .get("https://api.adviceslip.com/advice")
-      .then((response) => setMaxim(response.data["slip"]["advice"]));
+      .get('https://api.adviceslip.com/advice')
+      .then((response) => setMaxim(response.data['slip']['advice']));
   };
   async function getDiaryData() {
     try {
       const response = await axios
         .get(
           process.env.REACT_APP_SERVER_URL +
-            "/diaries?date=" +
+            '/diaries?date=' +
             JSON.parse(selectedDay),
           {
             headers: {
@@ -45,16 +51,10 @@ export default function Diary(props) {
         )
         .then((response) => {
           let updatedDiary = response.data.diary;
-          setDiaryData(() => []);
           setTimeout(() => {
             setDiaryData(() => updatedDiary);
           }, 100);
         });
-      // let updatedDiary = await response.data.diary;
-      // setDiaryData(() => []);
-      // setTimeout(() => {
-      //   setDiaryData(() => updatedDiary);
-      // }, 100);
     } catch (err) {
       console.log(err);
     }
@@ -63,7 +63,7 @@ export default function Diary(props) {
   useEffect(() => {
     getMaxim();
     getCatImg();
-  }, []);
+  }, [selectedDay]);
   useEffect(() => {
     getDiaryData();
   }, [selectedDay]);
@@ -73,25 +73,24 @@ export default function Diary(props) {
         () => `https://i6a301.p.ssafy.io:8080/images/${diaryData.diaryImg}`
       );
     }
-  }, [diaryData]);
+  }, [diaryData, selectedDay]);
 
   const saveFileImage = (e) => {
-    setFileImage(URL.createObjectURL(e.target.files[0]));
     setDiaryImg(e.target.files[0]);
   };
   // console.log(fileImage);
   // console.log(diaryImage);
 
   let data = new FormData();
-  data.append("image", diaryImage);
-  data.append("dateInfo.date", JSON.parse(today));
-  data.append("contentInfo.content", todayDiary);
+  data.append('image', diaryImage);
+  data.append('dateInfo.date', JSON.parse(selectedDay));
+  data.append('contentInfo.content', todayDiary);
 
   const createDiary = () => {
     axios
-      .post("/diaries", data, {
+      .post(process.env.REACT_APP_SERVER_URL + '/diaries', data, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,
         },
       })
@@ -103,18 +102,21 @@ export default function Diary(props) {
 
   const updateDiary = () => {
     axios
-      .patch("/diaries/" + diaryData.diarySeq, data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .patch(
+        process.env.REACT_APP_SERVER_URL + `/diaries/${diaryData.diarySeq}`,
+        data,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
-        console.log(res);
+        window.location.reload();
       });
   };
   // console.log(toEdit);
-
   // console.log(diaryData);
   return (
     <div className="diary">
@@ -139,17 +141,17 @@ export default function Diary(props) {
           </div> */}
         {/* </Col> */}
 
-        {diaryData ? (
+        {diaryData && diaryData.diaryImg ? (
           // (조회)다이어리 데이터가 있는 경우의 이미지 출력
           <Col className="diary-box__img" sm={4} md={4} lg={4}>
             {!toEdit ? (
               <div className="diary-box__img-file-wrapper ">
-                <img src={diaryImgURL} />
+                <img src={diaryImgURL} alt="" />
               </div>
             ) : (
               <>
                 <div className="diary-box__img-file-wrapper ">
-                  <img src={diaryImgURL} />
+                  <img src={diaryImgURL} alt="" />
                 </div>
                 <input
                   type="file"
