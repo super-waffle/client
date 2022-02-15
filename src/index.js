@@ -28,7 +28,6 @@ import VideoRoomComponentCopy from "./components/meetingroom/VideoRoomComponent 
 import VideoRoomComponentChange from "./components/meetingroom/VideoRoomComponent change";
 import VideoRoomComponent from "./components/meetingroom/VideoRoomComponent";
 import SettingsStudyApplied from "./pages/SettingsStudyApplied";
-import Meeting from "./pages/Meeting";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -52,7 +51,6 @@ ReactDOM.render(
               element={isLogin() ? <StudyRecruitDetail /> : <Login />}
             />
             <Route path="meetingrooms" element={isLogin() ? <Meetingrooms /> : <Login />} />
-            <Route path="meeting" element={isLogin() ? <Meeting /> : <Login />} />
             <Route path="schedules" element={isLogin() ? <Schedule /> : <Login />} />
             <Route path="profile" element={isLogin() ? <Profile /> : <Login />} />
             <Route

@@ -2,6 +2,8 @@ import React, { Component, useState } from "react";
 import axios from "axios";
 import "./VideoRoomComponent.css";
 import { OpenVidu } from "openvidu-browser";
+// import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 
 import StreamComponent from "./stream/StreamComponent";
 import DialogExtensionComponent from "./dialog-extension/DialogExtension";
@@ -11,15 +13,20 @@ import UserModel from "../../models/user-model";
 import ToolbarComponent from "./toolbar/ToolbarComponent";
 import TimeComponent from "./time/TimeComponent";
 import UserComponent from "./user/UserComponent";
-import IntervalComponent from "./interval/IntervalComponent";
 
 import "../../statics/css/meetingroom.css";
-import { BsLock } from "react-icons/bs";
+// import { BsLock } from "react-icons/bs";
+
+// function GetMeetingSeqRedux() {
+//   let mtSeq = useSelector((state) => state.meeting.meetingSeq);
+//   return mtSeq;
+// }
 
 var localUser = new UserModel();
 
 var sessionToken;
-var meetingSeq;
+// var meetingSeq = GetMeetingSeqRedux();
+var meetingSeq = localStorage.getItem("meetingSeq");
 var isHost;
 var meetingTitle;
 var meetingDesc;
@@ -32,7 +39,6 @@ var userName;
 class VideoRoomComponent extends Component {
   constructor(props) {
     super(props);
-
     // this.OPENVIDU_SERVER_URL = this.props.openviduServerUrl
     //     ? this.props.openviduServerUrl
     //     : 'https://' + window.location.hostname + ':4443';
@@ -44,8 +50,10 @@ class VideoRoomComponent extends Component {
     // let sessionName = meetingSeq;
     this.remotes = [];
     this.localUserAccessAllowed = false;
+    console.log("props");
+    console.log(props);
     this.state = {
-      mySessionId: 1,
+      mySessionId: localStorage.getItem("meetingSeq"), //meetingSeq, //1, //useSelector((state) => state.meeting.meetingSeq), //props.location.state.meetingSeq,
       myUserName: undefined,
       session: undefined,
       localUser: undefined,
@@ -99,6 +107,7 @@ class VideoRoomComponent extends Component {
   //   }
   // }
   loginToken() {
+    // console.log("sessin Id" + this.state.mySessionId);
     const token = localStorage.getItem("accessToken");
     console.log("loginToken: " + token);
   }
@@ -187,6 +196,7 @@ class VideoRoomComponent extends Component {
       .connect(token, { clientData: this.state.myUserName })
       .then(() => {
         console.log("connect 성공 -> session 연결할거");
+        console.log("세션아이디!" + this.state.mySessionId);
         this.connectWebCam();
       })
       .catch((error) => {
@@ -362,7 +372,7 @@ class VideoRoomComponent extends Component {
       // console.log("시간", this.state.time);
       const token = localStorage.getItem("accessToken");
       axios
-        .delete(process.env.REACT_APP_SERVER_URL + `/meetings/1/room`, {
+        .delete(process.env.REACT_APP_SERVER_URL + `/meetings/${this.state.mySessionId}/room`, {
           data: {
             sessionToken: sessionToken,
             logMeeting: this.state.time / 60, //총공부한시간
@@ -751,6 +761,7 @@ class VideoRoomComponent extends Component {
     var chatDisplay = { display: this.state.chatDisplay };
     var userlistDisplay = { display: this.state.userlistDisplay };
 
+    // console.log("localStorage" + localStorage.getItem("meetingSeq"));
     return (
       <div className="meeting-room">
         <div className="meeting-room-content">
@@ -953,7 +964,7 @@ class VideoRoomComponent extends Component {
       const token = localStorage.getItem("accessToken");
       axios
         .post(
-          process.env.REACT_APP_SERVER_URL + `/meetings/1/room`,
+          process.env.REACT_APP_SERVER_URL + `/meetings/${this.state.mySessionId}/room`,
           {},
           {
             // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
