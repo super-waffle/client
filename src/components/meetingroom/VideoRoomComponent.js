@@ -124,8 +124,8 @@ class VideoRoomComponent extends Component {
     window.addEventListener("beforeunload", this.onbeforeunload);
     window.addEventListener("resize", this.updateLayout);
     window.addEventListener("resize", this.checkSize);
-    this.joinSession();
     this.loginToken();
+    this.joinSession();
     // this.setTime(0);
   }
 
@@ -162,6 +162,7 @@ class VideoRoomComponent extends Component {
       this.getToken()
         .then((token) => {
           console.log("getToken성공 " + token);
+          sessionToken = token;
           this.connect(token);
         })
         .catch((error) => {
@@ -374,8 +375,13 @@ class VideoRoomComponent extends Component {
           },
         })
         .then((response) => {
-          console.log("Leave 성공: ", response);
-          resolve(response.data.token);
+          if (response.data.statusCode == 200) {
+            console.log("Leave 성공: ", response);
+            resolve(response.data.token);
+            sessionToken = undefined;
+          } else {
+            console.log("error" + response.data.statusCode);
+          }
         })
         .catch((error) => {
           console.log("LEAVE ERROR : " + error);
@@ -937,22 +943,26 @@ class VideoRoomComponent extends Component {
    */
 
   async getToken() {
-    const getToken = await this.createToken(this.state.mySessionId);
+    const getToken = await this.createToken();
     return getToken;
   }
 
-  createToken(sessionId) {
+  createToken() {
     return new Promise((resolve, reject) => {
-      var data = JSON.stringify({});
+      // var data = JSON.stringify({});
       const token = localStorage.getItem("accessToken");
       axios
-        .post(process.env.REACT_APP_SERVER_URL + `/meetings/1/room`, data, {
-          // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
-          headers: {
-            Authorization: "Bearer " + token,
-            "Content-Type": "application/json",
-          },
-        })
+        .post(
+          process.env.REACT_APP_SERVER_URL + `/meetings/1/room`,
+          {},
+          {
+            // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
+            headers: {
+              Authorization: "Bearer " + token,
+              "Content-Type": "application/json",
+            },
+          }
+        )
         .then((res) => {
           console.log("응답", res);
           switch (res.data.statusCode) {

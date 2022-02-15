@@ -118,18 +118,18 @@ export default function Meetingrooms() {
     let data = response.data;
     setSelectedMeeting(() => data);
   }
-  function enterMeeting() {
-    axios
-      .post(process.env.REACT_APP_SERVER_URL + `/meetings/${meetingSeq}/room`, {
-        headers: {
-          Authorization: `Bearer ` + localStorage.getItem("accessToken"),
-        },
-      })
-      .then()
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  // function enterMeeting() {
+  //   axios
+  //     .post(process.env.REACT_APP_SERVER_URL + `/meetings/${meetingSeq}/room`, {
+  //       headers: {
+  //         Authorization: `Bearer ` + localStorage.getItem("accessToken"),
+  //       },
+  //     })
+  //     .then()
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
   return (
     <main style={{ padding: "1rem 0" }}>
       <div className="studyrecruit">
@@ -225,17 +225,20 @@ export default function Meetingrooms() {
         <div style={{ textAlign: "left", padding: "0 20%" }}>
           미팅룸 설명: {selectedMeeting.meetingDesc}
         </div>
-        <button
-          style={{
-            border: "none",
-            margin: "2rem",
-            backgroundColor: "#6667ab",
-            color: "#eeeeee",
-          }}
-          onClick={enterMeeting}
-        >
-          입실하기
-        </button>
+
+        <Link to={{ pathname: "/videoRoomComponent" }}>
+          <button
+            style={{
+              border: "none",
+              margin: "2rem",
+              backgroundColor: "#6667ab",
+              color: "#eeeeee",
+            }}
+            // onClick={enterMeeting}
+          >
+            입실하기
+          </button>
+        </Link>
         {meetingSeq && <VideoRoomComponent meetingSeq={meetingSeq} />}
       </ApplicationModal>
     </main>
