@@ -1,12 +1,30 @@
-import "../statics/css/homeTodays.css";
+import { useEffect, useState } from "react";
+import HomeTodos from "../components/home/todays/homeTodos";
+// import CreateTodo from "../components/Schedule/Todo/TodoCreate";
+import CreateTodo from "../components/home/todays/homeCreateTodos";
+import "../statics/css/home/homeTodays.css";
 
 export default function HomeTodays() {
+  const [isAddTodo, setIsAddTodo] = useState(false);
+  const [todoList, setTodoList] = useState("");
+
+  // 할일 추가하기 버튼 누르면 자동으로 인풋 박스로 포커스 (스크롤 이동)
+  useEffect(() => {
+    if (isAddTodo) {
+      let needFocus = document.getElementById("home-todays-todos-box");
+      needFocus.scrollTop = needFocus.scrollHeight;
+    }
+  }, [isAddTodo]);
+
   return (
     <div className="home-todays">
       <div className="home-todays-top">
         <div className="home-todays-todos">
           <span>오늘의 할일</span>
-          <div className="home-todays-todos-box"></div>
+          <button onClick={() => setIsAddTodo(true)}>+ 추가하기</button>
+          <div className="home-todays-todos-box" id="home-todays-todos-box">
+            <HomeTodos add={isAddTodo} todolist={setTodoList} />
+          </div>
         </div>
         <div className="home-todays-goal">
           <span>오늘의 공부</span>

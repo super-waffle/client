@@ -1,4 +1,5 @@
-@import "main.scss";
+@import "../main.scss";
+
 .home-todays {
   font-family: $font-family;
   & span {
@@ -13,6 +14,17 @@
     margin-right: 8%;
     .home-todays-todos {
       padding-right: 20px;
+      & button {
+        border: none;
+        background-color: var(--bgColor);
+        font-size: 12px;
+        color: var(--textColor-todo);
+        float: right;
+        padding-right: 15px;
+        // margin-bottom: 0px;
+        padding-top: 6px;
+        // font-style: italic;
+      }
       .home-todays-todos-box {
         background: var(--bgColor);
         border: 1px solid var(--borderColor);
@@ -21,6 +33,8 @@
         height: 24vh;
         border-radius: 10px;
         margin-top: 6px;
+        padding: 10px 0;
+        overflow: auto;
       }
     }
     .home-todays-goal-box {
