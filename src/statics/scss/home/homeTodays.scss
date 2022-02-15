@@ -2,6 +2,7 @@
 
 .home-todays {
   font-family: $font-family;
+  padding-right: 7%;
   & span {
     font-size: 16px;
     line-height: 19px;
@@ -9,9 +10,11 @@
     margin-left: 5px;
   }
   .home-todays-top {
-    display: flex;
+    display: grid;
+    grid-template-columns: 4fr 5fr;
     margin-bottom: 8vh;
-    margin-right: 8%;
+    // width: 100%;
+    // margin-right: 8%;
     .home-todays-todos {
       padding-right: 20px;
       & button {
@@ -29,7 +32,8 @@
         background: var(--bgColor);
         border: 1px solid var(--borderColor);
         box-sizing: border-box;
-        width: 24vw;
+        // width: 24vw;
+        // width: 100%;
         height: 24vh;
         border-radius: 10px;
         margin-top: 6px;
@@ -40,7 +44,7 @@
     .home-todays-goal-box {
       background: var(--bgColor);
       border: 1px solid var(--borderColor);
-      width: 32vw;
+      // width: 32vw;
       height: 24vh;
       border-radius: 10px;
       margin-top: 6px;

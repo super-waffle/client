@@ -45,7 +45,7 @@
 
 .home-todays-studyrooms-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 3fr;
 }
 
 .home-study-box {
@@ -58,6 +58,65 @@
   margin-top: 9px;
   margin-right: 15px;
   overflow: auto;
+  padding: 0.8rem 1.5rem;
+}
+
+.home-study-box__top {
+  display: flex;
+  align-items: center;
+}
+.home-study-box__top .home-study-box__top-category {
+  color: #6667ab;
+  font-size: 12px;
+  margin-right: 8px;
+}
+.home-study-box__top .home-study-box__top-title {
+  color: var(--textColor);
+  font-size: 15px;
+}
+
+.home-study-box__date-time {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  margin-right: 10px;
+  color: var(--textColor-todo);
+}
+.home-study-box__date-time .home-study-box__date {
+  margin-right: 3px;
+}
+
+.home-study-box__desc {
+  color: var(--textColor-todo);
+  font-size: 14px;
+}
+
+.home-study-box__footer {
+  display: flex;
+}
+
+.home-study-box__img-wrapper {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+}
+.home-study-box__img-wrapper img {
+  position: relative;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 100%;
+}
+
+.home-study-box__host {
+  padding-left: 4px;
+  color: var(--textColor-todo);
+  font-size: 14px;
+  padding-top: 2px;
 }
 
 /*# sourceMappingURL=homeStudiesList.css.map */

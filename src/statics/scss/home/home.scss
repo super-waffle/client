@@ -2,10 +2,12 @@
 
 .home {
   background-color: var(--htmlbgColor);
+  width: 100%;
   .home-tab {
     display: flex;
     margin-left: 8%;
-    padding-top: 60px;
+    // padding-top: 60px;
+    padding: 60px 10% 0 0;
     // margin-right: 8%;
     // left: 8%;
     .home-profile {
@@ -67,6 +69,7 @@
     }
 
     .home-contents {
+      width: 100%;
       padding-top: 60px;
       padding-left: 23%;
     }
