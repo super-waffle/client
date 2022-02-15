@@ -32,26 +32,34 @@ export default function Diary(props) {
   };
   async function getDiaryData() {
     try {
-      const response = await axios.get(
-        process.env.REACT_APP_SERVER_URL +
-          "/diaries?date=" +
-          JSON.parse(selectedDay),
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      let updatedDiary = await response.data.diary;
-      setDiaryData(() => []);
-      setTimeout(() => {
-        setDiaryData(() => updatedDiary);
-      }, 100);
+      const response = await axios
+        .get(
+          process.env.REACT_APP_SERVER_URL +
+            "/diaries?date=" +
+            JSON.parse(selectedDay),
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((response) => {
+          let updatedDiary = response.data.diary;
+          setDiaryData(() => []);
+          setTimeout(() => {
+            setDiaryData(() => updatedDiary);
+          }, 100);
+        });
+      // let updatedDiary = await response.data.diary;
+      // setDiaryData(() => []);
+      // setTimeout(() => {
+      //   setDiaryData(() => updatedDiary);
+      // }, 100);
     } catch (err) {
       console.log(err);
     }
   }
-  console.log(diaryImgURL);
+  console.log(diaryData);
   useEffect(() => {
     getMaxim();
     getCatImg();
@@ -59,21 +67,25 @@ export default function Diary(props) {
   useEffect(() => {
     getDiaryData();
   }, [selectedDay]);
-  console.log(selectedDay, diaryData);
+  useEffect(() => {
+    if (diaryData) {
+      setDiaryImgURL(
+        () => `https://i6a301.p.ssafy.io:8080/images/${diaryData.diaryImg}`
+      );
+    }
+  }, [diaryData]);
 
   const saveFileImage = (e) => {
-    // setFileImage(URL.createObjectURL(e.target.files[0]));
+    setFileImage(URL.createObjectURL(e.target.files[0]));
     setDiaryImg(e.target.files[0]);
-    console.log(fileImage);
   };
-  console.log(diaryImage);
+  // console.log(fileImage);
+  // console.log(diaryImage);
 
   let data = new FormData();
   data.append("image", diaryImage);
-  data.append("diaryInfo.date", JSON.parse(today));
-  // data.append("diaryInfo.date", "2022-02-14");
-  data.append("diaryInfo.content", JSON.stringify(todayDiary));
-  // data.append("diaryInfo.content", "hello for test");
+  data.append("dateInfo.date", JSON.parse(today));
+  data.append("contentInfo.content", todayDiary);
 
   const createDiary = () => {
     axios
@@ -101,7 +113,7 @@ export default function Diary(props) {
         console.log(res);
       });
   };
-  console.log(toEdit);
+  // console.log(toEdit);
 
   // console.log(diaryData);
   return (
@@ -132,12 +144,12 @@ export default function Diary(props) {
           <Col className="diary-box__img" sm={4} md={4} lg={4}>
             {!toEdit ? (
               <div className="diary-box__img-file-wrapper ">
-                <img src={diaryData.image} />
+                <img src={diaryImgURL} />
               </div>
             ) : (
               <>
                 <div className="diary-box__img-file-wrapper ">
-                  <img src={diaryData.image} />
+                  <img src={diaryImgURL} />
                 </div>
                 <input
                   type="file"
