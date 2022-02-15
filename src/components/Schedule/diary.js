@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../statics/css/diary.css';
 import { useSelector } from 'react-redux';
+import { set } from 'date-fns/esm';
 
 // 1. 이미지 선택 안했을 때 분기처리
-// 2. 수정 시 텍스트 에러 기존 데이터 안들어감
-// 3. 수정 화면에서 날짜변경 시 텍스트 변경 안됨
+// 2. 수정 시 텍스트 에러 기존 데이터 안들어감 => done
+// 3. 수정 화면에서 날짜변경 시 텍스트 변경 안됨 => donne
 // ---------------
 // [TODO]: 4. 미리보기 화면
 
@@ -23,7 +24,8 @@ export default function Diary(props) {
   const [todayDiary, setTodayDiary] = useState('');
 
   //이미지 업로드 및 미리보기를 위한 consts
-  const [fileImage, setFileImage] = useState('');
+  const [preview, setPreview] = useState('');
+  // const [fileImage, setFileImage] = useState('');
   const [diaryImage, setDiaryImg] = useState('');
   const [diaryImgURL, setDiaryImgURL] = useState('');
   // const diaryImgURL =
@@ -59,7 +61,7 @@ export default function Diary(props) {
       console.log(err);
     }
   }
-  console.log(diaryData);
+
   useEffect(() => {
     getMaxim();
     getCatImg();
@@ -74,18 +76,35 @@ export default function Diary(props) {
       );
     }
   }, [diaryData, selectedDay]);
-
-  const saveFileImage = (e) => {
-    setDiaryImg(e.target.files[0]);
+  const previewImgEncoder = (fileBlob) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(fileBlob);
+    return new Promise((resolve) => {
+      reader.onload = () => {
+        setPreview(() => reader.result);
+        resolve();
+      };
+    });
   };
-  // console.log(fileImage);
-  // console.log(diaryImage);
+  const saveFileImage = (e) => {
+    if (toEdit) {
+      setDiaryImg(() => e.target.files[0]);
+    }
+    setPreview(() => previewImgEncoder(e.target.files[0]));
+  };
 
   let data = new FormData();
-  data.append('image', diaryImage);
+  // 삼항연산자로 null값처리
+  if (diaryImage) {
+    data.append('image', diaryImage);
+  } else {
+    data.append('image', null);
+  }
   data.append('dateInfo.date', JSON.parse(selectedDay));
   data.append('contentInfo.content', todayDiary);
 
+  let updateData = new FormData();
+  updateData.append('image', diaryImage);
   const createDiary = () => {
     axios
       .post(process.env.REACT_APP_SERVER_URL + '/diaries', data, {
@@ -96,7 +115,9 @@ export default function Diary(props) {
       })
       .then((res) => {
         console.log(res);
-        // window.location.reload();
+        console.log(data);
+        setToEdit(() => false);
+        setPreview(() => null);
       });
   };
 
@@ -113,34 +134,23 @@ export default function Diary(props) {
         }
       )
       .then((res) => {
-        window.location.reload();
+        setToEdit(() => false);
+        setPreview(() => null);
       });
   };
+
+  const changeDay = () => {
+    setToEdit(() => false);
+    setPreview(() => null);
+  };
+  useEffect(() => changeDay(), [selectedDay]);
   // console.log(toEdit);
   // console.log(diaryData);
+  console.log(data);
   return (
     <div className="diary">
       <div className="diary-header">하루 기록</div>
       <Row className="diary-box">
-        {/* <Col className="diary-box__img" sm={4} md={4} lg={4}> */}
-        {/* <div className="diary-box__img-file-wrapper ">
-            {diaryImage && !fileImage && (
-              <img
-                className="settings-profile__box-img-file"
-                src={diaryImgURL}
-                alt=""
-              />
-            )}
-            {diaryImage && fileImage && (
-              <img
-                className="settings-profile__box-img-file"
-                src={fileImage}
-                alt=""
-              />
-            )}
-          </div> */}
-        {/* </Col> */}
-
         {diaryData && diaryData.diaryImg ? (
           // (조회)다이어리 데이터가 있는 경우의 이미지 출력
           <Col className="diary-box__img" sm={4} md={4} lg={4}>
@@ -151,7 +161,11 @@ export default function Diary(props) {
             ) : (
               <>
                 <div className="diary-box__img-file-wrapper ">
-                  <img src={diaryImgURL} alt="" />
+                  {preview ? (
+                    <img src={preview} alt="" />
+                  ) : (
+                    <img src={diaryImgURL} alt="" />
+                  )}
                 </div>
                 <input
                   type="file"
@@ -206,7 +220,7 @@ export default function Diary(props) {
                   maxLength="1000"
                   defaultValue={diaryData.diaryContent}
                   onChange={(e) => setTodayDiary(e.target.value)}
-                ></textarea>
+                />
                 <button
                   className="diary-box__contents-btn"
                   onClick={updateDiary}
