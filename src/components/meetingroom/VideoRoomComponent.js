@@ -14,6 +14,7 @@ import UserComponent from "./user/UserComponent";
 import IntervalComponent from "./interval/IntervalComponent";
 
 import "../../statics/css/meetingroom.css";
+import { BsLock } from "react-icons/bs";
 
 var localUser = new UserModel();
 
@@ -79,32 +80,32 @@ class VideoRoomComponent extends Component {
     this.checkNotification = this.checkNotification.bind(this);
     this.checkSize = this.checkSize.bind(this);
     this.loginToken = this.loginToken.bind(this);
-    this.isHostfun = this.isHostfun.bind(this);
+    // this.isHostfun = this.isHostfun.bind(this);
     this.setTime = this.setTime.bind(this);
     this.setPause = this.setPause.bind(this);
-    this.userlist = this.userlist.bind(this);
+    // this.userlist = this.userlist.bind(this);
     this.setTimeString = this.setTimeString.bind(this);
     this.subscribersMuteStatusChanged = this.subscribersMuteStatusChanged.bind(this);
     this.subscribersCamStatusChanged = this.subscribersCamStatusChanged.bind(this);
     this.sendStudyTimeString = this.sendStudyTimeString.bind(this);
     this.getSignalTimeString = this.getSignalTimeString.bind(this);
   }
-  isHostfun() {
-    console.log(1);
-    if (isHost === 0) {
-      return false;
-    } else if (isHost === 1) {
-      return true;
-    }
-  }
+  // isHostfun() {
+  //   console.log(1);
+  //   if (isHost === 0) {
+  //     return false;
+  //   } else if (isHost === 1) {
+  //     return true;
+  //   }
+  // }
   loginToken() {
     const token = localStorage.getItem("accessToken");
-    console.log(token);
+    console.log("loginToken: " + token);
   }
-  userlist() {
-    console.log("local " + this.localUser);
-    console.log("userlist: 유저가 없니이이잉" + this.state.subscribers);
-  }
+  // userlist() {
+  //   console.log("local " + this.localUser);
+  //   console.log("userlist: 유저가 없니이이잉" + this.state.subscribers);
+  // }
   componentDidMount() {
     const openViduLayoutOptions = {
       maxRatio: 3 / 2, // The narrowest ratio that will be used (default 2x3)
@@ -155,12 +156,12 @@ class VideoRoomComponent extends Component {
 
   connectToSession() {
     if (sessionToken !== undefined) {
-      console.log("token received: ", sessionToken);
+      console.log("connectToSession - token received: ", sessionToken);
       this.connect(sessionToken);
     } else {
       this.getToken()
         .then((token) => {
-          console.log(token);
+          console.log("getToken성공 " + token);
           this.connect(token);
         })
         .catch((error) => {
@@ -174,6 +175,8 @@ class VideoRoomComponent extends Component {
           }
           console.log("There was an error getting the token:", error.code, error.message);
           alert("There was an error getting the token:", error.message);
+
+          // window.location.reload();
         });
     }
   }
@@ -182,6 +185,7 @@ class VideoRoomComponent extends Component {
     this.state.session
       .connect(token, { clientData: this.state.myUserName })
       .then(() => {
+        console.log("connect 성공 -> session 연결할거");
         this.connectWebCam();
       })
       .catch((error) => {
@@ -195,11 +199,13 @@ class VideoRoomComponent extends Component {
         }
         alert("There was an error connecting to the session:", error.message);
         console.log("There was an error connecting to the session:", error.code, error.message);
+
+        // window.location.reload();
       });
   }
 
   async connectWebCam() {
-    console.log(2);
+    // console.log(2);
     var devices = await this.OV.getDevices();
     var videoDevices = devices.filter((device) => device.kind === "videoinput");
 
@@ -251,7 +257,7 @@ class VideoRoomComponent extends Component {
   }
 
   updateSubscribers() {
-    console.log(3);
+    // console.log(3);
     var subscribers = this.remotes;
     this.setState(
       {
@@ -293,7 +299,6 @@ class VideoRoomComponent extends Component {
   }
 
   sendStudyTimeString() {
-    this.setState({ message: "" });
     if (localUser && this.state.timeString) {
       let studyTimeString = this.state.timeString;
       // let message = this.state.message.replace(/ +(?= )/g, "");
@@ -307,7 +312,7 @@ class VideoRoomComponent extends Component {
           data: JSON.stringify(data),
           type: "timeString",
         });
-        console.log("시간보내기 " + this.state.timeString);
+        // console.log("시간보내기 " + this.state.timeString);
       }
     }
   }
@@ -323,7 +328,7 @@ class VideoRoomComponent extends Component {
   leaveSession(sessionId) {
     const mySession = this.state.session;
 
-    this.userlist();
+    // this.userlist();
 
     if (mySession) {
       mySession.disconnect();
@@ -331,7 +336,7 @@ class VideoRoomComponent extends Component {
       // this.props.setIsPaused(true);
     }
     if (!this.state.isPaused) {
-      console.log(this.state.isPaused);
+      console.log("!state.isPaused " + this.state.isPaused);
     }
     // Empty all properties...
     this.OV = null;
@@ -353,7 +358,7 @@ class VideoRoomComponent extends Component {
       //     logStartTime: '06:58:40'
       // });
       console.log("leave session! sessiontoken  : ", sessionToken);
-      console.log("시간", this.state.time);
+      // console.log("시간", this.state.time);
       const token = localStorage.getItem("accessToken");
       axios
         .delete(process.env.REACT_APP_SERVER_URL + `/meetings/1/room`, {
@@ -369,7 +374,7 @@ class VideoRoomComponent extends Component {
           },
         })
         .then((response) => {
-          console.log("Leave", response);
+          console.log("Leave 성공: ", response);
           resolve(response.data.token);
         })
         .catch((error) => {
@@ -379,7 +384,7 @@ class VideoRoomComponent extends Component {
     });
   }
   camStatusChanged() {
-    console.log(4);
+    // console.log(4);
     localUser.setVideoActive(!localUser.isVideoActive());
     localUser.getStreamManager().publishVideo(localUser.isVideoActive());
     this.sendSignalUserChanged({
@@ -389,7 +394,7 @@ class VideoRoomComponent extends Component {
   }
 
   micStatusChanged() {
-    console.log(5);
+    // console.log(5);
     localUser.setAudioActive(!localUser.isAudioActive());
     localUser.getStreamManager().publishAudio(localUser.isAudioActive());
     this.sendSignalUserChanged({
@@ -408,7 +413,7 @@ class VideoRoomComponent extends Component {
   }
 
   deleteSubscriber(stream) {
-    console.log(6);
+    // console.log(6);
     const remoteUsers = this.state.subscribers;
     const userStream = remoteUsers.filter((user) => user.getStreamManager().stream === stream)[0];
     let index = remoteUsers.indexOf(userStream, 0);
@@ -421,8 +426,8 @@ class VideoRoomComponent extends Component {
   }
 
   subscribeToStreamCreated() {
-    console.log(7);
-    console.log("subscribeToStreamCreated");
+    // console.log(7);
+    // console.log("subscribeToStreamCreated");
     this.state.session.on("streamCreated", (event) => {
       const subscriber = this.state.session.subscribe(event.stream, undefined);
       // var subscribers = this.state.subscribers;
@@ -444,7 +449,7 @@ class VideoRoomComponent extends Component {
   }
 
   subscribeToStreamDestroyed() {
-    console.log(8);
+    // console.log(8);
     // On every Stream destroyed...
     this.state.session.on("streamDestroyed", (event) => {
       // Remove the stream from 'subscribers' array
@@ -458,9 +463,9 @@ class VideoRoomComponent extends Component {
   }
 
   subscribeToUserChanged() {
-    console.log(9);
+    // console.log(9);
     this.state.session.on("signal:userChanged", (event) => {
-      console.log("여긴가?");
+      // console.log("여긴가?");
       let remoteUsers = this.state.subscribers;
       remoteUsers.forEach((user) => {
         if (user.getConnectionId() === event.from.connectionId) {
@@ -490,14 +495,14 @@ class VideoRoomComponent extends Component {
   }
 
   updateLayout() {
-    console.log(10);
+    // console.log(10);
     setTimeout(() => {
       this.layout.updateLayout();
     }, 20);
   }
 
   sendSignalUserChanged(data) {
-    console.log(11);
+    // console.log(11);
     const signalOptions = {
       data: JSON.stringify(data),
       type: "userChanged",
@@ -654,14 +659,15 @@ class VideoRoomComponent extends Component {
     if (display === "block") {
       this.setState({
         chatDisplay: display,
+        userlistDisplay: "none",
         messageReceived: false,
       });
     } else {
-      console.log("chat", display);
-      this.setState({ chatDisplay: display });
+      // console.log("chat", display);
+      this.setState({ chatDisplay: display, userlistDisplay: "block" });
     }
     this.updateLayout();
-    console.log(localUser.getNickname());
+    // console.log(localUser.getNickname());
   }
 
   checkNotification(event) {
@@ -707,9 +713,9 @@ class VideoRoomComponent extends Component {
   }
 
   getSignalTimeString() {
-    console.log("들어오는지..");
+    // console.log("들어오는지..");
     localUser.getStreamManager().stream.session.on("signal:timeString", (event) => {
-      console.log("ㅠㅠ");
+      // console.log("ㅠㅠ");
       const data = JSON.parse(event.data);
       const remoteUsers = this.state.subscribers;
       remoteUsers.forEach((remote) => {
@@ -800,7 +806,7 @@ class VideoRoomComponent extends Component {
             )}
 
             {localUser !== undefined && localUser.getStreamManager() !== undefined && (
-              <div className="OT_root OT_publisher custom-class" style={!chatDisplay}>
+              <div className="OT_root OT_publisher custom-class" style={userlistDisplay}>
                 <div className="meeting-room-userlist">
                   <UserComponent
                     subscribersCamStatusChanged={this.subscribersCamStatusChanged}
@@ -808,7 +814,6 @@ class VideoRoomComponent extends Component {
                     local={localUser}
                     isHost={this.state.isHost}
                     remote={this.state.subscribers}
-                    chatDisplay={this.state.chatDisplay}
                     camStatusChanged={this.camStatusChanged}
                     micStatusChanged={this.micStatusChanged}
                   />
@@ -953,14 +958,18 @@ class VideoRoomComponent extends Component {
           switch (res.data.statusCode) {
             case 404:
               //미팅룸 시퀀스가 유효하지 않음 (존재하지 않는 미팅룸)
+              console.log("404");
               break;
             case 405:
+              console.log("405");
               //미팅룸 정원초과
               break;
             case 407:
+              console.log("407");
               //블랙리스트
               break;
             case 409:
+              console.log("409");
               //서버에러
               window.location.reload();
               break;
