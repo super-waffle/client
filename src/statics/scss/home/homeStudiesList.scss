@@ -48,9 +48,10 @@
 }
 .home-study-box__footer {
   display: flex;
-  // align-items: center;
+  align-items: center;
 }
 .home-study-box__img-wrapper {
+  margin-bottom: 3px;
   position: relative;
   width: 20px;
   height: 20px;
@@ -72,4 +73,12 @@
   color: var(--textColor-todo);
   font-size: 14px;
   padding-top: 2px;
+  margin-right: 10px;
+}
+.home-study-box__members {
+  & span {
+    font-size: 12px;
+    align-items: center;
+    color: var(--textColor);
+  }
 }
