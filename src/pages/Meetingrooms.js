@@ -2,13 +2,14 @@ import { Container, Col, Row, Card } from "react-bootstrap";
 import { useEffect, useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { sendMeetingSeqRedux } from "../components/meetingroom/meetingSlice";
 
 import ApplicationModal from "../components/applicationModal";
 import CategorySelect from "../components/categorySelect";
 import Paginator from "../components/paginator";
 import "../statics/css/studyRecruit.css";
 import isLogin from "../utils/isLogin";
-import VideoRoomComponent from "../components/meetingroom/VideoRoomComponent";
 
 const MeetingroomCard = ({ meeting, openModal, setMeetingSeq }) => {
   const meetingroomImg = "https://i6a301.p.ssafy.io:8080/images/" + meeting.meetingImg;
@@ -16,6 +17,7 @@ const MeetingroomCard = ({ meeting, openModal, setMeetingSeq }) => {
   const sendMeetingSeq = () => {
     setMeetingSeq(meeting.meetingSeq);
   };
+  // console.log(meeting);
   return (
     <Col
       lg={3}
@@ -23,6 +25,7 @@ const MeetingroomCard = ({ meeting, openModal, setMeetingSeq }) => {
       onClick={() => {
         openModal();
         sendMeetingSeq();
+        localStorage.setItem("meetingSeq", meeting.meetingSeq);
       }}
     >
       <Card style={{ marginBottom: "0.5rem" }}>
@@ -52,6 +55,7 @@ export default function Meetingrooms() {
   const [modalOpen, setModalOpen] = useState(false);
   const [meetingSeq, setMeetingSeq] = useState("");
   const [selectedMeeting, setSelectedMeeting] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getMeetingDetails();
@@ -70,7 +74,7 @@ export default function Meetingrooms() {
   const onClickSearch = () => {
     if (isLogin) {
       axios
-        .get("/studies?page=1&type=" + category + "&key=" + searchInput, {
+        .get("/meetings?page=1&type=" + category + "&key=" + searchInput, {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
@@ -118,18 +122,13 @@ export default function Meetingrooms() {
     let data = response.data;
     setSelectedMeeting(() => data);
   }
-  function enterMeeting() {
-    axios
-      .post(process.env.REACT_APP_SERVER_URL + `/meetings/${meetingSeq}/room`, {
-        headers: {
-          Authorization: `Bearer ` + localStorage.getItem("accessToken"),
-        },
-      })
-      .then()
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+
+  // console.log("미팅" + meetingSeq);
+  // console.log(meetings);
+  useEffect(() => {
+    dispatch(sendMeetingSeqRedux(selectedMeeting.meetingSeq));
+  }, [selectedMeeting]);
+
   return (
     <main style={{ padding: "1rem 0" }}>
       <div className="studyrecruit">
@@ -143,9 +142,17 @@ export default function Meetingrooms() {
           <Link
             className="menu"
             to={{ pathname: "/videoRoomComponentCopy" }}
-            onClick={"window.location.reload();"}
+            // onClick={"window.location.reload();"}
           >
             copyfile
+          </Link>
+          <br />
+          <Link
+            className="menu"
+            to={{ pathname: "/VideoRoomComponentChange" }}
+            onClick={"window.location.reload();"}
+          >
+            change link
           </Link>
         </div>
         <div className="studyrecuit-middle">
@@ -217,6 +224,7 @@ export default function Meetingrooms() {
         <div style={{ textAlign: "left", padding: "0 20%" }}>
           미팅룸 설명: {selectedMeeting.meetingDesc}
         </div>
+
         <button
           style={{
             border: "none",
@@ -224,11 +232,18 @@ export default function Meetingrooms() {
             backgroundColor: "#6667ab",
             color: "#eeeeee",
           }}
-          onClick={enterMeeting}
+          // onClick={enterMeeting}
         >
-          입실하기
+          <Link
+            to={{
+              pathname: `/videoRoomComponent`,
+              state: { meetingSeq: meetingSeq },
+            }}
+          >
+            입실하기
+          </Link>
         </button>
-        {meetingSeq && <VideoRoomComponent meetingSeq={meetingSeq} />}
+        {/* {meetingSeq && <VideoRoomComponent meetingSeq={meetingSeq} />} */}
       </ApplicationModal>
     </main>
   );

@@ -5,37 +5,84 @@ import { Container, Row, Col } from "react-bootstrap";
 class UserStatus extends Component {
   constructor(props) {
     super(props);
-    this.User = {};
-    this.isHost = false;
-    this.consoleUser = this.consoleUser.bind(this);
+    this.user = this.props.user;
+    this.isHost = this.props.isHost;
+    this.index = this.props.index;
+    // this.consoleUser = this.consoleUser.bind(this);
     this.changeVideo = this.changeVideo.bind(this);
     this.changeAudio = this.changeAudio.bind(this);
+    this.subscribersMuteStatusChanged = this.subscribersMuteStatusChanged.bind(this);
+    this.subscribersMuteStatusChangedByHost = this.subscribersMuteStatusChangedByHost.bind(this);
+    this.subscribersMute = this.subscribersMute.bind(this);
+    this.subscribersCamStatusChanged = this.subscribersCamStatusChanged.bind(this);
+    this.subscribersCamStatusChangedByHost = this.subscribersCamStatusChangedByHost.bind(this);
+    this.subscribersCam = this.subscribersCam.bind(this);
   }
-  componentDidUpdate() {
-    this.consoleUser();
-  }
-  consoleUser() {
-    this.User = this.props.user;
-    this.isHost = this.props.isHost;
+  // componentDidUpdate() {
+  //   this.consoleUser();
+  // }
+  // consoleUser() {
+  //   this.User = this.props.user;
+  //   this.isHost = this.props.isHost;
 
-    // console.log(this.User);
-    // console.log(this.host, '호스트냐');
+  //   // console.log(this.User);
+  //   // console.log(this.host, '호스트냐');
+  // }
+  changeVideo(status) {
+    this.user.videoActive = status;
+    this.user.setVideoActive(status);
   }
-  changeVideo() {
-    this.User.setVideoActive(!this.User.isVideoActive());
+  changeAudio(status) {
+    this.user.audioActive = status;
+    this.user.setAudioActive(status);
   }
-  changeAudio() {
-    this.User.audioActive = this.User.setAudioActive(!this.User.isAudioActive());
+  subscribersMuteStatusChanged(key, status) {
+    // console.log(this.user.audioActive);
+    // console.log(this.user.audioActive);
+    this.props.subscribersMuteStatusChanged(key, status);
+  }
+  subscribersMuteStatusChangedByHost(key, status) {}
+  subscribersMute(key, status) {
+    // console.log("오디오 분기함수  " + this.props.index + " " + status);
+    // console.log(this.user);
+    // console.log(this.isHost);
+    // console.log(this.index);
+    this.changeAudio(!status);
+    if (this.isHost) {
+      this.subscribersMuteStatusChangedByHost(this.index, status);
+    } else {
+      this.subscribersMuteStatusChanged(this.index, status);
+    }
+  }
+  subscribersCamStatusChanged(key, status) {
+    // console.log(this.user.audioActive);
+    // console.log(this.user.audioActive);
+    this.props.subscribersCamStatusChanged(key, status);
+  }
+  subscribersCamStatusChangedByHost(key, status) {}
+  subscribersCam(key, status) {
+    // console.log("비디오 분기함수  " + this.props.index + " " + status);
+    // console.log(this.user);
+    // console.log(this.isHost);
+    // console.log(this.index);
+    this.changeVideo(!status);
+    if (this.isHost) {
+      this.subscribersCamStatusChangedByHost(this.index, status);
+    } else {
+      this.subscribersCamStatusChanged(this.index, status);
+    }
   }
   render() {
     return (
       <div className="user">
-        <span className="user-name">{this.User.nickname}</span>
+        <span className="user-name">{this.user.nickname}</span>
         {/* 비디오 버튼 */}
         <span className="user-video">
-          {this.User.videoActive ? (
+          {this.user.videoActive ? (
             <MdVideocam
-              onClick={this.changeVideo}
+              onClick={() => {
+                this.subscribersCam(this.key, this.user.videoActive);
+              }}
               style={{
                 cursor: "pointer",
                 color: "#6667AB",
@@ -44,7 +91,9 @@ class UserStatus extends Component {
             />
           ) : (
             <MdVideocamOff
-              onClick={this.changeVideo}
+              onClick={() => {
+                this.subscribersCam(this.key, this.user.videoActive);
+              }}
               style={{ cursor: "pointer", color: "gray" }}
               size={"1.35rem"}
             />
@@ -52,15 +101,19 @@ class UserStatus extends Component {
         </span>
         {/* 마이크 버튼 */}
         <span className="user-audio">
-          {this.User.audioActive ? (
+          {this.user.audioActive ? (
             <MdMic
-              onClick={this.changeAudio}
+              onClick={() => {
+                this.subscribersMute(this.key, this.user.audioActive);
+              }}
               style={{ cursor: "pointer", color: "#6667AB" }}
               size={"1.34rem"}
             />
           ) : (
             <MdMicOff
-              onClick={this.changeAudio}
+              onClick={() => {
+                this.subscribersMute(this.key, this.user.audioActive);
+              }}
               style={{ cursor: "pointer", color: "gray" }}
               size={"1.35rem"}
             />

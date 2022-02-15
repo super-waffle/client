@@ -22,7 +22,7 @@ export default class StreamComponent extends Component {
       time: this.props.cumTime,
       nickname: this.props.user.getNickname(),
       showForm: false,
-      mutedSound: false,
+      mutedSound: this.props.user.getIsMuted(),
       isFormValid: true,
       timeString: this.props.timeString,
     };
@@ -109,8 +109,8 @@ export default class StreamComponent extends Component {
         {this.props.user !== undefined && this.props.user.getStreamManager() !== undefined ? (
           <div className="streamComponent">
             {/* {this.props.user.isAudioActive()?():()} */}
-            <OvVideoComponent user={this.props.user} mutedSound={this.state.mutedSound} />
-            {this.props.user.isVideoActive() ? (
+            <OvVideoComponent user={this.props.user} mutedSound={this.props.user.getIsMuted()} />
+            {this.props.user.isVideoActive() || !this.props.user.getIsBlocked ? (
               <div className="video-username">{this.state.nickname}</div>
             ) : (
               <div className="video-camoff">{this.state.nickname}</div>

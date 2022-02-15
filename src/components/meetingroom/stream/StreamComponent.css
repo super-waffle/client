@@ -42,7 +42,18 @@
   text-align: center;
   padding: 6px;
 }
-
+#exitIcon{
+  text-align: center;
+  padding: 6px;
+  top: 0;
+  right: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: absolute;
+  margin: 0 0 20px 20px;
+}
 #fullscreenButton {
   position: absolute;
   bottom: 1px;
