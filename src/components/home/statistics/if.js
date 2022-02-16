@@ -15,9 +15,9 @@ export default function IfIWere() {
         if (res.data.statusCode === 200) {
           setTimeTotal(res.data.user.userTimeTotal);
         }
-        console.log(res);
       });
   }, []);
+
   return (
     <div className="if">
       {/* {timeTotal && ( */}
