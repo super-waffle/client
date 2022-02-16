@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "../../../statics/css/home/dailyStats.css";
+import CircularProgressBar from '../../CircularProgressBar';
 
 export default function DailyStats(props) {
   const [date, setDate] = useState("");
@@ -12,6 +13,9 @@ export default function DailyStats(props) {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [total, setTotal] = useState("");
+
+  //퍼센트 설정!
+  const [percentage, setPercentage] = useState();
 
   useEffect(() => {
     if (props.selectedDay) {
@@ -104,6 +108,13 @@ export default function DailyStats(props) {
               {parseInt(meetingTime / 60)}시간{" "}
               {meetingTime - parseInt(meetingTime / 60) * 60}분
             </div>
+          </div>
+          <div>
+            <div>공부휴식 비율</div>
+            <div>
+                <CircularProgressBar percentage={(1/5)*100}/>
+                {/* percentage={percentage} */}
+            </div>  
           </div>
         </div>
       )}

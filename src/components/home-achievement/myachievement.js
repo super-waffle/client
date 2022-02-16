@@ -1,6 +1,5 @@
-import axios from 'axios';
+
 import React from 'react';
-import { useState, useEffect } from 'react';
 import CircularProgressBar from '../CircularProgressBar';
 
 export default function Myachievement({achieveName, achieveImg, achieveCount, achieveTotalCount}) {
@@ -15,7 +14,7 @@ export default function Myachievement({achieveName, achieveImg, achieveCount, ac
         <img src={AchieveImg} alt="" style={{width:'100px', height:'100px'}}/>
         <div>{achieveName}</div>
         <div>업적도감 달성률</div>
-        <CircularProgressBar percentage={percentage}/>
+            <CircularProgressBar percentage={percentage}/>
         </div>
     )
 

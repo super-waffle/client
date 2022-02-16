@@ -57,8 +57,8 @@ function Heatmap() {
         dayData[dayIndex].time = element.dayTotalTime;
         dayData[dayIndex].count = timeRange(element.dayTotalTime);
       });
+      setFinalData(() => dayData);
     }
-    setFinalData(() => dayData);
   }, [yearData, dayData, daymap]);
 
   useEffect(() => {
