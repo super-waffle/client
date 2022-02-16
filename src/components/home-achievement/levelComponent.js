@@ -9,7 +9,6 @@ export default function LevelComponent(props) {
   // let hour = ("0" + Math.floor((props.timeTotal / 60) % 60)).slice(-2);
   // let minute = ("0" + Math.floor((props.timeTotal) % 60)).slice(-2);
   const TOKEN = localStorage.getItem('accessToken');
-
   const [dayTotalStudyTime, setDayTotalStudyTime] = useState(0);
   var today = new Date();
   var year = today.getFullYear();
@@ -19,7 +18,7 @@ export default function LevelComponent(props) {
   var dateString = year + '-' + month  + '-' + day;
 
   var levelPercent = 
-  ((props.timeTotal-props.levelCondition)/props.conditionToNext).toFixed(2);
+  (((props.timeTotal-props.levelCondition)/props.conditionToNext)*100).toFixed(2);
 
   var hour=(data)=>{
     return ("0" + Math.floor((data / 60) % 60)).slice(-2);
@@ -40,9 +39,16 @@ export default function LevelComponent(props) {
           }
         )
         .then((res) => {
-          setDayTotalStudyTime(res.data.result.dayTotalStudyTime);
+          if (res.data.statusCode == 200) {
+            let data = res.data.result.dayTotalStudyTime;
+            setDayTotalStudyTime(() => data);
+          }else if(res.data.statusCode == 404)
+          {
+            setDayTotalStudyTime(() => 0);
+          }
+         
         });
-  });
+  },[]);
   return (
     <div className="">
       <div style={{ width: '50%' }}>

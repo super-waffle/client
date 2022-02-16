@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React from 'react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import isLogin from '../utils/isLogin';
 import '../statics/css/home/homeAchievement.css';
 import LevelComponent from '../components/home-achievement/levelComponent';
@@ -17,6 +17,8 @@ export default function HomeAchievement() {
   const [timeTotal, setTimeTotal] = useState("");
   const [levelCondition, setLevelCondition] = useState("");
   const [conditionToNext, setConditionToNext] = useState("");
+  const [achieveImg, setAchieveImg] = useState();
+  const [achieveName, setAchieveName] = useState();
 
   if (isLogin()) {
     axios
@@ -37,6 +39,23 @@ export default function HomeAchievement() {
         setTimeTotal(USER.userTimeTotal);
       });
   }
+  async function getMainAchieve(){
+    await axios
+      .get(process.env.REACT_APP_SERVER_URL + '/achievements/active', {
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+        },
+      })
+      .then((res) => {
+        let data = res.data.achieveActive.achieve;
+        setAchieveName(() => data.achieveName);
+        setAchieveImg(() => data.achieveImg);
+      });
+    
+  }
+  useEffect(() => {
+    getMainAchieve();
+  }, []);
   return (
     <div className="home-achievement">
       <div className="home-achievement-top">
@@ -54,14 +73,14 @@ export default function HomeAchievement() {
             />
           </div>
           <div className="home-achievement-achieve">
-            <Myachievement/>
+            <Myachievement achieveImg={achieveImg} achieveName={achieveName}/>
           </div>
         </div>
       </div>
       <div className="home-achievement-bottom">
         <span>{nickname}님의 업적도감</span>
         <div className="home-achievement-dogam">
-          <AchievementList/>
+          <AchievementList setAchieveName={setAchieveName} setAchieveImg={setAchieveImg}/>
         </div>
       </div>
     </div>
