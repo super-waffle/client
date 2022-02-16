@@ -45,13 +45,11 @@ export default class StreamComponent extends Component {
   }
 
   handleExitUser() {
-    // `/meetings/${this.props.meetingSeq}/kick/${this.props.user_seq}`,
-
     return new Promise((resolve, reject) => {
       axios
-        .post(
+        .patch(
           process.env.REACT_APP_SERVER_URL +
-            `/meetings/${this.props.meetingSeq}/kick/${this.props.user.getNickname()}`,
+            `/studies/${this.props.studySeq}/ban/${this.props.user.getNickname()}`,
           {},
           {
             headers: {
@@ -62,10 +60,7 @@ export default class StreamComponent extends Component {
         )
         .then((res) => {
           console.log(
-            "meetingSeq: " +
-              this.props.meetingSeq +
-              " userNickname: " +
-              this.props.user.getNickname()
+            "studySeq: " + this.props.studySeq + " userNickname: " + this.props.user.getNickname()
           );
           const STATUS = res.data.statusCode;
           resolve(res.data.statusCode);
@@ -193,7 +188,7 @@ export default class StreamComponent extends Component {
             ) : (
               <div className="video-camoff">{this.state.nickname}</div>
             )}
-            <div className="video-time">{this.props.timeString}</div>
+            {/* <div className="video-time">{this.props.timeString}</div> */}
 
             {this.props.user.type === "remote" && this.props.isHost && (
               <div id="status-exiticons">
@@ -217,12 +212,12 @@ export default class StreamComponent extends Component {
                 )}
 
                 <Modal open={this.state.modalOpen} close={this.closeModal} header=" ">
-                  <div className="meeting-room-kick-msg">
-                    사용자 [{this.state.nickname}] 를 강퇴하시겠습니까?
+                  <div className="study-room-kick-msg">
+                    스터디원 [{this.state.nickname}] 를 일시방출 하시겠습니까?
                   </div>
 
                   <button
-                    className="meeting-room-kick-ok"
+                    className="study-room-kick-ok"
                     onClick={() => {
                       this.handleExitUser();
                       this.props.sendSignalUserKicked(this.props.user.getNickname());
@@ -230,7 +225,7 @@ export default class StreamComponent extends Component {
                   >
                     확인
                   </button>
-                  <button className="meeting-room-kick-cancel" onClick={this.closeModal}>
+                  <button className="study-room-kick-cancel" onClick={this.closeModal}>
                     취소
                   </button>
                 </Modal>

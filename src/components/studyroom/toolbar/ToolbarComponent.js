@@ -1,29 +1,15 @@
 import React, { Component } from "react";
-import { MdVideocamOff, MdVideocam, MdMicOff, MdMic } from "react-icons/md";
+import {
+  MdVideocamOff,
+  MdVideocam,
+  MdMicOff,
+  MdMic,
+  MdScreenShare,
+  MdStopScreenShare,
+} from "react-icons/md";
+import { FcSwitchCamera } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import "./ToolbarComponent.css";
-
-// import AppBar from "@material-ui/core/AppBar";
-// import Toolbar from "@material-ui/core/Toolbar";
-
-// import Mic from "@material-ui/icons/Mic";
-// import MicOff from "@material-ui/icons/MicOff";
-// import Videocam from "@material-ui/icons/Videocam";
-// import VideocamOff from "@material-ui/icons/VideocamOff";
-// import Fullscreen from "@material-ui/icons/Fullscreen";
-// import FullscreenExit from "@material-ui/icons/FullscreenExit";
-// import SwitchVideoIcon from "@material-ui/icons/SwitchVideo";
-// import PictureInPicture from "@material-ui/icons/PictureInPicture";
-// import ScreenShare from "@material-ui/icons/ScreenShare";
-// import StopScreenShare from "@material-ui/icons/StopScreenShare";
-// import Tooltip from "@material-ui/core/Tooltip";
-// import PowerSettingsNew from "@material-ui/icons/PowerSettingsNew";
-// import QuestionAnswer from "@material-ui/icons/QuestionAnswer";
-
-// import IconButton from "@material-ui/core/IconButton";
-// import { MdMic } from "react-icons/md";
-
-// const logo = require('../../assets/images/openvidu_logo.png');
 
 export default class ToolbarComponent extends Component {
   constructor(props) {
@@ -112,8 +98,35 @@ export default class ToolbarComponent extends Component {
               />
             )}
           </div>
+          <div className="button-share">
+            {localUser !== undefined && localUser.isScreenShareActive() ? (
+              <FcSwitchCamera
+                onClick={this.screenShare}
+                style={{
+                  cursor: "pointer",
+                  color: "#6667AB",
+                }}
+                size={"2rem"}
+              />
+            ) : (
+              <MdScreenShare
+                onClick={this.screenShare}
+                style={{ cursor: "pointer", color: "gray" }}
+                size={"2rem"}
+              />
+            )}
+          </div>
+
+          {localUser !== undefined && localUser.isScreenShareActive() && (
+            <MdStopScreenShare
+              onClick={this.stopScreenShare}
+              style={{ cursor: "pointer", color: "gray" }}
+              size={"2rem"}
+            />
+          )}
+
           <div className="button-exit">
-            <Link to="/meetingrooms">
+            <Link to="/home/tab=todays">
               <svg
                 width="30"
                 height="30"
@@ -132,7 +145,7 @@ export default class ToolbarComponent extends Component {
             </Link>
           </div>
         </div>
-        <div className="buttons-util">
+        {/* <div className="buttons-util">
           <div className="button-users">
             <svg
               width="30"
@@ -164,10 +177,10 @@ export default class ToolbarComponent extends Component {
               />
             </svg>
           </div>
-          <div className="button-chat">
-            {/* {this.props.showNotification && <div id="point" className="" />} */}
+          <div className="button-chat"> */}
+        {/* {this.props.showNotification && <div id="point" className="" />} */}
 
-            <svg
+        {/* <svg
               width="30"
               height="30"
               viewBox="0 0 16 16"
@@ -182,7 +195,7 @@ export default class ToolbarComponent extends Component {
               />
             </svg>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

@@ -1,10 +1,10 @@
 @import "main.scss";
 
-.meeting-room {
+.study-room {
   height: 100%;
   width: 100%;
 
-  .meeting-room-content {
+  .study-room-content {
     /* background-color: #fcfcfc; */
     overflow: hidden;
     position: absolute;
@@ -20,7 +20,7 @@
     /* display: flex !important; */
     /* background-color: #f1111c; */
 
-    .meeting-room-video {
+    .study-room-video {
       /* background-color: #fcfcfc; */
       overflow: hidden;
       position: absolute;
@@ -46,6 +46,8 @@
         border: 0;
         font-size: 100%;
         font-family: $font-family;
+        // border: 1px solid var(--board-textColor);
+        // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       }
 
       .video-username {
@@ -124,13 +126,13 @@
       }
     }
 
-    .meeting-room-sidebar {
+    .study-room-sidebar {
       /* background-color: #fcfcfc; */
       overflow: hidden;
       position: absolute;
       /* left: 0; */
       right: 0;
-      top: 7%;
+      top: 20px;
       bottom: 0;
       height: auto;
       padding-top: 10px;
@@ -138,11 +140,11 @@
       max-width: 100% !important;
       width: 25%;
 
-      .meeting-room-timer {
-        height: 26%;
+      .study-room-timer {
+        height: 5%;
 
-        .meeting-room-stop-watch {
-          background-color: var(--bgColor);
+        .study-room-stop-watch {
+          // background-color: var(--bgColor);
           display: flex;
           flex-direction: column;
           /* align-items: center; */
@@ -150,14 +152,16 @@
           /* margin-top: 5%; */
           margin-left: 15%;
           position: absolute;
-          border: 1px solid var(--borderColor);
+          top: 10px;
+          left: 50%;
+          // border: 1px solid var(--borderColor);
           /* padding:10px; */
           // box-sizing: border-box;
-          border-radius: 8px;
-          height: 26%;
+          // border-radius: 8px;
+          // height: 26%;
           width: 80%;
-          color: $textColor;
-          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          // color: $textColor;
+          // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
           .stop-watch-title {
             background: var(--bgColor-light);
@@ -207,17 +211,17 @@
 
           .timer {
             // margin: 3rem 0;
-            width: 100%;
-            display: flex;
+            // width: 100%;
+            // display: flex;
             // padding-top: 20px;
-            height: 27%;
+            // height: 27%;
             justify-content: center;
             align-items: center;
 
             .digits {
-              padding-top: 17px;
+              padding-top: 15px;
               font-family: $font-family;
-              font-size: 2rem;
+              font-size: 1.7rem;
               color: $mainColor;
             }
           }
@@ -259,22 +263,22 @@
         }
       }
 
-      .meeting-room-chat {
+      .study-room-chat {
         // position: absolute;
         // bottom: 0;
-        height: 74%;
+        height: 65%;
 
-        .meeting-chat-container {
+        .study-chat-container {
           position: absolute;
           z-index: 0;
           width: 100%;
-          height: 74%;
+          height: 60%;
 
           .chat-component {
             background-color: var(--bgColor);
             position: absolute;
             // z-index: 99999;
-            top: 5%;
+            top: 10px;
             left: 0;
             right: 0;
             /* bottom: 0; */
@@ -284,7 +288,7 @@
             /* height: calc(100% - 30px); */
             /* width: calc(100% - 80px); */
             border-radius: 8px;
-            height: 93%;
+            height: 95%;
             border: 1px solid var(--borderColor);
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
@@ -522,23 +526,23 @@
         }
       }
 
-      .meeting-room-userlist {
+      .study-room-userlist {
         // position: absolute;
         // bottom: 0;
-        height: 74%;
+        height: 35%;
 
-        .meeting-userlist-container {
+        .study-userlist-container {
           position: absolute;
           z-index: 0;
           width: 100%;
-          height: 74%;
+          height: 100%;
 
           .userlist-component {
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             background-color: var(--bgColor);
             position: absolute;
             // z-index: 99999;
-            top: 5%;
+            // top: 5%;
             left: 0;
             right: 0;
             /* bottom: 0; */
@@ -588,7 +592,7 @@
 
             .list-wrap {
               // padding: 0 15px;
-              height: calc(100% - 100px);
+              height: calc(100% - 80px);
               overflow: auto;
               font-family: $font-family;
               padding: 15px;
@@ -632,7 +636,7 @@
     }
   }
 
-  .meeting-room-buttons {
+  .study-room-buttons {
     /* background-color: #fcfcfc; */
     overflow: hidden;
     position: absolute;
@@ -701,9 +705,16 @@
           color: $mainColor;
         }
 
+        .button-share {
+          position: absolute;
+          left: 54%;
+          height: 100%;
+          color: $mainColor;
+        }
+
         .button-exit {
           position: absolute;
-          left: 57%;
+          left: 70%;
           height: 100%;
           color: $mainColor;
         }
@@ -732,13 +743,13 @@
   }
 }
 
-.meeting-room-kick-msg {
+.study-room-kick-msg {
   font-size: 14px;
   color: var(--textColor);
   margin-bottom: 25px;
 }
 
-.meeting-room-kick-ok {
+.study-room-kick-ok {
   background-color: $mainColor;
   color: #eeeeee;
   border: none;
@@ -749,7 +760,7 @@
   margin-right: 8px;
 }
 
-.meeting-room-kick-cancel {
+.study-room-kick-cancel {
   background-color: var(--bgColor);
   color: var(--textColor);
   border: 1px solid $mainColor;

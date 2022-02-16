@@ -6,9 +6,10 @@ class UserModel {
   nickname;
   streamManager;
   type; // 'remote' | 'local'
-  host;
+  isHost;
   isMuted;
   isBlocked;
+  isLate;
   studyTimeString;
 
   constructor() {
@@ -19,9 +20,10 @@ class UserModel {
     this.nickname = "";
     this.streamManager = null;
     this.type = "local";
-    this.host = false;
+    this.isHost = false;
     this.isMuted = false;
     this.studyTimeString = "00:00:00";
+    this.isLate = false;
   }
 
   isAudioActive() {
@@ -59,7 +61,7 @@ class UserModel {
   getStreamManager() {
     return this.streamManager;
   }
-  isHost() {
+  getIsHost() {
     return true;
   }
   isLocal() {
@@ -67,6 +69,9 @@ class UserModel {
   }
   isRemote() {
     return !this.isLocal();
+  }
+  getIsLate() {
+    return this.isLate;
   }
   setAudioActive(isAudioActive) {
     this.audioActive = isAudioActive;
@@ -87,7 +92,7 @@ class UserModel {
   setNickname(nickname) {
     this.nickname = nickname;
   }
-  setHost(isHost) {
+  setIsHost(isHost) {
     this.host = isHost;
   }
   setType(type) {
@@ -106,6 +111,9 @@ class UserModel {
 
   setStudyTimeString(timeString) {
     this.studyTimeString = timeString;
+  }
+  setIsLate(isLate) {
+    this.isLate = isLate;
   }
 }
 
