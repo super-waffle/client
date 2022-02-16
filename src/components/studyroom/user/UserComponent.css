@@ -1,0 +1,14 @@
+.box{
+    position: absolute;
+    width: 331px;
+    height: 478px;
+    left: 10%;
+    top: 35%;
+    margin-right: 100px;
+    background: #FCFCFC;
+    border: 1px solid #EDEDED;
+    box-sizing: border-box;
+    border-radius: 8px;
+    float: left;
+}
+

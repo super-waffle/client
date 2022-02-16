@@ -129,12 +129,14 @@ export default function Meetingrooms() {
     dispatch(sendMeetingSeqRedux(selectedMeeting.meetingSeq));
   }, [selectedMeeting]);
 
+  localStorage.setItem("studySeq", 70);
   return (
     <main style={{ padding: "1rem 0" }}>
       <div className="studyrecruit">
         <div className="studyrecruit-heading">
           <span className="studyrecruit-h1">자유열람실</span>
           <span className="studyrecruit-h2">나와 맞는 자유열람실을 찾아보세요</span>
+          <Link to="/studyroom">스터디룸</Link>
         </div>
         <div className="studyrecuit-middle">
           <div className="studyrecruit-search">

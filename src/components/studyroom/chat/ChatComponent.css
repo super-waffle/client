@@ -1,0 +1,22 @@
+/* Start message from other user */
+
+/* End message from other user */
+
+/* Start my messages */
+
+/* End my messages */
+
+#sendButton {
+  background-color: #81e9b0;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 1px solid #7ae2a9;
+  box-shadow: none !important;
+}
+#sendButton {
+  margin-left: 3px !important;
+  margin-bottom: 2px !important;
+}
