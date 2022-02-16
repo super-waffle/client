@@ -1,4 +1,4 @@
-@import "main.scss";
+@import "../main.scss";
 
 .heatmap {
   & text {
@@ -29,6 +29,13 @@
         stroke: var(--textColor-dark);
         border: 0.5px solid var(--textColor-dark);
       }
+    }
+    :focus {
+      outline: none;
+    }
+
+    .color-beammp-empty {
+      fill: var(--textColor-todo);
     }
 
     .color-beammp-0 {

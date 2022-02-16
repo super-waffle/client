@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import HomeTodos from "../components/home/todays/homeTodos";
-// import CreateTodo from "../components/Schedule/Todo/TodoCreate";
-import CreateTodo from "../components/home/todays/homeCreateTodos";
 import "../statics/css/home/homeTodays.css";
 import HomeStudies from "../components/home/todays/homeStudiesList";
 import MyGoal from "../components/home/todays/homeGoal";

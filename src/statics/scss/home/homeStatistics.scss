@@ -16,22 +16,20 @@
       box-sizing: border-box;
       border-radius: 10px;
       width: 56vw;
-      height: 40vh;
+      // height: 40vh;
       margin-top: 9px;
-      padding-left: 24px;
-      padding-right: 24px;
-      padding-top: 10px;
+      padding: 10px 24px;
     }
   }
-  .home-statistics-bottom {
-    .home-statistics-bottom-box {
-      background: var(--bgColor);
-      border: 1px solid var(--borderColor);
-      box-sizing: border-box;
-      border-radius: 10px;
-      width: 56vw;
-      height: 303px;
-      margin-top: 9px;
-    }
-  }
+  // .home-statistics-bottom {
+  //   .home-statistics-bottom-box {
+  //     background: var(--bgColor);
+  //     border: 1px solid var(--borderColor);
+  //     box-sizing: border-box;
+  //     border-radius: 10px;
+  //     width: 56vw;
+  //     height: 303px;
+  //     margin-top: 9px;
+  //   }
+  // }
 }

@@ -87,10 +87,10 @@ export default function MyGoal() {
         <div className="my-goal-bottom__left">
           <div className="my-goal-bottom__header">어제보다 오늘더</div>
           <div className="my-goal-bottom__time">
-            {parseInt((yesterday - timeTotal) / 60)}시간{" "}
-            {yesterday -
-              timeTotal -
-              parseInt((yesterday - timeTotal) / 60) * 60}
+            {parseInt((timeTotal - yesterday) / 60)}시간{" "}
+            {timeTotal -
+              yesterday -
+              parseInt((timeTotal - yesterday) / 60) * 60}
             분
           </div>
         </div>

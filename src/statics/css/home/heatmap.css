@@ -1,0 +1,98 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+:root {
+  --htmlbgColor: #ffffff;
+  --bgColor: #fcfcfc;
+  --bgColor-light: #eaeaea;
+  --borderColor: #ededed;
+  --borderColor2: #d6d6d6;
+  --borderColor3: #e1e1e1;
+  --textWhite: #eeeeee;
+  --textColor: #252525;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #a1a1a1;
+  --textColor-darkest: #c2c2c2;
+  --textColor-todo: #6c757d;
+  --github-01: #e8eaee;
+  --github-02: #d5d6f5;
+  --github-03: #9fa2e3;
+  --board-textColor: #646464;
+  --if-bgColor: #f9f9f9;
+  --if-borderColor: #e5e5e5;
+}
+
+.ui-dark {
+  background-color: var(--htmlbgColor);
+  --htmlbgColor: #292929;
+  --bgColor: #373737;
+  --bgColor-light: #4a4a4a;
+  --bgColor-lighter: #565656;
+  --bgColor-dark: #1b1b1b;
+  --borderColor: #444444;
+  --borderColor2: #444444;
+  --borderColor3: #444444;
+  --textColor: #ededed;
+  --textColor-dark: #8a8a8a;
+  --textColor-darker: #6f6f6f;
+  --textColor-darkest: #838383;
+  --textColor-todo: #cdcdcd;
+  --github-01: rgba(102, 103, 171, 0.2);
+  --github-02: rgba(102, 103, 171, 0.4);
+  --github-03: rgba(102, 103, 171, 0.7);
+  --board-textColor: #ededed;
+  --if-bgColor: #323232;
+  --if-borderColor: #444444;
+}
+
+.hidden {
+  display: none;
+}
+
+.heatmap text {
+  font-family: "Pretendard";
+  font-size: 8px;
+}
+.heatmap .react-calendar-heatmap-month-label {
+  fill: var(--textColor-darker);
+}
+.heatmap .react-calendar-heatmap .today {
+  stroke: var(--textColor);
+}
+.heatmap .react-calendar-heatmap rect {
+  cursor: pointer;
+  rx: 3px;
+}
+.heatmap .react-calendar-heatmap rect:hover {
+  stroke: var(--textColor-dark);
+  border: 0.5px solid var(--textColor-dark);
+}
+.heatmap .react-calendar-heatmap rect:active {
+  stroke: var(--textColor-dark);
+  border: 0.5px solid var(--textColor-dark);
+}
+.heatmap .react-calendar-heatmap rect:visited {
+  stroke: var(--textColor-dark);
+  border: 0.5px solid var(--textColor-dark);
+}
+.heatmap .react-calendar-heatmap :focus {
+  outline: none;
+}
+.heatmap .react-calendar-heatmap .color-beammp-empty {
+  fill: var(--textColor-todo);
+}
+.heatmap .react-calendar-heatmap .color-beammp-0 {
+  fill: var(--github-01);
+}
+.heatmap .react-calendar-heatmap .color-beammp-1 {
+  fill: var(--github-02);
+}
+.heatmap .react-calendar-heatmap .color-beammp-2 {
+  fill: var(--github-03);
+}
+.heatmap .react-calendar-heatmap .color-beammp-3 {
+  fill: #6667ab;
+}
+.heatmap .react-calendar-heatmap .color-beammp-4 {
+  fill: #2e2f8b;
+}
+
+/*# sourceMappingURL=heatmap.css.map */

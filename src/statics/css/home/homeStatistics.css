@@ -16,6 +16,8 @@
   --github-02: #d5d6f5;
   --github-03: #9fa2e3;
   --board-textColor: #646464;
+  --if-bgColor: #f9f9f9;
+  --if-borderColor: #e5e5e5;
 }
 
 .ui-dark {
@@ -37,6 +39,8 @@
   --github-02: rgba(102, 103, 171, 0.4);
   --github-03: rgba(102, 103, 171, 0.7);
   --board-textColor: #ededed;
+  --if-bgColor: #323232;
+  --if-borderColor: #444444;
 }
 
 .hidden {
@@ -61,20 +65,8 @@
   box-sizing: border-box;
   border-radius: 10px;
   width: 56vw;
-  height: 40vh;
   margin-top: 9px;
-  padding-left: 24px;
-  padding-right: 24px;
-  padding-top: 10px;
-}
-.home-statistics .home-statistics-bottom .home-statistics-bottom-box {
-  background: var(--bgColor);
-  border: 1px solid var(--borderColor);
-  box-sizing: border-box;
-  border-radius: 10px;
-  width: 56vw;
-  height: 303px;
-  margin-top: 9px;
+  padding: 10px 24px;
 }
 
 /*# sourceMappingURL=homeStatistics.css.map */
