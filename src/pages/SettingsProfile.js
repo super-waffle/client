@@ -97,7 +97,7 @@ export default function SettingsProfile() {
         // console.log(res);
       });
   };
-
+  console.log(profileImg);
   // 서버에 전달
   const onClickUpdate = useCallback(() => {
     if (fileImage) {

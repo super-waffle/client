@@ -5,12 +5,14 @@ import "../../../statics/css/home/heatmap.css";
 import ReactTooltip from "react-tooltip";
 import axios from "axios";
 import DailyStats from "./dailystats";
+import { useSelector } from "react-redux";
 
 function Heatmap() {
   const [yearData, setYearData] = useState("");
   const [dayData, setDayData] = useState("");
   const [finalData, setFinalData] = useState("");
   const [selectedDay, setSelectedDay] = useState("");
+  const defaultDay = useSelector((state) => state.schedule.today);
   const [isShowDaily, setIsShowDaily] = useState(false);
   const [daymap, setDaymap] = useState(new Map());
 
@@ -72,7 +74,7 @@ function Heatmap() {
   useEffect(() => {
     getYearData();
   }, []);
-  console.log(selectedDay);
+  // console.log(selectedDay);
 
   // 데이터 받아오면 지울 부분
   function getRange(count) {
@@ -98,7 +100,7 @@ function Heatmap() {
       {finalData && (
         <div>
           <ReactCalendarHeatmap
-            startDate={shiftDate(today, -362)}
+            startDate={shiftDate(today, -363)}
             endDate={today}
             values={finalData}
             classForValue={(value) => {
@@ -120,7 +122,7 @@ function Heatmap() {
         </div>
       )}
       <div>
-        <DailyStats selectedDay={selectedDay} />
+        <DailyStats defaultDay={defaultDay} selectedDay={selectedDay} />
       </div>
     </div>
   );

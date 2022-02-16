@@ -1,5 +1,6 @@
 import "../statics/css/home/homeStatistics.css";
 import Heatmap from "../components/home/statistics/heatmap";
+import IfIWere from "../components/home/statistics/if";
 
 export default function HomeStatistics() {
   return (
@@ -14,6 +15,7 @@ export default function HomeStatistics() {
       </div>
       <div className="home-statistics-bottom">
         <span>내가 목표시간을 달성했더라면...</span>
+        <IfIWere />
         <div className="home-statistics-bottom-box"></div>
       </div>
     </div>
