@@ -34,10 +34,12 @@ export default class ToolbarComponent extends Component {
   }
 
   screenShare() {
+    if (!this.props.user.isVideoActive()) this.camStatusChanged();
     this.props.screenShare();
   }
 
   stopScreenShare() {
+    if (this.props.user.isVideoActive()) this.camStatusChanged();
     this.props.stopScreenShare();
   }
 
@@ -118,7 +120,10 @@ export default class ToolbarComponent extends Component {
             {localUser !== undefined && localUser.isScreenShareActive() && (
               <MdStopScreenShare
                 onClick={this.stopScreenShare}
-                style={{ cursor: "pointer", color: "gray" }}
+                style={{
+                  cursor: "pointer",
+                  color: "#6667AB",
+                }}
                 size={"2rem"}
               />
             )}

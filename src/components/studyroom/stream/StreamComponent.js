@@ -108,52 +108,7 @@ export default class StreamComponent extends Component {
     }
   }
 
-  // setTime() {
-  //   let interval = null;
-  //   interval = setInterval(() => {
-  //     let hour = ("0" + Math.floor((this.props.time / 3600) % 60)).slice(-2);
-  //     let minute = ("0" + Math.floor((this.props.time / 60) % 60)).slice(-2);
-  //     let second = ("0" + (this.props.time % 60)).slice(-2);
-
-  //     timeString = hour + ":" + minute + ":" + second;
-  //   }, 1000);
-  // }
-
-  // componentDidMount() {
-  //   this.interval = setInterval(() => {
-  //     let hour = ("0" + Math.floor((this.props.cumTime / 3600) % 60)).slice(-2);
-  //     let minute = ("0" + Math.floor((this.props.cumTime / 60) % 60)).slice(-2);
-  //     let second = ("0" + (this.props.cumTime % 60)).slice(-2);
-
-  //     this.state.timeString = hour + ":" + minute + ":" + second;
-  //     // console.log("state시간 " + this.state.time);
-  //     console.log("props시간 " + this.props.cumTime);
-  //     console.log(this.state.timeString);
-  //   }, 1000);
-  //   console.log(this.timeString);
-  // }
-
-  // componentWillUnmount() {
-  //   clearInterval(this.interval);
-  // }
-  // componentDidUpdate = (prevProps, prevState) => {
-  //   //componentDidUpdate가 props의 변과를 감지한다
-  //   console.log("********************************");
-  //   console.log("비교" + this.props.timeString + " " + prevProps.timeString);
-  //   if (this.props.timeString !== prevProps.timeString) {
-  //     //하위컴포넌트가 받은 props값 적어주기(둘다)
-  //     console.log("~~~~~~~~~~~~~~~~~~~~~~~~~");
-  //     this.setState({
-  //       ...this.state,
-  //       // selectTagNum: -1,
-  //       // contentOn: "none",  // 난 여기서 contntOn을 none으로 바꿔서 사라지게 햇다
-  //     });
-  //   }
-  // };
-
   render() {
-    // console.log(this.props.user);
-    // console.log("호스트여부" + this.props.isHost);
     return (
       <div className="OT_widget-container">
         {this.props.user !== undefined && this.props.user.getStreamManager() !== undefined ? (
