@@ -13,14 +13,19 @@ function Heatmap() {
   const [finalData, setFinalData] = useState("");
   const [selectedDay, setSelectedDay] = useState("");
   const defaultDay = useSelector((state) => state.schedule.today);
-  const [isShowDaily, setIsShowDaily] = useState(false);
   const [daymap, setDaymap] = useState(new Map());
 
   function shiftDate(date, numDays) {
-    const newDate = new Date(date);
+    const offset = new Date().getTimezoneOffset() * 60000;
+    const newDate = new Date(date - offset);
     newDate.setDate(newDate.getDate() + numDays);
     return newDate;
   }
+
+  function getRange(count) {
+    return Array.from({ length: count }, (_, i) => i);
+  }
+  const today = new Date();
 
   async function getYearData() {
     const response = await axios
@@ -46,7 +51,7 @@ function Heatmap() {
   };
 
   useEffect(() => {
-    if (yearData) {
+    if (yearData && dayData && daymap) {
       yearData.forEach((element) => {
         const dayIndex = daymap.get(element.date);
         dayData[dayIndex].time = element.dayTotalTime;
@@ -54,7 +59,7 @@ function Heatmap() {
       });
     }
     setFinalData(() => dayData);
-  }, [yearData]);
+  }, [yearData, dayData, daymap]);
 
   useEffect(() => {
     getRange(400).map((index) => {
@@ -74,26 +79,6 @@ function Heatmap() {
   useEffect(() => {
     getYearData();
   }, []);
-  // console.log(selectedDay);
-
-  // 데이터 받아오면 지울 부분
-  function getRange(count) {
-    return Array.from({ length: count }, (_, i) => i);
-  }
-
-  function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-  const today = new Date();
-  const randomValues = getRange(2000).map((index) => {
-    // console.log(index);
-    return {
-      date: shiftDate(today, -index),
-      count: getRandomInt(0, 3),
-    };
-  });
-  // console.log(randomValues);
-  // 여기까지 지우면 됨
 
   return (
     <div className="heatmap">
