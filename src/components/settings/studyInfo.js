@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export default function StudyInfo({
   selectedStudy,
@@ -6,7 +6,7 @@ export default function StudyInfo({
   onClickEndRecruit,
   onClickStartStudy,
 }) {
-  const weekend = ['월', '화', '수', '목', '금', '토', '일'];
+  const weekend = ["월", "화", "수", "목", "금", "토", "일"];
   return (
     <div className="settings-study-details">
       <div className="settings-study-details-box-heading">
@@ -20,13 +20,13 @@ export default function StudyInfo({
         </div>
         <div className="settings-study-details-box-heading__first-host">
           <Link
-            to={'/'}
+            to={"/"}
             className="settings-study-details-box-heading__first-host-btn update"
           >
             수정
           </Link>
           <Link
-            to={'/'}
+            to={"/"}
             className="settings-study-details-box-heading__first-host-btn"
           >
             삭제
@@ -62,7 +62,7 @@ export default function StudyInfo({
               </clipPath>
             </defs>
           </svg>
-          {selectedStudy.hostImg && (
+          {selectedStudy.hostImage && (
             <img className="settings-study-details-img" src={imageURL} alt="" />
           )}
         </div>

@@ -1,0 +1,44 @@
+@import "../main.scss";
+
+.study-info-applied__members {
+  display: flex;
+  align-items: center;
+  margin-right: 7px;
+}
+.study-info-applied__img-wrapper {
+  margin-bottom: 4px;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  margin-right: 5px;
+  & img {
+    position: relative;
+    top: -24px;
+    left: 0;
+    transform: translate(50, 50);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: auto;
+    border-radius: 100%;
+    // padding-right: 10px;
+  }
+  & svg {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: translate(50, 50);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: auto;
+    border-radius: 100%;
+    &.host-crown {
+      top: -54px;
+      left: 2px;
+      width: 80%;
+      height: 80%;
+    }
+  }
+}

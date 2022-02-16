@@ -47,40 +47,10 @@
   display: none;
 }
 
-.daily-stats {
-  margin-top: 25px;
-  padding-left: 0.5rem;
+.study-personnel__applicants {
+  display: flex;
+  margin-bottom: 6px;
+  margin-top: 8px;
 }
 
-.daily-stats-header {
-  font-size: 15px;
-  color: var(--textColor);
-  margin-bottom: 7px;
-}
-
-.daily-stats-body {
-  width: 60%;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(100px, 2fr));
-  grid-template-rows: repeat(auo-fit, minmax(200px, 2fr));
-}
-
-.daily-stats-body__header {
-  font-size: 10px;
-  color: var(--textColor-todo);
-}
-
-.daily-stats-body__contents {
-  font-size: 18px;
-  color: var(--textColor);
-  font-weight: 500;
-  margin-bottom: 10px;
-}
-
-.no-data {
-  color: var(--textColor-todo);
-  text-align: center;
-  padding: 1rem 2rem 3rem 2rem;
-}
-
-/*# sourceMappingURL=dailyStats.css.map */
+/*# sourceMappingURL=studyPersonnel.css.map */
