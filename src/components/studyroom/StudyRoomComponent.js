@@ -884,137 +884,144 @@ class StudyRoomComponent extends Component {
     // console.log("localStorage" + localStorage.getItem("studySeq"));
     return (
       <div className="study-room">
-        <div className="study-room-content">
-          <DialogExtensionComponent
-            showDialog={this.state.showExtensionDialog}
-            cancelClicked={this.closeDialogExtension}
-          />
+        <div>
+          <div className="study-room-content">
+            <DialogExtensionComponent
+              showDialog={this.state.showExtensionDialog}
+              cancelClicked={this.closeDialogExtension}
+            />
 
-          {this.state.isKicked && (
-            <Modal open={true} header=" ">
-              <div className="study-room-kick-msg">
-                스터디룸 [{this.state.myStudyTitle}] 에서 일시방출 당하셨습니다. 오늘 하루동안
-                스터디에 참여할 수 없습니다.
-              </div>
+            {this.state.isKicked && (
+              <Modal open={true} header=" ">
+                <div className="study-room-kick-msg">
+                  스터디룸 [{this.state.myStudyTitle}] 에서 일시방출 당하셨습니다. 오늘 하루동안
+                  스터디에 참여할 수 없습니다.
+                </div>
 
-              <Link to="/home/tab=todays">
-                <button className="study-room-kick-ok" onClick={this.leaveSession}>
-                  확인
-                </button>
-              </Link>
-            </Modal>
-          )}
-
-          {this.state.isError && (
-            <Modal open={true} header=" ">
-              <div className="study-room-kick-msg">{this.state.errorMessage}</div>
-
-              <Link to="/home/tab=todays">
-                <button className="study-room-kick-ok">
-                  {/* onClick={this.leaveSession}> 확인 */}
-                  확인
-                </button>
-              </Link>
-            </Modal>
-          )}
-
-          <div id="layout" className="study-room-video">
-            {/* publisher */}
-            {localUser !== undefined && localUser.getStreamManager() !== undefined && (
-              <div className="OT_root OT_publisher custom-class" id="localUser">
-                <StreamComponent
-                  sendSignalUserKicked={this.sendSignalUserKicked}
-                  // sendSignalUserKicked={this.sendSignalUserKicked}
-                  timeString={this.state.timeString}
-                  cumTime={this.state.time}
-                  user={localUser}
-                  isHost={this.state.isHost}
-                  handleNickname={this.nicknameChanged}
-                  studySeq={this.state.myStudySeq}
-                />
-              </div>
+                <Link to="/home/tab=todays">
+                  <button className="study-room-kick-ok" onClick={this.leaveSession}>
+                    확인
+                  </button>
+                </Link>
+              </Modal>
             )}
-            {/* !host */}
-            {this.state.subscribers.map((sub, i) => (
-              <div key={i} className="OT_root OT_publisher custom-class" id="remoteUsers">
-                <StreamComponent
-                  sendSignalUserKicked={this.sendSignalUserKicked}
-                  // sendSignalUserKicked={this.sendSignalUserKicked}
-                  timeString={sub.getStudyTimeString()}
-                  cumTime={this.state.time}
-                  user={sub}
-                  isHost={this.state.isHost}
-                  streamId={sub.streamManager.stream.streamId}
-                  userSeq={this.state.userSeq}
-                  studySeq={this.state.myStudySeq}
-                />
-              </div>
-            ))}
-          </div>
 
-          <div className="study-room-sidebar">
-            <div className="study-room-timer">
-              <TimeComponent
-                // cumTime={this.state.time}
-                timeGap={this.state.studyStartTime}
-                timeTotal={this.state.studyEndTime}
-                // sendTime={this.setTime}
-                onCreate={this.setTime}
-                // onClick={() => {
-                //   this.setTime();
-                //   this.setTimeString();
-                // }}
-              />
-            </div>
-            <div className="study-room-userlist">
+            {this.state.isError && (
+              <Modal open={true} header=" ">
+                <div className="study-room-kick-msg">{this.state.errorMessage}</div>
+
+                <Link to="/home/tab=todays">
+                  <button className="study-room-kick-ok">
+                    {/* onClick={this.leaveSession}> 확인 */}
+                    확인
+                  </button>
+                </Link>
+              </Modal>
+            )}
+
+            <div id="layout" className="study-room-video">
+              {/* publisher */}
               {localUser !== undefined && localUser.getStreamManager() !== undefined && (
-                <div className="OT_root OT_publisher custom-class" style={userlistDisplay}>
-                  <div className="study-room-userlist">
-                    <UserComponent
-                      isLate={this.state.isLate}
-                      hostMember={this.state.hostMember[0]}
-                      otherMembers={this.state.otherMembers}
-                      absentMembers={this.state.absentMembers}
-                      subscribersCamStatusChanged={this.subscribersCamStatusChanged}
-                      subscribersMuteStatusChanged={this.subscribersMuteStatusChanged}
-                      local={localUser}
-                      isHost={this.state.isHost}
-                      remote={this.state.subscribers}
-                      camStatusChanged={this.camStatusChanged}
-                      micStatusChanged={this.micStatusChanged}
+                <div className="OT_root OT_publisher custom-class" id="localUser">
+                  <StreamComponent
+                    sendSignalUserKicked={this.sendSignalUserKicked}
+                    // sendSignalUserKicked={this.sendSignalUserKicked}
+                    timeString={this.state.timeString}
+                    cumTime={this.state.time}
+                    user={localUser}
+                    isHost={this.state.isHost}
+                    handleNickname={this.nicknameChanged}
+                    studySeq={this.state.myStudySeq}
+                  />
+                </div>
+              )}
+              {/* !host */}
+              {this.state.subscribers.map((sub, i) => (
+                <div key={i} className="OT_root OT_publisher custom-class" id="remoteUsers">
+                  <StreamComponent
+                    sendSignalUserKicked={this.sendSignalUserKicked}
+                    // sendSignalUserKicked={this.sendSignalUserKicked}
+                    timeString={sub.getStudyTimeString()}
+                    cumTime={this.state.time}
+                    user={sub}
+                    isHost={this.state.isHost}
+                    streamId={sub.streamManager.stream.streamId}
+                    userSeq={this.state.userSeq}
+                    studySeq={this.state.myStudySeq}
+                  />
+                </div>
+              ))}
+            </div>
+
+            <div className="study-room-sidebar">
+              {localUser !== undefined && (
+                <div className="study-room-timer">
+                  <TimeComponent
+                    // cumTime={this.state.time}
+                    timeGap={this.state.studyStartTime}
+                    timeTotal={this.state.studyEndTime}
+                    // sendTime={this.setTime}
+                    onCreate={this.setTime}
+                    // onClick={() => {
+                    //   this.setTime();
+                    //   this.setTimeString();
+                    // }}
+                  />
+                </div>
+              )}
+              <div className="study-room-userlist">
+                {localUser !== undefined && localUser.getStreamManager() !== undefined && (
+                  <div className="OT_root OT_publisher custom-class" style={userlistDisplay}>
+                    <div className="study-room-userlist">
+                      <UserComponent
+                        isLate={this.state.isLate}
+                        hostMember={this.state.hostMember[0]}
+                        otherMembers={this.state.otherMembers}
+                        absentMembers={this.state.absentMembers}
+                        subscribersCamStatusChanged={this.subscribersCamStatusChanged}
+                        subscribersMuteStatusChanged={this.subscribersMuteStatusChanged}
+                        local={localUser}
+                        isHost={this.state.isHost}
+                        remote={this.state.subscribers}
+                        camStatusChanged={this.camStatusChanged}
+                        micStatusChanged={this.micStatusChanged}
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+              {localUser !== undefined && localUser.getStreamManager() !== undefined && (
+                <div className="OT_root OT_publisher custom-class" style={chatDisplay}>
+                  <div className="study-room-chat">
+                    <ChatComponent
+                      user={localUser}
+                      chatDisplay={this.state.chatDisplay}
+                      close={this.toggleChat}
+                      messageReceived={this.checkNotification}
                     />
                   </div>
                 </div>
               )}
             </div>
-            {localUser !== undefined && localUser.getStreamManager() !== undefined && (
-              <div className="OT_root OT_publisher custom-class" style={chatDisplay}>
-                <div className="study-room-chat">
-                  <ChatComponent
-                    user={localUser}
-                    chatDisplay={this.state.chatDisplay}
-                    close={this.toggleChat}
-                    messageReceived={this.checkNotification}
-                  />
-                </div>
-              </div>
-            )}
           </div>
-        </div>
-        <div className="study-room-buttons" id="video-button-footer">
-          <ToolbarComponent
-            sessionId={this.state.mySessionId}
-            user={localUser}
-            showNotification={this.state.messageReceived}
-            camStatusChanged={this.camStatusChanged}
-            micStatusChanged={this.micStatusChanged}
-            screenShare={this.screenShare}
-            stopScreenShare={this.stopScreenShare}
-            toggleFullscreen={this.toggleFullscreen}
-            switchCamera={this.switchCamera}
-            leaveSession={this.leaveSession}
-            toggleChat={this.toggleChat}
-          />
+
+          {localUser !== undefined && (
+            <div className="study-room-buttons" id="video-button-footer">
+              <ToolbarComponent
+                sessionId={this.state.mySessionId}
+                user={localUser}
+                showNotification={this.state.messageReceived}
+                camStatusChanged={this.camStatusChanged}
+                micStatusChanged={this.micStatusChanged}
+                screenShare={this.screenShare}
+                stopScreenShare={this.stopScreenShare}
+                toggleFullscreen={this.toggleFullscreen}
+                switchCamera={this.switchCamera}
+                leaveSession={this.leaveSession}
+                toggleChat={this.toggleChat}
+              />
+            </div>
+          )}
         </div>
       </div>
     );
@@ -1072,13 +1079,16 @@ class StudyRoomComponent extends Component {
               errorMessage: "일시방출 당하여 오늘은 입장하실 수 없습니다.",
             });
           } else if (res.data.statusCode === 407) {
-            //블랙리스트
             this.setState({
               isError: true,
               errorMessage: "스터디 진행시간이 아닙니다.",
             });
           } else if (res.data.statusCode === 409) {
             //서버에러
+            this.setState({
+              isError: true,
+              errorMessage: "서버 환경을 확인해주세요.",
+            });
             window.location.reload();
           } else if (res.data.statusCode === 200) {
             resolve(res.data.sessionToken);

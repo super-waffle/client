@@ -221,7 +221,8 @@
             .digits {
               padding-top: 15px;
               font-family: $font-family;
-              font-size: 1.7rem;
+              font-size: 1.6rem;
+              font-weight: 450;
               color: $mainColor;
             }
           }
@@ -595,7 +596,17 @@
               height: calc(100% - 80px);
               overflow: auto;
               font-family: $font-family;
-              padding: 15px;
+              padding: 8px 8px 0 5px;
+
+              .user-attend-list {
+                padding-bottom: 3px;
+              }
+
+              .user-absent-list {
+                border-top: 1px solid var(--textColor-darkest);
+                padding-top: 10px;
+                padding-left: 2px;
+              }
 
               .user {
                 position: relative;
@@ -606,16 +617,16 @@
                 .user-name {
                   color: $textColor;
                   font-family: $font-family;
-                  left: 0;
+                  margin-left: 30px;
                   font-weight: 450;
-                  font-size: 16px;
+                  font-size: 14px;
                 }
                 .user-name-local {
                   color: $mainColor;
                   font-family: $font-family;
-                  left: 0;
+                  margin-left: 30px;
                   font-weight: bold;
-                  font-size: 16px;
+                  font-size: 14px;
                 }
                 .user-video {
                   position: absolute;
@@ -626,6 +637,18 @@
                 .user-audio {
                   position: absolute;
                   right: 0;
+                  top: 3px;
+                }
+
+                .user-attend {
+                  position: absolute;
+                  left: 3px;
+                  top: 3px;
+                }
+
+                .user-host {
+                  position: absolute;
+                  right: 65px;
                   top: 3px;
                 }
               }

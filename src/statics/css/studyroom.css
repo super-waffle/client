@@ -226,7 +226,8 @@
 .study-room .study-room-content .study-room-sidebar .study-room-timer .study-room-stop-watch .timer .digits {
   padding-top: 15px;
   font-family: "Pretendard";
-  font-size: 1.7rem;
+  font-size: 1.6rem;
+  font-weight: 450;
   color: #6667ab;
 }
 .study-room .study-room-content .study-room-sidebar .study-room-timer .study-room-stop-watch .control-buttons {
@@ -515,7 +516,15 @@
   height: calc(100% - 80px);
   overflow: auto;
   font-family: "Pretendard";
-  padding: 15px;
+  padding: 8px 8px 0 5px;
+}
+.study-room .study-room-content .study-room-sidebar .study-room-userlist .study-userlist-container .userlist-component .list-wrap .user-attend-list {
+  padding-bottom: 3px;
+}
+.study-room .study-room-content .study-room-sidebar .study-room-userlist .study-userlist-container .userlist-component .list-wrap .user-absent-list {
+  border-top: 1px solid var(--textColor-darkest);
+  padding-top: 10px;
+  padding-left: 2px;
 }
 .study-room .study-room-content .study-room-sidebar .study-room-userlist .study-userlist-container .userlist-component .list-wrap .user {
   position: relative;
@@ -526,16 +535,16 @@
 .study-room .study-room-content .study-room-sidebar .study-room-userlist .study-userlist-container .userlist-component .list-wrap .user .user-name {
   color: #6c757d;
   font-family: "Pretendard";
-  left: 0;
+  margin-left: 30px;
   font-weight: 450;
-  font-size: 16px;
+  font-size: 14px;
 }
 .study-room .study-room-content .study-room-sidebar .study-room-userlist .study-userlist-container .userlist-component .list-wrap .user .user-name-local {
   color: #6667ab;
   font-family: "Pretendard";
-  left: 0;
+  margin-left: 30px;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
 }
 .study-room .study-room-content .study-room-sidebar .study-room-userlist .study-userlist-container .userlist-component .list-wrap .user .user-video {
   position: absolute;
@@ -545,6 +554,16 @@
 .study-room .study-room-content .study-room-sidebar .study-room-userlist .study-userlist-container .userlist-component .list-wrap .user .user-audio {
   position: absolute;
   right: 0;
+  top: 3px;
+}
+.study-room .study-room-content .study-room-sidebar .study-room-userlist .study-userlist-container .userlist-component .list-wrap .user .user-attend {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+}
+.study-room .study-room-content .study-room-sidebar .study-room-userlist .study-userlist-container .userlist-component .list-wrap .user .user-host {
+  position: absolute;
+  right: 65px;
   top: 3px;
 }
 .study-room .study-room-buttons {
