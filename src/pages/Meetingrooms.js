@@ -129,31 +129,14 @@ export default function Meetingrooms() {
     dispatch(sendMeetingSeqRedux(selectedMeeting.meetingSeq));
   }, [selectedMeeting]);
 
+  localStorage.setItem("studySeq", 70);
   return (
     <main style={{ padding: "1rem 0" }}>
       <div className="studyrecruit">
         <div className="studyrecruit-heading">
           <span className="studyrecruit-h1">자유열람실</span>
           <span className="studyrecruit-h2">나와 맞는 자유열람실을 찾아보세요</span>
-          <Link className="menu" to={{ pathname: "/videoRoomComponent" }}>
-            {/* onClick={"window.location.reload();"} */} openvidu
-          </Link>
-          <br />
-          <Link
-            className="menu"
-            to={{ pathname: "/videoRoomComponentCopy" }}
-            // onClick={"window.location.reload();"}
-          >
-            copyfile
-          </Link>
-          <br />
-          <Link
-            className="menu"
-            to={{ pathname: "/VideoRoomComponentChange" }}
-            onClick={"window.location.reload();"}
-          >
-            change link
-          </Link>
+          <Link to="/studyroom">스터디룸</Link>
         </div>
         <div className="studyrecuit-middle">
           <div className="studyrecruit-search">
@@ -225,24 +208,24 @@ export default function Meetingrooms() {
           미팅룸 설명: {selectedMeeting.meetingDesc}
         </div>
 
-        <button
-          style={{
-            border: "none",
-            margin: "2rem",
-            backgroundColor: "#6667ab",
-            color: "#eeeeee",
+        <Link
+          to={{
+            pathname: `/videoRoomComponent`,
+            state: { meetingSeq: meetingSeq },
           }}
-          // onClick={enterMeeting}
         >
-          <Link
-            to={{
-              pathname: `/videoRoomComponent`,
-              state: { meetingSeq: meetingSeq },
+          <button
+            style={{
+              border: "none",
+              margin: "2rem",
+              backgroundColor: "#6667ab",
+              color: "#eeeeee",
             }}
+            // onClick={enterMeeting}
           >
             입실하기
-          </Link>
-        </button>
+          </button>
+        </Link>
         {/* {meetingSeq && <VideoRoomComponent meetingSeq={meetingSeq} />} */}
       </ApplicationModal>
     </main>

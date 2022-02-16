@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { MdVideocamOff, MdVideocam, MdMicOff, MdMic } from "react-icons/md";
 import "./UserComponent.css";
-// import { Container } from "react-bootstrap";
 import UserStatus from "./UserStatus";
 import { HiMenu } from "react-icons/hi";
 
@@ -45,7 +44,7 @@ class UserComponent extends Component {
   }
   render() {
     return (
-      <div className="meeting-userlist-container">
+      <div className="study-userlist-container">
         <div className="userlist-component">
           <div className="userlist-toolbar">
             <span className="userlist-toolbar-menu">
