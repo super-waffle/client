@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { Link } from "react-router-dom";
+import axios from "axios";
+import "../../statics/css/settings/studyInfoApplied.css";
 
 export default function StudyInfoApplied({
   selectedStudy,
@@ -7,8 +8,8 @@ export default function StudyInfoApplied({
   nickname,
   setStudyList,
 }) {
-  const TOKEN = localStorage.getItem('accessToken');
-  const weekend = ['월', '화', '수', '목', '금', '토', '일'];
+  const TOKEN = localStorage.getItem("accessToken");
+  const weekend = ["월", "화", "수", "목", "금", "토", "일"];
   const endStudy = () => {
     axios
       .patch(
@@ -29,9 +30,9 @@ export default function StudyInfoApplied({
       })
       .catch((err) => {
         if (err.statusCode === 404) {
-          alert('존재하지 않는 스터디 입니다');
+          alert("존재하지 않는 스터디 입니다");
         } else {
-          alert('스터디의 호스트가 아닙니다');
+          alert("스터디의 호스트가 아닙니다");
         }
       });
   };
@@ -55,9 +56,9 @@ export default function StudyInfoApplied({
       })
       .catch((err) => {
         if (err.statusCode === 404) {
-          alert('존재하지 않는 스터디 입니다');
+          alert("존재하지 않는 스터디 입니다");
         } else {
-          alert('스터디의 호스트입니다');
+          alert("스터디의 호스트입니다");
         }
       });
   };
@@ -76,13 +77,13 @@ export default function StudyInfoApplied({
         {selectedStudy.hostName === nickname && (
           <div className="settings-study-details-box-heading__first-host">
             <Link
-              to={'/'}
+              to={"/"}
               className="settings-study-details-box-heading__first-host-btn update"
             >
               수정
             </Link>
             <Link
-              to={'/'}
+              to={"/"}
               className="settings-study-details-box-heading__first-host-btn"
             >
               삭제
@@ -119,7 +120,7 @@ export default function StudyInfoApplied({
               </clipPath>
             </defs>
           </svg>
-          {selectedStudy.hostImg && (
+          {selectedStudy.hostImage && (
             <img className="settings-study-details-img" src={imageURL} alt="" />
           )}
         </div>
@@ -139,8 +140,8 @@ export default function StudyInfoApplied({
                 {selectedStudy.memberList &&
                   selectedStudy.memberList.map((member) => (
                     <td key={member.userSeq}>
-                      <div style={{ display: 'flex' }}>
-                        <div className="settings-study-details-img-wrapper">
+                      <div className="study-info-applied__members">
+                        <div className="study-info-applied__img-wrapper">
                           <svg
                             className="settings-study-details-img"
                             width="250"
