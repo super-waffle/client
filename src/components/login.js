@@ -33,13 +33,13 @@ function Login() {
 
           const currentToken = localStorage.getItem("accessToken");
           if (currentToken !== null) {
-            setTimeout(() => {
-              navigate("/home/tab=todays");
-              window.location.reload();
-            }, 2000);
+            // setTimeout(() => {
+            //   navigate("/home/tab=todays");
+            //   window.location.reload();
+            // }, 2000);
             // window.location.reload();
-            // navigate("/home/tab=todays");
-            // window.location.reload();
+            navigate("/home/tab=todays");
+            window.location.reload();
           }
         } else if (STATUS === 404) {
           setErrorMsg("가입되지 않은 사용자입니다");

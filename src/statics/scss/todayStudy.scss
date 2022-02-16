@@ -1,4 +1,4 @@
-@import "main.scss";
+@import 'main.scss';
 
 .schedule-today-study {
   font-family: $font-family;
@@ -11,7 +11,9 @@
 }
 .schedule-today-study-box {
   // margin: 0.5rem;
-  margin: 0.5rem 0 0 0.5rem;
+  // margin: 0.5rem 0 0 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.3rem;
   // min-height: 8rem;
   // max-width: 426px;
   // width: 15rem;
