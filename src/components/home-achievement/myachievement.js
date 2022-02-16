@@ -3,8 +3,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import CircularProgressBar from '../CircularProgressBar';
 
-export default function Myachievement({achieveName, achieveImg}) {
-    const percentage = ((1/20)*100).toFixed(0);
+export default function Myachievement({achieveName, achieveImg, achieveCount, achieveTotalCount}) {
+    const percentage = ((achieveCount/achieveTotalCount)*100).toFixed(0);
    
     const AchieveImg =
     'https://i6a301.p.ssafy.io:8080/images/' + achieveImg;

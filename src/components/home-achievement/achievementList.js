@@ -13,6 +13,8 @@ const AchievementCard = ({
   setMainachieveSeq,
   setAchieveImg,
   setAchieveName,
+  setAchieveCount,
+  achieveCount
 }) => {
   const [isHave, setIsHave] = useState(false);
 
@@ -28,6 +30,9 @@ const AchievementCard = ({
     const isfun = Array.from(userAcheieve.data2).includes(achieve.achieveSeq);
     // console.log(isfun);
     setIsHave(isfun);
+    if(isHave){
+      setAchieveCount(achieveCount+1);
+    }
   };
   const selectMainAchieve = async () => {
     await axios
@@ -56,6 +61,7 @@ const AchievementCard = ({
     setAchieveImg(achieve.achieveImg);
     setAchieveName(achieve.achieveName);
   };
+
   return (
     <Col
       style={{ marginBottom: '0.5rem', cursor: isHave ? 'pointer' : '' }}
@@ -108,7 +114,7 @@ const AchievementCard = ({
   );
 };
 
-export default function AchievementList({ setAchieveImg, setAchieveName }) {
+export default function AchievementList({ setAchieveImg, setAchieveName, setAchieveTotalCount, setAchieveCount,achieveCount }) {
   const [postData, setPostData] = useState([]);
   const [userAcheieve, setUserAcheieve] = useState();
   const [mainachieveSeq, setMainachieveSeq] = useState();
@@ -131,6 +137,7 @@ export default function AchievementList({ setAchieveImg, setAchieveName }) {
           ...prevState,
           data,
         }));
+        setAchieveTotalCount(data.length);
       });
   }
 
@@ -167,6 +174,8 @@ export default function AchievementList({ setAchieveImg, setAchieveName }) {
                   setMainachieveSeq={setMainachieveSeq}
                   setAchieveImg={setAchieveImg}
                   setAchieveName={setAchieveName}
+                  setAchieveCount={setAchieveCount}
+                  achieveCount={achieveCount}
                 />
               </Col>
             ))}
