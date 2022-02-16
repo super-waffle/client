@@ -1,9 +1,10 @@
-import axios from "axios";
-import React from "react";
-import { useState } from "react";
-import isLogin from "../utils/isLogin";
-import "../statics/css/home/homeAchievement.css";
-
+import axios from 'axios';
+import React from 'react';
+import { useState } from 'react';
+import isLogin from '../utils/isLogin';
+import '../statics/css/home/homeAchievement.css';
+import LevelComponent from '../components/home-achievement/levelComponent';
+import AchievementList from '../components/home-achievement/achievementList';
 export default function HomeAchievement() {
   const TOKEN = localStorage.getItem("accessToken");
 
@@ -13,6 +14,8 @@ export default function HomeAchievement() {
   const [levelImg, setLevelImg] = useState("");
   const [timeGoal, setTimeGoal] = useState("");
   const [timeTotal, setTimeTotal] = useState("");
+  const [levelCondition, setLevelCondition] = useState("");
+  const [conditionToNext, setConditionToNext] = useState("");
 
   if (isLogin()) {
     axios
@@ -27,6 +30,8 @@ export default function HomeAchievement() {
         setLevel(USER.userLevel.levelSeq);
         setLevelName(USER.userLevel.levelName);
         setLevelImg(USER.userImageLevel.levelImg);
+        setLevelCondition(USER.userLevel.levelCondition);
+        setConditionToNext(USER.userLevel.conditionToNext);
         setTimeGoal(USER.userTimeGoal);
         setTimeTotal(USER.userTimeTotal);
       });
@@ -36,13 +41,27 @@ export default function HomeAchievement() {
       <div className="home-achievement-top">
         <span>나의 레벨 및 업적</span>
         <div className="home-achievement-top-box">
-          <div className="home-achievement-level"></div>
-          <div className="home-achievement-achieve"></div>
+          <div className="home-achievement-level">
+            <LevelComponent 
+              level={level}
+              levelImg={levelImg}
+              levelName={levelName}
+              timeGoal={timeGoal}
+              timeTotal={timeTotal}
+              levelCondition={levelCondition}
+              conditionToNext={conditionToNext}
+            />
+          </div>
+          <div className="home-achievement-achieve">
+
+          </div>
         </div>
       </div>
       <div className="home-achievement-bottom">
         <span>{nickname}님의 업적도감</span>
-        <div className="home-achievement-dogam"></div>
+        <div className="home-achievement-dogam">
+          {/* <AchievementList/> */}
+        </div>
       </div>
     </div>
   );
