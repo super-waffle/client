@@ -30,6 +30,13 @@
         border: 0.5px solid var(--textColor-dark);
       }
     }
+    :focus {
+      outline: none;
+    }
+
+    .color-beammp-empty {
+      fill: var(--textColor-todo);
+    }
 
     .color-beammp-0 {
       fill: var(--github-01);

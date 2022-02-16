@@ -1,0 +1,14 @@
+@import "../main.scss";
+
+.daily-stats {
+  margin-top: 25px;
+  padding-left: 0.5rem;
+}
+.daily-stats-header {
+  font-size: 15px;
+  color: var(--textColor);
+  margin-bottom: 10px;
+}
+.daily-stats-body {
+  display: grid;
+}
