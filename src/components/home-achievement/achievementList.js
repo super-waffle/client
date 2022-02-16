@@ -1,40 +1,43 @@
 import axios from 'axios';
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { Container, Col, Row, Card } from 'react-bootstrap';
+import ReactTooltip from 'react-tooltip';
+import { useState, useEffect, useRef } from 'react';
+import { Container, Col, Row, Card, Overlay } from 'react-bootstrap';
+import '../../statics/css/studyRecruit.css';
 
 //업적이름, 업적이미지, 업적 내용(호버링)
-const AchievementCard = ({achieve}) => {
-  const achieveImg =
-    `https://i6a301.p.ssafy.io:8080/images/${achieve.achieveImg}`;
-  const defaultImg = "images/achievement.jpg";
+const AchievementCard = ({ achieve }) => {
+  const AchieveImg =
+    'https://i6a301.p.ssafy.io:8080/images/' + achieve.achieve.achieveImg;
+  const DefaultImg = 'images/achievement.jpg';
+  // console.log(achieve.achieve.achieveImg);
   return (
-    <Col
-      lg={6}
-      style={{ marginBottom: '0.5rem', cursor: 'pointer' }}
-      onClick={() => {}}
-    >
-      <Card style={{ marginBottom: '0.5rem' }}>
+    <Col lg={2} style={{ marginBottom: '0.5rem', cursor: 'pointer' }} >
+      <Card style={{ marginBottom: '0.5rem' }} >
         <Card.Img
-          style={{ maxHeight: '10rem' }}
-          src={achieve.achieveImg ? achieveImg : defaultImg}
+          style={{ Height: '0.1rem' }}
+          src={achieve.achieve.achieveImg ? AchieveImg : DefaultImg}
         />
       </Card>
       <div
-        // style={{
-        //   fontFamily: 'pretendard',
-        // }}
+      // style={{
+      //   fontFamily: 'pretendard',
+      // }}
       >
-        {achieve.achieveName}
+        {achieve.achieve.achieveName}
+        {achieve.achieve.achieveContent}
       </div>
+      
     </Col>
   );
 };
 
+
+
 export default function AchievementList() {
   const TOKEN = localStorage.getItem('accessToken');
   const [postData, setPostData] = useState([]);
-//   const [achieveSeq, setAchieveSeq] = useState('');
+  //   const [achieveSeq, setAchieveSeq] = useState('');
 
   useEffect(() => {
     axios
@@ -44,7 +47,7 @@ export default function AchievementList() {
         },
       })
       .then((res) => {
-        //   console.log(res.data.achievementList)
+        // console.log(res.data.achievementList)
         let data = res.data.achievementList;
         setPostData((prevState) => ({
           ...prevState,
@@ -56,21 +59,25 @@ export default function AchievementList() {
   return (
     <div>
       <Container style={{ marginTop: '0.5rem', padding: '0rem' }}>
-        <Row>
+        <Row className="studyrecruit-board">
           {postData.data &&
             postData.data.map((achieve) => (
-                <div>
-                    <div>{achieve.achieveSeq}</div>
-              <AchievementCard
-                achieve={achieve}
-                key={achieve.achieveSeq}
-                // setAchieveSeq={setAchieveSeq}
-              />
+              <div>
+                <div>{achieve.achieveSeq}</div>
+                <AchievementCard
+                  achieve={achieve}
+                  key={achieve.achieveSeq}
+                  data-tip data-for='content'
+                  // setAchieveSeq={setAchieveSeq}
+                />
+                {/* <ReactTooltip id="content" type="light">
+                  <span>{achieve.achieve.achieveContent}</span>
+                </ReactTooltip> */}
               </div>
             ))}
         </Row>
       </Container>
-      <div>dkdkdkddk</div>
+      
     </div>
   );
 }

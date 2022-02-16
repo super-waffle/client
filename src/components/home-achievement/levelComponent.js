@@ -1,6 +1,9 @@
 import axios from 'axios';
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { Graph } from "../home/todays/homeStyle";
+import "../../statics/css/home/homeGoal.css";
+
 export default function LevelComponent(props) {
   const levelImgUrl = 'https://i6a301.p.ssafy.io:8080/images/' + props.levelImg;
   // let hour = ("0" + Math.floor((props.timeTotal / 60) % 60)).slice(-2);
@@ -15,9 +18,10 @@ export default function LevelComponent(props) {
 
   var dateString = year + '-' + month  + '-' + day;
 
+  var levelPercent = 
+  ((props.timeTotal-props.levelCondition)/props.conditionToNext).toFixed(2);
 
   var hour=(data)=>{
-    // console.log(dayTotalStudyTime);
     return ("0" + Math.floor((data / 60) % 60)).slice(-2);
   }
   var minute=(data)=>{
@@ -43,7 +47,7 @@ export default function LevelComponent(props) {
     <div className="">
       <div style={{ width: '50%' }}>
         {props.levelImg && (
-          <img src={levelImgUrl} alt="" style={{ width: '50%' }} />
+          <img src={levelImgUrl} alt="" style={{ width: '40%' }} />
         )}
         <div>
           Lv.{props.level} {props.levelName}
@@ -55,6 +59,11 @@ export default function LevelComponent(props) {
       <span>총 공부시간</span>
       <span>{hour(props.timeTotal)}시간 {minute(props.timeTotal)}분</span>
       <span>레벨달성률</span>
+      <span>{levelPercent}%</span>
+        <div className="my-goal__graph">
+          <div className="my-goal__graph-back"></div>
+          <Graph goal={props.conditionToNext} total={(props.timeTotal-props.levelCondition)}></Graph>
+        </div>
     </div>
   );
 }

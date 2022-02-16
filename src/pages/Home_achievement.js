@@ -14,6 +14,8 @@ export default function HomeAchievement() {
   const [levelImg, setLevelImg] = useState("");
   const [timeGoal, setTimeGoal] = useState("");
   const [timeTotal, setTimeTotal] = useState("");
+  const [levelCondition, setLevelCondition] = useState("");
+  const [conditionToNext, setConditionToNext] = useState("");
 
   if (isLogin()) {
     axios
@@ -28,6 +30,8 @@ export default function HomeAchievement() {
         setLevel(USER.userLevel.levelSeq);
         setLevelName(USER.userLevel.levelName);
         setLevelImg(USER.userImageLevel.levelImg);
+        setLevelCondition(USER.userLevel.levelCondition);
+        setConditionToNext(USER.userLevel.conditionToNext);
         setTimeGoal(USER.userTimeGoal);
         setTimeTotal(USER.userTimeTotal);
       });
@@ -44,6 +48,8 @@ export default function HomeAchievement() {
               levelName={levelName}
               timeGoal={timeGoal}
               timeTotal={timeTotal}
+              levelCondition={levelCondition}
+              conditionToNext={conditionToNext}
             />
           </div>
           <div className="home-achievement-achieve">
@@ -54,7 +60,7 @@ export default function HomeAchievement() {
       <div className="home-achievement-bottom">
         <span>{nickname}님의 업적도감</span>
         <div className="home-achievement-dogam">
-          <AchievementList/>
+          {/* <AchievementList/> */}
         </div>
       </div>
     </div>
