@@ -3,11 +3,7 @@ import { useCallback, useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import {
-  setNickname,
-  setUserSeq,
-  setProfileImg,
-} from '../components/settings/settingsSlice';
+import { setNickname, setUserSeq, setProfileImg } from '../components/settings/settingsSlice';
 import '../statics/css/settingsStudy.css';
 import RecruitingStudy from '../components/settings/recrutingStudy';
 import StudyInfoApplied from '../components/settings/studyInfoApplied';
@@ -22,16 +18,11 @@ export default function SettingsStudyApplied() {
   const imageURL = 'https://i6a301.p.ssafy.io:8080/images/' + profileImg;
   const [studyList, setStudyList] = useState([]);
   const onRecruitStudies = useMemo(
-    () =>
-      studyList.filter(
-        (study) => study.isRecruiting && study.startDate !== null
-      ),
+    () => studyList.filter((study) => study.isRecruiting && study.startDate !== null),
     [studyList]
   );
   const [selectedSeq, setSelectedSeq] = useState('');
-  const selectedStudy = useMemo(
-    () => studyList.filter((study) => study.studySeq === selectedSeq)[0]
-  );
+  const selectedStudy = useMemo(() => studyList.filter((study) => study.studySeq === selectedSeq)[0]);
   const applicants = null;
   const [members, setMembers] = useState('');
   const [selectedApplicant, setSelectedApplicant] = useState('');
@@ -39,14 +30,11 @@ export default function SettingsStudyApplied() {
   const [modalStatus, setModalStatus] = useState(false);
 
   async function getUser() {
-    const response = await axios.get(
-      process.env.REACT_APP_SERVER_URL + '/users',
-      {
-        headers: {
-          Authorization: `Bearer ${TOKEN}`,
-        },
-      }
-    );
+    const response = await axios.get(process.env.REACT_APP_SERVER_URL + '/users', {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    });
     const userData = response.data.user;
     dispatch(setNickname(userData.userNickname));
     dispatch(setUserSeq(userData.userSeq));
@@ -76,22 +64,18 @@ export default function SettingsStudyApplied() {
     <div className="settings-study">
       <div className="settings-study-heading">
         <div className="settings-study-heading__h1">진행중인 스터디</div>
-        <div className="settings-study-heading__h2">
-          시작된 스터디 정보를 확인하고 관리할 수 있습니다
-        </div>
+        <div className="settings-study-heading__h2">시작된 스터디 정보를 확인하고 관리할 수 있습니다</div>
       </div>
       <div className="settings-study-mystudies">
         <table>
           <tbody>
             {onRecruitStudies &&
-              onRecruitStudies.map((study) => (
+              onRecruitStudies.map((study, index) => (
                 <RecruitingStudy
-                  key={study.studySeq}
+                  key={index}
                   study={study}
                   nickname={nickname}
-                  selectedStudySeq={
-                    selectedStudy ? selectedStudy.studySeq : null
-                  }
+                  selectedStudySeq={selectedStudy ? selectedStudy.studySeq : null}
                   setSelectedSeq={setSelectedSeq}
                   setShowStudyDetail={setShowStudyDetail}
                 />
