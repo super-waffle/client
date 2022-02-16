@@ -10,6 +10,10 @@ import {
 import { FcSwitchCamera } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import "./ToolbarComponent.css";
+import IconButton from "@material-ui/core/IconButton";
+import PictureInPicture from "@material-ui/icons/PictureInPicture";
+import ScreenShare from "@material-ui/icons/ScreenShare";
+import StopScreenShare from "@material-ui/icons/StopScreenShare";
 
 export default class ToolbarComponent extends Component {
   constructor(props) {
@@ -115,15 +119,23 @@ export default class ToolbarComponent extends Component {
                 size={"2rem"}
               />
             )}
+            {localUser !== undefined && localUser.isScreenShareActive() && (
+              <MdStopScreenShare
+                onClick={this.stopScreenShare}
+                style={{ cursor: "pointer", color: "gray" }}
+                size={"2rem"}
+              />
+            )}
           </div>
 
-          {localUser !== undefined && localUser.isScreenShareActive() && (
-            <MdStopScreenShare
-              onClick={this.stopScreenShare}
-              style={{ cursor: "pointer", color: "gray" }}
-              size={"2rem"}
-            />
-          )}
+          {/* <IconButton color="inherit" className="navButton" onClick={this.screenShare}>
+            {localUser !== undefined && localUser.isScreenShareActive() ? (
+              <PictureInPicture />
+            ) : (
+              <ScreenShare />
+            )}
+          </IconButton> */}
+          {/*   */}
 
           <div className="button-exit">
             <Link to="/home/tab=todays">
