@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { MdVideocamOff, MdVideocam, MdMicOff, MdMic } from "react-icons/md";
+import {
+  MdVideocamOff,
+  MdVideocam,
+  MdMicOff,
+  MdMic,
+  MdScreenShare,
+  MdStopScreenShare,
+} from "react-icons/md";
+import { FcSwitchCamera } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import "./ToolbarComponent.css";
 
@@ -90,8 +98,35 @@ export default class ToolbarComponent extends Component {
               />
             )}
           </div>
+          <div className="button-share">
+            {localUser !== undefined && localUser.isScreenShareActive() ? (
+              <FcSwitchCamera
+                onClick={this.screenShare}
+                style={{
+                  cursor: "pointer",
+                  color: "#6667AB",
+                }}
+                size={"2rem"}
+              />
+            ) : (
+              <MdScreenShare
+                onClick={this.screenShare}
+                style={{ cursor: "pointer", color: "gray" }}
+                size={"2rem"}
+              />
+            )}
+          </div>
+
+          {localUser !== undefined && localUser.isScreenShareActive() && (
+            <MdStopScreenShare
+              onClick={this.stopScreenShare}
+              style={{ cursor: "pointer", color: "gray" }}
+              size={"2rem"}
+            />
+          )}
+
           <div className="button-exit">
-            <Link to="/home">
+            <Link to="/home/tab=todays">
               <svg
                 width="30"
                 height="30"
@@ -110,7 +145,7 @@ export default class ToolbarComponent extends Component {
             </Link>
           </div>
         </div>
-        <div className="buttons-util">
+        {/* <div className="buttons-util">
           <div className="button-users">
             <svg
               width="30"
@@ -142,10 +177,10 @@ export default class ToolbarComponent extends Component {
               />
             </svg>
           </div>
-          <div className="button-chat">
-            {/* {this.props.showNotification && <div id="point" className="" />} */}
+          <div className="button-chat"> */}
+        {/* {this.props.showNotification && <div id="point" className="" />} */}
 
-            <svg
+        {/* <svg
               width="30"
               height="30"
               viewBox="0 0 16 16"
@@ -160,7 +195,7 @@ export default class ToolbarComponent extends Component {
               />
             </svg>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

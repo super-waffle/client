@@ -21,6 +21,9 @@ var localUser = new UserModel();
 var sessionToken;
 var userName;
 
+var startTimeTmp;
+var endTimeTmp;
+
 class StudyRoomComponent extends Component {
   constructor(props) {
     super(props);
@@ -29,32 +32,40 @@ class StudyRoomComponent extends Component {
     this.remotes = [];
     this.localUserAccessAllowed = false;
     this.state = {
-      mySessionId: undefined,
+      mySessionId: undefined, //url
       myStudySeq: localStorage.getItem("studySeq"),
       myUserName: undefined,
       mySessionToken: undefined,
       myStudyTitle: "",
+      myStudyShortDesc: "",
       myStudyDesc: "",
       isHost: false,
-      userSeq: 0,
+      isLate: false,
+      memberList: [],
+      // hostMember: [],
+      // otherMembers: [],
+      // absentMembers: [],
+      // mapRemoteAndMember: [],
       session: undefined,
       localUser: undefined,
       subscribers: [],
-      chatDisplay: "none",
+      chatDisplay: "block",
       userlistDisplay: "block",
       currentVideoDevice: undefined,
       time: undefined,
       isPaused: undefined,
       myStartTime: "",
-      hour: 0,
-      minute: 0,
-      second: 0,
+      myStartTimeDate: new Date(),
       timeString: "00:00:00",
       mutedSound: false,
       isKicked: false,
       // isKick: false,
       isError: false,
       errorMessage: "",
+      studyStartTime: new Date(),
+      studyEndTime: new Date(),
+      timeTotal: undefined,
+      timeGap: undefined,
     };
     this.joinSession = this.joinSession.bind(this);
     this.leaveSession = this.leaveSession.bind(this);
@@ -88,6 +99,7 @@ class StudyRoomComponent extends Component {
     this.getSignalAudioBlocked = this.getSignalAudioBlocked.bind(this);
     this.sendSignalVideoBlocked = this.sendSignalVideoBlocked.bind(this);
     this.getSignalVideoBlocked = this.getSignalVideoBlocked.bind(this);
+    // this.convertStringToTime = this.convertStringToTime.bind(this);
   }
   // isHostfun() {
   //   console.log(1);
@@ -263,7 +275,9 @@ class StudyRoomComponent extends Component {
 
   updateSubscribers() {
     // console.log(3);
+    // 내가 변했다고 알림
     var subscribers = this.remotes;
+
     this.setState(
       {
         subscribers: subscribers,
@@ -285,8 +299,9 @@ class StudyRoomComponent extends Component {
 
   setTime(timeCom) {
     if (timeCom !== this.state.time) {
-      // this.setState({ time: timeCom });W
-      this.state.time = timeCom;
+      this.setState({ time: timeCom });
+      // this.setState({ time: timeCom + this.state.timeGap });
+      // this.state.time = timeCom + this.state.timeGap;
       // this.props.setTime(() => timeCom);
       // console.log("시간누적: " + this.state.time);
       if (this.state.time > 0) {
@@ -348,18 +363,20 @@ class StudyRoomComponent extends Component {
       console.log("시간", this.state.time);
       const token = localStorage.getItem("accessToken");
       axios
-        .delete(process.env.REACT_APP_SERVER_URL + `/studies/${this.state.myStudySeq}/room`, {
-          data: {
+        .patch(
+          process.env.REACT_APP_SERVER_URL + `/studies/${this.state.myStudySeq}/room`,
+          {
             sessionToken: sessionToken,
             logStudy: Math.round(this.state.time / 60), //총공부한시간
             logStartTime: this.state.myStartTime,
           },
-
-          headers: {
-            Authorization: "Bearer " + token,
-            "Content-Type": "application/json",
-          },
-        })
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+              "Content-Type": "application/json",
+            },
+          }
+        )
         .then((response) => {
           console.log("studySeq: " + this.state.myStudySeq);
           if (response.data.statusCode == 200) {
@@ -420,9 +437,8 @@ class StudyRoomComponent extends Component {
     }
   }
 
+  //다른사람이 들어왔을때
   subscribeToStreamCreated() {
-    // console.log(7);
-    // console.log("subscribeToStreamCreated");
     this.state.session.on("streamCreated", (event) => {
       const subscriber = this.state.session.subscribe(event.stream, undefined);
       // var subscribers = this.state.subscribers;
@@ -440,9 +456,34 @@ class StudyRoomComponent extends Component {
       if (this.localUserAccessAllowed) {
         this.updateSubscribers();
       }
+      // this.setState({
+      //   otherMembers: this.state.otherMembers.filter(
+      //     (member) => member.userNickname != newUser.getNickname()
+      //   ),
+      // });
+      // this.setState({
+      //   absentMembers: this.state.otherMembers.filter((member) => {
+      //     if (member.userNickname == localUser.nickname) {
+      //       // console.log("이 멤버는 나임");
+      //       return false;
+      //     }
+      //     var remoteFilter = this.state.subscribers.filter(
+      //       (other) => other.nickname == member.userNickname
+      //     );
+      //     var flag = true;
+      //     remoteFilter.forEach((element) => {
+      //       // console.log("element" + element);
+      //       flag = false;
+      //     });
+      //     return flag;
+      //   }),
+      // });
+      // console.log("여기다!!!!");
+      // console.log(this.state.absentMembers);
     });
   }
 
+  //다른사람이 나갈때
   subscribeToStreamDestroyed() {
     // console.log(8);
     // On every Stream destroyed...
@@ -454,6 +495,9 @@ class StudyRoomComponent extends Component {
       }, 20);
       event.preventDefault();
       this.updateLayout();
+      // this.setState({
+      //   otherMembers: this.state.otherMembers.push({ userNickname: "winter", isAttend: 0 }),
+      // });
     });
   }
 
@@ -646,23 +690,22 @@ class StudyRoomComponent extends Component {
   }
 
   toggleChat(property) {
-    let display = property;
-
-    if (display === undefined) {
-      display = this.state.chatDisplay === "none" ? "block" : "none";
-    }
-    if (display === "block") {
-      this.setState({
-        chatDisplay: display,
-        userlistDisplay: "none",
-        messageReceived: false,
-      });
-    } else {
-      // console.log("chat", display);
-      this.setState({ chatDisplay: display, userlistDisplay: "block" });
-    }
-    this.updateLayout();
-    // console.log(localUser.getNickname());
+    // let display = property;
+    // if (display === undefined) {
+    //   display = this.state.chatDisplay === "none" ? "block" : "none";
+    // }
+    // if (display === "block") {
+    //   this.setState({
+    //     chatDisplay: display,
+    //     userlistDisplay: "none",
+    //     messageReceived: false,
+    //   });
+    // } else {
+    //   // console.log("chat", display);
+    //   this.setState({ chatDisplay: display, userlistDisplay: "block" });
+    // }
+    // this.updateLayout();
+    // // console.log(localUser.getNickname());
   }
 
   checkNotification(event) {
@@ -896,10 +939,11 @@ class StudyRoomComponent extends Component {
           {this.state.isKicked && (
             <Modal open={true} header=" ">
               <div className="study-room-kick-msg">
-                자유열람실 [{this.state.myStudyTitle}] 에서 강퇴당하셨습니다.
+                스터디룸 [{this.state.myStudyTitle}] 에서 일시방출 당하셨습니다. 오늘 하루동안
+                스터디에 참여할 수 없습니다.
               </div>
 
-              <Link to="/home">
+              <Link to="/home/tab=todays">
                 <button className="study-room-kick-ok" onClick={this.leaveSession}>
                   확인
                 </button>
@@ -911,9 +955,10 @@ class StudyRoomComponent extends Component {
             <Modal open={true} header=" ">
               <div className="study-room-kick-msg">{this.state.errorMessage}</div>
 
-              <Link to="/home">
+              <Link to="/home/tab=todays">
                 <button className="study-room-kick-ok">
                   {/* onClick={this.leaveSession}> 확인 */}
+                  확인
                 </button>
               </Link>
             </Modal>
@@ -957,7 +1002,8 @@ class StudyRoomComponent extends Component {
             <div className="study-room-timer">
               <TimeComponent
                 // cumTime={this.state.time}
-                startTime={this.state.myStartTime}
+                timeGap={this.state.studyStartTime}
+                timeTotal={this.state.studyEndTime}
                 // sendTime={this.setTime}
                 onCreate={this.setTime}
                 // onClick={() => {
@@ -965,6 +1011,26 @@ class StudyRoomComponent extends Component {
                 //   this.setTimeString();
                 // }}
               />
+            </div>
+            <div className="study-room-userlist">
+              {localUser !== undefined && localUser.getStreamManager() !== undefined && (
+                <div className="OT_root OT_publisher custom-class" style={userlistDisplay}>
+                  <div className="study-room-userlist">
+                    <UserComponent
+                      // hostMember={this.state.hostMember}
+                      // otherMembers={this.state.otherMembers}
+                      // absentMembers={this.state.absentMembers}
+                      subscribersCamStatusChanged={this.subscribersCamStatusChanged}
+                      subscribersMuteStatusChanged={this.subscribersMuteStatusChanged}
+                      local={localUser}
+                      isHost={this.state.isHost}
+                      remote={this.state.subscribers}
+                      camStatusChanged={this.camStatusChanged}
+                      micStatusChanged={this.micStatusChanged}
+                    />
+                  </div>
+                </div>
+              )}
             </div>
             {localUser !== undefined && localUser.getStreamManager() !== undefined && (
               <div className="OT_root OT_publisher custom-class" style={chatDisplay}>
@@ -979,7 +1045,7 @@ class StudyRoomComponent extends Component {
               </div>
             )}
 
-            {localUser !== undefined && localUser.getStreamManager() !== undefined && (
+            {/* {localUser !== undefined && localUser.getStreamManager() !== undefined && (
               <div className="OT_root OT_publisher custom-class" style={userlistDisplay}>
                 <div className="study-room-userlist">
                   <UserComponent
@@ -993,7 +1059,7 @@ class StudyRoomComponent extends Component {
                   />
                 </div>
               </div>
-            )}
+            )} */}
           </div>
         </div>
         <div className="study-room-buttons" id="video-button-footer">
@@ -1052,22 +1118,28 @@ class StudyRoomComponent extends Component {
           console.log("응답", res);
 
           if (res.data.statusCode == 404) {
-            //미팅룸 시퀀스가 유효하지 않음 (존재하지 않는 미팅룸)
-            this.setStatus({
+            //스터디룸 시퀀스가 유효하지 않음 (존재하지 않는 미팅룸)
+            this.setState({
               isError: true,
               errorMessage: "존재하지 않는 자유열람실입니다.",
             });
           } else if (res.data.statusCode == 405) {
-            //미팅룸 정원초과
-            this.setStatus({
+            //스터디룸 멤버가 아님
+            this.setState({
               isError: true,
-              errorMessage: "인원을 초과하여 입장하실 수 없습니다.",
+              errorMessage: "스터디 멤버가 아닙니다.",
+            });
+          } else if (res.data.statusCode == 406) {
+            //일시방출 당함
+            this.setState({
+              isError: true,
+              errorMessage: "일시방출 당하여 오늘은 입장하실 수 없습니다.",
             });
           } else if (res.data.statusCode == 407) {
             //블랙리스트
-            this.setStatus({
+            this.setState({
               isError: true,
-              errorMessage: "강퇴당하여 더 이상 입장하실 수 없습니다.",
+              errorMessage: "스터디 진행시간이 아닙니다.",
             });
           } else if (res.data.statusCode == 409) {
             //서버에러
@@ -1080,6 +1152,11 @@ class StudyRoomComponent extends Component {
             console.log("Nickname : " + this.userName);
             console.log("studySeq : " + this.studySeq);
             console.log("sessionToken: " + this.sessionToken);
+
+            var startSet = res.data.studyStartTime.split(":");
+            var endSet = res.data.studyEndTime.split(":");
+            var userStartSet = res.data.studyEnterTime.split(":");
+
             this.setState({
               myStudySeq: localStorage.getItem("studySeq"),
               mySessionId: res.data.studyUrl,
@@ -1087,14 +1164,85 @@ class StudyRoomComponent extends Component {
               time: 0,
               mySessionToken: res.data.sessionToken,
               isHost: res.data.isHost,
+              isLate: res.data.isLate,
               myStartTime: res.data.studyEnterTime.split(".")[0],
               userSeq: res.data.userSeq,
               myStudyTitle: res.data.studyTitle,
               myStudyDesc: res.data.studyDesc,
+              myStudyShortDesc: res.data.studyShortDesc,
+
+              studyStartTime: new Date(2022, 0, 1, startSet[0], startSet[1], startSet[2]),
+              studyEndTime: new Date(2022, 0, 1, endSet[0], endSet[1], endSet[2]),
+              myStartTimeDate: new Date(
+                2022,
+                0,
+                1,
+                userStartSet[0],
+                userStartSet[1],
+                userStartSet[2]
+              ),
+              // memberList: res.data.memberList,
+              // hostMember: res.data.memberList.filter((member) => member.isHost),
+              // otherMembers: res.data.memberList.filter(
+              //   (member) => !member.isHost && member.userNickname != res.data.userNickname
+              // ),
+              // absentMembers: res.data.memberList
+              //   .filter((member) => !member.isHost && member.userNickname != res.data.userNickname)
+              //   .filter((mem) => {
+              //     var remoteFilter = this.remotes.filter(
+              //       (other) => other.nickname == mem.userNickname
+              //     );
+              //     var flag = true;
+              //     remoteFilter.forEach((element) => {
+              //       // console.log("element" + element);
+              //       flag = false;
+              //     });
+              //     return flag;
+              //   }),
             });
+
+            this.setState({
+              timeGap:
+                (this.state.myStartTimeDate.getTime() - this.state.studyStartTime.getTime()) / 1000,
+              timeTotal:
+                (this.state.studyEndTime.getTime() - this.state.studyStartTime.getTime()) / 1000,
+            });
+
+            // this.setState({ time: this.state.timeGap });
+            // console.log("출력해랏");
+            // console.log(this.state.timeGap);
+            // console.log(this.state.timeTotal);
+            // this.setState({
+            //   absentMembers: this.state.otherMembers.filter((member) => {
+            //     if (member.userNickname == this.localUser.nickname) {
+            //       // console.log("이 멤버는 나임");
+            //       return false;
+            //     }
+            //     var remoteFilter = this.state.subscribers.filter(
+            //       (other) => other.nickname == member.userNickname
+            //     );
+            //     var flag = true;
+            //     remoteFilter.forEach((element) => {
+            //       // console.log("element" + element);
+            //       flag = false;
+            //     });
+            //     return flag;
+            //   }),
+            // });
+            // console.log(this.state.memberList);
+            // console.log(this.state.hostMember);
+            // console.log(this.state.otherMembers);
+            // console.log(this.state.absentMembers);
           }
         });
     });
   }
+
+  // convertStringToTime(time) {
+  //   time = time.split(":");
+  //   var date = new Date();
+  //   date.setHours(time[0], time[1], time[2]);
+  //   return date;
+  // }
 }
 export default StudyRoomComponent;

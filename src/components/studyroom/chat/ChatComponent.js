@@ -98,7 +98,7 @@ export default class ChatComponent extends Component {
               <HiMenu size={"24px"} margintop={"2px"} />
             </span>
             <span className="chat-toolbar-name">채팅</span>
-            <CgClose className="chat-toolbar-exit" onClick={this.close}></CgClose>
+            {/* <CgClose className="chat-toolbar-exit" onClick={this.close}></CgClose> */}
             {/* <IconButton id="closeButton" onClick={this.close}>
               <HighlightOff color="secondary" />
             </IconButton> */}
