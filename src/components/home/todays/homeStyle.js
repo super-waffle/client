@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Graph = styled.div`
+  z-index=0;
   position: relative;
   top: -10px;
   height: 10px;
@@ -9,3 +10,4 @@ export const Graph = styled.div`
   width: ${(props) => (props.total / props.goal) * 100}%;
 `;
 // width: ${(props) => (props.total / props.goal) * 100}%;
+// position: relative;

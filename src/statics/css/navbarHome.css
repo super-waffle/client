@@ -48,6 +48,7 @@
 }
 
 .sub-navbar {
+  z-index: 3;
   background-color: var(--bgColor);
   position: fixed;
   left: 0;

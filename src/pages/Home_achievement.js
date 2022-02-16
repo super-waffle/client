@@ -83,7 +83,6 @@ export default function HomeAchievement() {
 
       <div className="home-achievement-bottom">
         <span>{nickname}님의 업적도감</span>
-        {console.log(achieveCount, achieveTotalCount, "아악")}
         <div className="home-achievement-dogam">
           <AchievementList
             setAchieveName={setAchieveName}
