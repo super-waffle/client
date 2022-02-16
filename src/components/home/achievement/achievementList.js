@@ -1,10 +1,10 @@
-import axios from 'axios';
-import React from 'react';
-import ReactTooltip from 'react-tooltip';
-import { useState, useEffect } from 'react';
-import { Container, Col, Row, Card } from 'react-bootstrap';
-import '../../statics/css/studyRecruit.css';
-const TOKEN = localStorage.getItem('accessToken');
+import axios from "axios";
+import React from "react";
+import ReactTooltip from "react-tooltip";
+import { useState, useEffect } from "react";
+import { Container, Col, Row, Card } from "react-bootstrap";
+import "../../../statics/css/studyRecruit.css";
+const TOKEN = localStorage.getItem("accessToken");
 //업적이름, 업적이미지, 업적 내용(툴팁)
 const AchievementCard = ({
   achieve,
@@ -14,13 +14,13 @@ const AchievementCard = ({
   setAchieveImg,
   setAchieveName,
   setAchieveCount,
-  achieveCount
+  achieveCount,
 }) => {
   const [isHave, setIsHave] = useState(false);
 
   const AchieveImg =
-    'https://i6a301.p.ssafy.io:8080/images/' + achieve.achieveImg;
-  const DefaultImg = '/images/achievement.jpg';
+    "https://i6a301.p.ssafy.io:8080/images/" + achieve.achieveImg;
+  const DefaultImg = "/images/achievement.jpg";
   // console.log(achieve.achieve.achieveImg);
 
   const haveAchieve = () => {
@@ -30,15 +30,15 @@ const AchievementCard = ({
     const isfun = Array.from(userAcheieve.data2).includes(achieve.achieveSeq);
     // console.log(isfun);
     setIsHave(isfun);
-    if(isHave){
-      setAchieveCount(achieveCount+1);
+    if (isHave) {
+      setAchieveCount(achieveCount + 1);
     }
   };
   const selectMainAchieve = async () => {
     await axios
       .patch(
         process.env.REACT_APP_SERVER_URL +
-          '/achievements/' +
+          "/achievements/" +
           achieve.achieveSeq,
         {},
         {
@@ -64,15 +64,15 @@ const AchievementCard = ({
 
   return (
     <Col
-      style={{ marginBottom: '0.5rem', cursor: isHave ? 'pointer' : '' }}
+      style={{ marginBottom: "0.5rem", cursor: isHave ? "pointer" : "" }}
       data-tip="React-tooltip"
       data-for={achieve.achieveName}
       onLoad={haveAchieve}
       onClick={isHave ? onClick : null}
     >
-      <Card style={{ marginBottom: '0.5rem' }}>
+      <Card style={{ marginBottom: "0.5rem" }}>
         <Card.Img
-          style={{ Height: '0.1rem' }}
+          style={{ Height: "0.1rem" }}
           src={isHave ? AchieveImg : DefaultImg}
         />
         {mainachieveSeq === achieve.achieveSeq && (
@@ -102,7 +102,7 @@ const AchievementCard = ({
       {isHave ? (
         <div
           style={{
-            fontFamily: 'pretendard',
+            fontFamily: "pretendard",
           }}
         >
           {achieve.achieveName}
@@ -114,14 +114,20 @@ const AchievementCard = ({
   );
 };
 
-export default function AchievementList({ setAchieveImg, setAchieveName, setAchieveTotalCount, setAchieveCount,achieveCount }) {
+export default function AchievementList({
+  setAchieveImg,
+  setAchieveName,
+  setAchieveTotalCount,
+  setAchieveCount,
+  achieveCount,
+}) {
   const [postData, setPostData] = useState([]);
   const [userAcheieve, setUserAcheieve] = useState();
   const [mainachieveSeq, setMainachieveSeq] = useState();
   //   const [achieveSeq, setAchieveSeq] = useState('');
   async function getAchieve() {
     await axios
-      .get(process.env.REACT_APP_SERVER_URL + '/achievements', {
+      .get(process.env.REACT_APP_SERVER_URL + "/achievements", {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },
@@ -143,7 +149,7 @@ export default function AchievementList({ setAchieveImg, setAchieveName, setAchi
 
   async function getMainAchieve() {
     await axios
-      .get(process.env.REACT_APP_SERVER_URL + '/achievements/active', {
+      .get(process.env.REACT_APP_SERVER_URL + "/achievements/active", {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },
@@ -161,7 +167,7 @@ export default function AchievementList({ setAchieveImg, setAchieveName, setAchi
 
   return (
     <div>
-      <Container style={{ marginTop: '0.5rem', padding: '0rem' }}>
+      <Container style={{ marginTop: "0.5rem", padding: "0rem" }}>
         <Row className="studyrecruit-board">
           {postData.data &&
             postData.data.map((achieve) => (

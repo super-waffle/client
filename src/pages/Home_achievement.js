@@ -1,22 +1,22 @@
-import axios from 'axios';
-import React from 'react';
-import { useState, useEffect } from 'react';
-import isLogin from '../utils/isLogin';
-import '../statics/css/home/homeAchievement.css';
-import LevelComponent from '../components/home-achievement/levelComponent';
-import AchievementList from '../components/home-achievement/achievementList';
-import Myachievement from '../components/home-achievement/myachievement';
+import axios from "axios";
+import React from "react";
+import { useState, useEffect } from "react";
+import isLogin from "../utils/isLogin";
+import "../statics/css/home/homeAchievement.css";
+import LevelComponent from "../components/home/achievement/levelComponent";
+import AchievementList from "../components/home/achievement/achievementList";
+import Myachievement from "../components/home/achievement/myachievement";
 export default function HomeAchievement() {
-  const TOKEN = localStorage.getItem('accessToken');
+  const TOKEN = localStorage.getItem("accessToken");
 
-  const [nickname, setNickname] = useState('');
-  const [level, setLevel] = useState('');
-  const [levelName, setLevelName] = useState('');
-  const [levelImg, setLevelImg] = useState('');
-  const [timeGoal, setTimeGoal] = useState('');
-  const [timeTotal, setTimeTotal] = useState('');
-  const [levelCondition, setLevelCondition] = useState('');
-  const [conditionToNext, setConditionToNext] = useState('');
+  const [nickname, setNickname] = useState("");
+  const [level, setLevel] = useState("");
+  const [levelName, setLevelName] = useState("");
+  const [levelImg, setLevelImg] = useState("");
+  const [timeGoal, setTimeGoal] = useState("");
+  const [timeTotal, setTimeTotal] = useState("");
+  const [levelCondition, setLevelCondition] = useState("");
+  const [conditionToNext, setConditionToNext] = useState("");
   const [achieveImg, setAchieveImg] = useState();
   const [achieveName, setAchieveName] = useState();
   const [achieveCount, setAchieveCount] = useState(0);
@@ -24,7 +24,7 @@ export default function HomeAchievement() {
 
   if (isLogin()) {
     axios
-      .get(process.env.REACT_APP_SERVER_URL + '/users', {
+      .get(process.env.REACT_APP_SERVER_URL + "/users", {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },
@@ -43,7 +43,7 @@ export default function HomeAchievement() {
   }
   async function getMainAchieve() {
     await axios
-      .get(process.env.REACT_APP_SERVER_URL + '/achievements/active', {
+      .get(process.env.REACT_APP_SERVER_URL + "/achievements/active", {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },
@@ -86,7 +86,7 @@ export default function HomeAchievement() {
       </div>
       <div className="home-achievement-bottom">
         <span>{nickname}님의 업적도감</span>
-        {console.log(achieveCount,achieveTotalCount,"아악")}
+        {console.log(achieveCount, achieveTotalCount, "아악")}
         <div className="home-achievement-dogam">
           <AchievementList
             setAchieveName={setAchieveName}
