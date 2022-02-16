@@ -72,16 +72,15 @@ export default function HomeAchievement() {
             levelCondition={levelCondition}
             conditionToNext={conditionToNext}
           />
-          <div className="home-achievement-achieve">
-            <Myachievement
-              achieveImg={achieveImg}
-              achieveName={achieveName}
-              achieveCount={achieveCount}
-              achieveTotalCount={achieveTotalCount}
-            />
-          </div>
+          <Myachievement
+            achieveImg={achieveImg}
+            achieveName={achieveName}
+            achieveCount={achieveCount}
+            achieveTotalCount={achieveTotalCount}
+          />
         </div>
       </div>
+
       <div className="home-achievement-bottom">
         <span>{nickname}님의 업적도감</span>
         {console.log(achieveCount, achieveTotalCount, "아악")}

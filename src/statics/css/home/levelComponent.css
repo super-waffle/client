@@ -50,12 +50,13 @@
 .level-component {
   display: grid;
   grid-template-columns: 1fr 3fr;
+  align-items: center;
   background: var(--bgColor);
   border: 1px solid var(--borderColor);
   box-sizing: border-box;
   border-radius: 10px;
   margin-right: 15px;
-  padding: 1.4rem 2rem;
+  padding: 1rem 2rem 1.6rem 2rem;
 }
 
 .level-component__my-level {

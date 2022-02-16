@@ -63,11 +63,12 @@
 }
 .my-achievement__selected img {
   width: 70%;
+  border-radius: 7px;
 }
 .my-achievement__selected .my-achievement__selected-text {
   background-color: #6667ab;
   display: inline-block;
-  width: 80%;
+  width: 72%;
   margin-top: 6px;
   border-radius: 5px;
   color: #eeeeee;
