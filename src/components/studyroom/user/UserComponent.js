@@ -8,11 +8,6 @@ var absentMembers = [];
 class UserComponent extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   absentMembers:
-    // };
-    // console.log("안돼???");
-    // console.log(this.state.absentMembers);
     this.local = {};
     this.remotes = this.props.remote;
     this.isHost = false;
@@ -21,24 +16,6 @@ class UserComponent extends Component {
     this.subscribersCamStatusChanged = this.subscribersCamStatusChanged.bind(this);
     this.camStatusChanged = this.camStatusChanged.bind(this);
     this.micStatusChanged = this.micStatusChanged.bind(this);
-    // this.hostNickname = this.props.hostMember.userNickname;
-    // this.absentMembers = this.props.otherMembers.filter((member) => {
-    //   if (member.userNickname == this.props.local.nickname) {
-    //     // console.log("이 멤버는 나임");
-    //     return false;
-    //   }
-    //   var remoteFilter = this.props.remote.filter((other) => other.nickname == member.userNickname);
-    //   var flag = true;
-    //   remoteFilter.forEach((element) => {
-    //     console.log("element" + element);
-    //     flag = false;
-    //   });
-    //   return flag;
-    // });
-    // member.userNickname != this.props.local.nickname &&
-    // this.props.remote.filter((other) => other.nickname == member.userNickname).size() > 0
-    // console.log("안해??");
-    // console.log(this.absentMembers);
   }
   subscribersMuteStatusChanged(key, status, nickname) {
     this.props.subscribersMuteStatusChanged(key, status, nickname);
@@ -64,31 +41,6 @@ class UserComponent extends Component {
     this.local = this.props.local;
     this.remotes = this.props.remote;
     this.isHost = this.props.isHost;
-    // console.log(this.local);
-    // console.log(this.remotes);
-    // console.log("들어감?");
-    // console.log(this.props.hostMember[0].userNickname);
-    // var findOtherMembers = this.props.otherMembers.filter((member) => {
-    //   if (member.userNickname == this.props.local.nickname) {
-    //     // console.log("이 멤버는 나임");
-    //     return false;
-    //   }
-    //   var remoteFilter = [];
-
-    //   remoteFilter = this.props.remote.filter((other) => other.nickname == member.userNickname);
-    //   var flag = true;
-    //   remoteFilter.forEach((element) => {
-    //     // console.log("element" + element);
-    //     flag = false;
-    //   });
-    //   return flag;
-    // });
-    // absentMembers = findOtherMembers;
-    // console.log("remote");
-    // console.log(this.props.remote);
-    // console.log("absent");
-    // console.log(absentMembers);
-    // // this.setState({ absentMembers: findOtherMembers });
   }
   render() {
     return (
@@ -217,8 +169,6 @@ class UserComponent extends Component {
                 />
               ))}
           </div>
-
-          {/* <div onClick={this.consoleUser}>확인</div> */}
         </div>
       </div>
     );

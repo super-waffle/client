@@ -5,19 +5,6 @@ import { MdMicOff } from "react-icons/md";
 import Modal from "../../modal";
 import axios from "axios";
 
-// import MicOff from "@material-ui/icons/MicOff";
-// import VideocamOff from "@material-ui/icons/VideocamOff";
-// import VolumeUp from "@material-ui/icons/VolumeUp";
-// import VolumeOff from "@material-ui/icons/VolumeOff";
-// import FormControl from "@material-ui/core/FormControl";
-// import Input from "@material-ui/core/Input";
-// import InputLabel from "@material-ui/core/InputLabel";
-// import IconButton from "@material-ui/core/IconButton";
-// import HighlightOff from "@material-ui/icons/HighlightOff";
-// import FormHelperText from "@material-ui/core/FormHelperText";
-
-// let timeString = "00:00:00";
-
 const token = localStorage.getItem("accessToken");
 export default class StreamComponent extends Component {
   constructor(props) {
@@ -59,14 +46,10 @@ export default class StreamComponent extends Component {
           }
         )
         .then((res) => {
-          console.log(
-            "studySeq: " + this.props.studySeq + " userNickname: " + this.props.user.getNickname()
-          );
           const STATUS = res.data.statusCode;
           resolve(res.data.statusCode);
           if (STATUS === 200) {
             this.setState({ Msg: "강퇴완료" });
-            console.log(STATUS);
           } else if (STATUS === 201) {
             this.setState({ Msg: "강퇴완료" });
           } else if (STATUS === 409) {
@@ -74,11 +57,9 @@ export default class StreamComponent extends Component {
           }
         })
         .catch((err) => {
-          console.log(err);
           reject(err);
         });
 
-      // console.log('강퇴');
       this.closeModal();
     });
   }

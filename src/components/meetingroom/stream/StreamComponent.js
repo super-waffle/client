@@ -5,19 +5,6 @@ import { MdMicOff } from "react-icons/md";
 import Modal from "../../modal";
 import axios from "axios";
 
-// import MicOff from "@material-ui/icons/MicOff";
-// import VideocamOff from "@material-ui/icons/VideocamOff";
-// import VolumeUp from "@material-ui/icons/VolumeUp";
-// import VolumeOff from "@material-ui/icons/VolumeOff";
-// import FormControl from "@material-ui/core/FormControl";
-// import Input from "@material-ui/core/Input";
-// import InputLabel from "@material-ui/core/InputLabel";
-// import IconButton from "@material-ui/core/IconButton";
-// import HighlightOff from "@material-ui/icons/HighlightOff";
-// import FormHelperText from "@material-ui/core/FormHelperText";
-
-// let timeString = "00:00:00";
-
 const token = localStorage.getItem("accessToken");
 export default class StreamComponent extends Component {
   constructor(props) {
@@ -45,8 +32,6 @@ export default class StreamComponent extends Component {
   }
 
   handleExitUser() {
-    // `/meetings/${this.props.meetingSeq}/kick/${this.props.user_seq}`,
-
     return new Promise((resolve, reject) => {
       axios
         .post(
@@ -83,7 +68,6 @@ export default class StreamComponent extends Component {
           reject(err);
         });
 
-      // console.log('강퇴');
       this.closeModal();
     });
   }
@@ -121,7 +105,6 @@ export default class StreamComponent extends Component {
 
   handlePressKey(event) {
     if (event.key === "Enter") {
-      console.log(this.state.nickname);
       if (this.state.nickname.length >= 3 && this.state.nickname.length <= 20) {
         this.props.handleNickname(this.state.nickname);
         this.toggleNicknameForm();
@@ -132,52 +115,7 @@ export default class StreamComponent extends Component {
     }
   }
 
-  // setTime() {
-  //   let interval = null;
-  //   interval = setInterval(() => {
-  //     let hour = ("0" + Math.floor((this.props.time / 3600) % 60)).slice(-2);
-  //     let minute = ("0" + Math.floor((this.props.time / 60) % 60)).slice(-2);
-  //     let second = ("0" + (this.props.time % 60)).slice(-2);
-
-  //     timeString = hour + ":" + minute + ":" + second;
-  //   }, 1000);
-  // }
-
-  // componentDidMount() {
-  //   this.interval = setInterval(() => {
-  //     let hour = ("0" + Math.floor((this.props.cumTime / 3600) % 60)).slice(-2);
-  //     let minute = ("0" + Math.floor((this.props.cumTime / 60) % 60)).slice(-2);
-  //     let second = ("0" + (this.props.cumTime % 60)).slice(-2);
-
-  //     this.state.timeString = hour + ":" + minute + ":" + second;
-  //     // console.log("state시간 " + this.state.time);
-  //     console.log("props시간 " + this.props.cumTime);
-  //     console.log(this.state.timeString);
-  //   }, 1000);
-  //   console.log(this.timeString);
-  // }
-
-  // componentWillUnmount() {
-  //   clearInterval(this.interval);
-  // }
-  // componentDidUpdate = (prevProps, prevState) => {
-  //   //componentDidUpdate가 props의 변과를 감지한다
-  //   console.log("********************************");
-  //   console.log("비교" + this.props.timeString + " " + prevProps.timeString);
-  //   if (this.props.timeString !== prevProps.timeString) {
-  //     //하위컴포넌트가 받은 props값 적어주기(둘다)
-  //     console.log("~~~~~~~~~~~~~~~~~~~~~~~~~");
-  //     this.setState({
-  //       ...this.state,
-  //       // selectTagNum: -1,
-  //       // contentOn: "none",  // 난 여기서 contntOn을 none으로 바꿔서 사라지게 햇다
-  //     });
-  //   }
-  // };
-
   render() {
-    // console.log(this.props.user);
-    // console.log("호스트여부" + this.props.isHost);
     return (
       <div className="OT_widget-container">
         {this.props.user !== undefined && this.props.user.getStreamManager() !== undefined ? (
@@ -186,7 +124,6 @@ export default class StreamComponent extends Component {
             onMouseEnter={this.handlerMouseON}
             onMouseLeave={this.handlerMouseOff}
           >
-            {/* {this.props.user.isAudioActive()?():()} */}
             <OvVideoComponent user={this.props.user} mutedSound={this.props.user.getIsMuted()} />
             {this.props.user.isVideoActive() || !this.props.user.getIsBlocked ? (
               <div className="video-username">{this.state.nickname}</div>
@@ -237,25 +174,12 @@ export default class StreamComponent extends Component {
               </div>
             )}
             <div id="status-icons">
-              {/* {!this.props.user.isVideoActive() ? (
-                <div id="camIcon">
-                  <VideocamOff id="statusCam" />
-                </div>
-              ) : null} */}
-
               {!this.props.user.isAudioActive() ? (
                 <div id="micIcon">
                   <MdMicOff style={{ color: "#6667AB" }} size={"2.3rem"} />
                 </div>
               ) : null}
             </div>
-            {/* <div>
-              {!this.props.user.isLocal() && (
-                <IconButton id="volumeButton" onClick={this.toggleSound}>
-                  {this.state.mutedSound ? <VolumeOff color="secondary" /> : <VolumeUp />}
-                </IconButton>
-              )}
-            </div> */}
           </div>
         ) : null}
       </div>
