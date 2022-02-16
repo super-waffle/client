@@ -5,6 +5,7 @@ import isLogin from '../utils/isLogin';
 import '../statics/css/home/homeAchievement.css';
 import LevelComponent from '../components/home-achievement/levelComponent';
 import AchievementList from '../components/home-achievement/achievementList';
+import Myachievement from '../components/home-achievement/myachievement'; 
 export default function HomeAchievement() {
   const TOKEN = localStorage.getItem("accessToken");
 
@@ -53,14 +54,14 @@ export default function HomeAchievement() {
             />
           </div>
           <div className="home-achievement-achieve">
-
+            <Myachievement/>
           </div>
         </div>
       </div>
       <div className="home-achievement-bottom">
         <span>{nickname}님의 업적도감</span>
         <div className="home-achievement-dogam">
-          {/* <AchievementList/> */}
+          <AchievementList/>
         </div>
       </div>
     </div>
