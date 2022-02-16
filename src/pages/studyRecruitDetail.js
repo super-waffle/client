@@ -1,23 +1,29 @@
-import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import axios from 'axios';
+import { useCallback, useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
-import isLogin from "../utils/isLogin";
-import "../statics/css/studyRecruitDetail.css";
-import Modal from "../components/modal";
+import isLogin from '../utils/isLogin';
+import '../statics/css/studyRecruitDetail.css';
+import Modal from '../components/modal';
 
 export default function StudyRecruitDetail() {
-  const TOKEN = localStorage.getItem("accessToken");
+  const TOKEN = localStorage.getItem('accessToken');
   const { studyseq } = useParams();
   const [data, setData] = useState([]);
   const [todayDate, setTodayDate] = useState(new Date());
   const [isSuccess, setIsSuccess] = useState(false);
-  const [userSeq, setUserSeq] = useState("");
-  const [hostSeq, setHostSeq] = useState("");
-  const [profileImg, setProfileImg] = useState("");
+  const [userSeq, setUserSeq] = useState('');
+  const [hostSeq, setHostSeq] = useState('');
+  const [profileImg, setProfileImg] = useState('');
 
   // 모달창
   const [modalOpen, setModalOpen] = useState(false);
+
+  //스터디 삭제
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [isDeleteSuccess, setIsDeleteSuccess] = useState(false);
+  const [isRecruitSuccess, setIsRecruitSuccess] = useState(false);
+
   const openModal = () => {
     setModalOpen(true);
   };
@@ -25,21 +31,35 @@ export default function StudyRecruitDetail() {
     setModalOpen(false);
   };
 
+  const openDeleteModal = () => {
+    setDeleteModalOpen(true);
+  };
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+  };
+
+  function checkAxios(){
+    if(isDeleteSuccess&&isRecruitSuccess){
+      return true;
+    }else{
+      return false;
+    }
+  }
   // yyyy-mm-dd
   function changeDateFormat() {
     if (setTodayDate === null) {
-      console.log("no date");
+      console.log('no date');
     }
     return (
       todayDate.getFullYear() +
-      "-" +
+      '-' +
       (todayDate.getMonth() + 1 > 9
         ? (todayDate.getMonth() + 1).toString()
-        : "0" + (todayDate.getMonth() + 1)) +
-      "-" +
+        : '0' + (todayDate.getMonth() + 1)) +
+      '-' +
       (todayDate.getDate() > 9
         ? todayDate.getDate().toString()
-        : "0" + todayDate.getDate().toString())
+        : '0' + todayDate.getDate().toString())
     );
   }
 
@@ -48,7 +68,7 @@ export default function StudyRecruitDetail() {
     // test();
     if (isLogin) {
       axios
-        .get("/users", {
+        .get('/users', {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
@@ -57,7 +77,7 @@ export default function StudyRecruitDetail() {
           setUserSeq(res.data.user.userSeq);
         });
       axios
-        .get("/studies/" + studyseq, {
+        .get('/studies/' + studyseq, {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
@@ -73,30 +93,30 @@ export default function StudyRecruitDetail() {
         });
     }
   }, []);
-  const imageURL = "https://i6a301.p.ssafy.io:8080/images/" + profileImg;
+  const imageURL = 'https://i6a301.p.ssafy.io:8080/images/' + profileImg;
 
   // 요일 숫자를 이름으로 바꿔주기
   const numberToDay = (num) => {
     if (num === 1) {
-      return "월";
+      return '월';
     }
     if (num === 2) {
-      return "화";
+      return '화';
     }
     if (num === 3) {
-      return "수";
+      return '수';
     }
     if (num === 4) {
-      return "목";
+      return '목';
     }
     if (num === 5) {
-      return "금";
+      return '금';
     }
     if (num === 6) {
-      return "토";
+      return '토';
     }
     if (num === 7) {
-      return "일";
+      return '일';
     }
   };
 
@@ -104,7 +124,7 @@ export default function StudyRecruitDetail() {
   const onApply = useCallback(() => {
     axios
       .post(
-        "/studies/" + studyseq + "/application",
+        '/studies/' + studyseq + '/application',
         {},
         {
           headers: {
@@ -123,10 +143,62 @@ export default function StudyRecruitDetail() {
       });
   }, [TOKEN, studyseq]);
 
+  //스터디 삭제
+  const deleteStudy = useCallback(() => {
+    axios
+      .patch(
+        '/users/studies/' + studyseq + '/end',
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+          },
+        }
+      )
+      .then((res) => {
+        // console.log(res);
+        if (res.data.statusCode === 200) {
+          setIsDeleteSuccess(true);
+        } else if (res.data.statusCode === 409) {
+          setIsDeleteSuccess(false);
+        }
+      });
+  }, [TOKEN, studyseq]);
+  
+  //모집마감
+  const recruitStudy = useCallback(() => {
+    axios
+      .patch(
+        '/users/studies/' + studyseq + '/recruit-end',
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+          },
+        }
+      )
+      .then((res) => {
+        // console.log(res);
+        if (res.data.statusCode === 200) {
+          setIsRecruitSuccess(true);
+        } else if (res.data.statusCode === 409) {
+          setIsRecruitSuccess(false);
+        }
+      });
+  }, [TOKEN, studyseq]);
+
+  const onClick = () => {
+    deleteStudy();
+    recruitStudy();
+    openDeleteModal();
+  }
+  function handleClick(e){
+    window.location.href="/studyrecruit"
+  }
   return (
     <div className="studyrecruit-detail">
       <div className="studyrecruit-detail-goback">
-        <Link className="studyrecruit-detail-goback__link" to={"/studyrecruit"}>
+        <Link className="studyrecruit-detail-goback__link" to={'/studyrecruit'}>
           스터디 모집 게시판
         </Link>
         <svg
@@ -166,17 +238,51 @@ export default function StudyRecruitDetail() {
               <div className="studyrecruit-detail-box-heading__first-host">
                 {/* [TODO]: update, delete 페이지로 링크 필요 */}
                 <Link
-                  to={"/"}
+                  to={'/'}
                   className="studyrecruit-detail-box-heading__first-host-btn update"
                 >
                   수정
                 </Link>
-                <Link
-                  to={"/"}
-                  className="studyrecruit-detail-box-heading__first-host-btn"
-                >
-                  삭제
-                </Link>
+                <div>
+                  <button
+                    className="studyrecruit-detail-box-heading__first-host-btn"
+                    onClick={onClick}
+                  >
+                    삭제
+                  </button>
+                  <Modal
+                    open={deleteModalOpen}
+                    close={closeDeleteModal}
+                    header=" "
+                  >
+                    {checkAxios && (
+                      <div>
+                        <div className="studyapply-modal-msg">
+                          삭제되었습니다
+                        </div>
+                        <button
+                          className="studyapply-modal-ok"
+                          onClick={handleClick}
+                        >
+                          확인
+                        </button>
+                      </div>
+                    )}
+                    {!checkAxios && (
+                      <div>
+                        <div className="studyapply-modal-msg">
+                          스터디 호스트가 아닙니다
+                        </div>
+                        <button
+                          className="studyapply-modal-ok"
+                          onClick={closeDeleteModal}
+                        >
+                          확인
+                        </button>
+                      </div>
+                    )}
+                  </Modal>
+                </div>
               </div>
             )}
           </div>
@@ -242,7 +348,7 @@ export default function StudyRecruitDetail() {
                               {numberToDay(days.dayNumber)}
                             </div>
                             <div className="studyrecruit-detail-box-body__day timestart">
-                              {days.timeStart.slice(0, 5)} ~{" "}
+                              {days.timeStart.slice(0, 5)} ~{' '}
                             </div>
                             <div className="studyrecruit-detail-box-body__day timeend">
                               {days.timeEnd.slice(0, 5)}
