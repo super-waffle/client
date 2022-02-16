@@ -1078,19 +1078,19 @@ class VideoRoomComponent extends Component {
 
           if (res.data.statusCode == 404) {
             //미팅룸 시퀀스가 유효하지 않음 (존재하지 않는 미팅룸)
-            this.setStatus({
+            this.setState({
               isError: true,
               errorMessage: "존재하지 않는 자유열람실입니다.",
             });
           } else if (res.data.statusCode == 405) {
             //미팅룸 정원초과
-            this.setStatus({
+            this.setState({
               isError: true,
               errorMessage: "인원을 초과하여 입장하실 수 없습니다.",
             });
           } else if (res.data.statusCode == 407) {
             //블랙리스트
-            this.setStatus({
+            this.setState({
               isError: true,
               errorMessage: "강퇴당하여 더 이상 입장하실 수 없습니다.",
             });

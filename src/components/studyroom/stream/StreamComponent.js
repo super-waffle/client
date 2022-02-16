@@ -47,9 +47,9 @@ export default class StreamComponent extends Component {
   handleExitUser() {
     return new Promise((resolve, reject) => {
       axios
-        .post(
+        .patch(
           process.env.REACT_APP_SERVER_URL +
-            `/studies/${this.props.studySeq}/kick/${this.props.user.getNickname()}`,
+            `/studies/${this.props.studySeq}/ban/${this.props.user.getNickname()}`,
           {},
           {
             headers: {
@@ -188,7 +188,7 @@ export default class StreamComponent extends Component {
             ) : (
               <div className="video-camoff">{this.state.nickname}</div>
             )}
-            <div className="video-time">{this.props.timeString}</div>
+            {/* <div className="video-time">{this.props.timeString}</div> */}
 
             {this.props.user.type === "remote" && this.props.isHost && (
               <div id="status-exiticons">
@@ -213,7 +213,7 @@ export default class StreamComponent extends Component {
 
                 <Modal open={this.state.modalOpen} close={this.closeModal} header=" ">
                   <div className="study-room-kick-msg">
-                    사용자 [{this.state.nickname}] 를 강퇴하시겠습니까?
+                    스터디원 [{this.state.nickname}] 를 일시방출 하시겠습니까?
                   </div>
 
                   <button

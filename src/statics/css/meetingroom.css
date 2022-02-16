@@ -369,6 +369,7 @@
   color: #000000;
   width: auto;
   max-width: 80%;
+  box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .text {
   word-break: break-all;
@@ -411,6 +412,7 @@
   border-radius: 5px;
   font-family: "Pretendard";
   font-size: 11px;
+  box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component .message-wrap .message.right .msg-detail .msg-info {
   text-align: right;
@@ -426,6 +428,7 @@
   border-radius: 5px;
   font-family: "Pretendard";
   font-size: 11px;
+  box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
 }
 .meeting-room .meeting-room-content .meeting-room-sidebar .meeting-room-chat .meeting-chat-container .chat-component ::-webkit-scrollbar {
   width: 8px;

@@ -9,6 +9,7 @@ class UserModel {
   isHost;
   isMuted;
   isBlocked;
+  isLate;
   studyTimeString;
 
   constructor() {
@@ -22,6 +23,7 @@ class UserModel {
     this.isHost = false;
     this.isMuted = false;
     this.studyTimeString = "00:00:00";
+    this.isLate = false;
   }
 
   isAudioActive() {
@@ -68,6 +70,9 @@ class UserModel {
   isRemote() {
     return !this.isLocal();
   }
+  getIsLate() {
+    return this.isLate;
+  }
   setAudioActive(isAudioActive) {
     this.audioActive = isAudioActive;
   }
@@ -106,6 +111,9 @@ class UserModel {
 
   setStudyTimeString(timeString) {
     this.studyTimeString = timeString;
+  }
+  setIsLate(isLate) {
+    this.isLate = isLate;
   }
 }
 

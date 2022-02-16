@@ -16,16 +16,16 @@ function StopWatch(props) {
   useEffect(() => {
     let interval = null;
 
-    if (isActive && isPaused === false) {
-      interval = setInterval(() => {
-        setTime((time) => time + 1);
-        // console.log(time);
-        // props.sendTime(time);
-        // setTimeString(timeString);
-      }, 1000);
-    } else {
-      clearInterval(interval);
-    }
+    interval = setInterval(() => {
+      setTime((time) => time + 1);
+      // console.log(time);
+      // props.sendTime(time);
+      // setTimeString(timeString);
+    }, 1000);
+    // if (isActive && isPaused === false) {
+    // } else {
+    //   clearInterval(interval);
+    // }
     return () => {
       clearInterval(interval);
     };
@@ -42,21 +42,21 @@ function StopWatch(props) {
 
   return (
     <div className="study-room-stop-watch">
-      <div className="stop-watch-title">
+      {/* <div className="stop-watch-title">
         <HiMenu className="stop-watch-menu" />
         <span className="stop-watch-name">공부시간측정</span>
       </div>
       <div className="enter">
         <span className="enter-title">열람실 착석 </span>
         <span className="enter-time">{props.startTime}</span>
-      </div>
+      </div> */}
       <Timer time={time} />
-      <ControlButtons
+      {/* <ControlButtons
         active={isActive}
         isPaused={isPaused}
         handleStart={handleStart}
         handlePauseResume={handlePauseResume}
-      />
+      /> */}
     </div>
   );
 }
