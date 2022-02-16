@@ -63,17 +63,15 @@ export default function HomeAchievement() {
       <div className="home-achievement-top">
         <span>나의 레벨 및 업적</span>
         <div className="home-achievement-top-box">
-          <div className="home-achievement-level">
-            <LevelComponent
-              level={level}
-              levelImg={levelImg}
-              levelName={levelName}
-              timeGoal={timeGoal}
-              timeTotal={timeTotal}
-              levelCondition={levelCondition}
-              conditionToNext={conditionToNext}
-            />
-          </div>
+          <LevelComponent
+            level={level}
+            levelImg={levelImg}
+            levelName={levelName}
+            timeGoal={timeGoal}
+            timeTotal={timeTotal}
+            levelCondition={levelCondition}
+            conditionToNext={conditionToNext}
+          />
           <div className="home-achievement-achieve">
             <Myachievement
               achieveImg={achieveImg}

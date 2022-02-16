@@ -1,0 +1,46 @@
+@import "../main.scss";
+
+.my-achievement {
+  // height: 166px;
+  // width: 20vw;
+  background: var(--bgColor);
+  border: 1px solid var(--borderColor);
+  box-sizing: border-box;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1.2rem 1rem;
+}
+.my-achievement__selected {
+  text-align: center;
+  align-items: center;
+  & img {
+    width: 70%;
+  }
+  .my-achievement__selected-text {
+    background-color: $mainColor;
+    display: inline-block;
+    width: 80%;
+    margin-top: 6px;
+    border-radius: 5px;
+    color: #eeeeee;
+    font-size: 14px;
+    padding: 0.25rem;
+    text-align: center;
+  }
+}
+.my-achievement__percentage {
+  text-align: center;
+  align-items: center;
+}
+.my-achievement__percentage__text {
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--textColor-todo);
+  padding: 0.8rem 0;
+}
+.my-achievement__percentage__graph {
+  margin-top: 0.2rem;
+  width: 68%;
+  display: inline-block;
+}

@@ -63,14 +63,6 @@
   display: flex;
   margin-top: 9px;
 }
-.home-achievement .home-achievement-top .home-achievement-top-box .home-achievement-achieve {
-  height: 166px;
-  width: 20vw;
-  background: var(--bgColor);
-  border: 1px solid var(--borderColor);
-  box-sizing: border-box;
-  border-radius: 10px;
-}
 .home-achievement .home-achievement-bottom .home-achievement-dogam {
   margin-top: 9px;
   background: var(--bgColor);

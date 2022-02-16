@@ -1,5 +1,6 @@
 import React from "react";
 import CircularProgressBar from "./CircularProgressBar";
+import "../../../statics/css/home/myAchievement.css";
 
 export default function Myachievement({
   achieveName,
@@ -13,15 +14,21 @@ export default function Myachievement({
 
   // console.log(percentage,"퍼센트");
   return (
-    <div>
-      <img
-        src={AchieveImg}
-        alt=""
-        style={{ width: "100px", height: "100px" }}
-      />
-      <div>{achieveName}</div>
-      <div>업적도감 달성률</div>
-      <CircularProgressBar percentage={percentage} />
+    <div className="my-achievement">
+      <div className="my-achievement__selected">
+        <img
+          src={AchieveImg}
+          alt=""
+          //   style={{ width: "100px", height: "100px" }}
+        />
+        <div className="my-achievement__selected-text">{achieveName}</div>
+      </div>
+      <div className="my-achievement__percentage">
+        <div className="my-achievement__percentage__text">업적도감 달성률</div>
+        <div className="my-achievement__percentage__graph">
+          <CircularProgressBar percentage={percentage} />
+        </div>
+      </div>
     </div>
   );
 }

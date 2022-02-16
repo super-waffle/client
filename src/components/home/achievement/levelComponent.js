@@ -7,8 +7,6 @@ import "../../../statics/css/home/levelComponent.css";
 
 export default function LevelComponent(props) {
   const levelImgUrl = "https://i6a301.p.ssafy.io:8080/images/" + props.levelImg;
-  // let hour = ("0" + Math.floor((props.timeTotal / 60) % 60)).slice(-2);
-  // let minute = ("0" + Math.floor((props.timeTotal) % 60)).slice(-2);
   const TOKEN = localStorage.getItem("accessToken");
   const [dayTotalStudyTime, setDayTotalStudyTime] = useState(0);
   var today = new Date();
