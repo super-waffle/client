@@ -35,23 +35,16 @@ export default function Diary(props) {
     axios.get(URL).then((response) => setCatURL(response.data[0]['url']));
   };
   const getMaxim = async () => {
-    axios
-      .get('https://api.adviceslip.com/advice')
-      .then((response) => setMaxim(response.data['slip']['advice']));
+    axios.get('https://api.adviceslip.com/advice').then((response) => setMaxim(response.data['slip']['advice']));
   };
   async function getDiaryData() {
     try {
       const response = await axios
-        .get(
-          process.env.REACT_APP_SERVER_URL +
-            '/diaries?date=' +
-            JSON.parse(selectedDay),
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
+        .get(process.env.REACT_APP_SERVER_URL + '/diaries?date=' + JSON.parse(selectedDay), {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then((response) => {
           let updatedDiary = response.data.diary;
           setTimeout(() => {
@@ -69,7 +62,9 @@ export default function Diary(props) {
   }, [selectedDay]);
   useEffect(() => {
     getDiaryData();
-    window.URL.revokeObjectURL(preview);
+    if (preview) {
+      window.URL.revokeObjectURL(preview);
+    }
     setPreview(() => null);
   }, [selectedDay]);
   const saveFileImage = (e) => {
@@ -88,40 +83,29 @@ export default function Diary(props) {
       .then((res) => {
         setToEdit(() => false);
         window.URL.revokeObjectURL(preview);
-        setPreview(() => null);
-        setDiaryImg(() => '');
-        setDiaryData(() => null);
       });
   };
 
   const updateDiary = () => {
     axios
-      .patch(
-        process.env.REACT_APP_SERVER_URL + `/diaries/${diaryData.diarySeq}`,
-        updateData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+      .patch(process.env.REACT_APP_SERVER_URL + `/diaries/${diaryData.diarySeq}`, updateData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         setToEdit(() => false);
         window.URL.revokeObjectURL(preview);
-        // setDiaryImg(() => '');
-        // setDiaryData(() => null);
       });
   };
-
+  //// 날짜 변경시 바꿔줘야 할 것들
   const changeDay = () => {
     setToEdit(() => false);
-    window.URL.revokeObjectURL(preview);
     setPreview(() => null);
-    setDiaryImg(() => '');
-    setDiaryData(() => null);
   };
   useEffect(() => changeDay(), [selectedDay]);
+  console.log(preview);
   return (
     <div className="diary">
       <div className="diary-header">하루 기록</div>
@@ -131,35 +115,18 @@ export default function Diary(props) {
           <Col className="diary-box__img" sm={4} md={4} lg={4}>
             {!toEdit ? (
               <div className="diary-box__img-file-wrapper ">
-                <img
-                  src={
-                    process.env.REACT_APP_SERVER_URL +
-                    `/images/${diaryData.diaryImg}`
-                  }
-                  alt=""
-                />
+                <img src={process.env.REACT_APP_SERVER_URL + `/images/${diaryData.diaryImg}`} alt="" />
               </div>
             ) : (
               <>
                 <div className="diary-box__img-file-wrapper ">
-                  {preview ? (
+                  {preview && !diaryImg ? (
                     <img src={preview} alt="" />
                   ) : (
-                    <img
-                      src={
-                        process.env.REACT_APP_SERVER_URL +
-                        `/images/${diaryData.diaryImg}`
-                      }
-                      alt=""
-                    />
+                    <img src={process.env.REACT_APP_SERVER_URL + `/images/${diaryData.diaryImg}`} alt="" />
                   )}
                 </div>
-                <input
-                  type="file"
-                  id="file"
-                  accept="image/*"
-                  onChange={saveFileImage}
-                />
+                <input type="file" id="file" accept="image/*" onChange={saveFileImage} />
               </>
             )}
           </Col>
@@ -168,20 +135,15 @@ export default function Diary(props) {
           <Col className="diary-box__img" sm={4} md={4} lg={4}>
             {!toEdit ? (
               <div className="diary-box__img-file-wrapper ">
-                {preview && <img src={preview} alt="" />}
-                {!preview && <img src={catURL} alt="" />}
+                <img src={catURL} alt="" />
               </div>
             ) : (
               <>
                 <div className="diary-box__img-file-wrapper ">
-                  <img src={catURL} alt="" />
+                  {preview ? <img src={preview} alt="" /> : null}
+                  {!preview ? <img src={catURL} alt="" /> : null}
                 </div>
-                <input
-                  type="file"
-                  id="file"
-                  accept="image/*"
-                  onChange={saveFileImage}
-                />
+                <input type="file" id="file" accept="image/*" onChange={saveFileImage} />
               </>
             )}
           </Col>
@@ -191,13 +153,8 @@ export default function Diary(props) {
           <Col className="diary-box__contents">
             {!toEdit ? (
               <>
-                <div className="diary-box__contents-text">
-                  {diaryData.diaryContent}
-                </div>
-                <button
-                  className="diary-box__contents-btn"
-                  onClick={() => setToEdit(true)}
-                >
+                <div className="diary-box__contents-text">{diaryData.diaryContent}</div>
+                <button className="diary-box__contents-btn" onClick={() => setToEdit(true)}>
                   수정
                 </button>
               </>
@@ -209,10 +166,7 @@ export default function Diary(props) {
                   defaultValue={diaryData.diaryContent}
                   onChange={(e) => setTodayDiary(e.target.value)}
                 />
-                <button
-                  className="diary-box__contents-btn"
-                  onClick={updateDiary}
-                >
+                <button className="diary-box__contents-btn" onClick={updateDiary}>
                   확인
                 </button>
               </>
@@ -223,10 +177,7 @@ export default function Diary(props) {
             {!toEdit ? (
               <>
                 <div className="diary-box__contents-text">{maxim}</div>
-                <button
-                  className="diary-box__contents-btn"
-                  onClick={() => setToEdit(true)}
-                >
+                <button className="diary-box__contents-btn" onClick={() => setToEdit(true)}>
                   수정
                 </button>
               </>
@@ -238,10 +189,7 @@ export default function Diary(props) {
                   defaultValue={maxim}
                   onChange={(e) => setTodayDiary(e.target.value)}
                 ></textarea>
-                <button
-                  className="diary-box__contents-btn"
-                  onClick={createDiary}
-                >
+                <button className="diary-box__contents-btn" onClick={createDiary}>
                   확인
                 </button>
               </>
