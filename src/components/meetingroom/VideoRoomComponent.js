@@ -16,39 +16,17 @@ import TimeComponent from "./time/TimeComponent";
 import UserComponent from "./user/UserComponent";
 
 import "../../statics/css/meetingroom.css";
-// import { BsLock } from "react-icons/bs";
-
-// function GetMeetingSeqRedux() {
-//   let mtSeq = useSelector((state) => state.meeting.meetingSeq);
-//   return mtSeq;
-// }
-
 var localUser = new UserModel();
 
 var sessionToken;
-// var meetingSeq = GetMeetingSeqRedux();
-// var meetingSeq = localStorage.getItem("meetingSeq");
-// var isHost;
-// var meetingTitle;
-// var meetingDesc;
-// var meetingCapacity;
-// var meetingHeadcount;
-// var meetingDate;
-// var meetingStartTime;
 var userName;
 
 class VideoRoomComponent extends Component {
   constructor(props) {
     super(props);
-    // this.OPENVIDU_SERVER_URL = this.props.openviduServerUrl
-    //     ? this.props.openviduServerUrl
-    //     : 'https://' + window.location.hostname + ':4443';
-    // this.meetingSeq = this.props.meetingSeq;
     this.OPENVIDU_SERVER_URL = process.env.REACT_APP_SERVER_URL;
     this.hasBeenUpdated = false;
     this.layout = new OpenViduLayout();
-    // let sessionName = this.props.sessionName ? this.props.sessionName : 'SessionA';
-    // let sessionName = meetingSeq;
     this.remotes = [];
     this.localUserAccessAllowed = false;
     console.log("props");
@@ -114,23 +92,9 @@ class VideoRoomComponent extends Component {
     this.sendSignalVideoBlocked = this.sendSignalVideoBlocked.bind(this);
     this.getSignalVideoBlocked = this.getSignalVideoBlocked.bind(this);
   }
-  // isHostfun() {
-  //   console.log(1);
-  //   if (isHost === 0) {
-  //     return false;
-  //   } else if (isHost === 1) {
-  //     return true;
-  //   }
-  // }
   loginToken() {
-    // console.log("sessin Id" + this.state.mySessionId);
     const token = localStorage.getItem("accessToken");
-    console.log("loginToken: " + token);
   }
-  // userlist() {
-  //   console.log("local " + this.localUser);
-  //   console.log("userlist: 유저가 없니이이잉" + this.state.subscribers);
-  // }
   componentDidMount() {
     const openViduLayoutOptions = {
       maxRatio: 3 / 2, // The narrowest ratio that will be used (default 2x3)
@@ -181,12 +145,10 @@ class VideoRoomComponent extends Component {
 
   connectToSession() {
     if (sessionToken !== undefined) {
-      console.log("connectToSession - token received: ", sessionToken);
       this.connect(sessionToken);
     } else {
       this.getToken()
         .then((token) => {
-          console.log("getToken성공 " + token);
           sessionToken = token;
           this.connect(token);
         })
@@ -346,9 +308,6 @@ class VideoRoomComponent extends Component {
       // sessionToken = null;
       // this.props.setIsPaused(true);
     }
-    if (!this.state.isPaused) {
-      console.log("!state.isPaused " + this.state.isPaused);
-    }
     // Empty all properties...
     this.OV = null;
     this.setState({
@@ -364,13 +323,6 @@ class VideoRoomComponent extends Component {
     }
 
     return new Promise((resolve, reject) => {
-      // var data = JSON.stringify({
-      //     sessionToken: sessionToken,
-      //     logMeeting: '40',
-      //     logStartTime: '06:58:40'
-      // });
-      console.log("leave session! sessiontoken  : ", sessionToken);
-      console.log("시간", this.state.time);
       const token = localStorage.getItem("accessToken");
       axios
         .delete(process.env.REACT_APP_SERVER_URL + `/meetings/${this.state.myMeetingSeq}/room`, {
@@ -522,7 +474,6 @@ class VideoRoomComponent extends Component {
   }
 
   sendSignalUserChanged(data) {
-    // console.log(11);
     const signalOptions = {
       data: JSON.stringify(data),
       type: "userChanged",
@@ -683,11 +634,9 @@ class VideoRoomComponent extends Component {
         messageReceived: false,
       });
     } else {
-      // console.log("chat", display);
       this.setState({ chatDisplay: display, userlistDisplay: "block" });
     }
     this.updateLayout();
-    // console.log(localUser.getNickname());
   }
 
   checkNotification(event) {
@@ -709,14 +658,9 @@ class VideoRoomComponent extends Component {
     if (this.state.isHost) {
       this.sendSignalAudioBlocked(nickname);
     } else {
-      // console.log("subscriber 값 변경");
-      // console.log(remotes);
       const remoteUsers = this.state.subscribers.map((sub) => sub);
-      // console.log(remoteUsers);
-      // console.log(key + " " + status);
       remoteUsers[key].setIsMuted(status);
       this.setState({ subscribers: remoteUsers });
-      // console.log(this.state.subscribers[key]);
     }
   }
 
@@ -724,18 +668,10 @@ class VideoRoomComponent extends Component {
     if (this.state.isHost) {
       this.sendSignalVideoBlocked(nickname);
     } else {
-      console.log("video subscriber 값 변경");
-      // console.log(remotes);
       const remoteUsers = this.state.subscribers.map((sub) => sub);
-      // console.log(remoteUsers);
-      // console.log(key + " " + status);
       remoteUsers[key].setIsBlocked(status);
       remoteUsers[key].setVideoActive(!status);
       this.setState({ subscribers: remoteUsers });
-      // console.log("원격스트림");
-      // console.log(this.state.subscribers[key]);
-      // console.log(localUser);
-      // localUser.getStreamManager().publishVideo(localUser.isVideoActive());
       remoteUsers[key].getStreamManager().subscribeToVideo(!status);
     }
   }
@@ -743,7 +679,6 @@ class VideoRoomComponent extends Component {
   sendStudyTimeString() {
     if (localUser && this.state.timeString) {
       let studyTimeString = this.state.timeString;
-      // let message = this.state.message.replace(/ +(?= )/g, "");
       if (studyTimeString != "00:00:00") {
         const data = {
           studyTimeString: studyTimeString,
@@ -754,15 +689,12 @@ class VideoRoomComponent extends Component {
           data: JSON.stringify(data),
           type: "timeString",
         });
-        // console.log("시간보내기 " + this.state.timeString);
       }
     }
   }
 
   getSignalTimeString() {
-    // console.log("들어오는지..");
     localUser.getStreamManager().stream.session.on("signal:timeString", (event) => {
-      // console.log("ㅠㅠ");
       const data = JSON.parse(event.data);
       const remoteUsers = this.state.subscribers;
       remoteUsers.forEach((remote) => {
@@ -776,8 +708,6 @@ class VideoRoomComponent extends Component {
 
   sendSignalUserKicked(nickname) {
     if (localUser) {
-      // console.log("킥 시그널 보냄");
-      // this.setState({ isKick: false });
       const data = {
         nickname: nickname,
         streamId: this.state.localUser.getStreamManager().stream.streamId,
@@ -790,9 +720,7 @@ class VideoRoomComponent extends Component {
   }
 
   getSignalUserKicked() {
-    // console.log("킥 시그널 받음");
     localUser.getStreamManager().stream.session.on("signal:kick", (event) => {
-      // console.log("ㅠㅠ");
       const data = JSON.parse(event.data);
       if (localUser.getNickname() == data.nickname) {
         this.setState({
@@ -847,69 +775,10 @@ class VideoRoomComponent extends Component {
     });
   }
 
-  // changeKickStatus(status) {
-  //   this.setState({ isKick: status });
-  //   this.sendSignalUserKicked();
-  // }
-
-  // sendisHostFromRemote() {
-  //   if (localUser) {
-  //     let isHost = this.state.isHost;
-  //     // let studyTimeString = this.state.timeString;
-  //     const data = {
-  //       isHost: isHost,
-  //       nickname: this.state.localUser.getNickname(),
-  //       streamId: this.state.localUser.getStreamManager().stream.streamId,
-  //     };
-  //     this.state.session.signal({
-  //       data: JSON.stringify(data),
-  //       type: "isHost",
-  //     });
-  //   }
-  // }
-
-  // getIsHostFromRemote() {
-  //   // console.log(7);
-  //   // console.log("subscribeToStreamCreated");
-  //   this.state.session.on("streamCreated", (event) => {
-  //     const subscriber = this.state.session.subscribe(event.stream, undefined);
-  //     // var subscribers = this.state.subscribers;
-  //     subscriber.on("streamPlaying", (e) => {
-  //       this.checkSomeoneShareScreen();
-  //       subscriber.videos[0].video.parentElement.classList.remove("custom-class");
-  //     });
-  //     const newUser = new UserModel();
-  //     newUser.setStreamManager(subscriber);
-  //     newUser.setConnectionId(event.stream.connection.connectionId);
-  //     newUser.setType("remote");
-  //     const nickname = event.stream.connection.data.split("%")[0];
-  //     newUser.setNickname(JSON.parse(nickname).clientData);
-  //     this.remotes.push(newUser);
-  //     if (this.localUserAccessAllowed) {
-  //       this.updateSubscribers();
-  //     }
-  //   });
-  // }
-
-  // componentDidUpdate = (prevProps, prevState) => {
-  //   //componentDidUpdate가 props의 변과를 감지한다
-  //   console.log("********************************");
-  //   // console.log("비교" + this.props.timeString + " " + prevProps.timeString);
-  //   if (this.props.timeString !== prevProps.timeString) {
-  //     //하위컴포넌트가 받은 props값 적어주기(둘다)
-  //     console.log("~~~~~~~~~~~~~~~~~~~~~~~~~");
-  //   }
-  // };
-
   render() {
-    // const mySessionId = this.state.mySessionId;
     const localUser = this.state.localUser;
-    // console.log("로컬유저 들어오나?");
-    // console.log(localUser);
     var chatDisplay = { display: this.state.chatDisplay };
     var userlistDisplay = { display: this.state.userlistDisplay };
-
-    // console.log("localStorage" + localStorage.getItem("meetingSeq"));
     return (
       <div className="meeting-room">
         <div className="meeting-room-content">
@@ -1065,7 +934,6 @@ class VideoRoomComponent extends Component {
           process.env.REACT_APP_SERVER_URL + `/meetings/${this.state.myMeetingSeq}/room`,
           {},
           {
-            // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
             headers: {
               Authorization: "Bearer " + token,
               "Content-Type": "application/json",
@@ -1101,14 +969,6 @@ class VideoRoomComponent extends Component {
             resolve(res.data.sessionToken);
             this.sessionToken = res.data.sessionToken;
             if (sessionToken == null) sessionToken = undefined;
-            // this.meetingSeq = res.data.meetingSeq;
-            // this.isHost = res.data.isHost;
-            // this.meetingTitle = res.data.meetingTitle;
-            // this.meetingDesc = res.data.meetingDesc;
-            // this.meetingCapacity = res.data.meetingCapacity;
-            // this.meetingHeadcount = res.data.meetingHeadcount;
-            // this.meetingDate = res.data.meetingDate;
-            // this.meetingStartTime = res.data.meetingStartTime; //미팅스타트타임
 
             this.userName = res.data.userNickname;
             console.log("Nickname : " + this.userName);
@@ -1127,49 +987,7 @@ class VideoRoomComponent extends Component {
               myMeetingDesc: res.data.meetingDesc,
             });
           }
-          // console.log("state 변수");
-          // console.log(this.state);
         });
-      // axios
-      //   .all([
-      //     axios.post(process.env.REACT_APP_SERVER_URL + `/meetings/1/room`, data, {
-      //       // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
-      //       headers: {
-      //         Authorization: "Bearer " + token,
-      //         "Content-Type": "application/json",
-      //       },
-      //     }),
-      //     axios.get(process.env.REACT_APP_SERVER_URL + "/users", {
-      //       // .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
-      //       headers: {
-      //         Authorization: "Bearer " + token,
-      //         "Content-Type": "application/json",
-      //       },
-      //     }),
-      //   ])
-
-      //   .then(
-      //     axios.spread((response1, response2) => {
-      //       console.log("TOKEN", response1);
-      //       resolve(response1.data.sessionToken);
-      //       sessionToken = response1.data.sessionToken;
-      //       meetingSeq = response1.data.meetingSeq;
-      //       isHost = response1.data.isHost;
-
-      //       meetingTitle = response1.data.meetingTitle;
-      //       meetingDesc = response1.data.meetingDesc;
-      //       meetingCapacity = response1.data.meetingCapacity;
-      //       meetingHeadcount = response1.data.meetingHeadcount;
-      //       meetingDate = response1.data.meetingDate;
-      //       meetingStartTime = response1.data.meetingStartTime; //미팅스타트타임
-
-      //       this.userName = response2.data.user.userNickname;
-      //       console.log("Nickname : " + this.userName);
-      //       console.log("meetingSeq : " + this.meetingSeq);
-      //       console.log("sessionToken: " + sessionToken);
-      //     })
-      //   )
-      //   .catch((error) => reject(error));
     });
   }
 }

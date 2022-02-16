@@ -8,7 +8,6 @@ export default class OvVideoComponent extends Component {
 
   componentDidMount() {
     if (this.props && this.props.user.streamManager && !!this.videoRef) {
-      console.log("PROPS: ", this.props);
       this.props.user.getStreamManager().addVideoElement(this.videoRef.current);
     }
 
@@ -23,9 +22,6 @@ export default class OvVideoComponent extends Component {
   }
 
   componentDidUpdate(props) {
-    // console.log("videl");
-    // console.log(this.props.user);
-    // console.log(this.props.mutedSound);
     if (props && !!this.videoRef) {
       this.props.user.getStreamManager().addVideoElement(this.videoRef.current);
     }
