@@ -1,0 +1,47 @@
+@import "../main.scss";
+
+.if {
+  background: var(--bgColor);
+  border: 1px solid var(--borderColor);
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 56vw;
+  margin-top: 10px;
+  padding: 16px 14px;
+}
+.if-header {
+  margin: 8px 16px 10px 16px;
+  // margin-left: 16px;
+  // margin-bottom: 14px;
+}
+.if-header__header {
+  font-size: 12px;
+  color: var(--textColor-todo);
+}
+.if-header__body {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--textColor);
+}
+.if-body {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(100px, 2fr));
+  grid-template-rows: repeat(auo-fit, minmax(200px, 2fr));
+}
+.if-body__box {
+  background-color: var(--if-bgColor);
+  border: 1px solid var(--if-borderColor);
+  border-radius: 7px;
+  margin: 7px 7px;
+  padding: 0.6rem 0.7rem;
+}
+.if-body__box-header {
+  color: var(--textColor-todo);
+  font-size: 12px;
+  padding-bottom: 3px;
+}
+.if-body__box-body {
+  color: $mainColor;
+  font-size: 18px;
+  font-weight: 500;
+}
