@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { MdVideocamOff, MdVideocam, MdMicOff, MdMic } from "react-icons/md";
-import { Container, Row, Col } from "react-bootstrap";
 
 class UserStatus extends Component {
   constructor(props) {

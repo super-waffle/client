@@ -24,9 +24,8 @@ import SettingsAlarm from "./pages/SettingsAlarm";
 import SettingsStudy from "./pages/SettingsStudy_refac";
 import SettingsMeeting from "./pages/SettingsMeeting";
 import SettingsMeetingFavorite from "./pages/SettingsMeetingFavorite";
-import VideoRoomComponentCopy from "./components/meetingroom/VideoRoomComponent copy";
-import VideoRoomComponentChange from "./components/meetingroom/VideoRoomComponent change";
 import VideoRoomComponent from "./components/meetingroom/VideoRoomComponent";
+import StudyRoomComponent from "./components/studyroom/StudyRoomComponent";
 import SettingsStudyApplied from "./pages/SettingsStudyApplied";
 
 ReactDOM.render(
@@ -57,14 +56,7 @@ ReactDOM.render(
               path="videoRoomComponent"
               element={isLogin() ? <VideoRoomComponent /> : <Login />}
             />
-            <Route
-              path="videoRoomComponentCopy"
-              element={isLogin() ? <VideoRoomComponentCopy /> : <Login />}
-            />
-            <Route
-              path="VideoRoomComponentChange"
-              element={isLogin() ? <VideoRoomComponentChange /> : <Login />}
-            />
+            <Route path="studyroom" element={isLogin() ? <StudyRoomComponent /> : <Login />} />
             <Route path="settings" element={isLogin() ? <Settings /> : <Login />}>
               <Route path="profile" element={<SettingsProfile />} />
               <Route path="admin" element={<SettingsAdmin />} />
