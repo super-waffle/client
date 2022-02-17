@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import CategorySelect from '../components/categorySelect';
 import Paginator from '../components/paginator';
 import isLogin from '../utils/isLogin';
-
 import '../statics/css/studyRecruit.css';
 
 export default function StudyRecruit() {
