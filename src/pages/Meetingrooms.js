@@ -20,15 +20,11 @@ const MeetingroomCard = ({ meeting, openModal, setMeetingSeq }) => {
     // 현재 즐겨찾기 중 => 누르면 해제
     if (bookmark) {
       axios
-        .delete(
-          process.env.REACT_APP_SERVER_URL + `/bookmarks/${meeting.meetingSeq}`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-            },
-          }
-        )
+        .delete(process.env.REACT_APP_SERVER_URL + `/bookmarks/${meeting.meetingSeq}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+        })
         .then((res) => {
           setBookmark(false);
         });
@@ -59,7 +55,6 @@ const MeetingroomCard = ({ meeting, openModal, setMeetingSeq }) => {
       }}
     >
       <Card style={{ marginBottom: '0.5rem' }}>
-        {console.log(meeting.inBookmark)}
         <div>
           <Card.Img
             style={{ position: 'relative', height: '150px' }}
@@ -233,7 +228,6 @@ export default function Meetingrooms() {
             {postData.data &&
               postData.data.map((meeting) => (
                 <>
-                  {console.log(meeting)}
                   <MeetingroomCard
                     setMeetingSeq={setMeetingSeq}
                     openModal={openModal}
@@ -260,8 +254,7 @@ export default function Meetingrooms() {
 
         <Link
           to={{
-            pathname: `/videoRoomComponent`,
-            state: { meetingSeq: meetingSeq },
+            pathname: `/meeting/${meetingSeq}`,
           }}
         >
           <button
