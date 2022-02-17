@@ -945,9 +945,6 @@ class VideoRoomComponent extends Component {
           }
         )
         .then((res) => {
-          console.log("meetingSeq: " + this.state.myMeetingSeq);
-          console.log("응답", res);
-
           if (res.data.statusCode == 404) {
             //미팅룸 시퀀스가 유효하지 않음 (존재하지 않는 미팅룸)
             this.setState({
@@ -975,9 +972,6 @@ class VideoRoomComponent extends Component {
             if (sessionToken == null) sessionToken = undefined;
 
             this.userName = res.data.userNickname;
-            console.log("Nickname : " + this.userName);
-            console.log("meetingSeq : " + this.meetingSeq);
-            console.log("sessionToken: " + this.sessionToken);
             this.setState({
               myMeetingSeq: localStorage.getItem("meetingSeq"),
               mySessionId: res.data.meetingUrl,
