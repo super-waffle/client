@@ -46,7 +46,6 @@ function SignUp() {
   const onSubmit = useCallback(
     (event) => {
       // event.preventDefault();
-      console.log(email, nickname, password);
       setSignupSuccess(false);
       axios
         .post(
@@ -62,7 +61,6 @@ function SignUp() {
         )
         .then((res) => {
           if (res.data.statusCode === 200) {
-            console.log(res);
             setSignupSuccess(true);
           } else {
             setSignupSuccess(false);
@@ -90,44 +88,34 @@ function SignUp() {
   }, []);
 
   // 이메일 인증 검사(메일 발송)
-  const onClickEmail = useCallback(
-    (event) => {
-      // event.preventDefault();
-      console.log(email);
-      axios
-        .post(process.env.REACT_APP_SERVER_URL + "/emails", {
-          email: email,
-        })
-        .then((res) => {
-          if (res.data.statusCode === 200) {
-            console.log(res.data);
-            setEmailExist(false);
-          } else {
-            setEmailExist(true);
-            setEmailAuthMsg("이미 가입된 이메일입니다");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          console.log("hi");
+  const onClickEmail = useCallback(() => {
+    axios
+      .post(process.env.REACT_APP_SERVER_URL + "/emails", {
+        email: email,
+      })
+      .then((res) => {
+        if (res.data.statusCode === 200) {
+          setEmailExist(false);
+        } else {
           setEmailExist(true);
           setEmailAuthMsg("이미 가입된 이메일입니다");
-        });
-    },
-    [email]
-  );
+        }
+      })
+      .catch((err) => {
+        setEmailExist(true);
+        setEmailAuthMsg("이미 가입된 이메일입니다");
+      });
+  }, [email]);
 
   // 이메일 인증 코드 검증
   const onClickAuthEmail = useCallback(
     (event) => {
-      console.log(emailAuth);
       axios
         .post(process.env.REACT_APP_SERVER_URL + "/emails/auth", {
           email: email,
           authCode: emailAuth,
         })
         .then((res) => {
-          console.log(res);
           if (res.data.statusCode === 200) {
             setIsEmailAuth(true);
             setEmailMessage("이메일 인증이 완료되었습니다");
@@ -159,7 +147,7 @@ function SignUp() {
           nickname: nicknameCurrent,
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           if (res.data.statusCode === 200) {
             checkExNickname(true);
             setExNicknameMsg("사용 가능한 닉네임입니다");
@@ -167,7 +155,6 @@ function SignUp() {
             setIsNickname(true);
           } else {
             checkExNickname(false);
-            console.log("hi");
             setExNicknameMsg("이미 사용중인 닉네임입니다");
             setIsNickname(false);
           }
