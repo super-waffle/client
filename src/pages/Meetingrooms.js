@@ -67,7 +67,7 @@ export default function Meetingrooms() {
   const onClickSearch = () => {
     if (isLogin) {
       axios
-        .get('/meetings?page=1&type=' + category + '&key=' + searchInput, {
+        .get(process.env.REACT_APP_SERVER_URL + `/meetings?page=1&type=${category}&key=${searchInput}`, {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
@@ -92,7 +92,7 @@ export default function Meetingrooms() {
         setCategory(0);
       }
       axios
-        .get(`/meetings?page=${currentPage}&type=${category}&key=${searchInput}`, {
+        .get(process.env.REACT_APP_SERVER_URL + `/meetings?page=${currentPage}&type=${category}&key=${searchInput}`, {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },

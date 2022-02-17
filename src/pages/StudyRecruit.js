@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import CategorySelect from '../components/categorySelect';
@@ -118,8 +118,8 @@ export default function StudyRecruit() {
           </thead>
           <tbody>
             {postData.data &&
-              postData.data.map((post) => (
-                <tr key={post.studySeq} className="studyrecruit-board-body-tr">
+              postData.data.map((post, index) => (
+                <tr key={index} className="studyrecruit-board-body-tr">
                   <td className="studyrecruit-board-body number">{post.studySeq}</td>
                   <td className="studyrecruit-board-body">
                     <div>
@@ -128,7 +128,6 @@ export default function StudyRecruit() {
                         <Link className="studyrecruit-board-body__link" to={`/studyrecruit/${post.studySeq}`}>
                           {post.studyTitle}
                         </Link>
-                        {/* {post.studyTitle} */}
                       </span>
                     </div>
 
