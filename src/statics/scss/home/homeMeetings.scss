@@ -1,0 +1,41 @@
+@import "../main.scss";
+
+.home-meetings {
+  display: grid;
+  width: 100%;
+  // max-width: 800px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, auto));
+  gap: 15px;
+  // grid-template-rows: repeat(auo-fit, minmax(200px, 2fr));
+}
+.home-meetings-card {
+  width: 100%;
+}
+
+.home-meetings-card__img {
+  position: relative;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 72%;
+  & img {
+    position: absolute;
+    // z-index: 0;
+    // position: relative;
+    // top: 0;
+    // left: 0;
+    // transform: translate(50, 50);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: auto;
+    border-radius: 5px;
+  }
+}
+
+// .home-meeting-card__img__count {
+//   & svg {
+//     margin-right: 5px;
+//     margin-bottom: 2px;
+//   }
+// }

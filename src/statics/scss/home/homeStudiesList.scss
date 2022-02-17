@@ -2,12 +2,10 @@
 
 .home-todays-studyrooms-row {
   display: grid;
-  // grid-template-columns: 3fr 3fr;
-  grid-template-columns: repeat(2, minmax(200px, 2fr));
-  grid-template-rows: repeat(auo-fit, minmax(200px, 2fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, auto));
+  gap: 15px;
 }
 .home-study-box {
-  // vertical-align: middle;
   background: var(--bgColor);
   border: 1px solid var(--borderColor);
   box-sizing: border-box;
@@ -16,7 +14,7 @@
   height: 117px;
   margin-bottom: 1%;
   margin-top: 9px;
-  margin-right: 15px;
+  // margin-right: 15px;
   padding: 1.1rem 1.5rem;
 }
 
