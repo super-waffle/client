@@ -7,62 +7,6 @@ $font-family: "Pretendard";
 $mainColor: #6667ab;
 $textColor: #6c757d;
 
-// light mode
-:root {
-  --htmlbgColor: #ffffff;
-  --bgColor: #fcfcfc;
-  --bgColor-light: #eaeaea;
-  --borderColor: #ededed;
-  --borderColor2: #d6d6d6;
-  --borderColor3: #e1e1e1;
-  --textWhite: #eeeeee;
-
-  --textColor: #252525;
-  --textColor-dark: #8a8a8a;
-  --textColor-darker: #a1a1a1;
-  --textColor-darkest: #c2c2c2;
-
-  --textColor-todo: #6c757d;
-
-  --github-01: #e8eaee;
-  --github-02: #d5d6f5;
-  --github-03: #9fa2e3;
-
-  --board-textColor: #646464;
-
-  --if-bgColor: #f9f9f9;
-  --if-borderColor: #e5e5e5;
-}
-
-// dark mode
-.ui-dark {
-  background-color: var(--htmlbgColor);
-  --htmlbgColor: #292929;
-  --bgColor: #373737;
-  --bgColor-light: #4a4a4a;
-  --bgColor-lighter: #565656;
-  --bgColor-dark: #1b1b1b;
-  --borderColor: #444444;
-  --borderColor2: #444444;
-  --borderColor3: #444444;
-
-  --textColor: #ededed;
-  --textColor-dark: #8a8a8a;
-  --textColor-darker: #6f6f6f;
-  --textColor-darkest: #838383;
-
-  --textColor-todo: #cdcdcd;
-
-  --github-01: rgba(102, 103, 171, 0.2);
-  --github-02: rgba(102, 103, 171, 0.4);
-  --github-03: rgba(102, 103, 171, 0.7);
-
-  --board-textColor: #ededed;
-
-  --if-bgColor: #323232;
-  --if-borderColor: #444444;
-}
-
 // Size Section
 $borderRadius-xl: 10px;
 $borderRadius-m: 7px;
@@ -71,27 +15,3 @@ $borderRadius-xs: 3px;
 .hidden {
   display: none;
 }
-
-// default Tags
-// .btn-l {
-//   cursor: pointer;
-//   color: $mainColor;
-//   // background-color: $color2;
-//   border-radius: $borderRadius-m;
-//   border: 0px;
-
-// &:hover {
-//   color: $color2;
-//   background-color: $color1;
-// }
-// }
-// .btn-m {
-//   cursor: pointer;
-//   color: $mainColor;
-//   background-color: $mainColor;
-//   border-radius: $borderRadius-xs;
-//   border: 0px;
-// }
-
-// Component
-// @import "login";
