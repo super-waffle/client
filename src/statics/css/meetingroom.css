@@ -687,4 +687,51 @@
   border-radius: 5px;
 }
 
+.meetingroom-list {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(192px, auto));
+  gap: 15px;
+}
+
+.meetingroom-card {
+  cursor: pointer;
+  padding: 0.8rem 0;
+  width: 100%;
+}
+
+.meetingroom-card__img {
+  position: relative;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 72%;
+}
+.meetingroom-card__img img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 3px;
+}
+
+.meetingroom-card__img__headcount {
+  padding: 0 0.5rem;
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  background-color: rgba(252, 252, 252, 0.6);
+  border-radius: 3px;
+  color: var(--textColor);
+  font-size: 12px;
+}
+
+.meetingroom-card__title {
+  font-size: 14px;
+  color: var(--textColor);
+  font-weight: 500;
+  padding: 0.2rem 0.4rem;
+}
+
 /*# sourceMappingURL=meetingroom.css.map */

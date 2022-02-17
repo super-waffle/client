@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import "../../../statics/css/home/homeMeetings.css";
 
 const MeetingroomCard = ({ meeting }) => {
-  console.log(meeting);
   const [imgSelected, setImgSelected] = useState("");
   const [hostName, setHostName] = useState("");
   const images = [
