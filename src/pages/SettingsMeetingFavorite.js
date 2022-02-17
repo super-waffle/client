@@ -197,8 +197,9 @@ export default function SettingsMeetingFavorite() {
         </Container>
         {selectedMeeting && (
           <ApplicationModal open={modalStatus} close={closeModal}>
+            {console.log(selectedMeeting)}
             <div style={{ textAlign: 'left', padding: '0 20%' }}>카테고리: {selectedMeeting.category.categoryName}</div>
-            <div style={{ textAlign: 'left', padding: '0 20%' }}>호스트 이름: {hostname}</div>
+            <div style={{ textAlign: 'left', padding: '0 20%' }}>호스트 이름: {selectedMeeting.hostNickname}</div>
             <div style={{ textAlign: 'left', padding: '0 20%' }}>
               현재 인원: {selectedMeeting.meetingHeadcount} / 12
             </div>
