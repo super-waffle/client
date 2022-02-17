@@ -1,46 +1,44 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "../statics/css/navbar.css";
-import axios from "axios";
-import isLogin from "../utils/isLogin";
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import '../statics/css/navbar.css';
+import axios from 'axios';
+import isLogin from '../utils/isLogin';
 
 function Navbar() {
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
-  const token = localStorage.getItem("accessToken");
+  const token = localStorage.getItem('accessToken');
 
-  const [nickname, setNickname] = useState("");
-  const [email, setEmail] = useState("");
-  const [profileImg, setProfileImg] = useState("");
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+  const [profileImg, setProfileImg] = useState('');
   const [isActive, setIsActive] = useState(false);
   const [isDark, setIsDark] = useState(false);
-  const imageURL = "https://i6a301.p.ssafy.io:8080/images/" + profileImg;
+  const imageURL = 'https://i6a301.p.ssafy.io:8080/images/' + profileImg;
 
   // logout
   const onClickLogout = () => {
-    localStorage.removeItem("accessToken");
-    navigate("/");
+    localStorage.removeItem('accessToken');
+    navigate('/');
     window.location.reload();
   };
 
   // darkmode
   useEffect(() => {
-    const bgMode = window.localStorage.getItem("bgMode");
-    if (bgMode === "dark") {
-      document.getElementsByTagName("html")[0].classList.add("ui-dark");
+    const bgMode = window.localStorage.getItem('bgMode');
+    if (bgMode === 'dark') {
+      document.getElementsByTagName('html')[0].classList.add('ui-dark');
     }
   }, []);
 
   const darkOnOff = () => {
-    if (
-      document.getElementsByTagName("html")[0].classList.contains("ui-dark")
-    ) {
-      document.getElementsByTagName("html")[0].classList.remove("ui-dark");
-      window.localStorage.setItem("bgMode", "light");
+    if (document.getElementsByTagName('html')[0].classList.contains('ui-dark')) {
+      document.getElementsByTagName('html')[0].classList.remove('ui-dark');
+      window.localStorage.setItem('bgMode', 'light');
       setIsDark(false);
     } else {
-      document.getElementsByTagName("html")[0].classList.add("ui-dark");
-      window.localStorage.setItem("bgMode", "dark");
+      document.getElementsByTagName('html')[0].classList.add('ui-dark');
+      window.localStorage.setItem('bgMode', 'dark');
       setIsDark(true);
     }
   };
@@ -50,31 +48,25 @@ function Navbar() {
   // dropdown (외부 클릭시 닫기)
   useEffect(() => {
     const pageClickEvent = (event) => {
-      if (
-        dropdownRef.current !== null &&
-        !dropdownRef.current.contains(event.target)
-      ) {
+      if (dropdownRef.current !== null && !dropdownRef.current.contains(event.target)) {
         setIsActive(!isActive);
       }
     };
     if (isActive) {
-      window.addEventListener("click", pageClickEvent);
+      window.addEventListener('click', pageClickEvent);
     }
     return () => {
-      window.removeEventListener("click", pageClickEvent);
+      window.removeEventListener('click', pageClickEvent);
     };
   }, [isActive]);
 
   // 유저 정보 불러오기
   async function getUserInfo() {
-    const response = await axios.get(
-      process.env.REACT_APP_SERVER_URL + "/users",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await axios.get(process.env.REACT_APP_SERVER_URL + '/users', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const USER = response.data.user;
     setProfileImg(USER.userImg);
     setNickname(USER.userNickname);
@@ -88,27 +80,27 @@ function Navbar() {
   }, []);
 
   const onClickReload = () => {
-    navigate("/schedules");
+    navigate('/schedules');
     window.location.reload();
   };
 
   const onClickToAlarm = () => {
-    navigate("/settings/alarm");
+    navigate('/settings/alarm');
   };
   return (
     <div>
       <div className="navbar">
         <div className="navbar-menus">
-          <Link className="menu" to={"/home/tab=todays"}>
+          <Link className="menu" to={'/home/tab=todays'}>
             홈
           </Link>
-          <Link className="menu" to={"/meetingrooms"}>
+          <Link className="menu" to={'/meetingrooms'}>
             자유열람실
           </Link>
-          <Link className="menu" to={"/studyrecruit"}>
+          <Link className="menu" to={'/studyrecruit'}>
             스터디 모집
           </Link>
-          <Link className="menu" to={"/schedules"}>
+          <Link className="menu" to={'/schedules'}>
             일정관리
           </Link>
         </div>
@@ -260,21 +252,11 @@ function Navbar() {
                 </clipPath>
               </defs>
             </svg>
-            {profileImg && (
-              <img
-                className="navbar-profile-img"
-                src={imageURL}
-                alt=""
-                onClick={onClickDropdown}
-              />
-            )}
+            {profileImg && <img className="navbar-profile-img" src={imageURL} alt="" onClick={onClickDropdown} />}
           </div>
         </div>
       </div>
-      <div
-        ref={dropdownRef}
-        className={`navbar-dropdown ${isActive ? "active" : "hidden"}`}
-      >
+      <div ref={dropdownRef} className={`navbar-dropdown ${isActive ? 'active' : 'hidden'}`}>
         <div className="navbar-dropdown-list">
           <span className="navbar-dropdown-nickname">{nickname}</span>
           <span className="navbar-dropdown-email">{email}</span>
@@ -283,16 +265,7 @@ function Navbar() {
           <button
             // className="dropdown-menu"
             onClick={() => {
-              navigate("profile");
-              setIsActive(!isActive);
-            }}
-          >
-            내 프로필
-          </button>
-          <button
-            // className="dropdown-menu"
-            onClick={() => {
-              navigate("settings/profile");
+              navigate('settings/profile');
               setIsActive(!isActive);
             }}
           >

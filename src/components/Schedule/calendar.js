@@ -22,28 +22,13 @@ const StudyCard = ({ studies }) => {
             <Card.Title>{study.title}</Card.Title>
             <Card.Subtitle>
               {study.isAttend === 0 ? (
-                <img
-                  // src="icons/calendar/_study_attend.svg"
-                  src="icons/calendar/_circle-fill.svg"
-                  alt=""
-                  style={{ color: '#6667ab' }}
-                />
+                <img src="icons/calendar/_circle-fill.svg" alt="" style={{ color: '#6667ab' }} />
               ) : null}
               {study.isAttend === 1 ? (
-                <img
-                  // src="icons/calendar/_study_late.svg"
-                  src="icons/calendar/_circle-half.svg"
-                  alt=""
-                  style={{ color: '#6667ab' }}
-                />
+                <img src="icons/calendar/_circle-half.svg" alt="" style={{ color: '#6667ab' }} />
               ) : null}
               {study.isAttend === 2 ? (
-                <img
-                  // src="icons/calendar/_study_absent.svg"
-                  src="icons/calendar/_circle.svg"
-                  alt=""
-                  style={{ color: '#6667ab' }}
-                />
+                <img src="icons/calendar/_circle.svg" alt="" style={{ color: '#6667ab' }} />
               ) : null}
               {study.isAttend === 3 ? (
                 <img src="icons/calendar/_study_absent.svg" alt="" style={{ color: '#6667ab' }} />
@@ -100,8 +85,6 @@ export default function Calendar() {
   }
 
   useEffect(() => getSchedule(), [startDay]);
-  // console.log(days, weekly);
-  // useCallback(() => getTodos(), [selectedDay, todoAdd]);
   return (
     <>
       <Container fluid>

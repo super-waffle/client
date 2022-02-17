@@ -39,6 +39,7 @@ const MeetingroomCard = ({ meeting }) => {
     "https://i6a301.p.ssafy.io:8080/images/" + meeting.meetingImg;
   const defaultImg = `../../../../images/${imgSelected}`;
   const [bookmark, setBookmark] = useState(meeting.inBookmark);
+
   const navigate = useNavigate();
   return (
     <div
@@ -95,5 +96,6 @@ export default function HomeMeetings() {
       {meetings &&
         meetings.map((meeting) => <MeetingroomCard meeting={meeting} />)}
     </div>
+
   );
 }
