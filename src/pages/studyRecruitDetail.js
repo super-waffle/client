@@ -195,6 +195,12 @@ export default function StudyRecruitDetail() {
   function handleClick(e){
     window.location.href="/studyrecruit"
   }
+
+  const sendData={
+    data:data,
+    
+  };
+
   return (
     <div className="studyrecruit-detail">
       <div className="studyrecruit-detail-goback">
@@ -238,18 +244,19 @@ export default function StudyRecruitDetail() {
               <div className="studyrecruit-detail-box-heading__first-host">
                 {/* [TODO]: update, delete 페이지로 링크 필요 */}
                 <Link
-                  to={'/'}
+                  to={'/studyrecruit/modify'}
                   className="studyrecruit-detail-box-heading__first-host-btn update"
+                  state={{}}
                 >
                   수정
                 </Link>
-                <div>
-                  <button
+                  <span
                     className="studyrecruit-detail-box-heading__first-host-btn"
                     onClick={onClick}
+                    style={{cursor:'pointer'}}
                   >
                     삭제
-                  </button>
+                  </span>
                   <Modal
                     open={deleteModalOpen}
                     close={closeDeleteModal}
@@ -282,7 +289,7 @@ export default function StudyRecruitDetail() {
                       </div>
                     )}
                   </Modal>
-                </div>
+                
               </div>
             )}
           </div>

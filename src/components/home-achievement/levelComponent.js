@@ -18,7 +18,7 @@ export default function LevelComponent(props) {
   var dateString = year + '-' + month  + '-' + day;
 
   var levelPercent = 
-  (((props.timeTotal-props.levelCondition)/props.conditionToNext)*100).toFixed(2);
+  ((props.timeTotal/(props.conditionToNext-props.levelCondition))*100).toFixed(2);
 
   var hour=(data)=>{
     return ("0" + Math.floor((data / 60) % 60)).slice(-2);
@@ -68,7 +68,7 @@ export default function LevelComponent(props) {
       <span>{levelPercent}%</span>
         <div className="my-goal__graph">
           <div className="my-goal__graph-back"></div>
-          <Graph goal={props.conditionToNext} total={(props.timeTotal-props.levelCondition)}></Graph>
+          <Graph goal={props.conditionToNext-props.levelCondition} total={(props.timeTotal)}></Graph>
         </div>
     </div>
   );
