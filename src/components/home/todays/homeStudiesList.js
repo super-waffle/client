@@ -16,7 +16,7 @@ export default function HomeStudies() {
   };
   useEffect(() => {
     axios
-      .get('/users/studies/today', {
+      .get(process.env.REACT_APP_SERVER_URL + '/users/studies/today', {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },

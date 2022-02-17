@@ -2,8 +2,6 @@ import { Container, Col, Row, Card } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { sendMeetingSeqRedux } from '../components/meetingroom/meetingSlice';
 
 import ApplicationModal from '../components/applicationModal';
 import CategorySelect from '../components/categorySelect';
@@ -51,7 +49,6 @@ export default function Meetingrooms() {
   const [modalOpen, setModalOpen] = useState(false);
   const [meetingSeq, setMeetingSeq] = useState('');
   const [selectedMeeting, setSelectedMeeting] = useState('');
-  const dispatch = useDispatch();
 
   useEffect(() => {
     getMeetingDetails();
@@ -95,7 +92,7 @@ export default function Meetingrooms() {
         setCategory(0);
       }
       axios
-        .get('/meetings?page=' + currentPage + '&type=' + category + '&key=' + searchInput, {
+        .get(`/meetings?page=${currentPage}&type=${category}&key=${searchInput}`, {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
@@ -118,12 +115,9 @@ export default function Meetingrooms() {
     let data = response.data;
     setSelectedMeeting(() => data);
   }
-
   useEffect(() => {
-    dispatch(sendMeetingSeqRedux(selectedMeeting.meetingSeq));
-  }, [selectedMeeting]);
-
-  localStorage.setItem('studySeq', 70);
+    localStorage.setItem('studySeq', meetingSeq);
+  }, [meetingSeq]);
   return (
     <main style={{ padding: '1rem 0' }}>
       <div className="studyrecruit">
@@ -163,12 +157,15 @@ export default function Meetingrooms() {
           <Row className="studyrecruit-board">
             {postData.data &&
               postData.data.map((meeting) => (
-                <MeetingroomCard
-                  setMeetingSeq={setMeetingSeq}
-                  openModal={openModal}
-                  key={meeting.meetingSeq}
-                  meeting={meeting}
-                />
+                <>
+                  {console.log(meeting)}
+                  <MeetingroomCard
+                    setMeetingSeq={setMeetingSeq}
+                    openModal={openModal}
+                    key={meeting.meetingSeq}
+                    meeting={meeting}
+                  />
+                </>
               ))}
           </Row>
         </Container>

@@ -4,12 +4,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import ApplicationModal from '../components/applicationModal';
-import {
-  setNickname,
-  setUserSeq,
-  setProfileImg,
-  setSelectedSeq,
-} from '../components/settings/settingsSlice';
+import { setNickname, setUserSeq, setProfileImg, setSelectedSeq } from '../components/settings/settingsSlice';
 import '../statics/css/settingsStudy.css';
 import RecruitingStudy from '../components/settings/recrutingStudy';
 import StudyInfo from '../components/settings/studyInfo';
@@ -25,19 +20,11 @@ export default function SettingsStudy() {
   const imageURL = 'https://i6a301.p.ssafy.io:8080/images/' + profileImg;
   const [studyList, setStudyList] = useState([]);
   const onRecruitStudies = useMemo(
-    () =>
-      studyList.filter(
-        (study) =>
-          study.isRecruiting &&
-          study.startDate === null &&
-          study.hostName === nickname
-      ),
+    () => studyList.filter((study) => study.isRecruiting && study.startDate === null && study.hostName === nickname),
     [studyList]
   );
   const [selectedSeq, setSelectedSeq] = useState('');
-  const selectedStudy = useMemo(
-    () => studyList.filter((study) => study.studySeq === selectedSeq)[0]
-  );
+  const selectedStudy = useMemo(() => studyList.filter((study) => study.studySeq === selectedSeq)[0]);
   const [applicants, setApplicants] = useState('');
   const [members, setMembers] = useState('');
   const [selectedApplicant, setSelectedApplicant] = useState('');
@@ -45,14 +32,11 @@ export default function SettingsStudy() {
   const [modalStatus, setModalStatus] = useState(false);
 
   async function getUser() {
-    const response = await axios.get(
-      process.env.REACT_APP_SERVER_URL + '/users',
-      {
-        headers: {
-          Authorization: `Bearer ${TOKEN}`,
-        },
-      }
-    );
+    const response = await axios.get(process.env.REACT_APP_SERVER_URL + '/users', {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    });
     const userData = response.data.user;
     dispatch(setNickname(userData.userNickname));
     dispatch(setUserSeq(userData.userSeq));
@@ -60,7 +44,7 @@ export default function SettingsStudy() {
   }
 
   async function getStudies() {
-    const response = await axios.get('/users/studies', {
+    const response = await axios.get(process.env.REACT_APP_SERVER_URL + '/users/studies', {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
       },
@@ -74,7 +58,7 @@ export default function SettingsStudy() {
 
   async function getApplicant() {
     const response = await axios
-      .get(`/users/studies/${selectedSeq}/applicants`, {
+      .get(process.env.REACT_APP_SERVER_URL + `/users/studies/${selectedSeq}/applicants`, {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },
@@ -101,23 +85,21 @@ export default function SettingsStudy() {
   const onClickReject = () => {
     console.log(selectedApplicant);
     const response = axios.delete(
-      `/users/studies/${selectedStudy.studySeq}/applicants/${selectedApplicant.userSeq}`,
+      process.env.REACT_APP_SERVER_URL +
+        `/users/studies/${selectedStudy.studySeq}/applicants/${selectedApplicant.userSeq}`,
       {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },
       }
     );
-    setApplicants((current) =>
-      current.filter(
-        (applicant) => applicant.userSeq !== selectedApplicant.userSeq
-      )
-    );
+    setApplicants((current) => current.filter((applicant) => applicant.userSeq !== selectedApplicant.userSeq));
     setModalStatus(() => false);
   };
   const onClickAccept = () => {
     axios.post(
-      `/users/studies/${selectedStudy.studySeq}/applicants/${selectedApplicant.userSeq}`,
+      process.env.REACT_APP_SERVER_URL +
+        `/users/studies/${selectedStudy.studySeq}/applicants/${selectedApplicant.userSeq}`,
       {},
       {
         headers: {
@@ -125,19 +107,14 @@ export default function SettingsStudy() {
         },
       }
     );
-    setApplicants((current) =>
-      current.filter(
-        (applicant) => applicant.userSeq !== selectedApplicant.userSeq
-      )
-    );
+    setApplicants((current) => current.filter((applicant) => applicant.userSeq !== selectedApplicant.userSeq));
     setMembers((members) => members.concat(selectedApplicant));
     setModalStatus(() => false);
   };
   const onClickEndRecruit = () => {
     axios
       .patch(
-        process.env.REACT_APP_SERVER_URL +
-          `/users/studies/${selectedStudy.studySeq}/recruit-end`,
+        process.env.REACT_APP_SERVER_URL + `/users/studies/${selectedStudy.studySeq}/recruit-end`,
         {},
         {
           headers: {
@@ -153,8 +130,7 @@ export default function SettingsStudy() {
     if (members.length > 1) {
       axios
         .patch(
-          process.env.REACT_APP_SERVER_URL +
-            `/users/studies/${selectedStudy.studySeq}/start`,
+          process.env.REACT_APP_SERVER_URL + `/users/studies/${selectedStudy.studySeq}/start`,
           {},
           {
             headers: {
@@ -174,9 +150,7 @@ export default function SettingsStudy() {
     <div className="settings-study">
       <div className="settings-study-heading">
         <div className="settings-study-heading__h1">모집중인 스터디</div>
-        <div className="settings-study-heading__h2">
-          내가 모집중인 스터디 정보를 확인하고 관리할 수 있습니다
-        </div>
+        <div className="settings-study-heading__h2">내가 모집중인 스터디 정보를 확인하고 관리할 수 있습니다</div>
       </div>
 
       <div className="settings-study-mystudies">
@@ -188,9 +162,7 @@ export default function SettingsStudy() {
                   key={study.studySeq}
                   study={study}
                   nickname={nickname}
-                  selectedStudySeq={
-                    selectedStudy ? selectedStudy.studySeq : null
-                  }
+                  selectedStudySeq={selectedStudy ? selectedStudy.studySeq : null}
                   setSelectedSeq={setSelectedSeq}
                   setShowStudyDetail={setShowStudyDetail}
                 />

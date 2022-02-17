@@ -42,7 +42,7 @@ export default function SettingsStudyApplied() {
   }
 
   async function getStudies() {
-    const response = await axios.get('/users/studies', {
+    const response = await axios.get(process.env.REACT_APP_SERVER_URL + '/users/studies', {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
       },
