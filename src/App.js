@@ -1,11 +1,11 @@
-import React from 'react';
-// import { useNavigate } from "react-router-dom";
-// import { useState } from "react/cjs/react.development";
-import Navbar from './components/navbar';
-import NavbarLanding from './components/navbarLanding';
-import isLogin from './utils/isLogin';
-import './statics/css/main.css';
-import { Outlet } from 'react-router-dom';
+import React from "react";
+import Navbar from "./components/navbar";
+import NavbarLanding from "./components/navbarLanding";
+import isLogin from "./utils/isLogin";
+import { Outlet } from "react-router-dom";
+import Footer from "./components/footer";
+import "./statics/css/darkUI.css";
+import "./statics/css/app.css";
 
 function App() {
   console.log(`
@@ -19,12 +19,15 @@ function App() {
                       dP                                                                         
   `);
   return (
-    <div>
+    <main>
       {isLogin() && <Navbar sticky="top" />}
       {!isLogin() && <NavbarLanding sticky="top" />}
       <p>Landing Page</p>
-      <Outlet />
-    </div>
+      <div className="outlet">
+        <Outlet />
+      </div>
+      <Footer />
+    </main>
   );
 }
 

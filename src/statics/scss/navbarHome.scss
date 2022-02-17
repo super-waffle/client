@@ -26,8 +26,10 @@
       text-decoration: none;
       color: var(--textColor-darkest);
       align-items: center;
+      transition: all 0.5s ease 0s;
 
       svg {
+        // transition: all 0.5s ease 0s;
         path {
           stroke: var(--textColor-darkest);
         }
@@ -46,6 +48,14 @@
       span {
         padding-left: 7px;
         padding-right: 3px;
+      }
+    }
+    .sub-navbar-menu:hover {
+      color: $mainColor;
+      & svg {
+        path {
+          stroke: $mainColor;
+        }
       }
     }
   }

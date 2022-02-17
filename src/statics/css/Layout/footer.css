@@ -1,0 +1,53 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+.hidden {
+  display: none;
+}
+
+.footer {
+  background-color: var(--bgColor);
+}
+
+.footer__contents {
+  width: 100%;
+  background-color: var(--htmlbgColor);
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 150px;
+}
+
+.footer__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__rights {
+  border-top: 1px solid var(--textColor-darkest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 64px;
+  color: var(--textColor-todo);
+}
+.footer__rights img {
+  margin: 3rem 0.8rem;
+  width: 36px;
+}
+
+.footer__link {
+  display: flex;
+  gap: 30px;
+  text-decoration: none;
+  color: #6667ab;
+}
+.footer__link a {
+  text-decoration: none;
+  color: var(--textColor-todo);
+}
+.footer__link a:hover {
+  color: #6667ab;
+}
+
+/*# sourceMappingURL=footer.css.map */
