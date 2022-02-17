@@ -593,8 +593,8 @@
 
             .list-wrap {
               // padding: 0 15px;
-              height: calc(100% - 80px);
-              overflow: auto;
+              // height: calc(100% - 80px);
+              // overflow: auto;
               font-family: $font-family;
               padding: 8px 8px 0 5px;
 
@@ -606,27 +606,32 @@
                 border-top: 1px solid var(--textColor-darkest);
                 padding-top: 10px;
                 padding-left: 2px;
+                -ms-overflow-style: none;
               }
 
               .user {
                 position: relative;
-                padding: 0 0 8px 0;
+                padding: 0 0 5px 0;
                 align-items: "center";
                 display: "flex";
+
+                ::-webkit-scrollbar {
+                  display: none;
+                }
 
                 .user-name {
                   color: $textColor;
                   font-family: $font-family;
                   margin-left: 30px;
                   font-weight: 450;
-                  font-size: 14px;
+                  font-size: 13px;
                 }
                 .user-name-local {
                   color: $mainColor;
                   font-family: $font-family;
                   margin-left: 30px;
                   font-weight: bold;
-                  font-size: 14px;
+                  font-size: 13px;
                 }
                 .user-video {
                   position: absolute;
@@ -712,34 +717,60 @@
         position: absolute;
         left: 0;
         top: 20%;
-        height: 100%;
+        height: 50px;
+        font-family: $font-family;
+        font-weight: 550;
+
+        span {
+          margin-left: 10px;
+        }
 
         .button-audio {
           position: absolute;
-          left: 43%;
+          left: 22%;
           height: 100%;
           color: $mainColor;
+          border: 2px solid $mainColor;
+          padding: 8px 13px 0 13px;
+          border-radius: 15px;
+          min-width: 150px;
+          box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
         }
 
         .button-video {
           position: absolute;
-          left: 50%;
+          left: 37.5%;
           height: 100%;
           color: $mainColor;
+          border: 2px solid $mainColor;
+          padding: 8px 13px 5px 13px;
+          border-radius: 15px;
+          min-width: 170px;
+          box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
         }
 
         .button-share {
           position: absolute;
-          left: 54%;
+          left: 54.5%;
           height: 100%;
           color: $mainColor;
+          border: 2px solid $mainColor;
+          padding: 8px 13px 5px 13px;
+          border-radius: 15px;
+          min-width: 170px;
+          box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
         }
 
         .button-exit {
           position: absolute;
-          left: 70%;
+          left: 80%;
           height: 100%;
           color: $mainColor;
+          border: 2px solid #ff6670;
+          background-color: #ff6670;
+          padding: 9px 12px 5px 12px;
+          border-radius: 15px;
+          box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
         }
       }
 
@@ -754,12 +785,20 @@
           position: absolute;
           right: 23%;
           height: 100%;
+          color: $mainColor;
+          padding: 9px 12px 5px 12px;
+          border-radius: 15px;
+          box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
         }
 
         .button-chat {
           position: absolute;
           right: 7%;
           height: 100%;
+          color: $mainColor;
+          padding: 9px 12px 5px 12px;
+          border-radius: 15px;
+          box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
         }
       }
     }

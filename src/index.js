@@ -29,6 +29,7 @@ import VideoRoomComponent from './components/meetingroom/VideoRoomComponent';
 import StudyRoomComponent from './components/studyroom/StudyRoomComponent';
 import SettingsStudyApplied from './pages/SettingsStudyApplied';
 
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

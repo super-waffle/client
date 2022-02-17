@@ -58,8 +58,12 @@
   margin-bottom: 7px;
 }
 
+.daily-stats-all {
+  display: grid;
+  grid-template-columns: 4fr 3fr;
+}
+
 .daily-stats-body {
-  width: 60%;
   display: grid;
   grid-template-columns: repeat(3, minmax(100px, 2fr));
   grid-template-rows: repeat(auo-fit, minmax(200px, 2fr));
@@ -74,13 +78,35 @@
   font-size: 18px;
   color: var(--textColor);
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-bottom: 24px;
 }
 
 .no-data {
   color: var(--textColor-todo);
   text-align: center;
   padding: 1rem 2rem 3rem 2rem;
+}
+
+.daily-stats-graph {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.daily-stats-graph__circular {
+  text-align: center;
+}
+
+.daily-stats-graph__circular-header {
+  font-size: 12px;
+  color: var(--textColor-todo);
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.daily-stats-graph__circular-graph {
+  width: 57%;
+  text-align: center;
+  display: inline-block;
 }
 
 /*# sourceMappingURL=dailyStats.css.map */
