@@ -1,0 +1,49 @@
+@import "../main.scss";
+.level-component {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+  // height: 166px;
+  // width: 36vw;
+  background: var(--bgColor);
+  border: 1px solid var(--borderColor);
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin-right: 15px;
+  padding: 1rem 2rem 1.6rem 2rem;
+}
+.level-component__my-level {
+  margin-right: 30px;
+  & img {
+    width: 100%;
+  }
+  .level-component__my-level-text {
+    color: var(--textColor);
+    text-align: center;
+  }
+}
+.level-component__info {
+  padding-top: 20px;
+  padding-left: 14px;
+}
+.level-component__stats {
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(72px, 2fr));
+  grid-template-rows: repeat(auo-fit, minmax(200px, 2fr));
+  padding-bottom: 16px;
+}
+
+.level-component__stats__content-header {
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--textColor-todo);
+  padding-bottom: 3px;
+}
+.level-component__stats__content-body {
+  font-size: 16px;
+  color: var(--textColor);
+}
+.my-goal__graph {
+  padding-left: 12px;
+}

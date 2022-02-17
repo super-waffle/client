@@ -13,15 +13,6 @@ export default function ControlButtons(props) {
         className={props.isPaused ? "pause-button" : "pause-button-disable"}
         onClick={props.handlePauseResume}
       />
-      {/* <IconButton color="inherit" className="btn btn-one btn-start" onClick={props.handleStart}>
-        
-      </IconButton>
-      <IconButton
-        color="inherit"
-        className="btn btn-one btn-start"
-        onClick={props.handlePauseResume}
-      >
-      </IconButton> */}
     </div>
   );
 }

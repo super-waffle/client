@@ -47,21 +47,52 @@
   display: none;
 }
 
-.home-achievement {
-  font-family: "Pretendard";
-}
-.home-achievement span {
-  font-size: 16px;
-  line-height: 19px;
-  color: var(--textColor);
-  margin-left: 5px;
-}
-.home-achievement .home-achievement-top {
-  padding-bottom: 8vh;
-}
-.home-achievement .home-achievement-top .home-achievement-top-box {
-  display: flex;
-  margin-top: 9px;
+.my-achievement {
+  background: var(--bgColor);
+  border: 1px solid var(--borderColor);
+  box-sizing: border-box;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1.2rem 1rem;
 }
 
-/*# sourceMappingURL=homeAchievement.css.map */
+.my-achievement__selected {
+  text-align: center;
+  align-items: center;
+}
+.my-achievement__selected img {
+  width: 70%;
+  border-radius: 7px;
+}
+.my-achievement__selected .my-achievement__selected-text {
+  background-color: #6667ab;
+  display: inline-block;
+  width: 72%;
+  margin-top: 6px;
+  border-radius: 5px;
+  color: #eeeeee;
+  font-size: 14px;
+  padding: 0.25rem;
+  text-align: center;
+}
+
+.my-achievement__percentage {
+  text-align: center;
+  align-items: center;
+}
+
+.my-achievement__percentage__text {
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--textColor-todo);
+  padding: 0.8rem 0;
+}
+
+.my-achievement__percentage__graph {
+  margin-top: 0.2rem;
+  width: 68%;
+  display: inline-block;
+}
+
+/*# sourceMappingURL=myAchievement.css.map */
