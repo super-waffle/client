@@ -12,8 +12,41 @@ import isLogin from '../utils/isLogin';
 const MeetingroomCard = ({ meeting, openModal, setMeetingSeq }) => {
   const meetingroomImg = 'https://i6a301.p.ssafy.io:8080/images/' + meeting.meetingImg;
   const defaultImg = 'images/meetingroom.png';
+  const [bookmark, setBookmark] = useState(meeting.inBookmark);
   const sendMeetingSeq = () => {
     setMeetingSeq(meeting.meetingSeq);
+  };
+  const changeBookmark = () => {
+    // 현재 즐겨찾기 중 => 누르면 해제
+    if (bookmark) {
+      axios
+        .delete(
+          process.env.REACT_APP_SERVER_URL + `/bookmarks/${meeting.meetingSeq}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
+          }
+        )
+        .then((res) => {
+          setBookmark(false);
+        });
+    } else {
+      axios
+        .post(
+          process.env.REACT_APP_SERVER_URL + `/bookmarks/${meeting.meetingSeq}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
+          }
+        )
+        .then((res) => {
+          setBookmark(true);
+        });
+    }
   };
   return (
     <Col
@@ -26,15 +59,58 @@ const MeetingroomCard = ({ meeting, openModal, setMeetingSeq }) => {
       }}
     >
       <Card style={{ marginBottom: '0.5rem' }}>
-        <Card.Img style={{ maxHeight: '10rem' }} src={meeting.meetingImg ? meetingroomImg : defaultImg} />
+        {console.log(meeting.inBookmark)}
+        <div>
+          <Card.Img
+            style={{ position: 'relative', height: '150px' }}
+            src={meeting.meetingImg ? meetingroomImg : defaultImg}
+          />
+
+          <div
+            style={{
+              padding: '0rem 0.5rem',
+              position: 'absolute',
+              bottom: '0.5rem',
+              left: '0.5rem',
+              backgroundColor: 'white',
+              opacity: 0.7,
+              borderRadius: '5px',
+            }}
+          >
+            <div>{meeting.meetingHeadcount} / 12</div>
+          </div>
+          <div>
+            {bookmark ? (
+              <img
+                style={{ position: 'absolute', top: '0.5rem', right: '0.5rem' }}
+                src="icons/meetingroom/_bookmark_true.svg"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  changeBookmark();
+                }}
+                alt=""
+              />
+            ) : (
+              <img
+                style={{ position: 'absolute', top: '0.5rem', right: '0.5rem' }}
+                src="icons/meetingroom/_bookmark_false.svg"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  changeBookmark();
+                }}
+                alt=""
+              />
+            )}
+          </div>
+        </div>
       </Card>
-      <div
+      <Card.Subtitle
         style={{
           fontFamily: 'pretendard',
         }}
       >
         {meeting.meetingTitle}
-      </div>
+      </Card.Subtitle>
     </Col>
   );
 };
@@ -124,7 +200,6 @@ export default function Meetingrooms() {
         <div className="studyrecruit-heading">
           <span className="studyrecruit-h1">자유열람실</span>
           <span className="studyrecruit-h2">나와 맞는 자유열람실을 찾아보세요</span>
-          <Link to="/studyroom">스터디룸</Link>
         </div>
         <div className="studyrecuit-middle">
           <div className="studyrecruit-search">
