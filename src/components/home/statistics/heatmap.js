@@ -29,7 +29,7 @@ function Heatmap() {
 
   async function getYearData() {
     const response = await axios
-      .get("/stats/year", {
+      .get(process.env.REACT_APP_SERVER_URL + "/stats/year", {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("accessToken"),
         },
