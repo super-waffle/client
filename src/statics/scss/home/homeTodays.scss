@@ -10,15 +10,19 @@
     margin-left: 5px;
   }
   .home-todays-top {
+    width: 100%;
     display: grid;
-    grid-template-columns: 4fr 5fr;
+    // grid-template-columns:  4fr 5fr;
+    grid-template-columns: repeat(2, auto);
+    gap: 15px;
     // grid-template-rows: repeat(auo-fit, minmax(200px, 2fr));
     // grid-template-rows: 197px;
     margin-bottom: 8vh;
     // width: 100%;
     // margin-right: 8%;
     .home-todays-todos {
-      padding-right: 20px;
+      // width: 100%;
+      // padding-right: 20px;
       & button {
         border: none;
         background-color: var(--bgColor);
@@ -73,19 +77,20 @@
     // }
   }
   .home-todays-meetingrooms {
-    .home-todays-meetingrooms-row {
-      display: flex;
-      .home-todays-meetingrooms-box {
-        background: var(--bgColor);
-        border: 1px solid var(--borderColor);
-        box-sizing: border-box;
-        border-radius: 10px;
-        width: 50%;
-        height: 243px;
-        margin-bottom: 1%;
-        margin-top: 9px;
-        margin-right: 15px;
-      }
-    }
+    width: 100%;
+    //   .home-todays-meetingrooms-row {
+    //     display: flex;
+    //     .home-todays-meetingrooms-box {
+    //       background: var(--bgColor);
+    //       border: 1px solid var(--borderColor);
+    //       box-sizing: border-box;
+    //       border-radius: 10px;
+    //       width: 50%;
+    //       height: 243px;
+    //       margin-bottom: 1%;
+    //       margin-top: 9px;
+    //       margin-right: 15px;
+    //     }
+    //   }
   }
 }

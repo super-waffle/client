@@ -58,10 +58,6 @@
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.6);
 }
-.modalLarge svg {
-  cursor: pointer;
-  height: 15px;
-}
 .modalLarge > section {
   width: 80%;
   max-width: 400px;
@@ -78,10 +74,6 @@
   padding: 15px 15px 0px 15px;
   background-color: var(--htmlbgColor);
   font-weight: 700;
-}
-.modalLarge > section > main {
-  padding: 5px 16px 30px 16px;
-  text-align: center;
 }
 .modalLarge > section > main .main-heading {
   font-size: 14px;

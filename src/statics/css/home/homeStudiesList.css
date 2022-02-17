@@ -49,8 +49,8 @@
 
 .home-todays-studyrooms-row {
   display: grid;
-  grid-template-columns: repeat(2, minmax(200px, 2fr));
-  grid-template-rows: repeat(auo-fit, minmax(200px, 2fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, auto));
+  gap: 15px;
 }
 
 .home-study-box {
@@ -61,7 +61,6 @@
   height: 117px;
   margin-bottom: 1%;
   margin-top: 9px;
-  margin-right: 15px;
   padding: 1.1rem 1.5rem;
 }
 
