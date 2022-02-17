@@ -38,7 +38,7 @@
   text-align: center;
 }
 .modal > section > main .body-heading1 {
-  font-size: 20px;
+  font-size: 18px;
   line-height: 19px;
   color: #434343;
   margin-bottom: 10px;
@@ -87,6 +87,7 @@
   color: white;
   margin-left: 6px;
   margin-bottom: 1.5px;
+  font-size: 12px;
 }
 .modal > section > main .btn-m {
   cursor: pointer;
@@ -97,7 +98,7 @@
   width: 20%;
   border: none;
   background: #6667ab;
-  border-radius: 10px;
+  border-radius: 7px;
 }
 .modal > section > footer {
   padding: 12px 16px;
@@ -115,6 +116,30 @@
   display: flex;
   align-items: center;
   animation: modal-bg-show 0.3s;
+}
+
+.btn-xs {
+  cursor: pointer;
+  height: 32px;
+  width: 15%;
+  border: 1px solid #6667ab;
+  background-color: #6667ab;
+  border-radius: 5px;
+  color: white;
+  margin-left: 6px;
+  margin-bottom: 1.5px;
+}
+
+.btn-m {
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  line-height: 17px;
+  height: 36px;
+  width: 20%;
+  border: none;
+  background: #6667ab;
+  border-radius: 7px;
 }
 
 /*# sourceMappingURL=modal.css.map */

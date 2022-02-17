@@ -87,7 +87,7 @@
   border: 1px solid #6667ab;
   background-color: #6667ab;
   border-radius: 5px;
-  color: var(--textColor);
+  color: #eeeeee;
   margin-left: 6px;
   margin-bottom: 1.5px;
 }
@@ -159,6 +159,7 @@
 .signup .signup-feat .signup-feat-box .signup-feat-box-content .input-email .input-email-header .content {
   display: flex;
   justify-content: center;
+  align-items: center;
   padding-bottom: 25px;
 }
 .signup .signup-feat .signup-feat-box .signup-feat-box-content .input-email .input-email-header .content img {
@@ -237,6 +238,31 @@
 .signup .signup-feat .signup-feat-box .signup-feat-box-footer .footer-tologin {
   text-decoration: none;
   color: #6667ab;
+}
+
+.btn-xs {
+  cursor: pointer;
+  height: 32px;
+  width: 15%;
+  border: 1px solid #6667ab;
+  background-color: #6667ab;
+  border-radius: 5px;
+  color: white;
+  margin-left: 6px;
+  margin-bottom: 1.5px;
+  font-size: 12px;
+}
+
+.btn-m {
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  line-height: 17px;
+  height: 36px;
+  width: 20%;
+  border: none;
+  background: #6667ab;
+  border-radius: 7px;
 }
 
 /*# sourceMappingURL=signup.css.map */
