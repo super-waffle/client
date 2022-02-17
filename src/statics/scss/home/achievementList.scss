@@ -3,25 +3,82 @@
 .achievement-list {
   padding: 2rem;
   display: grid;
-  grid-template-columns: repeat(6, minmax(120px, 2fr));
+  grid-template-columns: repeat(5, minmax(127px, 2fr));
   grid-template-rows: repeat(auo-fit, minmax(200px, 2fr));
   margin-top: 9px;
   background: var(--bgColor);
   border: 1px solid var(--borderColor);
   box-sizing: border-box;
   border-radius: 10px;
+  & .card-selected {
+    border: 1px solid $mainColor;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.25);
+    .achievement-card__text {
+      background-color: $mainColor;
+      color: #eeeeee;
+    }
+  }
   // width: 100%;
   // height: 967px;
 }
 .achievement-card {
+  display: grid;
+  grid-template-rows: 4fr 1fr;
   border: 1px solid var(--borderColor);
   border-radius: 7px;
+  .achievement-card__img {
+    position: relative;
+    width: 100%;
+    // height: 100%;
+    // height: 24px;
+    // border-radius: 100%;
+    // margin-right: 5px;
+    & img {
+      position: relative;
+      // top: -24px;
+      left: 0;
+      transform: translate(50, 50);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      margin: auto;
+      // border-radius: 100%;
+      // padding-right: 10px;
+    }
+    & svg {
+      width: 20%;
+      position: relative;
+      top: 0;
+      left: 0;
+      transform: translate(50, 50);
+      // width: 100%;
+      // height: 100%;
+      object-fit: cover;
+      margin: auto;
+      // border-radius: 100%;
+    }
+  }
   & img {
     width: 100%;
+    border-radius: 7px 7px 0px 0px;
   }
-  & svg {
-  }
+  // & svg {
+  // }
 }
+// .achievement-card__img {
+//   // height: ;
+// }
 .achievement-list-grid {
   padding: 0.5rem;
+}
+.achievement-card__text {
+  // background-color: rgba(102, 103, 171, 0.8);
+  background-color: var(--htmlbgColor);
+  // transform: translate(50, 50);
+  padding: 0.5rem;
+  font-size: 13px;
+  color: var(--textColor-todo);
+  text-align: center;
+  border-radius: 0px 0px 6px 6px;
+  // border: 1px solid rgba(102, 103, 171, 0.8);
 }

@@ -16,7 +16,7 @@ export default function Paginator(props) {
     <Pagination
       activePage={page}
       // itemsCountPerPage={10}
-      totalItemsCount={450}
+      totalItemsCount={50}
       pageRangeDisplayed={0}
       prevPageText={
         <svg
