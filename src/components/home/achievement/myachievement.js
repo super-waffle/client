@@ -15,14 +15,20 @@ export default function Myachievement({
   // console.log(percentage,"퍼센트");
   return (
     <div className="my-achievement">
-      <div className="my-achievement__selected">
-        <img
-          src={AchieveImg}
-          alt=""
-          //   style={{ width: "100px", height: "100px" }}
-        />
-        <div className="my-achievement__selected-text">{achieveName}</div>
-      </div>
+      {achieveImg ? (
+        <div className="my-achievement__selected">
+          <img
+            src={AchieveImg}
+            alt=""
+            //   style={{ width: "100px", height: "100px" }}
+          />
+          <div className="my-achievement__selected-text">{achieveName}</div>
+        </div>
+      ) : (
+        <div className="my-achievement__not-selected">
+          선택된 업적이 없습니다
+        </div>
+      )}
       <div className="my-achievement__percentage">
         <div className="my-achievement__percentage__text">업적도감 달성률</div>
         <div className="my-achievement__percentage__graph">
