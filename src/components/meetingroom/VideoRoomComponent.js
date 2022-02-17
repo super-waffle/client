@@ -29,8 +29,6 @@ class VideoRoomComponent extends Component {
     this.layout = new OpenViduLayout();
     this.remotes = [];
     this.localUserAccessAllowed = false;
-    console.log("props");
-    console.log(props);
     this.state = {
       mySessionId: undefined,
       myMeetingSeq: localStorage.getItem("meetingSeq"),
@@ -161,7 +159,6 @@ class VideoRoomComponent extends Component {
               status: error.status,
             });
           }
-          console.log("There was an error getting the token:", error.code, error.message);
           alert("There was an error getting the token:", error.message);
 
           // window.location.reload();
@@ -173,8 +170,6 @@ class VideoRoomComponent extends Component {
     this.state.session
       .connect(token, { clientData: this.state.myUserName })
       .then(() => {
-        // console.log("connect 성공 -> session 연결할거");
-        // console.log("세션아이디!" + this.state.mySessionId);
         this.connectWebCam();
       })
       .catch((error) => {
@@ -187,14 +182,12 @@ class VideoRoomComponent extends Component {
           });
         }
         alert("There was an error connecting to the session:", error.message);
-        console.log("There was an error connecting to the session:", error.code, error.message);
 
         // window.location.reload();
       });
   }
 
   async connectWebCam() {
-    // console.log(2);
     var devices = await this.OV.getDevices();
     var videoDevices = devices.filter((device) => device.kind === "videoinput");
 
@@ -249,7 +242,6 @@ class VideoRoomComponent extends Component {
   }
 
   updateSubscribers() {
-    // console.log(3);
     var subscribers = this.remotes;
     this.setState(
       {
@@ -274,8 +266,6 @@ class VideoRoomComponent extends Component {
     if (timeCom !== this.state.time) {
       // this.setState({ time: timeCom });W
       this.state.time = timeCom;
-      // this.props.setTime(() => timeCom);
-      // console.log("시간누적: " + this.state.time);
       if (this.state.time > 0) {
         let hour = ("0" + Math.floor((this.state.time / 3600) % 60)).slice(-2);
         let minute = ("0" + Math.floor((this.state.time / 60) % 60)).slice(-2);
@@ -283,7 +273,6 @@ class VideoRoomComponent extends Component {
         // this.state.timeString = hour + ":" + minute + ":" + second;
         let string = hour + ":" + minute + ":" + second;
         this.setState({ timeString: string });
-        // console.log(this.state.timeString);
       }
 
       this.sendStudyTimeString();
@@ -338,18 +327,14 @@ class VideoRoomComponent extends Component {
           },
         })
         .then((response) => {
-          console.log("meetingSeq: " + this.state.myMeetingSeq);
           if (response.data.statusCode == 200) {
-            console.log("Leave 성공: ", response);
             resolve(response.data.token);
             sessionToken = undefined;
           } else {
             sessionToken = undefined;
-            console.log("error" + response.data.statusCode);
           }
         })
         .catch((error) => {
-          console.log("LEAVE ERROR : " + error);
           sessionToken = undefined;
           reject(error);
         });
@@ -442,7 +427,6 @@ class VideoRoomComponent extends Component {
       remoteUsers.forEach((user) => {
         if (user.getConnectionId() === event.from.connectionId) {
           const data = JSON.parse(event.data);
-          console.log("EVENTO REMOTE: ", event.data);
           if (data.isAudioActive !== undefined) {
             user.setAudioActive(data.isAudioActive);
           }

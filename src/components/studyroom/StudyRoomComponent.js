@@ -101,16 +101,7 @@ class StudyRoomComponent extends Component {
     this.getSignalVideoBlocked = this.getSignalVideoBlocked.bind(this);
     // this.convertStringToTime = this.convertStringToTime.bind(this);
   }
-  // isHostfun() {
-  //   console.log(1);
-  //   if (isHost === 0) {
-  //     return false;
-  //   } else if (isHost === 1) {
-  //     return true;
-  //   }
-  // }
   loginToken() {
-    // console.log("sessin Id" + this.state.mySessionId);
     const token = localStorage.getItem("accessToken");
   }
 
@@ -191,8 +182,6 @@ class StudyRoomComponent extends Component {
     this.state.session
       .connect(token, { clientData: this.state.myUserName })
       .then(() => {
-        // console.log("connect 성공 -> session 연결할거");
-        // console.log("세션아이디!" + this.state.mySessionId);
         this.connectWebCam();
       })
       .catch((error) => {
@@ -211,7 +200,6 @@ class StudyRoomComponent extends Component {
   }
 
   async connectWebCam() {
-    // console.log(2);
     var devices = await this.OV.getDevices();
     var videoDevices = devices.filter((device) => device.kind === "videoinput");
 
@@ -266,8 +254,6 @@ class StudyRoomComponent extends Component {
   }
 
   updateSubscribers() {
-    // console.log(3);
-    // 내가 변했다고 알림
     var subscribers = this.remotes;
 
     this.setState(
@@ -296,7 +282,6 @@ class StudyRoomComponent extends Component {
           var remoteFilter = this.remotes.filter((other) => other.nickname === mem.userNickname);
           var flag = true;
           remoteFilter.forEach((element) => {
-            // console.log("element" + element);
             flag = false;
           });
           return flag;
@@ -367,7 +352,6 @@ class StudyRoomComponent extends Component {
           }
         )
         .then((response) => {
-          console.log("studySeq: " + this.state.myStudySeq);
           if (response.data.statusCode === 200) {
             resolve(response.data.token);
             sessionToken = undefined;
@@ -504,7 +488,6 @@ class StudyRoomComponent extends Component {
       remoteUsers.forEach((user) => {
         if (user.getConnectionId() === event.from.connectionId) {
           const data = JSON.parse(event.data);
-          console.log("EVENTO REMOTE: ", event.data);
           if (data.isAudioActive !== undefined) {
             user.setAudioActive(data.isAudioActive);
           }

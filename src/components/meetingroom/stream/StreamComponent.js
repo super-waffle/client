@@ -46,17 +46,10 @@ export default class StreamComponent extends Component {
           }
         )
         .then((res) => {
-          console.log(
-            "meetingSeq: " +
-              this.props.meetingSeq +
-              " userNickname: " +
-              this.props.user.getNickname()
-          );
           const STATUS = res.data.statusCode;
           resolve(res.data.statusCode);
           if (STATUS === 200) {
             this.setState({ Msg: "강퇴완료" });
-            console.log(STATUS);
           } else if (STATUS === 201) {
             this.setState({ Msg: "강퇴완료" });
           } else if (STATUS === 409) {
@@ -64,7 +57,6 @@ export default class StreamComponent extends Component {
           }
         })
         .catch((err) => {
-          console.log(err);
           reject(err);
         });
 
