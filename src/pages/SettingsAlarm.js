@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import Modal from "../components/modal";
+import Paginator from "../components/paginator";
 import TimeForToday from "../components/settings/timeForToday";
 import "../statics/css/settingsAlarm.css";
 
@@ -8,13 +9,19 @@ export default function SettingsAlarm() {
   const TOKEN = localStorage.getItem("accessToken");
   const [notice, setNotice] = useState("");
   const [noticeCategories, setNoticeCategories] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+
   useEffect(() => {
     axios
-      .get(process.env.REACT_APP_SERVER_URL + "/notices?page=1&size=10", {
-        headers: {
-          Authorization: `Bearer ${TOKEN}`,
-        },
-      })
+      .get(
+        process.env.REACT_APP_SERVER_URL +
+          `/notices?page=${currentPage}&size=15`,
+        {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+          },
+        }
+      )
       .then((res) => {
         if (res.data.statusCode === 200) {
           const noticeData = res.data.noticeList;
@@ -24,7 +31,7 @@ export default function SettingsAlarm() {
           }));
         }
       });
-  }, []);
+  }, [currentPage]);
 
   useEffect(() => {
     axios
@@ -169,6 +176,9 @@ export default function SettingsAlarm() {
               ))}
           </tbody>
         </table>
+      </div>
+      <div className="settings-notice-pagination">
+        <Paginator currentpage={setCurrentPage} />
       </div>
       <Modal open={modalOpen} close={closeModal} header="">
         <div className="modal-notice-heading">
