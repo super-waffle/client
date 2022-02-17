@@ -59,7 +59,6 @@ const MeetingroomCard = ({ meeting, openModal, setMeetingSeq }) => {
       }}
     >
       <Card style={{ marginBottom: '0.5rem' }}>
-        {console.log(meeting.inBookmark)}
         <div>
           <Card.Img
             style={{ position: 'relative', height: '150px' }}
@@ -233,7 +232,6 @@ export default function Meetingrooms() {
             {postData.data &&
               postData.data.map((meeting) => (
                 <>
-                  {console.log(meeting)}
                   <MeetingroomCard
                     setMeetingSeq={setMeetingSeq}
                     openModal={openModal}
@@ -260,8 +258,7 @@ export default function Meetingrooms() {
 
         <Link
           to={{
-            pathname: `/videoRoomComponent`,
-            state: { meetingSeq: meetingSeq },
+            pathname: `/meeting/${meetingSeq}`,
           }}
         >
           <button
