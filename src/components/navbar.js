@@ -265,6 +265,15 @@ function Navbar() {
           <button
             // className="dropdown-menu"
             onClick={() => {
+              navigate('profile');
+              setIsActive(!isActive);
+            }}
+          >
+            내 프로필
+          </button>
+          <button
+            // className="dropdown-menu"
+            onClick={() => {
               navigate('settings/profile');
               setIsActive(!isActive);
             }}
