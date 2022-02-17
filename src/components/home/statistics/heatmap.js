@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import ReactCalendarHeatmap from "react-calendar-heatmap";
+import React, { useEffect, useState } from 'react';
+import ReactCalendarHeatmap from 'react-calendar-heatmap';
 // import "react-calendar-heatmap/dist/styles.css";
-import "../../../statics/css/home/heatmap.css";
-import ReactTooltip from "react-tooltip";
-import axios from "axios";
-import DailyStats from "./dailystats";
-import { useSelector } from "react-redux";
+import '../../../statics/css/home/heatmap.css';
+import ReactTooltip from 'react-tooltip';
+import axios from 'axios';
+import DailyStats from './dailystats';
+import { useSelector } from 'react-redux';
 
 function Heatmap() {
-  const [yearData, setYearData] = useState("");
-  const [dayData, setDayData] = useState("");
-  const [finalData, setFinalData] = useState("");
-  const [selectedDay, setSelectedDay] = useState("");
+  const [yearData, setYearData] = useState('');
+  const [dayData, setDayData] = useState('');
+  const [finalData, setFinalData] = useState('');
+  const [selectedDay, setSelectedDay] = useState('');
   const defaultDay = useSelector((state) => state.schedule.today);
   const [daymap, setDaymap] = useState(new Map());
 
@@ -29,9 +29,9 @@ function Heatmap() {
 
   async function getYearData() {
     const response = await axios
-      .get("/stats/year", {
+      .get(process.env.REACT_APP_SERVER_URL + '/stats/year', {
         headers: {
-          Authorization: `Bearer ` + localStorage.getItem("accessToken"),
+          Authorization: `Bearer ` + localStorage.getItem('accessToken'),
         },
       })
       .then((res) => {
@@ -70,7 +70,7 @@ function Heatmap() {
         {
           date: date,
           count: 0,
-          time: "no data",
+          time: 'no data',
         },
       ]);
     });
@@ -90,13 +90,13 @@ function Heatmap() {
             values={finalData}
             classForValue={(value) => {
               if (!value) {
-                return "color-beammp-0";
+                return 'color-beammp-0';
               }
               return `color-beammp-${value.count}`;
             }}
             tooltipDataAttrs={(value) => {
               return {
-                "data-tip": `${value.date}`,
+                'data-tip': `${value.date}`,
               };
             }}
             showOutOfRangeDay={true}

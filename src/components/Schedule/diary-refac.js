@@ -24,7 +24,6 @@ function DiaryRefac() {
         },
       })
       .then((response) => {
-        console.log(response.data.diary);
         setData(() => response.data.diary);
       });
   };
