@@ -513,8 +513,6 @@
   color: var(--textColor);
 }
 .study-room .study-room-content .study-room-sidebar .study-room-userlist .study-userlist-container .userlist-component .list-wrap {
-  height: calc(100% - 80px);
-  overflow: auto;
   font-family: "Pretendard";
   padding: 8px 8px 0 5px;
 }
@@ -525,26 +523,30 @@
   border-top: 1px solid var(--textColor-darkest);
   padding-top: 10px;
   padding-left: 2px;
+  -ms-overflow-style: none;
 }
 .study-room .study-room-content .study-room-sidebar .study-room-userlist .study-userlist-container .userlist-component .list-wrap .user {
   position: relative;
-  padding: 0 0 8px 0;
+  padding: 0 0 5px 0;
   align-items: "center";
   display: "flex";
+}
+.study-room .study-room-content .study-room-sidebar .study-room-userlist .study-userlist-container .userlist-component .list-wrap .user ::-webkit-scrollbar {
+  display: none;
 }
 .study-room .study-room-content .study-room-sidebar .study-room-userlist .study-userlist-container .userlist-component .list-wrap .user .user-name {
   color: #6c757d;
   font-family: "Pretendard";
   margin-left: 30px;
   font-weight: 450;
-  font-size: 14px;
+  font-size: 13px;
 }
 .study-room .study-room-content .study-room-sidebar .study-room-userlist .study-userlist-container .userlist-component .list-wrap .user .user-name-local {
   color: #6667ab;
   font-family: "Pretendard";
   margin-left: 30px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 13px;
 }
 .study-room .study-room-content .study-room-sidebar .study-room-userlist .study-userlist-container .userlist-component .list-wrap .user .user-video {
   position: absolute;
@@ -605,31 +607,56 @@
   position: absolute;
   left: 0;
   top: 20%;
-  height: 100%;
+  height: 50px;
+  font-family: "Pretendard";
+  font-weight: 550;
+}
+.study-room .study-room-buttons .buttons-content .buttons-video span {
+  margin-left: 10px;
 }
 .study-room .study-room-buttons .buttons-content .buttons-video .button-audio {
   position: absolute;
-  left: 43%;
+  left: 22%;
   height: 100%;
   color: #6667ab;
+  border: 2px solid #6667ab;
+  padding: 8px 13px 0 13px;
+  border-radius: 15px;
+  min-width: 150px;
+  box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
 }
 .study-room .study-room-buttons .buttons-content .buttons-video .button-video {
   position: absolute;
-  left: 50%;
+  left: 37.5%;
   height: 100%;
   color: #6667ab;
+  border: 2px solid #6667ab;
+  padding: 8px 13px 5px 13px;
+  border-radius: 15px;
+  min-width: 170px;
+  box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
 }
 .study-room .study-room-buttons .buttons-content .buttons-video .button-share {
   position: absolute;
-  left: 54%;
+  left: 54.5%;
   height: 100%;
   color: #6667ab;
+  border: 2px solid #6667ab;
+  padding: 8px 13px 5px 13px;
+  border-radius: 15px;
+  min-width: 170px;
+  box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
 }
 .study-room .study-room-buttons .buttons-content .buttons-video .button-exit {
   position: absolute;
-  left: 70%;
+  left: 80%;
   height: 100%;
   color: #6667ab;
+  border: 2px solid #ff6670;
+  background-color: #ff6670;
+  padding: 9px 12px 5px 12px;
+  border-radius: 15px;
+  box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
 }
 .study-room .study-room-buttons .buttons-content .buttons-util {
   width: 25%;
@@ -642,11 +669,19 @@
   position: absolute;
   right: 23%;
   height: 100%;
+  color: #6667ab;
+  padding: 9px 12px 5px 12px;
+  border-radius: 15px;
+  box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
 }
 .study-room .study-room-buttons .buttons-content .buttons-util .button-chat {
   position: absolute;
   right: 7%;
   height: 100%;
+  color: #6667ab;
+  padding: 9px 12px 5px 12px;
+  border-radius: 15px;
+  box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
 }
 
 .study-room-kick-msg {
