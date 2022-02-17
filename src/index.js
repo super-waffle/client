@@ -47,10 +47,10 @@ ReactDOM.render(
             <Route path="studyrecruit/:studyseq" element={isLogin() ? <StudyRecruitDetail /> : <Login />} />
             <Route path="meetingrooms" element={isLogin() ? <Meetingrooms /> : <Login />} />
             <Route path="schedules" element={isLogin() ? <Schedule /> : <Login />} />
-            <Route path="profile" element={isLogin() ? <Profile /> : <Login />} />
             <Route path="meeting/:meetingSeq" element={isLogin() ? <VideoRoomComponent /> : <Login />} />
             <Route path="studyroom" element={isLogin() ? <StudyRoomComponent /> : <Login />} />
             <Route path="settings" element={isLogin() ? <Settings /> : <Login />}>
+              <Route path="profile" element={<SettingsProfile />} />
               <Route path="admin" element={<SettingsAdmin />} />
               <Route path="alarm" element={<SettingsAlarm />} />
               <Route path="mystudy" element={<SettingsStudy />} />
