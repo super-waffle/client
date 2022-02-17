@@ -57,6 +57,7 @@
   padding: 60px 8% 0 0;
 }
 .home .home-tab .home-profile {
+  z-index: 3;
   position: fixed;
   top: 108px;
   font-family: "Pretendard";

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "../../../statics/css/home/dailyStats.css";
-import CircularProgressBar from '../../CircularProgressBar';
+import CircularProgressBar from "../achievement/CircularProgressBar";
 
 export default function DailyStats(props) {
   const [date, setDate] = useState("");
@@ -112,9 +112,9 @@ export default function DailyStats(props) {
           <div>
             <div>공부휴식 비율</div>
             <div>
-                <CircularProgressBar percentage={(1/5)*100}/>
-                {/* percentage={percentage} */}
-            </div>  
+              <CircularProgressBar percentage={(1 / 5) * 100} />
+              {/* percentage={percentage} */}
+            </div>
           </div>
         </div>
       )}

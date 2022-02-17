@@ -47,21 +47,4 @@
   display: none;
 }
 
-.home-achievement {
-  font-family: "Pretendard";
-}
-.home-achievement span {
-  font-size: 16px;
-  line-height: 19px;
-  color: var(--textColor);
-  margin-left: 5px;
-}
-.home-achievement .home-achievement-top {
-  padding-bottom: 8vh;
-}
-.home-achievement .home-achievement-top .home-achievement-top-box {
-  display: flex;
-  margin-top: 9px;
-}
-
-/*# sourceMappingURL=homeAchievement.css.map */
+/*# sourceMappingURL=circularGraph.css.map */
