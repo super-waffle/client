@@ -791,6 +791,7 @@
 }
 
 .meetingroom-list {
+  padding-top: 1.5rem;
   display: grid;
   width: 100%;
   grid-template-columns: repeat(auto-fill, minmax(192px, auto));
@@ -798,7 +799,7 @@
 }
 .meetingroom-card {
   cursor: pointer;
-  padding: 0.8rem 0;
+  padding: 0.6rem 0;
   width: 100%;
 }
 .meetingroom-card__img {
@@ -823,7 +824,7 @@
   left: 0.5rem;
   background-color: rgba(252, 252, 252, 0.6);
   border-radius: 3px;
-  color: var(--textColor);
+  color: #444444;
   font-size: 12px;
 }
 .meetingroom-card__title {
@@ -831,4 +832,81 @@
   color: var(--textColor);
   font-weight: 500;
   padding: 0.2rem 0.4rem;
+}
+
+// .meeting-detail-modal {
+//   width: 100%;
+// }
+.meeting-detail-modal__img {
+  position: relative;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 75%;
+  & img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 10px;
+    opacity: 0.8;
+  }
+}
+.meeting-detail-modal__contents {
+  position: relative;
+  top: -20px;
+}
+.meeting-detail-modal__contents-header {
+  // position: relative;
+  // top: -20px;
+  // display: flex;
+  // align-items: center;
+  width: 70%;
+  // margin-right: 25%;
+  background-color: var(--borderColor);
+  padding: 0.5rem;
+  border-radius: 0 4px 4px 0;
+}
+.meeting-detail-modal__category {
+  font-size: 12px;
+  color: $mainColor;
+  padding-right: 10px;
+}
+.meeting-detail-modal__title {
+  color: var(--textColor);
+  font-weight: 500;
+  font-size: 16px;
+}
+.meeting-detail-modal__contents-body {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1.2rem;
+}
+.meetingroom__crown {
+  cursor: default;
+  margin-right: 5px;
+  margin-bottom: 4px;
+}
+.meetingroom__person {
+  margin-right: 5px;
+  margin-bottom: 3px;
+}
+.meeting-detail-modal__hostname {
+  font-size: 14px;
+  color: var(--textColor);
+  padding-right: 10px;
+}
+.meeting-detail-modal__desc {
+  padding: 0 1.2rem;
+  font-size: 15px;
+  color: var(--textColor);
+}
+.meeting-modal-in-btn {
+  border: none;
+  margin: 2rem 1rem;
+  background-color: $mainColor;
+  color: #eeeeee;
+  font-size: 15px;
+  padding: 0.3rem 1rem;
+  border-radius: 5px;
 }

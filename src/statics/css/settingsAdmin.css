@@ -128,6 +128,9 @@
   cursor: default;
   background-color: #808080;
 }
+.settings-admin .settings-admin-input-pwd {
+  text-align: center;
+}
 .settings-admin .settings-admin-input-pwd .settings-admin-input-heading {
   font-size: 14px;
   text-align: left;
@@ -174,6 +177,7 @@
   height: 28px;
   border-radius: 5px;
   margin-top: 20px;
+  margin-bottom: 40px;
 }
 .settings-admin .settings-admin-input-pwd button:disabled {
   cursor: default;

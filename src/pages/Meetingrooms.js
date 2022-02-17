@@ -1,16 +1,14 @@
-import { Container, Col, Row, Card } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import ApplicationModal from "../components/applicationModal";
 import CategorySelect from "../components/categorySelect";
 import Paginator from "../components/paginator";
 import "../statics/css/studyRecruit.css";
 import isLogin from "../utils/isLogin";
+import ModalLarge from "../components/modalLarge";
 
 const MeetingroomCard = ({ meeting, openModal, setMeetingSeq }) => {
-  console.log(meeting);
   const [imgSelected, setImgSelected] = useState("");
   const images = [
     "meetingroom01.jpg",
@@ -28,6 +26,7 @@ const MeetingroomCard = ({ meeting, openModal, setMeetingSeq }) => {
   useEffect(() => {
     setImgSelected(images[Math.floor(Math.random() * images.length)]);
   }, [meeting]);
+
   const meetingroomImg =
     "https://i6a301.p.ssafy.io:8080/images/" + meeting.meetingImg;
   const defaultImg = `images/${imgSelected}`;
@@ -134,68 +133,6 @@ const MeetingroomCard = ({ meeting, openModal, setMeetingSeq }) => {
       </div>
       <div className="meetingroom-card__title">{meeting.meetingTitle}</div>
     </div>
-    // <Col
-    //   lg={3}
-    //   style={{ marginBottom: "0.5rem", cursor: "pointer" }}
-    //   onClick={() => {
-    //     openModal();
-    //     sendMeetingSeq();
-    //     localStorage.setItem("meetingSeq", meeting.meetingSeq);
-    //   }}
-    // >
-    //   <Card style={{ marginBottom: "0.5rem" }}>
-    //     <div>
-    //       <Card.Img
-    //         style={{ position: "relative", height: "150px" }}
-    //         src={meeting.meetingImg ? meetingroomImg : defaultImg}
-    //       />
-
-    //       <div
-    //         style={{
-    //           padding: "0rem 0.5rem",
-    //           position: "absolute",
-    //           bottom: "0.5rem",
-    //           left: "0.5rem",
-    //           backgroundColor: "white",
-    //           opacity: 0.7,
-    //           borderRadius: "5px",
-    //         }}
-    //       >
-    //         <div>{meeting.meetingHeadcount} / 12</div>
-    //       </div>
-    // <div>
-    //   {bookmark ? (
-    //     <img
-    //       style={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
-    //       src="icons/meetingroom/_bookmark_true.svg"
-    //       onClick={(e) => {
-    //         e.stopPropagation();
-    //         changeBookmark();
-    //       }}
-    //       alt=""
-    //     />
-    //   ) : (
-    //     <img
-    //       style={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
-    //       src="icons/meetingroom/_bookmark_false.svg"
-    //       onClick={(e) => {
-    //         e.stopPropagation();
-    //         changeBookmark();
-    //       }}
-    //       alt=""
-    //     />
-    //   )}
-    // </div>
-    //     </div>
-    //   </Card>
-    //   <Card.Subtitle
-    //     style={{
-    //       fontFamily: "pretendard",
-    //     }}
-    //   >
-    //     {meeting.meetingTitle}
-    //   </Card.Subtitle>
-    // </Col>
   );
 };
 
@@ -209,6 +146,29 @@ export default function Meetingrooms() {
   const [modalOpen, setModalOpen] = useState(false);
   const [meetingSeq, setMeetingSeq] = useState("");
   const [selectedMeeting, setSelectedMeeting] = useState("");
+  const [imgSelected, setImgSelected] = useState("");
+
+  const images = [
+    "meetingroom01.jpg",
+    "meetingroom02.jpg",
+    "meetingroom03.jpg",
+    "meetingroom04.jpg",
+    "meetingroom05.jpg",
+    "meetingroom06.jpg",
+    "meetingroom07.jpg",
+    "meetingroom08.jpg",
+    "meetingroom09.jpg",
+    "meetingroom10.jpg",
+    "meetingroom11.jpg",
+  ];
+  useEffect(() => {
+    setImgSelected(images[Math.floor(Math.random() * images.length)]);
+  }, [meetingSeq]);
+
+  console.log(selectedMeeting);
+  const meetingroomImg =
+    "https://i6a301.p.ssafy.io:8080/images/" + selectedMeeting.meetingImg;
+  const defaultImg = `images/${imgSelected}`;
 
   useEffect(() => {
     getMeetingDetails();
@@ -219,6 +179,10 @@ export default function Meetingrooms() {
   };
   const closeModal = () => {
     setModalOpen(false);
+  };
+
+  const CamRule = (num) => {
+    const rule = ["카메라 필수"];
   };
 
   const onChangeSearch = (event) => {
@@ -290,108 +254,128 @@ export default function Meetingrooms() {
     localStorage.setItem("studySeq", meetingSeq);
   }, [meetingSeq]);
   return (
-    <main style={{ padding: "1rem 0" }}>
-      <div className="studyrecruit">
-        <div className="studyrecruit-heading">
-          <span className="studyrecruit-h1">자유열람실</span>
-          <span className="studyrecruit-h2">
-            나와 맞는 자유열람실을 찾아보세요
-          </span>
-        </div>
-        <div className="studyrecuit-middle">
-          <div className="studyrecruit-search">
-            <CategorySelect categoryseq={setCategory} />
-            <div className="studyrecruit-search__bar">
-              <input
-                onKeyPress={onKeyEnter}
-                onChange={onChangeSearch}
-                placeholder="방제목, 글 내용으로 검색하세요"
+    <div className="studyrecruit">
+      <div className="studyrecruit-heading">
+        <span className="studyrecruit-h1">자유열람실</span>
+        <span className="studyrecruit-h2">
+          나와 맞는 자유열람실을 찾아보세요
+        </span>
+      </div>
+      <div className="studyrecuit-middle">
+        <div className="studyrecruit-search">
+          <CategorySelect categoryseq={setCategory} />
+          <div className="studyrecruit-search__bar">
+            <input
+              onKeyPress={onKeyEnter}
+              onChange={onChangeSearch}
+              placeholder="방제목, 글 내용으로 검색하세요"
+            />
+            <svg
+              className="studyrecruit-search__icon"
+              onClick={onClickSearch}
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.625 16.6249L13.0736 13.0672L16.625 16.6249ZM15.0417 8.31242C15.0417 10.0971 14.3327 11.8087 13.0707 13.0707C11.8088 14.3326 10.0972 15.0416 8.3125 15.0416C6.52781 15.0416 4.81622 14.3326 3.55426 13.0707C2.29229 11.8087 1.58333 10.0971 1.58333 8.31242C1.58333 6.52773 2.29229 4.81614 3.55426 3.55418C4.81622 2.29222 6.52781 1.58325 8.3125 1.58325C10.0972 1.58325 11.8088 2.29222 13.0707 3.55418C14.3327 4.81614 15.0417 6.52773 15.0417 8.31242V8.31242Z"
+                stroke="var(--textColor-darker)"
+                strokeWidth="2"
+                strokeLinecap="round"
               />
-              <svg
-                className="studyrecruit-search__icon"
-                onClick={onClickSearch}
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16.625 16.6249L13.0736 13.0672L16.625 16.6249ZM15.0417 8.31242C15.0417 10.0971 14.3327 11.8087 13.0707 13.0707C11.8088 14.3326 10.0972 15.0416 8.3125 15.0416C6.52781 15.0416 4.81622 14.3326 3.55426 13.0707C2.29229 11.8087 1.58333 10.0971 1.58333 8.31242C1.58333 6.52773 2.29229 4.81614 3.55426 3.55418C4.81622 2.29222 6.52781 1.58325 8.3125 1.58325C10.0972 1.58325 11.8088 2.29222 13.0707 3.55418C14.3327 4.81614 15.0417 6.52773 15.0417 8.31242V8.31242Z"
-                  stroke="var(--textColor-darker)"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
+            </svg>
           </div>
-          <button
-            className="studyrecruit-create"
-            onClick={() => navigate("/settings/meeting")}
-          >
-            내 열람실 바로가기
-          </button>
         </div>
-        {/* <Container style={{ marginTop: "0.5rem", padding: "0rem" }}>
-          <Row className="studyrecruit-board"> */}
-        <div className="meetingroom-list">
-          {postData.data &&
-            postData.data.map((meeting) => (
-              <>
-                <MeetingroomCard
-                  setMeetingSeq={setMeetingSeq}
-                  openModal={openModal}
-                  key={meeting.meetingSeq}
-                  meeting={meeting}
-                />
-              </>
-            ))}
-        </div>
-        {/* </Row>
-        </Container> */}
+        <button
+          className="studyrecruit-create"
+          onClick={() => navigate("/settings/meeting")}
+        >
+          내 열람실 바로가기
+        </button>
+      </div>
+      <div className="meetingroom-list">
+        {postData.data &&
+          postData.data.map((meeting) => (
+            <MeetingroomCard
+              setMeetingSeq={setMeetingSeq}
+              openModal={openModal}
+              key={meeting.meetingSeq}
+              meeting={meeting}
+            />
+          ))}
       </div>
 
       <div className="studyrecruit-pagination">
         <Paginator currentpage={setCurrentPage} />
       </div>
-
-      <ApplicationModal open={modalOpen} close={closeModal}>
-        <div style={{ textAlign: "left", padding: "0 20%" }}>
-          카테고리: {selectedMeeting.categoryName}
+      <ModalLarge open={modalOpen} close={closeModal}>
+        <div className="meeting-detail-modal">
+          <div className="meeting-detail-modal__img">
+            <img
+              src={selectedMeeting.meetingImg ? meetingroomImg : defaultImg}
+              alt=""
+            />
+          </div>
+          <div className="meeting-detail-modal__contents">
+            <div className="meeting-detail-modal__contents-header">
+              <span className="meeting-detail-modal__category">
+                {selectedMeeting.categoryName}
+              </span>
+              <span className="meeting-detail-modal__title">
+                {selectedMeeting.meetingTitle}
+              </span>
+            </div>
+            <div className="meeting-detail-modal__contents-body">
+              <div className="meeting-detail-modal__hostname">
+                <svg
+                  className="meetingroom__crown"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 640 512"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M528 448H112C103.2 448 96 455.2 96 464V496C96 504.8 103.2 512 112 512H528C536.8 512 544 504.8 544 496V464C544 455.2 536.8 448 528 448ZM592 128C565.5 128 544 149.5 544 176C544 183.1 545.6 189.7 548.4 195.8L476 239.2C460.6 248.4 440.7 243.2 431.8 227.6L350.3 85C361 76.2 368 63 368 48C368 21.5 346.5 0 320 0C293.5 0 272 21.5 272 48C272 63 279 76.2 289.7 85L208.2 227.6C199.3 243.2 179.3 248.4 164 239.2L91.7 195.8C94.4 189.8 96.1 183.1 96.1 176C96.1 149.5 74.6 128 48.1 128C21.6 128 0 149.5 0 176C0 202.5 21.5 224 48 224C50.6 224 53.2 223.6 55.7 223.2L128 416H512L584.3 223.2C586.8 223.6 589.4 224 592 224C618.5 224 640 202.5 640 176C640 149.5 618.5 128 592 128Z"
+                    fill="#F2C831"
+                  />
+                </svg>
+                {selectedMeeting.hostName}
+              </div>
+              <div className="meeting-detail-modal__hostname">
+                <svg
+                  className="meetingroom__person"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7.5 7.5C8.44483 7.5 9.35097 7.12467 10.0191 6.45657C10.6872 5.78847 11.0625 4.88233 11.0625 3.9375C11.0625 2.99267 10.6872 2.08653 10.0191 1.41843C9.35097 0.750334 8.44483 0.375 7.5 0.375C6.55517 0.375 5.64903 0.750334 4.98093 1.41843C4.31283 2.08653 3.9375 2.99267 3.9375 3.9375C3.9375 4.88233 4.31283 5.78847 4.98093 6.45657C5.64903 7.12467 6.55517 7.5 7.5 7.5V7.5ZM9.875 3.9375C9.875 4.56739 9.62478 5.17148 9.17938 5.61688C8.73398 6.06228 8.12989 6.3125 7.5 6.3125C6.87011 6.3125 6.26602 6.06228 5.82062 5.61688C5.37522 5.17148 5.125 4.56739 5.125 3.9375C5.125 3.30761 5.37522 2.70352 5.82062 2.25812C6.26602 1.81272 6.87011 1.5625 7.5 1.5625C8.12989 1.5625 8.73398 1.81272 9.17938 2.25812C9.62478 2.70352 9.875 3.30761 9.875 3.9375V3.9375ZM14.625 13.4375C14.625 14.625 13.4375 14.625 13.4375 14.625H1.5625C1.5625 14.625 0.375 14.625 0.375 13.4375C0.375 12.25 1.5625 8.6875 7.5 8.6875C13.4375 8.6875 14.625 12.25 14.625 13.4375ZM13.4375 13.4328C13.4363 13.1406 13.2546 12.2619 12.4495 11.4567C11.6753 10.6825 10.2182 9.875 7.5 9.875C4.78063 9.875 3.32475 10.6825 2.5505 11.4567C1.74538 12.2619 1.56488 13.1406 1.5625 13.4328H13.4375Z"
+                    fill="var(--textColor-todo)"
+                  />
+                </svg>
+                {selectedMeeting.meetingHeadcount}
+              </div>
+            </div>
+            <div className="meeting-detail-modal__desc">
+              {selectedMeeting.meetingDesc}
+            </div>
+          </div>
         </div>
-        <div style={{ textAlign: "left", padding: "0 20%" }}>
-          호스트 이름: {selectedMeeting.hostName}
-        </div>
-        <div style={{ textAlign: "left", padding: "0 20%" }}>
-          카메라 규칙: {selectedMeeting.meetingCamType}
-        </div>
-        <div style={{ textAlign: "left", padding: "0 20%" }}>
-          현재 인원: {selectedMeeting.meetingHeadcount} / 12
-        </div>
-        <div style={{ textAlign: "left", padding: "0 20%" }}>
-          미팅룸 이름: {selectedMeeting.meetingTitle}
-        </div>
-        <div style={{ textAlign: "left", padding: "0 20%" }}>
-          미팅룸 설명: {selectedMeeting.meetingDesc}
-        </div>
-
-        <Link
-          to={{
-            pathname: `/meeting/${meetingSeq}`,
-          }}
-        >
-          <button
-            style={{
-              border: "none",
-              margin: "2rem",
-              backgroundColor: "#6667ab",
-              color: "#eeeeee",
+        <center>
+          <Link
+            to={{
+              pathname: `/meeting/${meetingSeq}`,
             }}
           >
-            입실하기
-          </button>
-        </Link>
-      </ApplicationModal>
-    </main>
+            <button className="meeting-modal-in-btn">입실하기</button>
+          </Link>
+        </center>
+      </ModalLarge>
+    </div>
   );
 }
