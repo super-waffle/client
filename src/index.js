@@ -18,6 +18,7 @@ import HomeStatistics from "./pages/Home_statistics";
 import HomeTodays from "./pages/Home_todays";
 import StudyRecruitCreate from "./pages/studyRecruitCreate";
 import StudyRecruitDetail from "./pages/studyRecruitDetail";
+import StudyRecruitModify from "./pages/studyRecruitModify";
 import SettingsProfile from "./pages/SettingsProfile";
 import SettingsAdmin from "./pages/SettingsAdmin";
 import SettingsAlarm from "./pages/SettingsAlarm";
@@ -44,6 +45,10 @@ ReactDOM.render(
             <Route
               path="studyrecruit/create"
               element={isLogin() ? <StudyRecruitCreate /> : <Login />}
+            />
+            <Route
+              path="studyrecruit/modify"
+              element={isLogin() ? <StudyRecruitModify /> : <Login />}
             />
             <Route
               path="studyrecruit/:studyseq"
