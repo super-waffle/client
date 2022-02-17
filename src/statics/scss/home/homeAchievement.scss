@@ -11,7 +11,8 @@
   .home-achievement-top {
     padding-bottom: 8vh;
     .home-achievement-top-box {
-      display: flex;
+      display: grid;
+      grid-template-columns: 3fr 2fr;
       margin-top: 9px;
     }
   }

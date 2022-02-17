@@ -63,7 +63,9 @@ const AchievementCard = ({
 
   return (
     <div
-      className="achievement-card"
+      className={`achievement-card ${
+        mainachieveSeq === achieve.achieveSeq ? "card-selected" : ""
+      }`}
       style={{ cursor: isHave ? "pointer" : "" }}
       data-tip="React-tooltip"
       data-for={achieve.achieveName}
@@ -73,27 +75,29 @@ const AchievementCard = ({
       {/* <Card> */}
       {/* <div> */}
       {/* <Card.Img */}
-      <img
-        // style={{ Height: "0.1rem" }}
-        src={isHave ? AchieveImg : DefaultImg}
-      />
-      {mainachieveSeq === achieve.achieveSeq && (
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4 12L10 18L20 6"
-            stroke="#2F8A38"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      )}
+      <div className="achievement-card__img">
+        <img
+          // style={{ Height: "0.1rem" }}
+          src={isHave ? AchieveImg : DefaultImg}
+        />
+        {/* {mainachieveSeq === achieve.achieveSeq && (
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4 12L10 18L20 6"
+              stroke="#2F8A38"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        )} */}
+      </div>
 
       {isHave && (
         <ReactTooltip id={achieve.achieveName} type="light">
@@ -103,15 +107,9 @@ const AchievementCard = ({
       {/* </div> */}
       {/* </Card> */}
       {isHave ? (
-        <div
-          style={{
-            fontFamily: "pretendard",
-          }}
-        >
-          {achieve.achieveName}
-        </div>
+        <div className="achievement-card__text">{achieve.achieveName}</div>
       ) : (
-        <div></div>
+        <div className="achievement-card__text"> ..</div>
       )}
     </div>
   );
