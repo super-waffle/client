@@ -16,7 +16,7 @@ export default function TimeForToday(value) {
     (Number(alarmTimeArray[0]) * 60 + Number(alarmTimeArray[1]));
 
   if (alarmArray[0] !== todayArray[0]) {
-    return timeValue;
+    return timeValue.slice(0, 10);
   } else if (dif < 60) {
     return <div>{dif}분 전</div>;
   } else {
