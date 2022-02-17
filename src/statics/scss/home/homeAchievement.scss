@@ -11,19 +11,9 @@
   .home-achievement-top {
     padding-bottom: 8vh;
     .home-achievement-top-box {
-      display: flex;
+      display: grid;
+      grid-template-columns: 3fr 2fr;
       margin-top: 9px;
     }
-  }
-  .home-achievement-bottom {
-    // .home-achievement-dogam {
-    //   margin-top: 9px;
-    //   background: var(--bgColor);
-    //   border: 1px solid var(--borderColor);
-    //   box-sizing: border-box;
-    //   border-radius: 10px;
-    //   width: 100%;
-    //   height: 967px;
-    // }
   }
 }
