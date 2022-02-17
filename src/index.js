@@ -29,7 +29,6 @@ import VideoRoomComponent from './components/meetingroom/VideoRoomComponent';
 import StudyRoomComponent from './components/studyroom/StudyRoomComponent';
 import SettingsStudyApplied from './pages/SettingsStudyApplied';
 
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -52,7 +51,6 @@ ReactDOM.render(
             <Route path="meeting/:meetingSeq" element={isLogin() ? <VideoRoomComponent /> : <Login />} />
             <Route path="studyroom" element={isLogin() ? <StudyRoomComponent /> : <Login />} />
             <Route path="settings" element={isLogin() ? <Settings /> : <Login />}>
-              <Route path="profile" element={<SettingsProfile />} />
               <Route path="admin" element={<SettingsAdmin />} />
               <Route path="alarm" element={<SettingsAlarm />} />
               <Route path="mystudy" element={<SettingsStudy />} />

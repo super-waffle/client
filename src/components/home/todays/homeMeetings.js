@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 const MeetingroomCard = ({ meeting }) => {
   const meetingroomImg = 'https://i6a301.p.ssafy.io:8080/images/' + meeting.meetingImg;
   const defaultImg = '../../../../images/meetingroom.png';
-  const [bookmark, setBookmark] = useState(meeting.inBookmark);
   const navigate = useNavigate();
   return (
     <Col lg={4} md={4} sm={4}>
@@ -68,7 +67,7 @@ export default function HomeMeetings() {
   }, []);
   return (
     <Container>
-      <Row>{meetings && meetings.map((meeting) => <MeetingroomCard meeting={meeting} />)}</Row>
+      <Row>{meetings && meetings.map((meeting, index) => <MeetingroomCard meeting={meeting} key={index} />)}</Row>
     </Container>
   );
 }
