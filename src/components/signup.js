@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useState, useCallback } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Modal from "./modal";
 import "../statics/css/signup.css";
 
 function SignUp() {
   // const router = useRouter();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
@@ -416,10 +417,10 @@ function SignUp() {
             </span>
             <span className="signup-success-heading1">
               <img src="icons/_paper-plane.svg" alt=""></img>
-              <img src="icons/_paper-plane-darkmode.svg" alt=""></img>
+              {/* <img src="icons/_paper-plane-darkmode.svg" alt=""></img> */}
               공습에 오신 걸 환영합니다
             </span>
-            <button to="/login">로그인</button>
+            <button onClick={() => navigate("/login")}>로그인</button>
           </div>
         )}
       </div>

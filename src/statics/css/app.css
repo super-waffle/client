@@ -1,4 +1,8 @@
 @import "main.css";
+.main {
+  background-color: var(--htmlbgColor);
+}
+
 .outlet {
   min-height: calc(100vh - 180px);
 }
