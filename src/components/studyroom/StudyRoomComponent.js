@@ -293,15 +293,13 @@ class StudyRoomComponent extends Component {
         this.updateLayout();
       }
     );
-    console.log("!!!!!!!!!!!!!!!!!!!!");
+    console.log('!!!!!!!!!!!!!!!!!!!!');
     console.log(subscribers);
     var withoutMe = [];
-    withoutMe = this.state.memberList.filter(
-      (member) => member.userNickname !== this.state.myUserName
-    );
+    withoutMe = this.state.memberList.filter((member) => member.userNickname !== this.state.myUserName);
     withoutMe = withoutMe.filter((member) => !this.remotes.includes(member));
-    console.log("remote", this.remotes);
-    console.log("나누기");
+    console.log('remote', this.remotes);
+    console.log('나누기');
     console.log(withoutMe);
     this.setState({
       absentMembers: withoutMe.filter(
@@ -310,7 +308,7 @@ class StudyRoomComponent extends Component {
           this.remotes.filter((other) => other.nickname === mem.userNickname).length === 0
       ),
     });
-    console.log("!!!!업뎃2?");
+    console.log('!!!!업뎃2?');
     console.log(this.state.absentMembers);
   }
 
@@ -395,15 +393,9 @@ class StudyRoomComponent extends Component {
           }
         )
         .then((response) => {
-<<<<<<< HEAD
-          console.log("studySeq: " + this.state.myStudySeq);
-          if (response.data.statusCode === 200) {
-            console.log("Leave 성공: ", response);
-=======
           console.log('studySeq: ' + this.state.myStudySeq);
-          if (response.data.statusCode == 200) {
+          if (response.data.statusCode === 200) {
             console.log('Leave 성공: ', response);
->>>>>>> origin/meeting/favorites
             resolve(response.data.token);
             sessionToken = undefined;
           } else {
@@ -472,7 +464,7 @@ class StudyRoomComponent extends Component {
           return flag;
         }),
     });
-    console.log("!!!!!삭제");
+    console.log('!!!!!삭제');
     console.log(this.state.absentMembers);
   }
 
@@ -513,15 +505,8 @@ class StudyRoomComponent extends Component {
 
   //다른사람이 나갈때
   subscribeToStreamDestroyed() {
-<<<<<<< HEAD
-    this.state.session.on("streamDestroyed", (event) => {
-      console.log("event", event);
-=======
-    // console.log(8);
-    // On every Stream destroyed...
     this.state.session.on('streamDestroyed', (event) => {
-      // Remove the stream from 'subscribers' array
->>>>>>> origin/meeting/favorites
+      console.log('event', event);
       this.deleteSubscriber(event.stream);
       setTimeout(() => {
         this.checkSomeoneShareScreen();
@@ -780,11 +765,6 @@ class StudyRoomComponent extends Component {
     if (this.state.isHost) {
       this.sendSignalVideoBlocked(nickname);
     } else {
-<<<<<<< HEAD
-=======
-      console.log('video subscriber 값 변경');
-      // console.log(remotes);
->>>>>>> origin/meeting/favorites
       const remoteUsers = this.state.subscribers.map((sub) => sub);
       remoteUsers[key].setIsBlocked(status);
       remoteUsers[key].setVideoActive(!status);
@@ -812,13 +792,7 @@ class StudyRoomComponent extends Component {
   }
 
   getSignalTimeString() {
-<<<<<<< HEAD
-    localUser.getStreamManager().stream.session.on("signal:timeString", (event) => {
-=======
-    // console.log("들어오는지..");
     localUser.getStreamManager().stream.session.on('signal:timeString', (event) => {
-      // console.log("ㅠㅠ");
->>>>>>> origin/meeting/favorites
       const data = JSON.parse(event.data);
       const remoteUsers = this.state.subscribers;
       remoteUsers.forEach((remote) => {
@@ -844,13 +818,7 @@ class StudyRoomComponent extends Component {
   }
 
   getSignalUserKicked() {
-<<<<<<< HEAD
-    localUser.getStreamManager().stream.session.on("signal:kick", (event) => {
-=======
-    // console.log("킥 시그널 받음");
     localUser.getStreamManager().stream.session.on('signal:kick', (event) => {
-      // console.log("ㅠㅠ");
->>>>>>> origin/meeting/favorites
       const data = JSON.parse(event.data);
       if (localUser.getNickname() === data.nickname) {
         this.setState({
@@ -913,7 +881,6 @@ class StudyRoomComponent extends Component {
     // console.log("localStorage" + localStorage.getItem("studySeq"));
     return (
       <div className="study-room">
-<<<<<<< HEAD
         <div>
           <div className="study-room-content">
             <DialogExtensionComponent
@@ -924,31 +891,9 @@ class StudyRoomComponent extends Component {
             {this.state.isKicked && (
               <Modal open={true} header=" ">
                 <div className="study-room-kick-msg">
-                  스터디룸 [{this.state.myStudyTitle}] 에서 일시방출 당하셨습니다. 오늘 하루동안
-                  스터디에 참여할 수 없습니다.
+                  스터디룸 [{this.state.myStudyTitle}] 에서 일시방출 당하셨습니다. 오늘 하루동안 스터디에 참여할 수
+                  없습니다.
                 </div>
-=======
-        <div className="study-room-content">
-          <DialogExtensionComponent
-            showDialog={this.state.showExtensionDialog}
-            cancelClicked={this.closeDialogExtension}
-          />
-
-          {this.state.isKicked && (
-            <Modal open={true} header=" ">
-              <div className="study-room-kick-msg">
-                스터디룸 [{this.state.myStudyTitle}] 에서 일시방출 당하셨습니다. 오늘 하루동안 스터디에 참여할 수
-                없습니다.
-              </div>
-
-              <Link to="/home/tab=todays">
-                <button className="study-room-kick-ok" onClick={this.leaveSession}>
-                  확인
-                </button>
-              </Link>
-            </Modal>
-          )}
->>>>>>> origin/meeting/favorites
 
                 <Link to="/home/tab=todays">
                   <button className="study-room-kick-ok" onClick={this.leaveSession}>
@@ -1112,14 +1057,7 @@ class StudyRoomComponent extends Component {
           }
         )
         .then((res) => {
-<<<<<<< HEAD
           if (res.data.statusCode === 404) {
-=======
-          console.log('studySeq: ' + this.state.myStudySeq);
-          console.log('응답', res);
-
-          if (res.data.statusCode == 404) {
->>>>>>> origin/meeting/favorites
             //스터디룸 시퀀스가 유효하지 않음 (존재하지 않는 미팅룸)
             this.setState({
               isError: true,
@@ -1146,7 +1084,7 @@ class StudyRoomComponent extends Component {
             //서버에러
             this.setState({
               isError: true,
-              errorMessage: "서버 환경을 확인해주세요.",
+              errorMessage: '서버 환경을 확인해주세요.',
             });
             window.location.reload();
           } else if (res.data.statusCode === 200) {
@@ -1154,12 +1092,6 @@ class StudyRoomComponent extends Component {
             this.sessionToken = res.data.sessionToken;
             if (sessionToken === null) sessionToken = undefined;
             this.userName = res.data.userNickname;
-<<<<<<< HEAD
-=======
-            console.log('Nickname : ' + this.userName);
-            console.log('studySeq : ' + this.studySeq);
-            console.log('sessionToken: ' + this.sessionToken);
->>>>>>> origin/meeting/favorites
 
             var startSet = res.data.studyStartTime.split(':');
             var endSet = res.data.studyEndTime.split(':');
@@ -1181,27 +1113,15 @@ class StudyRoomComponent extends Component {
 
               studyStartTime: new Date(2022, 0, 1, startSet[0], startSet[1], startSet[2]),
               studyEndTime: new Date(2022, 0, 1, endSet[0], endSet[1], endSet[2]),
-<<<<<<< HEAD
-              myStartTimeDate: new Date(
-                2022,
-                0,
-                1,
-                userStartSet[0],
-                userStartSet[1],
-                userStartSet[2]
-              ),
+              myStartTimeDate: new Date(2022, 0, 1, userStartSet[0], userStartSet[1], userStartSet[2]),
               memberList: res.data.memberList,
               hostMember: res.data.memberList.filter((member) => member.isHost),
-              otherMembers: res.data.memberList.filter(
-                (member) => member.userNickname !== res.data.userNickname
-              ),
+              otherMembers: res.data.memberList.filter((member) => member.userNickname !== res.data.userNickname),
               absentMembers: res.data.memberList
                 .filter((member) => member.userNickname !== res.data.userNickname)
                 .filter((mem) => {
                   //이 멤버가 리모트에 포함되어있으면 false반환
-                  var remoteFilter = this.remotes.filter(
-                    (other) => other.nickname === mem.userNickname
-                  );
+                  var remoteFilter = this.remotes.filter((other) => other.nickname === mem.userNickname);
                   var flag = true;
                   remoteFilter.forEach((element) => {
                     // console.log("element" + element);
@@ -1209,27 +1129,6 @@ class StudyRoomComponent extends Component {
                   });
                   return flag;
                 }),
-=======
-              myStartTimeDate: new Date(2022, 0, 1, userStartSet[0], userStartSet[1], userStartSet[2]),
-              // memberList: res.data.memberList,
-              // hostMember: res.data.memberList.filter((member) => member.isHost),
-              // otherMembers: res.data.memberList.filter(
-              //   (member) => !member.isHost && member.userNickname != res.data.userNickname
-              // ),
-              // absentMembers: res.data.memberList
-              //   .filter((member) => !member.isHost && member.userNickname != res.data.userNickname)
-              //   .filter((mem) => {
-              //     var remoteFilter = this.remotes.filter(
-              //       (other) => other.nickname == mem.userNickname
-              //     );
-              //     var flag = true;
-              //     remoteFilter.forEach((element) => {
-              //       // console.log("element" + element);
-              //       flag = false;
-              //     });
-              //     return flag;
-              //   }),
->>>>>>> origin/meeting/favorites
             });
 
             this.setState({

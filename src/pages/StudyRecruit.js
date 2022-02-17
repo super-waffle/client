@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-=======
 import axios from 'axios';
 import { useEffect, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
->>>>>>> origin/meeting/favorites
 
 import CategorySelect from '../components/categorySelect';
 import Paginator from '../components/paginator';
@@ -22,13 +16,7 @@ export default function StudyRecruit() {
   const [searchInput, setSearchInput] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
-<<<<<<< HEAD
   const onChangeSearch = (event) => {
-=======
-  console.log('page: ', currentPage, 'search: ', searchInput, 'category: ', category);
-
-  const onChangeSearch = useCallback((event) => {
->>>>>>> origin/meeting/favorites
     setSearchInput(event.target.value);
   };
 
@@ -68,11 +56,6 @@ export default function StudyRecruit() {
           },
         })
         .then((res) => {
-          console.log(res.data);
-<<<<<<< HEAD
-=======
-          console.log('hi');
->>>>>>> origin/meeting/favorites
           const data = res.data.data;
           setPostData((prevState) => ({
             ...prevState,
@@ -111,14 +94,7 @@ export default function StudyRecruit() {
             </svg>
           </div>
         </div>
-<<<<<<< HEAD
-        <button
-          className="studyrecruit-create"
-          onClick={() => navigate("create")}
-        >
-=======
         <button className="studyrecruit-create" onClick={() => navigate('create')}>
->>>>>>> origin/meeting/favorites
           모집글 작성하기
         </button>
       </div>

@@ -38,10 +38,10 @@ export default function StudyRecruitDetail() {
     setDeleteModalOpen(false);
   };
 
-  function checkAxios(){
-    if(isDeleteSuccess&&isRecruitSuccess){
+  function checkAxios() {
+    if (isDeleteSuccess && isRecruitSuccess) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
@@ -53,19 +53,9 @@ export default function StudyRecruitDetail() {
     return (
       todayDate.getFullYear() +
       '-' +
-<<<<<<< HEAD
-      (todayDate.getMonth() + 1 > 9
-        ? (todayDate.getMonth() + 1).toString()
-        : '0' + (todayDate.getMonth() + 1)) +
-      '-' +
-      (todayDate.getDate() > 9
-        ? todayDate.getDate().toString()
-        : '0' + todayDate.getDate().toString())
-=======
       (todayDate.getMonth() + 1 > 9 ? (todayDate.getMonth() + 1).toString() : '0' + (todayDate.getMonth() + 1)) +
       '-' +
       (todayDate.getDate() > 9 ? todayDate.getDate().toString() : '0' + todayDate.getDate().toString())
->>>>>>> origin/meeting/favorites
     );
   }
 
@@ -74,11 +64,7 @@ export default function StudyRecruitDetail() {
     // test();
     if (isLogin) {
       axios
-<<<<<<< HEAD
-        .get('/users', {
-=======
         .get(process.env.REACT_APP_SERVER_URL + '/users', {
->>>>>>> origin/meeting/favorites
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
@@ -87,11 +73,7 @@ export default function StudyRecruitDetail() {
           setUserSeq(res.data.user.userSeq);
         });
       axios
-<<<<<<< HEAD
-        .get('/studies/' + studyseq, {
-=======
         .get(process.env.REACT_APP_SERVER_URL + '/studies/' + studyseq, {
->>>>>>> origin/meeting/favorites
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
@@ -138,11 +120,7 @@ export default function StudyRecruitDetail() {
   const onApply = useCallback(() => {
     axios
       .post(
-<<<<<<< HEAD
-        '/studies/' + studyseq + '/application',
-=======
         process.env.REACT_APP_SERVER_URL + `/studies/${studyseq}/application`,
->>>>>>> origin/meeting/favorites
         {},
         {
           headers: {
@@ -182,7 +160,7 @@ export default function StudyRecruitDetail() {
         }
       });
   }, [TOKEN, studyseq]);
-  
+
   //모집마감
   const recruitStudy = useCallback(() => {
     axios
@@ -209,14 +187,13 @@ export default function StudyRecruitDetail() {
     deleteStudy();
     recruitStudy();
     openDeleteModal();
-  }
-  function handleClick(e){
-    window.location.href="/studyrecruit"
+  };
+  function handleClick(e) {
+    window.location.href = '/studyrecruit';
   }
 
-  const sendData={
-    data:data,
-    
+  const sendData = {
+    data: data,
   };
 
   return (
@@ -245,7 +222,6 @@ export default function StudyRecruitDetail() {
             {userSeq === hostSeq && (
               <div className="studyrecruit-detail-box-heading__first-host">
                 {/* [TODO]: update, delete 페이지로 링크 필요 */}
-<<<<<<< HEAD
                 <Link
                   to={'/studyrecruit/modify'}
                   className="studyrecruit-detail-box-heading__first-host-btn update"
@@ -253,54 +229,31 @@ export default function StudyRecruitDetail() {
                 >
                   수정
                 </Link>
-                  <span
-                    className="studyrecruit-detail-box-heading__first-host-btn"
-                    onClick={onClick}
-                    style={{cursor:'pointer'}}
-                  >
-                    삭제
-                  </span>
-                  <Modal
-                    open={deleteModalOpen}
-                    close={closeDeleteModal}
-                    header=" "
-                  >
-                    {checkAxios && (
-                      <div>
-                        <div className="studyapply-modal-msg">
-                          삭제되었습니다
-                        </div>
-                        <button
-                          className="studyapply-modal-ok"
-                          onClick={handleClick}
-                        >
-                          확인
-                        </button>
-                      </div>
-                    )}
-                    {!checkAxios && (
-                      <div>
-                        <div className="studyapply-modal-msg">
-                          스터디 호스트가 아닙니다
-                        </div>
-                        <button
-                          className="studyapply-modal-ok"
-                          onClick={closeDeleteModal}
-                        >
-                          확인
-                        </button>
-                      </div>
-                    )}
-                  </Modal>
-                
-=======
-                <Link to={'/'} className="studyrecruit-detail-box-heading__first-host-btn update">
-                  수정
-                </Link>
-                <Link to={'/'} className="studyrecruit-detail-box-heading__first-host-btn">
+                <span
+                  className="studyrecruit-detail-box-heading__first-host-btn"
+                  onClick={onClick}
+                  style={{ cursor: 'pointer' }}
+                >
                   삭제
-                </Link>
->>>>>>> origin/meeting/favorites
+                </span>
+                <Modal open={deleteModalOpen} close={closeDeleteModal} header=" ">
+                  {checkAxios && (
+                    <div>
+                      <div className="studyapply-modal-msg">삭제되었습니다</div>
+                      <button className="studyapply-modal-ok" onClick={handleClick}>
+                        확인
+                      </button>
+                    </div>
+                  )}
+                  {!checkAxios && (
+                    <div>
+                      <div className="studyapply-modal-msg">스터디 호스트가 아닙니다</div>
+                      <button className="studyapply-modal-ok" onClick={closeDeleteModal}>
+                        확인
+                      </button>
+                    </div>
+                  )}
+                </Modal>
               </div>
             )}
           </div>
@@ -355,13 +308,8 @@ export default function StudyRecruitDetail() {
                             <div className="studyrecruit-detail-box-body__day name">{numberToDay(days.dayNumber)}</div>
                             <div className="studyrecruit-detail-box-body__day timestart">
                               {days.timeStart.slice(0, 5)} ~{' '}
-<<<<<<< HEAD
                             </div>
-                            <div className="studyrecruit-detail-box-body__day timeend">
-                              {days.timeEnd.slice(0, 5)}
-=======
->>>>>>> origin/meeting/favorites
-                            </div>
+                            <div className="studyrecruit-detail-box-body__day timeend">{days.timeEnd.slice(0, 5)}</div>
                             <div className="studyrecruit-detail-box-body__day timeend">{days.timeEnd.slice(0, 5)}</div>
                           </div>
                         </td>
