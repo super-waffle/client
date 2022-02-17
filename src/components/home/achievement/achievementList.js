@@ -2,10 +2,8 @@ import axios from "axios";
 import React from "react";
 import ReactTooltip from "react-tooltip";
 import { useState, useEffect } from "react";
-import { Container, Col, Row, Card } from "react-bootstrap";
 import "../../../statics/css/home/achievementList.css";
-// import "../../../statics/css/studyRecruit.css";
-// import AchievementCard from "./achievementCard";
+
 const TOKEN = localStorage.getItem("accessToken");
 // 업적이름, 업적이미지, 업적 내용(툴팁)
 const AchievementCard = ({
@@ -19,11 +17,18 @@ const AchievementCard = ({
   achieveCount,
 }) => {
   const [isHave, setIsHave] = useState(false);
+  const [AchieveImg, setAchieveImage] = useState("");
 
-  const AchieveImg =
-    "https://i6a301.p.ssafy.io:8080/images/" + achieve.achieveImg;
-  const DefaultImg = "/images/_question-mark.png";
-  // console.log(achieve.achieve.achieveImg);
+  useEffect(() => {
+    if (achieve.achieveImg) {
+      setAchieveImage(
+        "https://i6a301.p.ssafy.io:8080/images/" + achieve.achieveImg
+      );
+    }
+  }, [achieve]);
+  // const AchieveImg =
+  //   "https://i6a301.p.ssafy.io:8080/images/" + achieve.achieveImg;
+  const DefaultImg = "/images/achievement.jpg";
 
   const haveAchieve = () => {
     const isfun = Array.from(userAcheieve.data2).includes(achieve.achieveSeq);
@@ -50,7 +55,6 @@ const AchievementCard = ({
         if (res.data.statusCode == 201) {
           let data = res.data.activeAchieveSeq;
           setMainachieveSeq(() => data);
-          // console.log('성공: ', res);
         }
       });
   };
@@ -72,31 +76,8 @@ const AchievementCard = ({
       onLoad={haveAchieve}
       onClick={isHave ? onClick : null}
     >
-      {/* <Card> */}
-      {/* <div> */}
-      {/* <Card.Img */}
       <div className="achievement-card__img">
-        <img
-          // style={{ Height: "0.1rem" }}
-          src={isHave ? AchieveImg : DefaultImg}
-        />
-        {/* {mainachieveSeq === achieve.achieveSeq && (
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4 12L10 18L20 6"
-              stroke="#2F8A38"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        )} */}
+        <img src={isHave ? AchieveImg : DefaultImg} />
       </div>
 
       {isHave && (
@@ -104,8 +85,6 @@ const AchievementCard = ({
           {achieve.achieveContent}
         </ReactTooltip>
       )}
-      {/* </div> */}
-      {/* </Card> */}
       {isHave ? (
         <div className="achievement-card__text">{achieve.achieveName}</div>
       ) : (
@@ -147,7 +126,7 @@ export default function AchievementList({
         setAchieveTotalCount(data.length);
       });
   }
-  console.log(postData, userAcheieve);
+
   async function getMainAchieve() {
     await axios
       .get(process.env.REACT_APP_SERVER_URL + "/achievements/active", {
@@ -165,18 +144,14 @@ export default function AchievementList({
     getAchieve();
     getMainAchieve();
   }, []);
-  // console.log(mainachieveSeq);
+
   return (
     <div className="achievement-list">
       {postData.data &&
-        // userAcheieve &&
-        // mainachieveSeq &&
         postData.data.map((achieve) => (
-          // <Col key  lg={2} md={2} sm={2}>
           <div className="achievement-list-grid" key={achieve.achieveSeq}>
             <AchievementCard
               achieve={achieve}
-              // key={achieve.achieveSeq}
               userAcheieve={userAcheieve}
               mainachieveSeq={mainachieveSeq}
               setMainachieveSeq={setMainachieveSeq}
@@ -186,7 +161,6 @@ export default function AchievementList({
               achieveCount={achieveCount}
             />
           </div>
-          // </Col>
         ))}
     </div>
   );

@@ -7,7 +7,13 @@ export const Graph = styled.div`
   height: 10px;
   background-color: #6667ab;
   border-radius: 10px;
-  width: ${(props) => (props.total / props.goal) * 100}%;
+  width: ${(props) => {
+    if (props.total > props.goal) {
+      return 100;
+    } else {
+      return (props.total / props.goal) * 100;
+    }
+  }}%;
 `;
 // width: ${(props) => (props.total / props.goal) * 100}%;
 // position: relative;
