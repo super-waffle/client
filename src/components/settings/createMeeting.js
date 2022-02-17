@@ -26,7 +26,7 @@ export default function CreateMeeting({ setIsExist, setWantEdit }) {
       });
   };
   return (
-    <div className="create-meeting">
+    <div className="setting-meeting-header">
       <div className="settings-meeting-heading">
         <div className="settings-meeting-heading__h1">자유열람실 생성</div>
         <div className="settings-meeting-heading__h2">

@@ -29,18 +29,12 @@ export default function SettingsMeeting() {
   }, []);
   return (
     <div className="settings-meeting">
-      {/* <div className="settings-meeting-heading">
-        <div className="settings-meeting-heading__h1">내 자유열람실 관리</div>
-        <div className="settings-meeting-heading__h2">
-          내 자유열람실을 관리할 수 있습니다
-        </div>
-      </div> */}
       {isExist ? (
         <div>
           {wantEdit ? (
             <EditMeeting setIsExist={setIsExist} setWantEdit={setWantEdit} />
           ) : (
-            <ReadMeeting setWantEdit={setWantEdit} />
+            <ReadMeeting setIsExist={setIsExist} setWantEdit={setWantEdit} />
           )}
         </div>
       ) : (

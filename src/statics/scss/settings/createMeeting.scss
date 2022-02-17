@@ -1,6 +1,6 @@
 @import "../main.scss";
 
-.create-meeting {
+.setting-meeting-header {
   padding-top: 80px;
   width: 100%;
   & table {
@@ -91,10 +91,50 @@
   }
 }
 .create-meeting-btn {
-  margin-top: 45px;
+  // margin-top: 45px;
   background-color: $mainColor;
   color: #eeeeee;
   border: none;
   border-radius: 5px;
   padding: 0.4rem 1rem;
+  margin: 40px 6px;
+}
+.create-meeting-btn-delete {
+  background-color: var(--bgColor);
+  color: var(--textColor);
+  border: 1px solid $mainColor;
+  border-radius: 5px;
+  padding: 0.4rem 1rem;
+  margin: 40px 6px;
+  font-size: 14px;
+}
+
+.read-meeting__header {
+  display: flex;
+  align-items: center;
+}
+.read-meeting__category {
+  font-size: 12px;
+  color: $mainColor;
+  padding-right: 7px;
+}
+.read-meeting__title {
+  font-weight: 500;
+  color: var(--textColor);
+}
+.read-meeting__headcount {
+  color: var(--textColor-todo);
+  & svg {
+    margin-bottom: 2px;
+    margin-right: 5px;
+  }
+}
+.read-meeting__desc {
+  margin-top: 20px;
+  white-space: pre-wrap;
+  color: var(--textColor);
+}
+.setting-meeting-btns {
+  text-align: right;
+  margin-right: 20px;
 }
