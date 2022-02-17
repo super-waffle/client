@@ -54,7 +54,7 @@ const StudyCard = ({ studies }) => {
         ))
       ) : (
         <Card>
-          <Card.Title style={{ fontWeight: 'bold', fontFamily: 'pretendard' }}>스터디 일정이 없어요</Card.Title>
+          <Card.Title style={{ fontWeight: 'bold', fontFamily: 'pretendard' }}>로딩 중...</Card.Title>
         </Card>
       )}
     </>

@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 import { Container, Col, Row, Card } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { sendMeetingSeqRedux } from "../components/meetingroom/meetingSlice";
+=======
+import { Container, Col, Row, Card } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+>>>>>>> origin/meeting/favorites
 
 import ApplicationModal from "../components/applicationModal";
 import CategorySelect from "../components/categorySelect";
@@ -52,9 +59,14 @@ export default function Meetingrooms() {
   const [postData, setPostData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
+<<<<<<< HEAD
   const [meetingSeq, setMeetingSeq] = useState("");
   const [selectedMeeting, setSelectedMeeting] = useState("");
   const dispatch = useDispatch();
+=======
+  const [meetingSeq, setMeetingSeq] = useState('');
+  const [selectedMeeting, setSelectedMeeting] = useState('');
+>>>>>>> origin/meeting/favorites
 
   useEffect(() => {
     getMeetingDetails();
@@ -98,7 +110,11 @@ export default function Meetingrooms() {
         setCategory(0);
       }
       axios
+<<<<<<< HEAD
         .get("/meetings?page=" + currentPage + "&type=" + category + "&key=" + searchInput, {
+=======
+        .get(`/meetings?page=${currentPage}&type=${category}&key=${searchInput}`, {
+>>>>>>> origin/meeting/favorites
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
@@ -121,13 +137,17 @@ export default function Meetingrooms() {
     let data = response.data;
     setSelectedMeeting(() => data);
   }
-
   useEffect(() => {
+<<<<<<< HEAD
     dispatch(sendMeetingSeqRedux(selectedMeeting.meetingSeq));
   }, [selectedMeeting]);
 
   localStorage.setItem("studySeq", 71);
 
+=======
+    localStorage.setItem('studySeq', meetingSeq);
+  }, [meetingSeq]);
+>>>>>>> origin/meeting/favorites
   return (
     <main style={{ padding: "1rem 0" }}>
       <div className="studyrecruit">
@@ -171,12 +191,15 @@ export default function Meetingrooms() {
           <Row className="studyrecruit-board">
             {postData.data &&
               postData.data.map((meeting) => (
-                <MeetingroomCard
-                  setMeetingSeq={setMeetingSeq}
-                  openModal={openModal}
-                  key={meeting.meetingSeq}
-                  meeting={meeting}
-                />
+                <>
+                  {console.log(meeting)}
+                  <MeetingroomCard
+                    setMeetingSeq={setMeetingSeq}
+                    openModal={openModal}
+                    key={meeting.meetingSeq}
+                    meeting={meeting}
+                  />
+                </>
               ))}
           </Row>
         </Container>

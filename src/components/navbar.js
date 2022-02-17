@@ -62,7 +62,7 @@ function Navbar() {
 
   // 유저 정보 불러오기
   async function getUserInfo() {
-    const response = await axios.get('/users', {
+    const response = await axios.get(process.env.REACT_APP_SERVER_URL + '/users', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
