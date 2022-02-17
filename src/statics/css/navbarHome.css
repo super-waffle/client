@@ -29,6 +29,7 @@
   text-decoration: none;
   color: var(--textColor-darkest);
   align-items: center;
+  transition: all 0.5s ease 0s;
 }
 .sub-navbar .sub-navbar-menus .sub-navbar-menu svg path {
   stroke: var(--textColor-darkest);
@@ -43,6 +44,12 @@
 .sub-navbar .sub-navbar-menus .sub-navbar-menu span {
   padding-left: 7px;
   padding-right: 3px;
+}
+.sub-navbar .sub-navbar-menus .sub-navbar-menu:hover {
+  color: #6667ab;
+}
+.sub-navbar .sub-navbar-menus .sub-navbar-menu:hover svg path {
+  stroke: #6667ab;
 }
 
 /*# sourceMappingURL=navbarHome.css.map */
