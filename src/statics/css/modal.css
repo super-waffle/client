@@ -1,48 +1,4 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
-:root {
-  --htmlbgColor: #ffffff;
-  --bgColor: #fcfcfc;
-  --bgColor-light: #eaeaea;
-  --borderColor: #ededed;
-  --borderColor2: #d6d6d6;
-  --borderColor3: #e1e1e1;
-  --textWhite: #eeeeee;
-  --textColor: #252525;
-  --textColor-dark: #8a8a8a;
-  --textColor-darker: #a1a1a1;
-  --textColor-darkest: #c2c2c2;
-  --textColor-todo: #6c757d;
-  --github-01: #e8eaee;
-  --github-02: #d5d6f5;
-  --github-03: #9fa2e3;
-  --board-textColor: #646464;
-  --if-bgColor: #f9f9f9;
-  --if-borderColor: #e5e5e5;
-}
-
-.ui-dark {
-  background-color: var(--htmlbgColor);
-  --htmlbgColor: #292929;
-  --bgColor: #373737;
-  --bgColor-light: #4a4a4a;
-  --bgColor-lighter: #565656;
-  --bgColor-dark: #1b1b1b;
-  --borderColor: #444444;
-  --borderColor2: #444444;
-  --borderColor3: #444444;
-  --textColor: #ededed;
-  --textColor-dark: #8a8a8a;
-  --textColor-darker: #6f6f6f;
-  --textColor-darkest: #838383;
-  --textColor-todo: #cdcdcd;
-  --github-01: rgba(102, 103, 171, 0.2);
-  --github-02: rgba(102, 103, 171, 0.4);
-  --github-03: rgba(102, 103, 171, 0.7);
-  --board-textColor: #ededed;
-  --if-bgColor: #323232;
-  --if-borderColor: #444444;
-}
-
 .hidden {
   display: none;
 }
@@ -82,7 +38,7 @@
   text-align: center;
 }
 .modal > section > main .body-heading1 {
-  font-size: 20px;
+  font-size: 18px;
   line-height: 19px;
   color: #434343;
   margin-bottom: 10px;
@@ -131,6 +87,7 @@
   color: white;
   margin-left: 6px;
   margin-bottom: 1.5px;
+  font-size: 12px;
 }
 .modal > section > main .btn-m {
   cursor: pointer;
@@ -141,7 +98,7 @@
   width: 20%;
   border: none;
   background: #6667ab;
-  border-radius: 10px;
+  border-radius: 7px;
 }
 .modal > section > footer {
   padding: 12px 16px;
@@ -159,6 +116,30 @@
   display: flex;
   align-items: center;
   animation: modal-bg-show 0.3s;
+}
+
+.btn-xs {
+  cursor: pointer;
+  height: 32px;
+  width: 15%;
+  border: 1px solid #6667ab;
+  background-color: #6667ab;
+  border-radius: 5px;
+  color: white;
+  margin-left: 6px;
+  margin-bottom: 1.5px;
+}
+
+.btn-m {
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  line-height: 17px;
+  height: 36px;
+  width: 20%;
+  border: none;
+  background: #6667ab;
+  border-radius: 7px;
 }
 
 /*# sourceMappingURL=modal.css.map */

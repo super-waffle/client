@@ -97,7 +97,7 @@
         border: 1px solid $mainColor;
         background-color: $mainColor;
         border-radius: 5px;
-        color: var(--textColor);
+        color: #eeeeee;
         margin-left: 6px;
         margin-bottom: 1.5px;
       }
@@ -179,6 +179,7 @@
             .content {
               display: flex;
               justify-content: center;
+              align-items: center;
               padding-bottom: 25px;
               img {
                 height: 20px;
@@ -275,4 +276,28 @@
       }
     }
   }
+}
+.btn-xs {
+  cursor: pointer;
+  height: 32px;
+  width: 15%;
+  border: 1px solid $mainColor;
+  background-color: $mainColor;
+  border-radius: 5px;
+  color: white;
+  margin-left: 6px;
+  margin-bottom: 1.5px;
+  font-size: 12px;
+}
+.btn-m {
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  line-height: 17px;
+  height: 36px;
+  width: 20%;
+  border: none;
+  background: #6667ab;
+  border-radius: 7px;
+  // margin: 20px;
 }

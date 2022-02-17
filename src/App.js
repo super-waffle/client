@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Navbar from './components/navbar';
 import NavbarLanding from './components/navbarLanding';
 import isLogin from './utils/isLogin';
-import './statics/css/main.css';
 import { Outlet } from 'react-router-dom';
+import Footer from './components/footer';
+import './statics/css/darkUI.css';
+import './statics/css/app.css';
 
 function App() {
   console.log(`
@@ -17,11 +19,15 @@ function App() {
                       dP                                                                         
   `);
   return (
-    <div>
+    <main>
       {isLogin() && <Navbar sticky="top" />}
       {!isLogin() && <NavbarLanding sticky="top" />}
-      <Outlet />
-    </div>
+      <p>Landing Page</p>
+      <div className="outlet">
+        <Outlet />
+      </div>
+      <Footer />
+    </main>
   );
 }
 

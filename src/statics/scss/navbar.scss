@@ -18,11 +18,16 @@
   .navbar-menus {
     display: flex;
     margin-left: 15%;
-    .menu {
+    // transition: all 0.5s ease 0s;
+    a {
       cursor: pointer;
       text-decoration: none;
       color: #e4e4e4;
       margin-right: 46px;
+      transition: all 0.5s ease 0s;
+    }
+    a:hover {
+      color: var(--textColor-darker);
     }
   }
   .navbar-profile {
