@@ -13,6 +13,8 @@ export default function DailyStats(props) {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [total, setTotal] = useState("");
+  const [todos, setTodos] = useState("");
+  const [todoCompleted, setTodoCompleted] = useState("");
 
   const startTimeArray = startTime.split(":");
   const endTimeArray = endTime.split(":");
@@ -24,13 +26,15 @@ export default function DailyStats(props) {
   useEffect(() => {
     if (props.selectedDay) {
       axios
-        .get("/stats?date=" + props.selectedDay, {
-          headers: {
-            Authorization: `Bearer ` + localStorage.getItem("accessToken"),
-          },
-        })
+        .get(
+          process.env.REACT_APP_SERVER_URL + "/stats?date=" + props.selectedDay,
+          {
+            headers: {
+              Authorization: `Bearer ` + localStorage.getItem("accessToken"),
+            },
+          }
+        )
         .then((res) => {
-          // console.log(res);
           setDate(() => props.selectedDay.split("-"));
           if (res.data.statusCode === 200) {
             const RESULT = res.data.result;
@@ -45,15 +49,34 @@ export default function DailyStats(props) {
             setNodata(true);
           }
         });
-    } else {
       axios
-        .get("/stats?date=" + JSON.parse(props.defaultDay), {
-          headers: {
-            Authorization: `Bearer ` + localStorage.getItem("accessToken"),
-          },
-        })
+        .get(
+          process.env.REACT_APP_SERVER_URL + `/todos?date=${props.selectedDay}`,
+          {
+            headers: {
+              Authorization: `Bearer ` + localStorage.getItem("accessToken"),
+            },
+          }
+        )
         .then((res) => {
           // console.log(res);
+          if (res.data.statusCode === 200) {
+            setTodos(() => res.data.todoList);
+          }
+        });
+    } else {
+      axios
+        .get(
+          process.env.REACT_APP_SERVER_URL +
+            "/stats?date=" +
+            JSON.parse(props.defaultDay),
+          {
+            headers: {
+              Authorization: `Bearer ` + localStorage.getItem("accessToken"),
+            },
+          }
+        )
+        .then((res) => {
           setDate(() => JSON.parse(props.defaultDay).split("-"));
           if (res.data.statusCode === 200) {
             const RESULT = res.data.result;
@@ -68,8 +91,31 @@ export default function DailyStats(props) {
             setNodata(true);
           }
         });
+      axios
+        .get(
+          process.env.REACT_APP_SERVER_URL +
+            `/todos?date=${JSON.parse(props.defaultDay)}`,
+          {
+            headers: {
+              Authorization: `Bearer ` + localStorage.getItem("accessToken"),
+            },
+          }
+        )
+        .then((res) => {
+          if (res.data.statusCode === 200) {
+            setTodos(() => res.data.todoList);
+          }
+        });
     }
   }, [props.selectedDay]);
+
+  useEffect(() => {
+    if (todos) {
+      setTodoCompleted(() =>
+        todos.filter((todo) => todo.todoCompleted === true)
+      );
+    }
+  }, [todos]);
 
   return (
     <div className="daily-stats">
@@ -134,7 +180,12 @@ export default function DailyStats(props) {
               오늘의 할 일 달성률
             </div>
             <div className="daily-stats-graph__circular-graph">
-              <CircularProgressBar percentage={(1 / 5) * 100} />
+              <CircularProgressBar
+                percentage={(
+                  (todoCompleted.length / todos.length) *
+                  100
+                ).toFixed(1)}
+              />
             </div>
           </div>
         </div>
