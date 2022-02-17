@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import ReactTooltip from "react-tooltip";
+import { Container, Col, Row, Card } from "react-bootstrap";
 
 export default function AchievementCard(
   achieve,
@@ -12,9 +13,16 @@ export default function AchievementCard(
   setAchieveCount,
   achieveCount
 ) {
+  console.log("achieve:", achieve);
+  console.log("userAcheieve:", userAcheieve);
+  console.log("mainachieveSeq:", mainachieveSeq);
+  console.log("setMainachieveSeq:", setMainachieveSeq);
+  console.log("setAchieveName:", setAchieveName);
+  console.log("setAchieveCount:", setAchieveCount);
+
   const TOKEN = localStorage.getItem("accessToken");
   const [isHave, setIsHave] = useState(false);
-
+  // console.log(userAcheieve);
   const AchieveImg =
     "https://i6a301.p.ssafy.io:8080/images/" + achieve.achieveImg;
   const DefaultImg = "/images/achievement.jpg";
@@ -57,13 +65,20 @@ export default function AchievementCard(
   };
 
   return (
-    <Col
-      style={{ marginBottom: "0.5rem", cursor: isHave ? "pointer" : "" }}
+    <div
+      className="achievement-card"
       data-tip="React-tooltip"
       data-for={achieve.achieveName}
       onLoad={haveAchieve}
       onClick={isHave ? onClick : null}
     >
+      {/* <Col
+        style={{ marginBottom: "0.5rem", cursor: isHave ? "pointer" : "" }}
+        data-tip="React-tooltip"
+        data-for={achieve.achieveName}
+        onLoad={haveAchieve}
+        onClick={isHave ? onClick : null}
+      > */}
       <Card style={{ marginBottom: "0.5rem" }}>
         <Card.Img
           style={{ Height: "0.1rem" }}
@@ -104,6 +119,7 @@ export default function AchievementCard(
       ) : (
         <div>...</div>
       )}
-    </Col>
+      {/* </Col> */}
+    </div>
   );
 }

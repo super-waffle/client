@@ -1,0 +1,27 @@
+@import "../main.scss";
+
+.achievement-list {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(120px, 2fr));
+  grid-template-rows: repeat(auo-fit, minmax(200px, 2fr));
+  margin-top: 9px;
+  background: var(--bgColor);
+  border: 1px solid var(--borderColor);
+  box-sizing: border-box;
+  border-radius: 10px;
+  // width: 100%;
+  // height: 967px;
+}
+.achievement-card {
+  border: 1px solid var(--borderColor);
+  border-radius: 7px;
+  & img {
+    width: 100%;
+  }
+  & svg {
+  }
+}
+.achievement-list-grid {
+  padding: 0.5rem;
+}

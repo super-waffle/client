@@ -47,21 +47,27 @@
   display: none;
 }
 
-.home-achievement {
-  font-family: "Pretendard";
-}
-.home-achievement span {
-  font-size: 16px;
-  line-height: 19px;
-  color: var(--textColor);
-  margin-left: 5px;
-}
-.home-achievement .home-achievement-top {
-  padding-bottom: 8vh;
-}
-.home-achievement .home-achievement-top .home-achievement-top-box {
-  display: flex;
+.achievement-list {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(120px, 2fr));
+  grid-template-rows: repeat(auo-fit, minmax(200px, 2fr));
   margin-top: 9px;
+  background: var(--bgColor);
+  border: 1px solid var(--borderColor);
+  box-sizing: border-box;
+  border-radius: 10px;
 }
 
-/*# sourceMappingURL=homeAchievement.css.map */
+.achievement-card {
+  border: 1px solid var(--borderColor);
+  border-radius: 7px;
+}
+.achievement-card img {
+  width: 100%;
+}
+.achievement-list-grid {
+  padding: 0.5rem;
+}
+
+/*# sourceMappingURL=achievementList.css.map */
