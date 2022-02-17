@@ -12,8 +12,6 @@
   border-radius: 10px;
   & .card-selected {
     border: 1px solid $mainColor;
-    .achievement-card {
-    }
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.25);
     .achievement-card__text {
       background-color: $mainColor;
@@ -75,7 +73,7 @@
 }
 .achievement-card__text {
   // background-color: rgba(102, 103, 171, 0.8);
-  background-color: var(--bgColor);
+  background-color: var(--htmlbgColor);
   // transform: translate(50, 50);
   padding: 0.5rem;
   font-size: 13px;

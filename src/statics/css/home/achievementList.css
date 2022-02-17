@@ -105,7 +105,7 @@
 }
 
 .achievement-card__text {
-  background-color: var(--bgColor);
+  background-color: var(--htmlbgColor);
   padding: 0.5rem;
   font-size: 13px;
   color: var(--textColor-todo);

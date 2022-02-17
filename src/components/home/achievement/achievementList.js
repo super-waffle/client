@@ -22,7 +22,7 @@ const AchievementCard = ({
 
   const AchieveImg =
     "https://i6a301.p.ssafy.io:8080/images/" + achieve.achieveImg;
-  const DefaultImg = "/images/achievement.jpg";
+  const DefaultImg = "/images/_question-mark.png";
   // console.log(achieve.achieve.achieveImg);
 
   const haveAchieve = () => {
