@@ -34,7 +34,7 @@ export default function HomeAchievement() {
         setNickname(USER.userNickname);
         setLevel(USER.userLevel.levelSeq);
         setLevelName(USER.userLevel.levelName);
-        setLevelImg(USER.userImageLevel.levelImg);
+        setLevelImg(USER.userLevel.levelImg);
         setLevelCondition(USER.userLevel.levelCondition);
         setConditionToNext(USER.userLevel.conditionToNext);
         setTimeGoal(USER.userTimeGoal);

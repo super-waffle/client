@@ -1,31 +1,31 @@
-import axios from "axios";
-import React from "react";
-import { useState, useEffect } from "react";
-import { Graph } from "../todays/homeStyle";
-import "../../../statics/css/home/homeGoal.css";
-import "../../../statics/css/home/levelComponent.css";
+import axios from 'axios';
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { Graph } from '../todays/homeStyle';
+import '../../../statics/css/home/homeGoal.css';
+import '../../../statics/css/home/levelComponent.css';
 
 export default function LevelComponent(props) {
-  const levelImgUrl = "https://i6a301.p.ssafy.io:8080/images/" + props.levelImg;
-  const TOKEN = localStorage.getItem("accessToken");
+  const levelImgUrl = 'https://i6a301.p.ssafy.io:8080/images/' + props.levelImg;
+  const TOKEN = localStorage.getItem('accessToken');
   const [dayTotalStudyTime, setDayTotalStudyTime] = useState(0);
   var today = new Date();
   var year = today.getFullYear();
-  var month = ("0" + (today.getMonth() + 1)).slice(-2);
-  var day = ("0" + today.getDate()).slice(-2);
+  var month = ('0' + (today.getMonth() + 1)).slice(-2);
+  var day = ('0' + today.getDate()).slice(-2);
 
-  var dateString = year + "-" + month + "-" + day;
+  var dateString = year + '-' + month + '-' + day;
 
   var levelPercent = (
-    ((props.timeTotal - props.levelCondition) / props.conditionToNext) *
+    (props.timeTotal / (props.conditionToNext - props.levelCondition)) *
     100
   ).toFixed(2);
 
   var hour = (data) => {
-    return ("0" + Math.floor((data / 60) % 60)).slice(-2);
+    return ('0' + Math.floor((data / 60) % 60)).slice(-2);
   };
   var minute = (data) => {
-    return ("0" + Math.floor(data % 60)).slice(-2);
+    return ('0' + Math.floor(data % 60)).slice(-2);
   };
 
   useEffect(() => {
@@ -60,7 +60,7 @@ export default function LevelComponent(props) {
               오늘 공부시간
             </div>
             <div className="level-component__stats__content-body">
-              {parseInt(dayTotalStudyTime / 60)}시간{" "}
+              {parseInt(dayTotalStudyTime / 60)}시간{' '}
               {dayTotalStudyTime - parseInt(dayTotalStudyTime / 60) * 60}분
             </div>
           </div>
@@ -84,8 +84,8 @@ export default function LevelComponent(props) {
         <div className="my-goal__graph">
           <div className="my-goal__graph-back"></div>
           <Graph
-            goal={props.conditionToNext}
-            total={props.timeTotal - props.levelCondition}
+            goal={props.conditionToNext - props.levelCondition}
+            total={props.timeTotal}
           ></Graph>
         </div>
       </div>
