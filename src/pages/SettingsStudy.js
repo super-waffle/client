@@ -19,7 +19,7 @@ export default function SettingsStudy() {
   // 스터디 정보 불러오기
   useEffect(() => {
     axios
-      .get('/users/studies', {
+      .get(process.env.REACT_APP_SERVER_URL + '/users/studies', {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },
@@ -47,9 +47,7 @@ export default function SettingsStudy() {
   const [myStudyData, setMyStudyData] = useState('');
   useEffect(() => {
     if (myStudyDataAll) {
-      const studyRecruiting = myStudyDataAll.filter(
-        (study) => study.startDate === null
-      );
+      const studyRecruiting = myStudyDataAll.filter((study) => study.startDate === null);
       setMyStudyData(() => studyRecruiting);
     }
   }, [myStudyDataAll]);
@@ -58,9 +56,7 @@ export default function SettingsStudy() {
   const [studyStarted, setStudyStarted] = useState('');
   useEffect(() => {
     if (myStudyDataAll) {
-      const started = myStudyDataAll.filter(
-        (study) => study.startDate !== null
-      );
+      const started = myStudyDataAll.filter((study) => study.startDate !== null);
       setStudyStarted(() => started);
     }
   }, [myStudyDataAll]);
@@ -117,9 +113,7 @@ export default function SettingsStudy() {
   const [selectStarted, setSelectStarted] = useState('');
   useEffect(() => {
     if (studyStarted) {
-      const selected = studyStarted.filter(
-        (study) => study.studySeq === startedStudySeq
-      );
+      const selected = studyStarted.filter((study) => study.studySeq === startedStudySeq);
       setSelectStarted(() => selected[0]);
     }
   }, [startedStudySeq]);
@@ -135,7 +129,7 @@ export default function SettingsStudy() {
   useEffect(() => {
     if (selectedStudy) {
       axios
-        .get('/users/studies/' + selectedStudy.studySeq + '/applicants', {
+        .get(process.env.REACT_APP_SERVER_URL + `/users/studies/${selectedStudy.studySeq}/applicants`, {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
@@ -169,17 +163,13 @@ export default function SettingsStudy() {
       setAppliedRight(() => selectedright);
     }
     if (selectedStudy) {
-      const memberleft = selectedStudy.memberList.filter(
-        (member, idx, array) => {
-          return idx % 2 === 0;
-        }
-      );
+      const memberleft = selectedStudy.memberList.filter((member, idx, array) => {
+        return idx % 2 === 0;
+      });
       setAcceptedLeft(() => memberleft);
-      const memberright = selectedStudy.memberList.filter(
-        (member, idx, array) => {
-          return idx % 2 !== 0;
-        }
-      );
+      const memberright = selectedStudy.memberList.filter((member, idx, array) => {
+        return idx % 2 !== 0;
+      });
       setAcceptedRight(() => memberright);
     }
   }, [memberApplied, selectedStudy]);
@@ -190,8 +180,7 @@ export default function SettingsStudy() {
   const [selectApplyMemberLeft, setSelectApplyMemberLeft] = useState('');
   const [selectApplyMemberRight, setSelectApplyMemberRight] = useState('');
   const [selectAcceptedMemberLeft, setSelectAcceptedMemberLeft] = useState('');
-  const [selectAcceptedMemberRight, setSelectAcceptedMemberRight] =
-    useState('');
+  const [selectAcceptedMemberRight, setSelectAcceptedMemberRight] = useState('');
 
   useEffect(() => {
     if (memberSeq) {
@@ -201,23 +190,17 @@ export default function SettingsStudy() {
     }
     if (memberSeq) {
       // console.log(member.userSeq, memberSeq);
-      const data = appliedRight.filter(
-        (member) => member.userSeq === memberSeq
-      );
+      const data = appliedRight.filter((member) => member.userSeq === memberSeq);
       setSelectApplyMemberRight(() => data[0]);
     }
     if (memberSeq) {
       // console.log(member.userSeq, memberSeq);
-      const data = acceptedLeft.filter(
-        (member) => member.userSeq === memberSeq
-      );
+      const data = acceptedLeft.filter((member) => member.userSeq === memberSeq);
       setSelectAcceptedMemberLeft(() => data[0]);
     }
     if (memberSeq) {
       // console.log(member.userSeq, memberSeq);
-      const data = acceptedRight.filter(
-        (member) => member.userSeq === memberSeq
-      );
+      const data = acceptedRight.filter((member) => member.userSeq === memberSeq);
       setSelectAcceptedMemberRight(() => data[0]);
     }
   }, [memberSeq, selectApplyMemberLeft]);
@@ -242,10 +225,7 @@ export default function SettingsStudy() {
   const onClickEndRecruit = () => {
     axios
       .patch(
-        process.env.REACT_APP_SERVER_URL +
-          '/users/studies/' +
-          selectedStudy.studySeq +
-          '/recruit-end',
+        process.env.REACT_APP_SERVER_URL + '/users/studies/' + selectedStudy.studySeq + '/recruit-end',
         {},
 
         {
@@ -265,7 +245,7 @@ export default function SettingsStudy() {
     if (selectedStudy.memberList.length > 1) {
       axios
         .patch(
-          `/users/studies/${selectedStudy.studySeq}/start`,
+          process.env.REACT_APP_SERVER_URL + `/users/studies/${selectedStudy.studySeq}/start`,
           {},
           {
             headers: {
@@ -285,7 +265,7 @@ export default function SettingsStudy() {
   const onClickAccept = () => {
     axios
       .post(
-        '/users/studies/' + selectedStudy.studySeq + '/applicants/' + memberSeq,
+        process.env.REACT_APP_SERVER_URL + `/users/studies/${selectedStudy.studySeq}/applicants/${memberSeq}`,
         {},
         {
           headers: {
@@ -302,14 +282,11 @@ export default function SettingsStudy() {
   //신청 거절
   const onClickReject = () => {
     axios
-      .delete(
-        '/users/studies/' + selectedStudy.studySeq + '/applicants/' + memberSeq,
-        {
-          headers: {
-            Authorization: `Bearer ${TOKEN}`,
-          },
-        }
-      )
+      .delete(process.env.REACT_APP_SERVER_URL + `/users/studies/${selectedStudy.studySeq}/applicants/${memberSeq}`, {
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+        },
+      })
       .then((res) => {
         console.log(res);
         closeModal();
@@ -423,10 +400,7 @@ export default function SettingsStudy() {
                               {member.userImg !== null && (
                                 <img
                                   className="settings-study-details-img"
-                                  src={
-                                    'https://i6a301.p.ssafy.io:8080/images/ ' +
-                                    `${member.userImg}`
-                                  }
+                                  src={'https://i6a301.p.ssafy.io:8080/images/ ' + `${member.userImg}`}
                                   alt=""
                                 />
                               )}
@@ -645,10 +619,7 @@ export default function SettingsStudy() {
               {selectApplyMemberLeft.userImg !== null && (
                 <img
                   className="settings-study-details-img"
-                  src={
-                    'https://i6a301.p.ssafy.io:8080/images/ ' +
-                    `${selectApplyMemberLeft.userImg}`
-                  }
+                  src={'https://i6a301.p.ssafy.io:8080/images/ ' + `${selectApplyMemberLeft.userImg}`}
                   alt=""
                 />
               )}
@@ -667,9 +638,7 @@ export default function SettingsStudy() {
                 <div className="setting-study-details-profile-content__time">
                   <div className="content-title">총 공부시간</div>
                   {parseInt(selectApplyMemberLeft.userTimeTotal / 60)}시간{' '}
-                  {selectApplyMemberLeft.userTimeTotal -
-                    parseInt(selectApplyMemberLeft.userTimeTotal / 60) * 60}
-                  분
+                  {selectApplyMemberLeft.userTimeTotal - parseInt(selectApplyMemberLeft.userTimeTotal / 60) * 60}분
                 </div>
                 <div className="setting-study-details-profile-content__warning">
                   <div className="content-title">경고</div>
@@ -679,8 +648,8 @@ export default function SettingsStudy() {
               <div className="setting-study-details-profile-content__message">
                 <div className="content-title">신청 메세지</div>
                 <div className="content-body">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                  dolore magna aliqua.
                 </div>
               </div>
             </div>
@@ -719,10 +688,7 @@ export default function SettingsStudy() {
               {selectApplyMemberRight.userImg !== null && (
                 <img
                   className="settings-study-details-img"
-                  src={
-                    'https://i6a301.p.ssafy.io:8080/images/ ' +
-                    `${selectApplyMemberRight.userImg}`
-                  }
+                  src={'https://i6a301.p.ssafy.io:8080/images/ ' + `${selectApplyMemberRight.userImg}`}
                   alt=""
                 />
               )}
@@ -763,10 +729,7 @@ export default function SettingsStudy() {
               {selectAcceptedMemberLeft.userImg !== null && (
                 <img
                   className="settings-study-details-img"
-                  src={
-                    'https://i6a301.p.ssafy.io:8080/images/ ' +
-                    `${selectAcceptedMemberLeft.userImg}`
-                  }
+                  src={'https://i6a301.p.ssafy.io:8080/images/ ' + `${selectAcceptedMemberLeft.userImg}`}
                   alt=""
                 />
               )}
@@ -807,10 +770,7 @@ export default function SettingsStudy() {
               {selectAcceptedMemberRight.userImg !== null && (
                 <img
                   className="settings-study-details-img"
-                  src={
-                    'https://i6a301.p.ssafy.io:8080/images/ ' +
-                    `${selectAcceptedMemberRight.userImg}`
-                  }
+                  src={'https://i6a301.p.ssafy.io:8080/images/ ' + `${selectAcceptedMemberRight.userImg}`}
                   alt=""
                 />
               )}
@@ -830,29 +790,17 @@ export default function SettingsStudy() {
         <div className="settings-study-details">
           <div className="settings-study-details-box-heading">
             <div className="settings-study-details-box-heading__first">
+              {selectedStudy && <div className="settings-study-details-box-heading__title">{selectedStudy.title}</div>}
               {selectedStudy && (
-                <div className="settings-study-details-box-heading__title">
-                  {selectedStudy.title}
-                </div>
-              )}
-              {selectedStudy && (
-                <div className="settings-study-details-box-heading__category">
-                  {selectedStudy.categoryName}
-                </div>
+                <div className="settings-study-details-box-heading__category">{selectedStudy.categoryName}</div>
               )}
             </div>
             <div className="settings-study-details-box-heading__first-host">
               {/* [TODO]: update, delete 페이지로 링크 필요 */}
-              <Link
-                to={'/'}
-                className="settings-study-details-box-heading__first-host-btn update"
-              >
+              <Link to={'/'} className="settings-study-details-box-heading__first-host-btn update">
                 수정
               </Link>
-              <Link
-                to={'/'}
-                className="settings-study-details-box-heading__first-host-btn"
-              >
+              <Link to={'/'} className="settings-study-details-box-heading__first-host-btn">
                 삭제
               </Link>
             </div>
@@ -887,19 +835,11 @@ export default function SettingsStudy() {
                     </clipPath>
                   </defs>
                 </svg>
-                {selectedStudy.hostImg !== null && (
-                  <img
-                    className="settings-study-details-img"
-                    src={imageURL}
-                    alt=""
-                  />
-                )}
+                {selectedStudy.hostImg !== null && <img className="settings-study-details-img" src={imageURL} alt="" />}
               </div>
             )}
             {selectedStudy && (
-              <div className="settings-study-details-box-heading__nickname">
-                {selectedStudy.hostName}
-              </div>
+              <div className="settings-study-details-box-heading__nickname">{selectedStudy.hostName}</div>
             )}
           </div>
           <hr></hr>
@@ -919,9 +859,7 @@ export default function SettingsStudy() {
               <table>
                 <tbody>
                   <tr className="settings-study-details-box-body__row">
-                    <td className="settings-study-details-box-body__title">
-                      스터디 일정
-                    </td>
+                    <td className="settings-study-details-box-body__title">스터디 일정</td>
                     {selectedStudy.days &&
                       selectedStudy.days.map((day) => (
                         <td key={day.dayNumber}>
@@ -944,13 +882,10 @@ export default function SettingsStudy() {
               <table>
                 <tbody>
                   <tr className="settings-study-details-box-body__row">
-                    <td className="settings-study-details-box-body__title">
-                      모집 기간
-                    </td>
+                    <td className="settings-study-details-box-body__title">모집 기간</td>
                     {selectedStudy && (
                       <td className="settings-study-details-box-body__enddate">
-                        {selectedStudy.recruitStartDate} ~
-                        {selectedStudy.recruitEndDate}
+                        {selectedStudy.recruitStartDate} ~{selectedStudy.recruitEndDate}
                       </td>
                     )}
                   </tr>
@@ -958,35 +893,21 @@ export default function SettingsStudy() {
               </table>
             </div>
             {selectedStudy && (
-              <div className="settings-study-details-box-body__shortdesc">
-                {selectedStudy.shortDescription}
-              </div>
+              <div className="settings-study-details-box-body__shortdesc">{selectedStudy.shortDescription}</div>
             )}
-            {selectedStudy && (
-              <div className="settings-study-details-box-body__desc">
-                {selectedStudy.description}
-              </div>
-            )}
+            {selectedStudy && <div className="settings-study-details-box-body__desc">{selectedStudy.description}</div>}
           </div>
           {selectedStudy.isRecruiting && (
             <div className="settings-study-details__btns">
-              <button
-                className="settings-study-details__btn end-recruit"
-                onClick={onClickEndRecruit}
-              >
+              <button className="settings-study-details__btn end-recruit" onClick={onClickEndRecruit}>
                 모집 마감
               </button>
               {selectedStudy.startDate === null ? (
-                <button
-                  className="settings-study-details__btn start-study"
-                  onClick={onClickStartStudy}
-                >
+                <button className="settings-study-details__btn start-study" onClick={onClickStartStudy}>
                   스터디 시작하기
                 </button>
               ) : (
-                <button className="settings-study-details__btn end-study">
-                  스터디 종료하기
-                </button>
+                <button className="settings-study-details__btn end-study">스터디 종료하기</button>
               )}
             </div>
           )}
@@ -994,12 +915,8 @@ export default function SettingsStudy() {
       )}
 
       <div className="settings-study-heading">
-        <div className="settings-study-heading__h1 second-box">
-          진행중인 스터디
-        </div>
-        <div className="settings-study-heading__h2">
-          시작된 스터디 정보를 확인하고 관리할 수 있습니다
-        </div>
+        <div className="settings-study-heading__h1 second-box">진행중인 스터디</div>
+        <div className="settings-study-heading__h2">시작된 스터디 정보를 확인하고 관리할 수 있습니다</div>
       </div>
 
       <div className="settings-study-mystudies">
@@ -1013,15 +930,10 @@ export default function SettingsStudy() {
                     // checkStudyStatus(study) === "모집중"
                     //   ? "not-check"
                     //   : "is-check"
-                    selectStarted.studySeq === study.studySeq &&
-                    showStartedStudyDetail
-                      ? 'study-selected'
-                      : ''
+                    selectStarted.studySeq === study.studySeq && showStartedStudyDetail ? 'study-selected' : ''
                   } `}
                 >
-                  <td className="settings-study-mystudy-category">
-                    {study.categoryName}
-                  </td>
+                  <td className="settings-study-mystudy-category">{study.categoryName}</td>
                   <td
                     className="settings-study-mystudy-title"
                     onClick={() => {
@@ -1031,16 +943,10 @@ export default function SettingsStudy() {
                     }}
                   >
                     <div className="mystudy-title">{study.title}</div>
-                    <div className="mystudy-shorts">
-                      {study.shortDescription}
-                    </div>
+                    <div className="mystudy-shorts">{study.shortDescription}</div>
                   </td>
-                  <td className="settings-study-mystudy-status">
-                    {checkStudyStatus(study)}
-                  </td>
-                  <td className="settings-study-mystudy-members">
-                    {study.memberList.length}/6
-                  </td>
+                  <td className="settings-study-mystudy-status">{checkStudyStatus(study)}</td>
+                  <td className="settings-study-mystudy-members">{study.memberList.length}/6</td>
                 </tr>
               ))}
           </tbody>
@@ -1050,29 +956,17 @@ export default function SettingsStudy() {
         <div className="settings-study-details">
           <div className="settings-study-details-box-heading">
             <div className="settings-study-details-box-heading__first">
+              {selectStarted && <div className="settings-study-details-box-heading__title">{selectStarted.title}</div>}
               {selectStarted && (
-                <div className="settings-study-details-box-heading__title">
-                  {selectStarted.title}
-                </div>
-              )}
-              {selectStarted && (
-                <div className="settings-study-details-box-heading__category">
-                  {selectStarted.categoryName}
-                </div>
+                <div className="settings-study-details-box-heading__category">{selectStarted.categoryName}</div>
               )}
             </div>
             <div className="settings-study-details-box-heading__first-host">
               {/* [TODO]: update, delete 페이지로 링크 필요 */}
-              <Link
-                to={'/'}
-                className="settings-study-details-box-heading__first-host-btn update"
-              >
+              <Link to={'/'} className="settings-study-details-box-heading__first-host-btn update">
                 수정
               </Link>
-              <Link
-                to={'/'}
-                className="settings-study-details-box-heading__first-host-btn"
-              >
+              <Link to={'/'} className="settings-study-details-box-heading__first-host-btn">
                 삭제
               </Link>
             </div>
@@ -1107,19 +1001,11 @@ export default function SettingsStudy() {
                     </clipPath>
                   </defs>
                 </svg>
-                {selectStarted.hostImg !== null && (
-                  <img
-                    className="settings-study-details-img"
-                    src={imageURL}
-                    alt=""
-                  />
-                )}
+                {selectStarted.hostImg !== null && <img className="settings-study-details-img" src={imageURL} alt="" />}
               </div>
             )}
             {selectStarted && (
-              <div className="settings-study-details-box-heading__nickname">
-                {selectStarted.hostName}
-              </div>
+              <div className="settings-study-details-box-heading__nickname">{selectStarted.hostName}</div>
             )}
           </div>
           <hr></hr>
@@ -1139,9 +1025,7 @@ export default function SettingsStudy() {
               <table>
                 <tbody>
                   <tr className="settings-study-details-box-body__row">
-                    <td className="settings-study-details-box-body__title">
-                      스터디 일정
-                    </td>
+                    <td className="settings-study-details-box-body__title">스터디 일정</td>
                     {selectStarted.days &&
                       selectStarted.days.map((day) => (
                         <td key={day.dayNumber}>
@@ -1164,13 +1048,10 @@ export default function SettingsStudy() {
               <table>
                 <tbody>
                   <tr className="settings-study-details-box-body__row">
-                    <td className="settings-study-details-box-body__title">
-                      모집 기간
-                    </td>
+                    <td className="settings-study-details-box-body__title">모집 기간</td>
                     {selectStarted && (
                       <td className="settings-study-details-box-body__enddate">
-                        {selectStarted.recruitStartDate} ~
-                        {selectStarted.recruitEndDate}
+                        {selectStarted.recruitStartDate} ~{selectStarted.recruitEndDate}
                       </td>
                     )}
                   </tr>
@@ -1178,35 +1059,21 @@ export default function SettingsStudy() {
               </table>
             </div>
             {selectStarted && (
-              <div className="settings-study-details-box-body__shortdesc">
-                {selectStarted.shortDescription}
-              </div>
+              <div className="settings-study-details-box-body__shortdesc">{selectStarted.shortDescription}</div>
             )}
-            {selectStarted && (
-              <div className="settings-study-details-box-body__desc">
-                {selectStarted.description}
-              </div>
-            )}
+            {selectStarted && <div className="settings-study-details-box-body__desc">{selectStarted.description}</div>}
           </div>
           {selectStarted.isRecruiting && (
             <div className="settings-study-details__btns">
-              <button
-                className="settings-study-details__btn end-recruit"
-                onClick={onClickEndRecruit}
-              >
+              <button className="settings-study-details__btn end-recruit" onClick={onClickEndRecruit}>
                 모집 마감
               </button>
               {selectStarted.startDate === null ? (
-                <button
-                  className="settings-study-details__btn start-study"
-                  onClick={onClickStartStudy}
-                >
+                <button className="settings-study-details__btn start-study" onClick={onClickStartStudy}>
                   스터디 시작하기
                 </button>
               ) : (
-                <button className="settings-study-details__btn end-study">
-                  스터디 종료하기
-                </button>
+                <button className="settings-study-details__btn end-study">스터디 종료하기</button>
               )}
             </div>
           )}

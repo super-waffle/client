@@ -594,42 +594,70 @@
   position: absolute;
   left: 0;
   top: 20%;
-  height: 100%;
+  height: 50px;
+  font-family: "Pretendard";
+  font-weight: 550;
+}
+.meeting-room .meeting-room-buttons .buttons-content .buttons-video span {
+  margin-left: 10px;
 }
 .meeting-room .meeting-room-buttons .buttons-content .buttons-video .button-audio {
   position: absolute;
-  left: 43%;
+  left: 37%;
   height: 100%;
   color: #6667ab;
+  border: 2px solid #6667ab;
+  padding: 8px 13px 0 13px;
+  border-radius: 15px;
+  min-width: 150px;
+  box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
 }
 .meeting-room .meeting-room-buttons .buttons-content .buttons-video .button-video {
   position: absolute;
-  left: 50%;
+  left: 52%;
   height: 100%;
   color: #6667ab;
+  border: 2px solid #6667ab;
+  padding: 8px 13px 5px 13px;
+  border-radius: 15px;
+  min-width: 170px;
+  box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
 }
 .meeting-room .meeting-room-buttons .buttons-content .buttons-video .button-exit {
   position: absolute;
-  left: 57%;
+  left: 80%;
   height: 100%;
   color: #6667ab;
+  border: 2px solid #ff6670;
+  background-color: #ff6670;
+  padding: 9px 12px 5px 12px;
+  border-radius: 15px;
+  box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
 }
 .meeting-room .meeting-room-buttons .buttons-content .buttons-util {
   width: 25%;
   position: absolute;
   right: 0;
   top: 20%;
-  height: 100%;
+  height: 50px;
 }
 .meeting-room .meeting-room-buttons .buttons-content .buttons-util .button-users {
   position: absolute;
   right: 23%;
   height: 100%;
+  border: 2px solid #6667ab;
+  padding: 8px;
+  border-radius: 15px;
+  box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
 }
 .meeting-room .meeting-room-buttons .buttons-content .buttons-util .button-chat {
   position: absolute;
   right: 7%;
   height: 100%;
+  border: 2px solid #6667ab;
+  padding: 8px;
+  border-radius: 15px;
+  box-shadow: 1.3px 1.3px 6px rgba(0, 0, 0, 0.25);
 }
 
 .meeting-room-kick-msg {

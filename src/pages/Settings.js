@@ -12,7 +12,7 @@ export default function Settings() {
   const imageURL = 'https://i6a301.p.ssafy.io:8080/images/' + profileImg;
   const TOKEN = localStorage.getItem('accessToken');
   async function getUserInfo() {
-    const response = await axios.get('/users', {
+    const response = await axios.get(process.env.REACT_APP_SERVER_URL + '/users', {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
       },
@@ -60,9 +60,7 @@ export default function Settings() {
                 </clipPath>
               </defs>
             </svg>
-            {profileImg && (
-              <img className="settings-myprofilee-img" src={imageURL} alt="" />
-            )}
+            {profileImg && <img className="settings-myprofilee-img" src={imageURL} alt="" />}
           </div>
           <div className="settings-myprofile__text">
             <div className="settings-myprofile__text-nickname">{nickname}</div>

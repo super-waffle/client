@@ -38,10 +38,10 @@ export default function StudyRecruitDetail() {
     setDeleteModalOpen(false);
   };
 
-  function checkAxios(){
-    if(isDeleteSuccess&&isRecruitSuccess){
+  function checkAxios() {
+    if (isDeleteSuccess && isRecruitSuccess) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
@@ -53,13 +53,9 @@ export default function StudyRecruitDetail() {
     return (
       todayDate.getFullYear() +
       '-' +
-      (todayDate.getMonth() + 1 > 9
-        ? (todayDate.getMonth() + 1).toString()
-        : '0' + (todayDate.getMonth() + 1)) +
+      (todayDate.getMonth() + 1 > 9 ? (todayDate.getMonth() + 1).toString() : '0' + (todayDate.getMonth() + 1)) +
       '-' +
-      (todayDate.getDate() > 9
-        ? todayDate.getDate().toString()
-        : '0' + todayDate.getDate().toString())
+      (todayDate.getDate() > 9 ? todayDate.getDate().toString() : '0' + todayDate.getDate().toString())
     );
   }
 
@@ -68,7 +64,7 @@ export default function StudyRecruitDetail() {
     // test();
     if (isLogin) {
       axios
-        .get('/users', {
+        .get(process.env.REACT_APP_SERVER_URL + '/users', {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
@@ -77,7 +73,7 @@ export default function StudyRecruitDetail() {
           setUserSeq(res.data.user.userSeq);
         });
       axios
-        .get('/studies/' + studyseq, {
+        .get(process.env.REACT_APP_SERVER_URL + '/studies/' + studyseq, {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
@@ -124,7 +120,7 @@ export default function StudyRecruitDetail() {
   const onApply = useCallback(() => {
     axios
       .post(
-        '/studies/' + studyseq + '/application',
+        process.env.REACT_APP_SERVER_URL + `/studies/${studyseq}/application`,
         {},
         {
           headers: {
@@ -164,7 +160,7 @@ export default function StudyRecruitDetail() {
         }
       });
   }, [TOKEN, studyseq]);
-  
+
   //모집마감
   const recruitStudy = useCallback(() => {
     axios
@@ -191,14 +187,13 @@ export default function StudyRecruitDetail() {
     deleteStudy();
     recruitStudy();
     openDeleteModal();
-  }
-  function handleClick(e){
-    window.location.href="/studyrecruit"
+  };
+  function handleClick(e) {
+    window.location.href = '/studyrecruit';
   }
 
-  const sendData={
-    data:data,
-    
+  const sendData = {
+    data: data,
   };
 
   return (
@@ -207,37 +202,21 @@ export default function StudyRecruitDetail() {
         <Link className="studyrecruit-detail-goback__link" to={'/studyrecruit'}>
           스터디 모집 게시판
         </Link>
-        <svg
-          width="12"
-          height="12"
-          viewBox="0 0 12 12"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M3.99462 1.74978C3.9292 1.81675 3.89258 1.90666 3.89258 2.00028C3.89258 2.0939 3.9292 2.18381 3.99462 2.25078L7.64937 6.00002L3.99462 9.74852C3.9292 9.81549 3.89258 9.9054 3.89258 9.99902C3.89258 10.0926 3.9292 10.1825 3.99462 10.2495C4.02641 10.2822 4.06443 10.3081 4.10643 10.3259C4.14842 10.3436 4.19354 10.3527 4.23912 10.3527C4.2847 10.3527 4.32982 10.3436 4.37181 10.3259C4.4138 10.3081 4.45182 10.2822 4.48362 10.2495L8.37012 6.26177C8.43838 6.19174 8.47658 6.09782 8.47658 6.00002C8.47658 5.90223 8.43838 5.8083 8.37012 5.73827L4.48362 1.75053C4.45182 1.71787 4.4138 1.69192 4.37181 1.67419C4.32982 1.65647 4.2847 1.64734 4.23912 1.64734C4.19354 1.64734 4.14842 1.65647 4.10643 1.67419C4.06443 1.69192 4.02641 1.71787 3.99462 1.75053V1.74978Z"
             fill="var(--textColor)"
           />
         </svg>
-        {data.apidata && (
-          <span className="studyrecruit-detail-goback__category">
-            {data.apidata.categoryName}
-          </span>
-        )}
+        {data.apidata && <span className="studyrecruit-detail-goback__category">{data.apidata.categoryName}</span>}
       </div>
       <div className="studyrecruit-detail-box">
         <div>
           <div className="studyrecruit-detail-box-heading">
             <div className="studyrecruit-detail-box-heading__first">
+              {data.apidata && <div className="studyrecruit-detail-box-heading__title">{data.apidata.studyTitle}</div>}
               {data.apidata && (
-                <div className="studyrecruit-detail-box-heading__title">
-                  {data.apidata.studyTitle}
-                </div>
-              )}
-              {data.apidata && (
-                <div className="studyrecruit-detail-box-heading__category">
-                  {data.apidata.categoryName}
-                </div>
+                <div className="studyrecruit-detail-box-heading__category">{data.apidata.categoryName}</div>
               )}
             </div>
             {userSeq === hostSeq && (
@@ -250,46 +229,31 @@ export default function StudyRecruitDetail() {
                 >
                   수정
                 </Link>
-                  <span
-                    className="studyrecruit-detail-box-heading__first-host-btn"
-                    onClick={onClick}
-                    style={{cursor:'pointer'}}
-                  >
-                    삭제
-                  </span>
-                  <Modal
-                    open={deleteModalOpen}
-                    close={closeDeleteModal}
-                    header=" "
-                  >
-                    {checkAxios && (
-                      <div>
-                        <div className="studyapply-modal-msg">
-                          삭제되었습니다
-                        </div>
-                        <button
-                          className="studyapply-modal-ok"
-                          onClick={handleClick}
-                        >
-                          확인
-                        </button>
-                      </div>
-                    )}
-                    {!checkAxios && (
-                      <div>
-                        <div className="studyapply-modal-msg">
-                          스터디 호스트가 아닙니다
-                        </div>
-                        <button
-                          className="studyapply-modal-ok"
-                          onClick={closeDeleteModal}
-                        >
-                          확인
-                        </button>
-                      </div>
-                    )}
-                  </Modal>
-                
+                <span
+                  className="studyrecruit-detail-box-heading__first-host-btn"
+                  onClick={onClick}
+                  style={{ cursor: 'pointer' }}
+                >
+                  삭제
+                </span>
+                <Modal open={deleteModalOpen} close={closeDeleteModal} header=" ">
+                  {checkAxios && (
+                    <div>
+                      <div className="studyapply-modal-msg">삭제되었습니다</div>
+                      <button className="studyapply-modal-ok" onClick={handleClick}>
+                        확인
+                      </button>
+                    </div>
+                  )}
+                  {!checkAxios && (
+                    <div>
+                      <div className="studyapply-modal-msg">스터디 호스트가 아닙니다</div>
+                      <button className="studyapply-modal-ok" onClick={closeDeleteModal}>
+                        확인
+                      </button>
+                    </div>
+                  )}
+                </Modal>
               </div>
             )}
           </div>
@@ -323,19 +287,11 @@ export default function StudyRecruitDetail() {
                     </clipPath>
                   </defs>
                 </svg>
-                {data.apidata.hostImg !== null && (
-                  <img
-                    className="studyrecruit-detail-img"
-                    src={imageURL}
-                    alt=""
-                  />
-                )}
+                {data.apidata.hostImg !== null && <img className="studyrecruit-detail-img" src={imageURL} alt="" />}
               </div>
             )}
             {data.apidata && (
-              <div className="studyrecruit-detail-box-heading__nickname">
-                {data.apidata.hostNickName}
-              </div>
+              <div className="studyrecruit-detail-box-heading__nickname">{data.apidata.hostNickName}</div>
             )}
           </div>
           <hr></hr>
@@ -344,22 +300,17 @@ export default function StudyRecruitDetail() {
               <table>
                 <tbody>
                   <tr className="studyrecruit-detail-box-body__row">
-                    <td className="studyrecruit-detail-box-body__title">
-                      스터디 일정
-                    </td>
+                    <td className="studyrecruit-detail-box-body__title">스터디 일정</td>
                     {data.apidata &&
                       data.apidata.day.map((days) => (
                         <td key={days.dayNumber}>
                           <div className="studyrecruit-detail-box-body__days">
-                            <div className="studyrecruit-detail-box-body__day name">
-                              {numberToDay(days.dayNumber)}
-                            </div>
+                            <div className="studyrecruit-detail-box-body__day name">{numberToDay(days.dayNumber)}</div>
                             <div className="studyrecruit-detail-box-body__day timestart">
                               {days.timeStart.slice(0, 5)} ~{' '}
                             </div>
-                            <div className="studyrecruit-detail-box-body__day timeend">
-                              {days.timeEnd.slice(0, 5)}
-                            </div>
+                            <div className="studyrecruit-detail-box-body__day timeend">{days.timeEnd.slice(0, 5)}</div>
+                            <div className="studyrecruit-detail-box-body__day timeend">{days.timeEnd.slice(0, 5)}</div>
                           </div>
                         </td>
                       ))}
@@ -369,9 +320,7 @@ export default function StudyRecruitDetail() {
               <table>
                 <tbody>
                   <tr className="studyrecruit-detail-box-body__row">
-                    <td className="studyrecruit-detail-box-body__title">
-                      모집 기간
-                    </td>
+                    <td className="studyrecruit-detail-box-body__title">모집 기간</td>
                     {data.apidata && (
                       <td className="studyrecruit-detail-box-body__enddate">
                         {changeDateFormat()} ~ {data.apidata.studyRecruitEnd}
@@ -382,52 +331,31 @@ export default function StudyRecruitDetail() {
               </table>
             </div>
             {data.apidata && (
-              <div className="studyrecruit-detail-box-body__shortdesc">
-                {data.apidata.studyShortDesc}
-              </div>
+              <div className="studyrecruit-detail-box-body__shortdesc">{data.apidata.studyShortDesc}</div>
             )}
-            {data.apidata && (
-              <div className="studyrecruit-detail-box-body__desc">
-                {data.apidata.studyDesc}
-              </div>
-            )}
+            {data.apidata && <div className="studyrecruit-detail-box-body__desc">{data.apidata.studyDesc}</div>}
           </div>
         </div>
         {userSeq !== hostSeq && (
           <center>
             <div className="studyrecruit-detail-box-footer">
-              <button
-                onClick={onApply}
-                className="studyrecruit-detail-box-footer__btn"
-              >
+              <button onClick={onApply} className="studyrecruit-detail-box-footer__btn">
                 스터디 신청
               </button>
               <Modal open={modalOpen} close={closeModal} header=" ">
-                {isSuccess && (
-                  <div className="studyapply-modal-msg">
-                    신청이 완료되었습니다
-                  </div>
-                )}
-                {!isSuccess && (
-                  <div className="studyapply-modal-msg">
-                    이미 신청한 스터디입니다
-                  </div>
-                )}
+                {isSuccess && <div className="studyapply-modal-msg">신청이 완료되었습니다</div>}
+                {!isSuccess && <div className="studyapply-modal-msg">이미 신청한 스터디입니다</div>}
                 <button className="studyapply-modal-ok" onClick={closeModal}>
                   확인
                 </button>
-                <button className="studyapply-modal-go-to-mystudy">
-                  내 스터디 보러가기
-                </button>
+                <button className="studyapply-modal-go-to-mystudy">내 스터디 보러가기</button>
               </Modal>
             </div>
           </center>
         )}
         {userSeq === hostSeq && (
           <center>
-            <button className="studyrecruit-detail-box-footer__host">
-              신청자 목록 조회하기
-            </button>
+            <button className="studyrecruit-detail-box-footer__host">신청자 목록 조회하기</button>
           </center>
         )}
       </div>
