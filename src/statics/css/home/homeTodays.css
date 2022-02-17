@@ -16,7 +16,7 @@
 .home-todays .home-todays-top {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: 4fr 5fr;
   gap: 15px;
   margin-bottom: 8vh;
 }

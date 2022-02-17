@@ -14,4 +14,9 @@
   height: 40px;
 }
 
+.todo-no-data {
+  padding: 0.5rem 1rem;
+  color: var(--textColor-todo);
+}
+
 /*# sourceMappingURL=homeTodos.css.map */

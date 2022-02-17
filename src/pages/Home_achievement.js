@@ -49,10 +49,12 @@ export default function HomeAchievement() {
         },
       })
       .then((res) => {
-        let data = res.data.achieveActive.achieve;
-        setAchieveName(() => data.achieveName);
-        setAchieveImg(() => data.achieveImg);
-        setAchieveCount(0);
+        if (res.data.achieveActive) {
+          let data = res.data.achieveActive.achieve;
+          setAchieveName(() => data.achieveName);
+          setAchieveImg(() => data.achieveImg);
+          setAchieveCount(0);
+        }
       });
   }
   useEffect(() => {

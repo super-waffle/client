@@ -47,6 +47,9 @@ export default function HomeTodos(props) {
             day={today}
           />
         ))}
+      {!dailyList && !isAdd && (
+        <div className="todo-no-data">오늘 해야할 일을 추가해주세요</div>
+      )}
       {isAdd ? (
         <CreateTodo dailyList={dailyList} setDailyList={setDailyList} />
       ) : (

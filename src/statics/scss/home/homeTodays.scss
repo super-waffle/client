@@ -12,8 +12,9 @@
   .home-todays-top {
     width: 100%;
     display: grid;
-    // grid-template-columns:  4fr 5fr;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: 4fr 5fr;
+    // grid-template-columns: repeat(2, auto);
+    // grid-template-columns: repeat(2, minmax(200px, auto));
     gap: 15px;
     // grid-template-rows: repeat(auo-fit, minmax(200px, 2fr));
     // grid-template-rows: 197px;

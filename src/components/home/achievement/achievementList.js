@@ -135,8 +135,10 @@ export default function AchievementList({
         },
       })
       .then((res) => {
-        let data = res.data.achieveActive.achieve.achieveSeq;
-        setMainachieveSeq(() => data);
+        if (res.data.achieveActive) {
+          let data = res.data.achieveActive.achieve.achieveSeq;
+          setMainachieveSeq(() => data);
+        }
       });
   }
 

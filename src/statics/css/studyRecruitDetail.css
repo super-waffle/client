@@ -172,6 +172,8 @@
   width: 8rem;
   height: 30px;
   border-radius: 5px;
+  margin-top: 60px;
+  margin-bottom: 20px;
 }
 .studyrecruit-detail .studyrecruit-detail-box .studyapply-modal-msg {
   font-size: 14px;
