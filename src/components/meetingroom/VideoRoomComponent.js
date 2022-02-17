@@ -848,18 +848,20 @@ class VideoRoomComponent extends Component {
           </div>
 
           <div className="meeting-room-sidebar">
-            <div className="meeting-room-timer">
-              <TimeComponent
-                // cumTime={this.state.time}
-                startTime={this.state.myStartTime}
-                // sendTime={this.setTime}
-                onCreate={this.setTime}
-                // onClick={() => {
-                //   this.setTime();
-                //   this.setTimeString();
-                // }}
-              />
-            </div>
+            {localUser !== undefined && (
+              <div className="meeting-room-timer">
+                <TimeComponent
+                  // cumTime={this.state.time}
+                  startTime={this.state.myStartTime}
+                  // sendTime={this.setTime}
+                  onCreate={this.setTime}
+                  // onClick={() => {
+                  //   this.setTime();
+                  //   this.setTimeString();
+                  // }}
+                />
+              </div>
+            )}
             {localUser !== undefined && localUser.getStreamManager() !== undefined && (
               <div className="OT_root OT_publisher custom-class" style={chatDisplay}>
                 <div className="meeting-room-chat">
@@ -890,21 +892,23 @@ class VideoRoomComponent extends Component {
             )}
           </div>
         </div>
-        <div className="meeting-room-buttons" id="video-button-footer">
-          <ToolbarComponent
-            sessionId={this.state.mySessionId}
-            user={localUser}
-            showNotification={this.state.messageReceived}
-            camStatusChanged={this.camStatusChanged}
-            micStatusChanged={this.micStatusChanged}
-            screenShare={this.screenShare}
-            stopScreenShare={this.stopScreenShare}
-            toggleFullscreen={this.toggleFullscreen}
-            switchCamera={this.switchCamera}
-            leaveSession={this.leaveSession}
-            toggleChat={this.toggleChat}
-          />
-        </div>
+        {localUser !== undefined && (
+          <div className="meeting-room-buttons" id="video-button-footer">
+            <ToolbarComponent
+              sessionId={this.state.mySessionId}
+              user={localUser}
+              showNotification={this.state.messageReceived}
+              camStatusChanged={this.camStatusChanged}
+              micStatusChanged={this.micStatusChanged}
+              screenShare={this.screenShare}
+              stopScreenShare={this.stopScreenShare}
+              toggleFullscreen={this.toggleFullscreen}
+              switchCamera={this.switchCamera}
+              leaveSession={this.leaveSession}
+              toggleChat={this.toggleChat}
+            />
+          </div>
+        )}
       </div>
     );
   }
