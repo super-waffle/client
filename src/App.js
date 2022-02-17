@@ -5,6 +5,7 @@ import isLogin from "./utils/isLogin";
 import { Outlet } from "react-router-dom";
 import Footer from "./components/footer";
 import "./statics/css/darkUI.css";
+import "./statics/css/app.css";
 
 function App() {
   console.log(`
@@ -18,13 +19,15 @@ function App() {
                       dP                                                                         
   `);
   return (
-    <div className="main">
+    <main>
       {isLogin() && <Navbar sticky="top" />}
       {!isLogin() && <NavbarLanding sticky="top" />}
       <p>Landing Page</p>
-      <Outlet />
+      <div className="outlet">
+        <Outlet />
+      </div>
       <Footer />
-    </div>
+    </main>
   );
 }
 

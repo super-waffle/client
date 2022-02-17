@@ -1,0 +1,6 @@
+@import "main.css";
+.outlet {
+  min-height: calc(100vh - 180px);
+}
+
+/*# sourceMappingURL=app.css.map */
