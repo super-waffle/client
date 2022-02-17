@@ -20,15 +20,11 @@ const MeetingroomCard = ({ meeting, openModal, setMeetingSeq }) => {
     // 현재 즐겨찾기 중 => 누르면 해제
     if (bookmark) {
       axios
-        .delete(
-          process.env.REACT_APP_SERVER_URL + `/bookmarks/${meeting.meetingSeq}`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-            },
-          }
-        )
+        .delete(process.env.REACT_APP_SERVER_URL + `/bookmarks/${meeting.meetingSeq}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+        })
         .then((res) => {
           setBookmark(false);
         });
