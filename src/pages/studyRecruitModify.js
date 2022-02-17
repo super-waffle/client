@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ReactTooltip from "react-tooltip";
-
-import StudyDatePicker from "../components/datepicker";
 import StudyDatePickerStart from "../components/datepickerStart";
+import StudyDatePickerEnd from "../components/datepickerEnd";
 import TimePicker from "../components/timepicker";
 import CategorySelect from "../components/categorySelect";
 import isLogin from "../utils/isLogin";
@@ -13,14 +12,15 @@ import "../statics/css/studyRecruitCreate.css";
 import Modal from "../components/modal";
 
 export default function StudyRecruitModify() {
-  const [mondayStartTime, setMondayStartTime] =
-    useState('');
-  const [mondayEndTime, setMondayEndTime] = useState('');
+  const TOKEN = localStorage.getItem("accessToken");
+  const {studyseq} = useParams();
+  const [mondayStartTime, setMondayStartTime] = useState("");
+  const [mondayEndTime, setMondayEndTime] = useState("");
   const [isMonday, setIsMonday] = useState(false);
   const [monday, setMonday] = useState({
     dayNumber: 0,
-    timeStart: '',
-    timeEnd: '',
+    timeStart: "",
+    timeEnd: "",
   });
   useMemo(() => {
     if (isMonday) {
@@ -33,14 +33,13 @@ export default function StudyRecruitModify() {
     }
   }, [mondayEndTime, mondayStartTime]);
 
-  const [tuesdayStartTime, setTuesdayStartTime] =
-    useState('');
-  const [tuesdayEndTime, setTuesdayEndTime] = useState('');
+  const [tuesdayStartTime, setTuesdayStartTime] = useState("");
+  const [tuesdayEndTime, setTuesdayEndTime] = useState("");
   const [isTuesday, setIsTuesday] = useState(false);
   const [tuesday, setTuesday] = useState({
     dayNumber: 0,
-    timeStart: '',
-    timeEnd: '',
+    timeStart: "",
+    timeEnd: "",
   });
   useMemo(() => {
     if (isTuesday) {
@@ -53,15 +52,13 @@ export default function StudyRecruitModify() {
     }
   }, [tuesdayEndTime, tuesdayStartTime]);
 
-  const [wednesdayStartTime, setWednesdayStartTime] =
-    useState('');
-  const [wednesdayEndTime, setWednesdayEndTime] =
-    useState('');
+  const [wednesdayStartTime, setWednesdayStartTime] = useState("");
+  const [wednesdayEndTime, setWednesdayEndTime] = useState("");
   const [isWednesday, setIsWednesday] = useState(false);
   const [wednesday, setWednesday] = useState({
     dayNumber: 0,
-    timeStart: '',
-    timeEnd: '',
+    timeStart: "",
+    timeEnd: "",
   });
   useMemo(() => {
     if (isWednesday) {
@@ -74,15 +71,13 @@ export default function StudyRecruitModify() {
     }
   }, [wednesdayEndTime, wednesdayStartTime]);
 
-  const [thursdayStartTime, setThursdayStartTime] =
-    useState('');
-  const [thursdayEndTime, setThursdayEndTime] =
-    useState('');
+  const [thursdayStartTime, setThursdayStartTime] = useState("");
+  const [thursdayEndTime, setThursdayEndTime] = useState("");
   const [isThursday, setIsThursday] = useState(false);
   const [thursday, setThursday] = useState({
     dayNumber: 0,
-    timeStart: '',
-    timeEnd: '',
+    timeStart: "",
+    timeEnd: "",
   });
   useMemo(() => {
     if (isThursday) {
@@ -95,14 +90,13 @@ export default function StudyRecruitModify() {
     }
   }, [thursdayEndTime, thursdayStartTime]);
 
-  const [fridayStartTime, setFridayStartTime] =
-    useState('');
-  const [fridayEndTime, setFridayEndTime] = useState('');
+  const [fridayStartTime, setFridayStartTime] = useState("");
+  const [fridayEndTime, setFridayEndTime] = useState("");
   const [isFriday, setIsFriday] = useState(false);
   const [friday, setFriday] = useState({
     dayNumber: 0,
-    timeStart: '',
-    timeEnd: '',
+    timeStart: "",
+    timeEnd: "",
   });
   useMemo(() => {
     if (isFriday) {
@@ -115,15 +109,13 @@ export default function StudyRecruitModify() {
     }
   }, [fridayEndTime, fridayStartTime]);
 
-  const [saturdayStartTime, setSaturdayStartTime] =
-    useState('');
-  const [saturdayEndTime, setSaturdayEndTime] =
-    useState('');
+  const [saturdayStartTime, setSaturdayStartTime] = useState("");
+  const [saturdayEndTime, setSaturdayEndTime] = useState("");
   const [isSaturday, setIsSaturday] = useState(false);
   const [saturday, setSaturday] = useState({
     dayNumber: 0,
-    timeStart: '',
-    timeEnd: '',
+    timeStart: "",
+    timeEnd: "",
   });
   useMemo(() => {
     if (isSaturday) {
@@ -136,14 +128,13 @@ export default function StudyRecruitModify() {
     }
   }, [saturdayEndTime, saturdayStartTime]);
 
-  const [sundayStartTime, setSundayStartTime] =
-    useState('');
-  const [sundayEndTime, setSundayEndTime] = useState('');
+  const [sundayStartTime, setSundayStartTime] = useState("");
+  const [sundayEndTime, setSundayEndTime] = useState("");
   const [isSunday, setIsSunday] = useState(false);
   const [sunday, setSunday] = useState({
     dayNumber: 7,
-    timeStart: '',
-    timeEnd: '',
+    timeStart: "",
+    timeEnd: "",
   });
   useMemo(() => {
     if (isSunday) {
@@ -213,6 +204,9 @@ export default function StudyRecruitModify() {
   const [studyDesc, setStudyDesc] = useState("");
   const [studyRecruitEnd, setStudyRecruitEnd] = useState("");
   const [categorySeq, setCategorySeq] = useState(0);
+  const [categoryName, setCategoryName] = useState(0);
+  const [categoryList, setCategoryList] = useState();
+  const [seq, setSeq]=useState();
 
   // [TODO]: 스터디 상세정보 글자수 실시간으로 보여주기 (1000자 제한)
   const onChangeStudyDesc = useCallback((event) => {
@@ -221,12 +215,11 @@ export default function StudyRecruitModify() {
 
   const [days, setDays] = useState([]);
   const navigate = useNavigate();
-
+  // 스터디 정보 불러오기
   useEffect(() => {
-    if (isLogin()) {
-      const TOKEN = localStorage.getItem("accessToken");
+    if (isLogin) {
       axios
-        .get(process.env.REACT_APP_SERVER_URL + '/users', {
+        .get(process.env.REACT_APP_SERVER_URL + "/users", {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
@@ -234,8 +227,35 @@ export default function StudyRecruitModify() {
         .then((res) => {
           setUserSeq(res.data.user.userSeq);
         });
+
+      axios
+        .get(process.env.REACT_APP_SERVER_URL + `/studies/${studyseq}`, {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+          },
+        })
+        .then((res) => {
+          const apidata = res.data;
+          setStudyTitle(apidata.studyTitle);
+          setStudyShotrDesc(apidata.studyShortDesc);
+          setStudyDesc(apidata.studyDesc);
+          setStudyRecruitEnd(apidata.studyRecruitEnd);
+          setCategoryName(apidata.categoryName);
+          setDays(apidata.days);
+          
+        });
+
+        axios
+        .get(process.env.REACT_APP_SERVER_URL + "/categories/favorite", {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+          },
+        })
+        .then((res) => {
+          setCategoryList(res.data.list);
+        });
     }
-  }, []);
+  }, [TOKEN,studyseq]);
 
   function onRemove(id) {
     setDays(days.filter((days) => days.dayNumber !== id));
@@ -300,31 +320,6 @@ export default function StudyRecruitModify() {
     }
   }, [isSunday, sunday]);
 
-  // console.log(
-  //   userSeq,
-  //   typeof Number(categorySeq),
-  //   Number(categorySeq),
-  //   studyTitle,
-  //   studyShortDesc,
-  //   studyDesc,
-  //   studyRecruitEnd,
-  //   days,
-  //   studyDesc.length
-  // );
-  // console.log("mon", mondayStartTime, mondayEndTime, isMonday, monday);
-  // console.log("tue", tuesdayStartTime, tuesdayEndTime, isTuesday, tuesday);
-  // console.log(
-  //   "wed",
-  //   wednesdayStartTime,
-  //   wednesdayEndTime,
-  //   isWednesday,
-  //   wednesday
-  // );
-  // console.log("thu", thursdayStartTime, thursdayEndTime, isThursday, thursday);
-  // console.log("fri", fridayStartTime, fridayEndTime, isFriday, friday);
-  // console.log("sat", saturdayStartTime, saturdayEndTime, isSaturday, saturday);
-  // console.log("sun", sundayStartTime, sundayEndTime, isSunday, sunday);
-
   const [errorCode, setErrorCode] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => {
@@ -334,10 +329,9 @@ export default function StudyRecruitModify() {
     setModalOpen(false);
   };
   const onSubmitStudy = useCallback(() => {
-    const TOKEN = localStorage.getItem("accessToken");
     axios
       .post(
-        process.env.REACT_APP_SERVER_URL + '/studies',
+        process.env.REACT_APP_SERVER_URL + "/studies",
         {
           hostSea: userSeq,
           categorySeq: Number(categorySeq),
@@ -378,8 +372,7 @@ export default function StudyRecruitModify() {
     days,
   ]);
 
-  // console.log(days);
-  // console.log(categorySeq);
+
   return (
     <div className="recruit-create">
       <div className="recruit-create-heading">
@@ -390,13 +383,9 @@ export default function StudyRecruitModify() {
           <table className="recruit-create-content-category">
             <tbody>
               <tr>
-                <td className="recruit-create-content-row a1">
-                  카테고리
-                </td>
+                <td className="recruit-create-content-row a1">카테고리</td>
                 <td>
-                  <CategorySelect
-                    categoryseq={setCategorySeq}
-                  />
+                  <CategorySelect categoryseq={setCategorySeq}/>
                 </td>
               </tr>
             </tbody>
@@ -406,29 +395,29 @@ export default function StudyRecruitModify() {
           <table>
             <tbody>
               <tr>
-                <td className="recruit-create-content-row a1">
-                  스터디 이름
-                </td>
+                <td className="recruit-create-content-row a1">스터디 이름</td>
+
                 <td className="recruit-create-content-row a2">
                   <input
                     className="recruit-input"
                     maxLength="50"
                     placeholder="스터디 이름을 입력하세요"
+                    value={studyTitle}
                     onChange={useCallback((event) => {
                       setStudyTitle(event.target.value);
                     })}
+                    
                   />
                 </td>
               </tr>
               <tr>
-                <td className="recruit-create-content-row a1">
-                  한줄 소개
-                </td>
+                <td className="recruit-create-content-row a1">한줄 소개</td>
                 <td className="recruit-create-content-row a2">
                   <input
                     className="recruit-input"
                     maxLength="50"
                     placeholder="간단한 소개를 작성해주세요"
+                    value={studyShortDesc}
                     onChange={useCallback((event) => {
                       setStudyShotrDesc(event.target.value);
                     })}
@@ -442,16 +431,14 @@ export default function StudyRecruitModify() {
           <table className="recruit-create-content__day">
             <tbody>
               <tr>
-                <td className="recruit-create-content-row a1">
-                  스터디 요일
-                </td>
+                <td className="recruit-create-content-row a1">스터디 요일</td>
                 <td className="recruit-create-content-row day">
                   <button
                     id="day-picker"
                     data-tip
                     data-for="tooltip-mon"
                     className={`recruit-create-content-row day-name ${
-                      isMonday ? 'selected' : ''
+                      isMonday ? "selected" : ""
                     } `}
                     onClick={openModalMon}
                   >
@@ -464,7 +451,7 @@ export default function StudyRecruitModify() {
                       place="top"
                       effect="solid"
                     >
-                      {mondayStartTime.substring(0, 5)} ~{' '}
+                      {mondayStartTime.substring(0, 5)} ~{" "}
                       {mondayEndTime.substring(0, 5)}
                     </ReactTooltip>
                   )}
@@ -484,7 +471,7 @@ export default function StudyRecruitModify() {
                     data-tip
                     data-for="tooltip-tue"
                     className={`recruit-create-content-row day-name ${
-                      isTuesday ? 'selected' : ''
+                      isTuesday ? "selected" : ""
                     }`}
                     onClick={openModalTue}
                   >
@@ -497,7 +484,7 @@ export default function StudyRecruitModify() {
                       place="top"
                       effect="solid"
                     >
-                      {tuesdayStartTime.substring(0, 5)} ~{' '}
+                      {tuesdayStartTime.substring(0, 5)} ~{" "}
                       {tuesdayEndTime.substring(0, 5)}
                     </ReactTooltip>
                   )}
@@ -517,7 +504,7 @@ export default function StudyRecruitModify() {
                     data-tip
                     data-for="tooltip-wed"
                     className={`recruit-create-content-row day-name ${
-                      isWednesday ? 'selected' : ''
+                      isWednesday ? "selected" : ""
                     }`}
                     onClick={openModalWed}
                   >
@@ -530,7 +517,7 @@ export default function StudyRecruitModify() {
                       place="top"
                       effect="solid"
                     >
-                      {wednesdayStartTime.substring(0, 5)} ~{' '}
+                      {wednesdayStartTime.substring(0, 5)} ~{" "}
                       {wednesdayEndTime.substring(0, 5)}
                     </ReactTooltip>
                   )}
@@ -550,7 +537,7 @@ export default function StudyRecruitModify() {
                     data-tip
                     data-for="tooltip-thu"
                     className={`recruit-create-content-row day-name ${
-                      isThursday ? 'selected' : ''
+                      isThursday ? "selected" : ""
                     }`}
                     onClick={openModalThu}
                   >
@@ -563,7 +550,7 @@ export default function StudyRecruitModify() {
                       place="top"
                       effect="solid"
                     >
-                      {thursdayStartTime.substring(0, 5)} ~{' '}
+                      {thursdayStartTime.substring(0, 5)} ~{" "}
                       {thursdayEndTime.substring(0, 5)}
                     </ReactTooltip>
                   )}
@@ -583,7 +570,7 @@ export default function StudyRecruitModify() {
                     data-tip
                     data-for="tooltip-fri"
                     className={`recruit-create-content-row day-name ${
-                      isFriday ? 'selected' : ''
+                      isFriday ? "selected" : ""
                     }`}
                     onClick={openModalFri}
                   >
@@ -596,7 +583,7 @@ export default function StudyRecruitModify() {
                       place="top"
                       effect="solid"
                     >
-                      {fridayStartTime.substring(0, 5)} ~{' '}
+                      {fridayStartTime.substring(0, 5)} ~{" "}
                       {fridayEndTime.substring(0, 5)}
                     </ReactTooltip>
                   )}
@@ -616,7 +603,7 @@ export default function StudyRecruitModify() {
                     data-tip
                     data-for="tooltip-sat"
                     className={`recruit-create-content-row day-name ${
-                      isSaturday ? 'selected' : ''
+                      isSaturday ? "selected" : ""
                     }`}
                     onClick={openModalSat}
                   >
@@ -629,7 +616,7 @@ export default function StudyRecruitModify() {
                       place="top"
                       effect="solid"
                     >
-                      {saturdayStartTime.substring(0, 5)} ~{' '}
+                      {saturdayStartTime.substring(0, 5)} ~{" "}
                       {saturdayEndTime.substring(0, 5)}
                     </ReactTooltip>
                   )}
@@ -649,7 +636,7 @@ export default function StudyRecruitModify() {
                     data-tip
                     data-for="tooltip-sun"
                     className={`recruit-create-content-row day-name ${
-                      isSunday ? 'selected' : ''
+                      isSunday ? "selected" : ""
                     }`}
                     onClick={openModalSun}
                   >
@@ -662,7 +649,7 @@ export default function StudyRecruitModify() {
                       place="top"
                       effect="solid"
                     >
-                      {sundayStartTime.substring(0, 5)} ~{' '}
+                      {sundayStartTime.substring(0, 5)} ~{" "}
                       {sundayEndTime.substring(0, 5)}
                     </ReactTooltip>
                   )}
@@ -682,22 +669,16 @@ export default function StudyRecruitModify() {
           <table>
             <tbody>
               <tr>
-                <td className="recruit-create-content-row a1">
-                  모집 기간
-                </td>
-                <td className="recruit-create-content-row date">
-                  시작일
-                </td>
+                <td className="recruit-create-content-row a1">모집 기간</td>
+                <td className="recruit-create-content-row date">시작일</td>
                 <td className="recruit-create-content-row a3">
                   <StudyDatePickerStart />
                 </td>
-                <td className="recruit-create-content-row date">
-                  종료일
-                </td>
+                <td className="recruit-create-content-row date">종료일</td>
                 <td className="recruit-create-content-row a3">
-                  <StudyDatePicker
-                    endDate={setStudyRecruitEnd}
-                  />
+                  {studyRecruitEnd&&(
+                    <StudyDatePickerEnd studyRecruitEnd={studyRecruitEnd} />
+                  )}
                 </td>
               </tr>
             </tbody>
@@ -715,13 +696,14 @@ export default function StudyRecruitModify() {
               type="text"
               placeholder="스터디 모집 사항을 상세히 적어주세요"
               maxLength={1000}
+              value={studyDesc}
               onChange={onChangeStudyDesc}
             ></textarea>
           </div>
         </div>
       </div>
       <center>
-        <button onClick={onSubmitStudy}>스터디 개설</button>
+        <button onClick={onSubmitStudy}>스터디 수정</button>
       </center>
       <Modal open={modalOpen} close={closeModal} header=" ">
         <div>
@@ -748,4 +730,6 @@ export default function StudyRecruitModify() {
       </Modal>
     </div>
   );
+
+
 }

@@ -39,7 +39,7 @@ export default function StudyRecruitDetail() {
   };
 
   function checkAxios(){
-    if(isDeleteSuccess&&isRecruitSuccess){
+    if(isDeleteSuccess===200 && isRecruitSuccess===200){
       return true;
     }else{
       return false;
@@ -197,8 +197,7 @@ export default function StudyRecruitDetail() {
   }
 
   const sendData={
-    data:data,
-    
+    studyData:data.apidata
   };
 
   return (
@@ -244,9 +243,8 @@ export default function StudyRecruitDetail() {
               <div className="studyrecruit-detail-box-heading__first-host">
                 {/* [TODO]: update, delete 페이지로 링크 필요 */}
                 <Link
-                  to={'/studyrecruit/modify'}
+                  to={`/studyrecruitmodify/${studyseq}`}
                   className="studyrecruit-detail-box-heading__first-host-btn update"
-                  state={{}}
                 >
                   수정
                 </Link>
