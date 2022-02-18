@@ -38,6 +38,7 @@
   font-weight: 500;
 }
 .modal > section > main {
+  color: var(--textColor);
   padding: 5px 16px 30px 16px;
   text-align: center;
 }
