@@ -21,9 +21,11 @@ function DiaryImage({ wantEdit, imgURL, setImgFile, preview, setPreview }) {
         {!preview && !imgURL ? (
           <div>
             <img src={"images/photoCat.png"} alt="defaultImg" />
-            <div className="diary-image__text">
-              오늘 하루를 기록할 수 있는 사진을 남겨주세요
-            </div>
+            {!wantEdit && (
+              <div className="diary-image__text">
+                오늘 하루를 기록할 사진을 남겨주세요
+              </div>
+            )}
           </div>
         ) : null}
         {!preview && imgURL ? (

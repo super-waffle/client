@@ -43,7 +43,8 @@
 .diary .diary-box__contents-text {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  height: 100%;
+  color: var(--textColor);
 }
 .diary .diary-box__contents-text textarea {
   width: 100%;
@@ -71,7 +72,7 @@
 
 .diary-image {
   color: var(--textColor-todo);
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .diary-image__text {
