@@ -6,6 +6,7 @@
 .outlet {
   min-height: calc(100vh - 100px);
   background-color: var(--htmlbgColor);
+  padding-top: 50px;
 }
 
 /*# sourceMappingURL=app.css.map */
