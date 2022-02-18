@@ -83,7 +83,7 @@ export default function StudyRecruit() {
       //실시간 알림 sse
 
       if (!listening) {
-        eventSource = new EventSource(`https://i6a301.p.ssafy.io:8080/sse/sub/29`); //구독
+        eventSource = new EventSource(`https://i6a301.p.ssafy.io:8080/sse/sub/1`); //구독
         msetEventSource(eventSource);
         eventSource.addEventListener("StudyApply", function (event) {
           console.log("스터디 신청받음", event.data, event.id, event.name);
