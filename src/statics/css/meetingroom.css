@@ -663,6 +663,7 @@
   height: 0;
   overflow: hidden;
   padding-bottom: 72%;
+  transition: all 0.2s linear;
 }
 .meetingroom-card__img img {
   position: absolute;
@@ -671,6 +672,12 @@
   object-fit: cover;
   margin: auto;
   border-radius: 3px;
+}
+
+.meetingroom-card__img:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 0px 5px 1px rgba(104, 105, 172, 0.25);
+  transition: all 0.5s ease 0s;
 }
 
 .meetingroom-card__img__headcount {
