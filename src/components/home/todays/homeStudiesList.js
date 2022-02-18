@@ -8,6 +8,7 @@ export default function HomeStudies() {
   const TOKEN = localStorage.getItem('accessToken');
   const [studies, setStudies] = useState('');
   const [modalStatus, setModalStatus] = useState(false);
+  const [selectedStudy, setSelectedStudy] = useState('');
   const openModal = () => {
     setModalStatus(true);
   };
@@ -28,6 +29,9 @@ export default function HomeStudies() {
         }
       });
   }, []);
+  useEffect(() => {
+    localStorage.setItem('studySeq', selectedStudy);
+  }, [selectedStudy]);
 
   return (
     <div className="home-todays-studyrooms-row">
@@ -39,7 +43,7 @@ export default function HomeStudies() {
               key={index}
               onClick={() => {
                 openModal();
-                localStorage.setItem('accessToken', study.studySeq);
+                setSelectedStudy(() => study.studySeq);
               }}
               style={{ cursor: 'pointer' }}
             >
