@@ -162,33 +162,39 @@ export default function DailyStats(props) {
             </div>
           </div>
         )}
-        <div className="daily-stats-graph">
-          <div className="daily-stats-graph__circular">
-            <div className="daily-stats-graph__circular-header">
-              공부휴식 비율
+        {!nodata && (
+          <div className="daily-stats-graph">
+            <div className="daily-stats-graph__circular">
+              <div className="daily-stats-graph__circular-header">
+                공부휴식 비율
+              </div>
+              <div className="daily-stats-graph__circular-graph">
+                {useTotal && (
+                  <CircularProgressBar
+                    percentage={((dayTotal / useTotal) * 100).toFixed(1)}
+                  />
+                )}
+              </div>
             </div>
-            <div className="daily-stats-graph__circular-graph">
-              {useTotal && (
-                <CircularProgressBar
-                  percentage={((dayTotal / useTotal) * 100).toFixed(1)}
-                />
-              )}
+            <div className="daily-stats-graph__circular">
+              <div className="daily-stats-graph__circular-header">
+                오늘의 할 일 달성률
+              </div>
+              <div className="daily-stats-graph__circular-graph">
+                {todos ? (
+                  <CircularProgressBar
+                    percentage={(
+                      (todoCompleted.length / todos.length) *
+                      100
+                    ).toFixed(1)}
+                  />
+                ) : (
+                  <CircularProgressBar percentage={0} />
+                )}
+              </div>
             </div>
           </div>
-          <div className="daily-stats-graph__circular">
-            <div className="daily-stats-graph__circular-header">
-              오늘의 할 일 달성률
-            </div>
-            <div className="daily-stats-graph__circular-graph">
-              <CircularProgressBar
-                percentage={(
-                  (todoCompleted.length / todos.length) *
-                  100
-                ).toFixed(1)}
-              />
-            </div>
-          </div>
-        </div>
+        )}
       </div>
 
       {nodata && (

@@ -165,7 +165,6 @@ export default function Meetingrooms() {
     setImgSelected(images[Math.floor(Math.random() * images.length)]);
   }, [meetingSeq]);
 
-  console.log(selectedMeeting);
   const meetingroomImg =
     "https://i6a301.p.ssafy.io:8080/images/" + selectedMeeting.meetingImg;
   const defaultImg = `images/${imgSelected}`;

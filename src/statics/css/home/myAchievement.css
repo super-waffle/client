@@ -51,4 +51,10 @@
   display: inline-block;
 }
 
+.my-achievement__not-selected {
+  text-align: center;
+  padding-top: 40%;
+  color: var(--textColor-todo);
+}
+
 /*# sourceMappingURL=myAchievement.css.map */
