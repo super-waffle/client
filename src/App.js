@@ -24,9 +24,11 @@ function App() {
     <main>
       {isLogin() && <Navbar sticky="top" />}
       {!isLogin() && <NavbarLanding sticky="top" />}
-      <ParallaxProvider>
-        <Landing />
-      </ParallaxProvider>
+      {!isLogin() && (
+        <ParallaxProvider>
+          <Landing />
+        </ParallaxProvider>
+      )}
       <div className="outlet">
         <Outlet />
       </div>
