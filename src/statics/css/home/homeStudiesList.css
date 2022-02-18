@@ -102,4 +102,23 @@
   color: var(--textColor);
 }
 
+.studyroom-in__btn {
+  border: none;
+  background-color: #6667ab;
+  color: #eeeeee;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 0.3rem 1.6rem;
+  margin-right: 6px;
+}
+
+.studyroom-in__no-btn {
+  border: 1px solid #6667ab;
+  background-color: var(--bgColor);
+  color: var(--textColor);
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 0.3rem 1.3rem;
+}
+
 /*# sourceMappingURL=homeStudiesList.css.map */
