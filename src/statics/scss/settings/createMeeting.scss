@@ -1,0 +1,140 @@
+@import "../main.scss";
+
+.setting-meeting-header {
+  padding-top: 80px;
+  width: 100%;
+  & table {
+    margin-bottom: 18px;
+    padding-top: 18px;
+    // border-top: 1px solid var(--textColor-darkest);
+  }
+}
+.settings-meeting-heading {
+  // margin-left: 10px;
+  padding-bottom: 24px;
+  // border-bottom: 1px solid var(--textColor-todo);
+  .settings-meeting-heading__h1 {
+    font-size: 20px;
+    color: var(--textColor);
+    &.second-box {
+      margin-top: 4.5rem;
+    }
+  }
+  .settings-meeting-heading__h2 {
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--textColor-dark);
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--textColor-todo);
+  }
+}
+.create-meeting__table-row {
+  margin: 2rem;
+}
+.create-meeting-row {
+  // margin-bottom: 15px;
+  &.a1 {
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--textColor);
+    width: 8rem;
+    // margin-bottom: 5px;
+    &.meeting-desc {
+      width: 100%;
+      border-top: 1px solid var(--textColor-darkest);
+      padding-top: 30px;
+      padding-bottom: 12px;
+    }
+  }
+  &.a2 {
+    width: 32rem;
+  }
+  & input {
+    background: var(--bgColor);
+    border: 1px solid var(--borderColor);
+    border-radius: 7px;
+    box-sizing: border-box;
+    color: var(--textColor);
+    font-size: 12px;
+    height: 30px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding-left: 8px;
+    width: 95%;
+  }
+  ::placeholder {
+    font-size: 12px;
+    color: var(--textColor-darker);
+    padding-left: 10px;
+  }
+  :focus {
+    outline: 1px solid $mainColor;
+  }
+}
+.create-meeting-desc {
+  & textarea {
+    width: 100%;
+    height: 240px;
+    border-radius: 10px;
+    border: 1px solid var(--borderColor);
+    background-color: var(--bgColor);
+    padding: 12px;
+    color: var(--textColor);
+    font-size: 14px;
+  }
+  ::placeholder {
+    font-size: 12px;
+    color: var(--textColor-darker);
+  }
+  :focus {
+    outline: 1px solid $mainColor;
+  }
+}
+.create-meeting-btn {
+  // margin-top: 45px;
+  background-color: $mainColor;
+  color: #eeeeee;
+  border: none;
+  border-radius: 5px;
+  padding: 0.4rem 1rem;
+  margin: 40px 6px;
+}
+.create-meeting-btn-delete {
+  background-color: var(--bgColor);
+  color: var(--textColor);
+  border: 1px solid $mainColor;
+  border-radius: 5px;
+  padding: 0.4rem 1rem;
+  margin: 40px 6px;
+  font-size: 14px;
+}
+
+.read-meeting__header {
+  display: flex;
+  align-items: center;
+}
+.read-meeting__category {
+  font-size: 12px;
+  color: $mainColor;
+  padding-right: 7px;
+}
+.read-meeting__title {
+  font-weight: 500;
+  color: var(--textColor);
+}
+.read-meeting__headcount {
+  color: var(--textColor-todo);
+  & svg {
+    margin-bottom: 2px;
+    margin-right: 5px;
+  }
+}
+.read-meeting__desc {
+  margin-top: 20px;
+  white-space: pre-wrap;
+  color: var(--textColor);
+}
+.setting-meeting-btns {
+  text-align: right;
+  margin-right: 20px;
+}
