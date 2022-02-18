@@ -1,9 +1,11 @@
 import React from 'react';
 import Navbar from './components/navbar';
 import NavbarLanding from './components/navbarLanding';
+import { ParallaxProvider } from 'react-scroll-parallax';
 import isLogin from './utils/isLogin';
 import { Outlet } from 'react-router-dom';
 import Footer from './components/footer';
+import Landing from './components/landing/Parallax';
 import './statics/css/darkUI.css';
 import './statics/css/app.css';
 
@@ -22,7 +24,9 @@ function App() {
     <main>
       {isLogin() && <Navbar sticky="top" />}
       {!isLogin() && <NavbarLanding sticky="top" />}
-      <p>Landing Page</p>
+      <ParallaxProvider>
+        <Landing />
+      </ParallaxProvider>
       <div className="outlet">
         <Outlet />
       </div>
