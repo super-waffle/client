@@ -4,6 +4,7 @@
 }
 
 .study-personnel__applicants {
+  color: var(--textColor);
   display: flex;
   margin-bottom: 6px;
   margin-top: 8px;

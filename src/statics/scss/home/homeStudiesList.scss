@@ -91,3 +91,20 @@
   }
   margin-right: 8px;
 }
+.studyroom-in__btn {
+  border: none;
+  background-color: $mainColor;
+  color: #eeeeee;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 0.3rem 1.6rem;
+  margin-right: 6px;
+}
+.studyroom-in__no-btn {
+  border: 1px solid $mainColor;
+  background-color: var(--bgColor);
+  color: var(--textColor);
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 0.3rem 1.3rem;
+}

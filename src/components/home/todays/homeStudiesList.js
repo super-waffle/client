@@ -116,9 +116,11 @@ export default function HomeStudies() {
                   pathname: `/studyroom`,
                 }}
               >
-                <button>예</button>
+                <button className="studyroom-in__btn">예</button>
               </Link>
-              <button onClick={closeModal}>아니오</button>
+              <button className="studyroom-in__no-btn" onClick={closeModal}>
+                아니오
+              </button>
             </Modal>
           </div>
         ))}

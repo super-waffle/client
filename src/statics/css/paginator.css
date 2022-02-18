@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   margin-top: 3rem;
+  margin-bottom: 0;
   font-family: "Pretendard";
 }
 .pagination a {
